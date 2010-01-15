@@ -1,0 +1,56 @@
+--- icon.v943src.ORIG/config/linux/x86_64.s	1970-01-01 00:00:00.000000000 +0000
++++ icon.v943src/config/linux/x86_64.s	2009-03-17 22:05:28.623949156 +0000
+@@ -0,0 +1,35 @@
++#
++# Context switch for AMD64 small model.  (Position-independent code.)
++#
++# See http://www.amd64.org/ for information about AMD64 programming.
++#
++
++        .file       "rswitch.s"
++ 
++        .section    .rodata
++.L0:    .string     "new_context() returned in coswitch"
++
++        .globl      coswitch
++
++        .text
++        .globl      coswitch
++        .type       coswitch, @function
++coswitch:
++        # coswitch(old_cstate, new_cstate, first)
++        #
++        #     %rdi     old_cstate
++        #     %rsi     new_cstate
++        #     %edx     first (equals 0 if first activation)
++        #
++
++        movq    %rsp, 0(%rdi)      # Old stack pointer -> old_cstate[0]
++        movq    0(%rsi), %rsp      # new_cstate[0] -> new stack pointer
++        orl     %edx, %edx         # Is this the first activation?
++        je      .L1                # If so, skip.
++        ret                        # Otherwise we are done.
++.L1:    xorl    %edi, %edi         # Call new_context((int) 0, (ptr) 0)
++        xorl    %esi, %esi         # (Implicitly zero-extended to 64 bits)
++        call    new_context@PLT
++        leaq    .L0(%rip), %rdi    # Call syserr(...)
++        movl    $0, %eax
++        jmp     syserr@PLT
+--- icon.v943src.ORIG/config/setup.sh	2003-12-20 17:29:00.000000000 +0000
++++ icon.v943src/config/setup.sh	2009-03-17 22:26:45.948948988 +0000
+@@ -31,9 +31,13 @@
+ # find and copy the context switch code.
+ # use pthreads version if specified, or as a last resort.
+ # first try `uname -p`.[cs] or `uname -m`.[cs] and then rswitch.[cs].
+-ARCH=`uname -p 2>/dev/null || echo unknown`
+-if [ "$ARCH" = "unknown" ]; then
++if [ "`uname 2>/dev/null`" = "Linux" ]; then
+    ARCH=`uname -m`
++else
++   ARCH=`uname -p 2>/dev/null || echo unknown`
++   if [ "$ARCH" = "unknown" ]; then
++      ARCH=`uname -m`
++   fi
+ fi
+ if [ "$CSW" = "pthreads" ]; then
+    RSW=pthreads.c
