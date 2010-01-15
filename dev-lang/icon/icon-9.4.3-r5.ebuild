@@ -12,7 +12,7 @@ DESCRIPTION="very high level language"
 LICENSE="as-is"
 SLOT="0"
 KEYWORDS="~alpha ~amd64 ~hppa ~ia64 ~ppc ~ppc64 ~sparc ~x86"
-IUSE="X iplsrc"
+IUSE="X iplsrc chemoelectric"
 
 S="${WORKDIR}/icon.v${MY_PV}src"
 
@@ -27,7 +27,9 @@ src_unpack() {
 	unpack ${A}
 
 	epatch "${FILESDIR}"/${P}-flags.patch
-	epatch "${FILESDIR}"/linux-rswitch-patch-2009.03.17.17.30.29.diff
+	if use chemoelectric; then
+		epatch "${FILESDIR}"/linux-rswitch-patch-2009.03.17.17.30.29.diff
+	fi
 
 	# Patch the tests so that they do not fail
 	# The following files in tests/standard are patched..
