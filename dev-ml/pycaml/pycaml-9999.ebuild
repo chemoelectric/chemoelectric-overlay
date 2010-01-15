@@ -58,8 +58,6 @@ src_compile() {
 }
 
 src_install() {
-	python_need_rebuild
-
 	# Use findlib to install properly, especially to avoid
 	# the shared library mess
 	findlib_src_preinst
