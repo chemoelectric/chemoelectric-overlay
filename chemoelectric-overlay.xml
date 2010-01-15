@@ -1,0 +1,19 @@
+<!DOCTYPE repositories SYSTEM "/dtd/repositories.dtd">
+
+<repositories xmlns="" version="1.0">
+
+  <repo quality="experimental" status="unofficial">
+  <name><![CDATA[chemoelectric]]></name>
+    <description><![CDATA[chemoelectric overlay for Gentoo
+    Portage]]></description>
+    <homepage>http://github.com/chemoelectric/chemoelectric-overlay/tree/master</homepage>
+    <owner>
+      <name><![CDATA[Barry Schwartz]]></name>
+      <email>github@crudfactory.com</email>
+    </owner>
+    <source type="git">git://github.com/chemoelectric/chemoelectric-overlay.git</source>
+    <feed>http://github.com/feeds/chemoelectric/commits/chemoelectric-overlay/master</feed>
+  </repo>
+
+</repositories>
+
