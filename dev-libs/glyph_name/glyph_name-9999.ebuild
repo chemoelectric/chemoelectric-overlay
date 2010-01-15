@@ -48,7 +48,6 @@ src_install() {
 	   	 die "scons install failed"
 	fi
 	if use python; then
-	   python_need_rebuild
 	   distutils_src_install || die "distutils_src_install failed"
 	fi
 }
