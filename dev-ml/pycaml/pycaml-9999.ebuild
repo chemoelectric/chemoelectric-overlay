@@ -35,6 +35,10 @@ pkg_setup() {
 	fi
 }
 
+src_prepare() {
+	python_copy_sources
+}
+
 src_compile() {
 	compile_abi_pycaml() {
 		abi=`echo "${PYTHON_ABI}" | sed -e 's/\./_/g'`
@@ -43,18 +47,10 @@ src_compile() {
 		cp -r "${PN}" "${name}"
 		cd "${name}"
 		sed -i -e "/^browse_interfaces/s/Pycaml/Pycaml${name}/"
-		emake -j1 PYVER="${PYTHON_ABI}" PYVER_PACK="${abi}" \
+		emake PYVER="${PYTHON_ABI}" PYVER_PACK="${abi}" \
 		      get_libdir="$(get_libdir)" || die "emake failed"
 	}
-	python_execute_function compile_abi_pycaml
-
-	compile_pycaml() {
-		cd "${S}"
-		emake -j1 PYVER="${PYVER}" PYVER_PACK="" \
-		      get_libdir="$(get_libdir)" || die "emake failed"
-	}
-	python_version
-	compile_pycaml
+	python_execute_function -s compile_abi_pycaml
 }
 
 src_install() {
@@ -73,14 +69,4 @@ src_install() {
 			  pycaml.o pycaml_stubs.c pycaml_stubs.h pycaml_stubs.o META
 	}
 	python_execute_function install_abi_pycaml
-
-	install_pycaml() {
-		cd "${S}"
-		ocamlfind install "${PN}" \
-			  dllpycaml_stubs.so* libpycaml_stubs.a pycaml.a pycaml.cma \
-			  pycaml.cmi pycaml.cmo pycaml.cmx pycaml.cmxa pycaml.ml pycaml.mli \
-			  pycaml.o pycaml_stubs.c pycaml_stubs.h pycaml_stubs.o META
-	}
-	python_version
-	install_pycaml
 }
