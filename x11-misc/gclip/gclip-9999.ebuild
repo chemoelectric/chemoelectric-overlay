@@ -22,7 +22,7 @@ src_install() {
 	newbin "${DISTDIR}/gclip.txt" gclip
 	make_desktop_entry gclip \
 	    gClip \
-	    gclip.png \
+	    /usr/share/pixmaps/gclip.png \
 	    "GTK;GNOME;Application;Utility;"
 	
 	insinto /usr/share/pixmaps
