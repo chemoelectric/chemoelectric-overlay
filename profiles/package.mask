@@ -5,6 +5,7 @@
 # will be re-released as free software.)
 =app-misc/ckermit-9999
 
-# Barry Schwartz (10 Jun 2011)
+# Barry Schwartz (11 Jun 2011)
 # Portage has an ebuild (that is, this one, but w/o the camlp4 patch).
+=dev-lang/ocaml-3.12.0-r1
 =dev-lang/ocaml-3.12.0
