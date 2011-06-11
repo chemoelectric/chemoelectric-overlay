@@ -8,23 +8,35 @@ inherit eutils
 
 DESCRIPTION="C-Kermit"
 HOMEPAGE="http://kermit.columbia.edu/"
-SRC_URI="
-    ftp://www.columbia.edu/kermit/test/tar/x.tar.gz
-    http://www.columbia.edu/kermit/ftp/c-kermit/ckermit.ini
-"
+SRC_URI=""
 
 LICENSE="Kermit"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE="ssl telnet"
 
-DEPEND="
+RDEPEND="
     >=sys-libs/ncurses-5.9
     ssl? ( >=dev-libs/openssl-1.0.0d )
 "
-RDEPEND="${DEPEND}"
+DEPEND="
+    ${RDEPEND}
+    app-arch/gzip
+    app-arch/tar
+    net-misc/wget
+"
 
 S="${WORKDIR}"
+
+src_unpack()
+{
+	local x_url ini_url
+	x_url="ftp://www.columbia.edu/kermit/test/tar/x.tar.gz"
+	ini_url="http://www.columbia.edu/kermit/ftp/c-kermit/ckermit.ini"
+	wget "${x_url}" || die "wget ${x_url} failed"
+	wget "${ini_url}" || die "wget ${ini_url} failed"
+	(gzip -d < x.tar.gz | tar xf -) || die "untarring failing"
+}
 
 src_configure()
 {
@@ -46,8 +58,7 @@ src_install()
     dosym kermit /usr/bin/kermit-sshsub
     use telnet && dosym kermit /usr/bin/telnet
 
-    cp "${DISTDIR}/ckermit.ini" ckermit.ini || die "${DISTDIR}/ckermit.ini not found"
-    edo sed -i -e '1i#!/usr/bin/kermit\n' ckermit.ini
+    sed -i -e '1i#!/usr/bin/kermit\n' ckermit.ini || die "sed failed"
     dobin ckermit.ini
 
     newman ckuker.nr kermit.1
