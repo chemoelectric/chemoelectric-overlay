@@ -24,7 +24,7 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/${PN}-release-${PV}"
 
 src_compile() {
-	emake -j1 || die "emake failed"
+	emake -j1
 }
 
 src_install() {
