@@ -15,7 +15,10 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-DEPEND=">=virtual/lapack-3.1"
+DEPEND="
+    >=dev-lang/ocaml-3.12.0
+    >=virtual/lapack-3.1
+"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/${PN}-release-${PV}"
