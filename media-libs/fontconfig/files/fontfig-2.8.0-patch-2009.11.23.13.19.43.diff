@@ -1,0 +1,224 @@
+--- fontconfig-2.8.0/./src/fcfreetype.c	2009-11-18 14:21:00.000000000 +0000
++++ fontfig-2.8.0/./src/fcfreetype.c	2009-11-23 19:05:52.275071934 +0000
+@@ -1094,14 +1094,18 @@
+ #ifdef TT_NAME_ID_WWS_FAMILY
+     TT_NAME_ID_WWS_FAMILY,
+ #endif
++#if 0 /* fontfig hack: Ignore Preferred Family. */
+     TT_NAME_ID_PREFERRED_FAMILY,
++#endif
+     TT_NAME_ID_FONT_FAMILY,
+     TT_NAME_ID_MAC_FULL_NAME,
+     TT_NAME_ID_FULL_NAME,
+ #ifdef TT_NAME_ID_WWS_SUBFAMILY
+     TT_NAME_ID_WWS_SUBFAMILY,
+ #endif
++#if 0 /* fontfig hack: Ignore Preferred Style. */
+     TT_NAME_ID_PREFERRED_SUBFAMILY,
++#endif
+     TT_NAME_ID_FONT_SUBFAMILY,
+     TT_NAME_ID_TRADEMARK,
+     TT_NAME_ID_MANUFACTURER,
+@@ -1189,7 +1193,11 @@
+      * of them
+      */
+     snamec = FT_Get_Sfnt_Name_Count (face);
++#if 1 /* fontfig hack: Accept only Microsoft platform. */
++    for (p = 0; p == 0; p++)
++#else
+     for (p = 0; p <= NUM_PLATFORM_ORDER; p++)
++#endif
+     {
+ 	if (p < NUM_PLATFORM_ORDER)
+ 	    platform = platform_order[p];
+--- fontconfig-2.8.0/./src/fcmatch.c	2009-11-16 22:46:18.000000000 +0000
++++ fontfig-2.8.0/./src/fcmatch.c	2009-11-23 19:15:39.836071504 +0000
+@@ -75,7 +75,6 @@
+     if (FcToLower(*v1_string) != FcToLower(*v2_string) &&
+ 	*v1_string != ' ' && *v2_string != ' ')
+        return 1.0;
+-
+     return (double) FcStrCmpIgnoreBlanksAndCase (v1_string, v2_string) != 0;
+ }
+ 
+@@ -184,6 +183,75 @@
+  * each value, earlier values are more significant than
+  * later values
+  */
++#if 1 /* fontfig hack: Different precedences--but shouldn't this really be configurable? */
++
++static FcMatcher _FcMatchers [] = {
++    { FC_FOUNDRY_OBJECT,	FcCompareString,	0, 0 },
++#define MATCH_FOUNDRY	    0
++#define MATCH_FOUNDRY_INDEX 0
++    
++    { FC_FAMILY_OBJECT,    	FcCompareFamily,	1, 1 },
++#define MATCH_FAMILY	    1
++#define MATCH_FAMILY_STRONG_INDEX   1
++#define MATCH_FAMILY_WEAK_INDEX	    1
++    
++    { FC_STYLE_OBJECT,		FcCompareString,	2, 2 },
++#define MATCH_STYLE	    2
++#define MATCH_STYLE_INDEX   2
++    
++    { FC_SLANT_OBJECT,		FcCompareNumber,	3, 3 },
++#define MATCH_SLANT	    3
++#define MATCH_SLANT_INDEX   3
++    
++    { FC_WEIGHT_OBJECT,		FcCompareNumber,	4, 4 },
++#define MATCH_WEIGHT	    4
++#define MATCH_WEIGHT_INDEX  4
++    
++    { FC_WIDTH_OBJECT,		FcCompareNumber,	5, 5 },
++#define MATCH_WIDTH	    5
++#define MATCH_WIDTH_INDEX   5
++    
++    { FC_CHARSET_OBJECT,	FcCompareCharSet,	6, 6 },
++#define MATCH_CHARSET	    6
++#define MATCH_CHARSET_INDEX 6
++    
++    { FC_LANG_OBJECT,		FcCompareLang,	7, 7 },
++#define MATCH_LANG	    7
++#define MATCH_LANG_INDEX    7
++    
++    { FC_SPACING_OBJECT,	FcCompareNumber,	8, 8 },
++#define MATCH_SPACING	    8
++#define MATCH_SPACING_INDEX 8
++    
++    { FC_PIXEL_SIZE_OBJECT,	FcCompareSize,	9, 9 },
++#define MATCH_PIXEL_SIZE    9
++#define MATCH_PIXEL_SIZE_INDEX	9
++    
++    { FC_DECORATIVE_OBJECT,	FcCompareBool,		10, 10 },
++#define MATCH_DECORATIVE	10
++#define MATCH_DECORATIVE_INDEX	10
++
++    { FC_ANTIALIAS_OBJECT,	FcCompareBool,		11, 11 },
++#define MATCH_ANTIALIAS		    11
++#define MATCH_ANTIALIAS_INDEX	    11
++    
++    { FC_RASTERIZER_OBJECT,	FcCompareString,	12, 12 },
++#define MATCH_RASTERIZER	    12
++#define MATCH_RASTERIZER_INDEX	    12
++
++    { FC_OUTLINE_OBJECT,	FcCompareBool,		13, 13 },
++#define MATCH_OUTLINE		    13
++#define MATCH_OUTLINE_INDEX	    13
++
++    { FC_FONTVERSION_OBJECT,	FcCompareNumber,	14, 14 },
++#define MATCH_FONTVERSION	    14
++#define MATCH_FONTVERSION_INDEX	    14
++};
++
++#define NUM_MATCH_VALUES    15
++
++#else
++
+ static const FcMatcher _FcMatchers [] = {
+     { FC_FOUNDRY_OBJECT,	FcCompareString,	0, 0 },
+ #define MATCH_FOUNDRY	    0
+@@ -220,6 +288,8 @@
+ 
+ #define NUM_MATCH_VALUES    16
+ 
++#endif
++
+ static const FcMatcher*
+ FcObjectToMatcher (FcObject object)
+ {
+@@ -342,6 +412,80 @@
+     return FcTrue;
+ }
+ 
++#if 1 /* fontfig hack: Look for exact matches in first-in-list family and style. */
++
++static double
++FcPickyCompareFamily (FcValue *v1, FcValue *v2)
++{
++    /* rely on the guarantee in FcPatternAddWithBinding that
++     * families are always FcTypeString. */
++    const FcChar8* v1_string = FcValueString(v1);
++    const FcChar8* v2_string = FcValueString(v2);
++
++    if (FcToLower(*v1_string) != FcToLower(*v2_string))
++       return 1.0;
++    return (double) FcStrCmp (v1_string, v2_string) != 0;
++}
++
++static double
++FcPickyCompareString (FcValue *v1, FcValue *v2)
++{
++    return (double) FcStrCmp (FcValueString(v1), FcValueString(v2)) != 0;
++}
++
++static FcBool
++FcExactFamilyAndStyle (FcPattern *pat,
++                       FcPattern *fnt)
++{
++    int i;
++    int i1;
++    int i2;
++    FcBool family_matches;
++    FcBool style_matches;
++    FcBool failed_already;
++
++    family_matches = FcFalse;
++    style_matches = FcFalse;
++    i1 = 0;
++    i2 = 0;
++    failed_already = FcFalse;
++    while (!failed_already && !(family_matches && style_matches) && i1 < pat->num && i2 < fnt->num) {
++        FcPatternElt *elt_i1 = &FcPatternElts(pat)[i1];
++        FcPatternElt *elt_i2 = &FcPatternElts(fnt)[i2];
++
++        i = FcObjectCompare(elt_i1->object, elt_i2->object);
++        if (i > 0) {
++            i2++;
++        } else if (i < 0) {
++            i1++;
++        } else if (elt_i1->object == FC_FAMILY_OBJECT) {
++            FcValueListPtr v1 = FcPatternEltValues(elt_i1);
++            FcValueListPtr v2 = FcPatternEltValues(elt_i2);
++            failed_already = (v1 == NULL || v2 == NULL || FcPickyCompareFamily(&v1->value, &v2->value) != 0);
++            if (!failed_already) {
++                family_matches = FcTrue;
++                i1++;
++                i2++;
++            }
++        } else if ( elt_i1->object == FC_STYLE_OBJECT) {
++            FcValueListPtr v1 = FcPatternEltValues(elt_i1);
++            FcValueListPtr v2 = FcPatternEltValues(elt_i2);
++            failed_already = (v1 == NULL || v2 == NULL || FcPickyCompareString(&v1->value, &v2->value) != 0);
++            if (!failed_already) {
++                style_matches = FcTrue;
++                i1++;
++                i2++;
++            }
++        } else {
++            i1++;
++            i2++;
++        }
++    }
++    return family_matches && style_matches;
++}
++
++#endif
++
+ /*
+  * Return a value indicating the distance between the two lists of
+  * values
+@@ -358,6 +502,14 @@
+     for (i = 0; i < NUM_MATCH_VALUES; i++)
+ 	value[i] = 0.0;
+     
++#if 1 /* fontfig hack: Look for exact matches in first-in-list family and style. */
++    if (FcExactFamilyAndStyle(pat, fnt)) {
++        if (FcDebug () & FC_DBG_MATCHV)
++            printf("Family and style are exact matches\n");
++        return FcTrue;
++    }
++#endif
++
+     i1 = 0;
+     i2 = 0;
+     while (i1 < pat->num && i2 < fnt->num)

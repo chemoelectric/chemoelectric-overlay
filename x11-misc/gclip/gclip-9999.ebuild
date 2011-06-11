@@ -23,7 +23,8 @@ src_install() {
 	make_desktop_entry gclip \
 	    gClip \
 	    /usr/share/pixmaps/gclip.png \
-	    "GTK;GNOME;Application;Utility;"
+	    gclip.png \
+	    Path="GTK;GNOME;Application;Utility;"
 	
 	insinto /usr/share/pixmaps
 	newins "${DISTDIR}/edit-paste.png" gclip.png
