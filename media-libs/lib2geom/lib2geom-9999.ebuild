@@ -54,6 +54,6 @@ src_install() {
     cmake-utils_src_install
 
     (cd doc && (make manual.pdf || "make manual.pdf failed"))
-    dodoc doc
-    (cd src/2geom && dodoc toys)
+    dodoc -r doc
+    (cd src/2geom && dodoc -r toys)
 }
