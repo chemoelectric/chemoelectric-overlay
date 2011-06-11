@@ -1,7 +1,7 @@
 # Copyright 1999-2011 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=4
+EAPI="4"
 ESVN_REPO_URI="http://${PN}.svn.sourceforge.net/svnroot/${PN}/${PN}/trunk"
 
 inherit cmake-utils subversion
