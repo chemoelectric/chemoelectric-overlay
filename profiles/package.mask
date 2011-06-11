@@ -1,3 +1,10 @@
+# Barry Schwartz (11 Jun 2011)
+# Portage has an ebuild for ckermit. This one is for a live build,
+# and is based on my Exherbo exheres rather than the Portage ebuild.
+# (Note the the Kermit project has been cancelled and C-Kermit soon
+# will be re-released as free software.)
+=app-misc/ckermit-9999
+
 # Barry Schwartz (10 Jun 2011)
 # Portage has an ebuild (that is, this one, but w/o the camlp4 patch).
 =dev-lang/ocaml-3.12.0
