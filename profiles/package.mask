@@ -1,4 +1,11 @@
 # Barry Schwartz (11 Jun 2011)
+# A live build of Crud Factory fontconfig, a drop-in fork of
+# standard fontconfig that works around serious problems in
+# fontconfig's pattern matcher and some apps that use it.
+# Masked so we don't shadow the standard fontconfig's ebuild.
+=media-libs/fontconfig-9999
+
+# Barry Schwartz (11 Jun 2011)
 # Portage has an ebuild for ckermit. This one is for a live build,
 # and is based on my Exherbo exheres rather than the Portage ebuild.
 # (Note the the Kermit project has been cancelled and C-Kermit soon
