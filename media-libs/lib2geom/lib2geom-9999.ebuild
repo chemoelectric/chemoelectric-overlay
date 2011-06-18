@@ -4,7 +4,7 @@
 EAPI="4"
 ESVN_REPO_URI="http://${PN}.svn.sourceforge.net/svnroot/${PN}/${PN}/trunk"
 
-inherit cmake-utils subversion
+inherit cmake-utils subversion eutils
 
 # For now, hardcode the Python ABI. (FIXME)
 PYTHON_ABI=2.7
@@ -40,9 +40,17 @@ src_configure() {
         -D2GEOM_BUILD_SHARED:BOOL=ON
         -D2GEOM_LPE_TOYS:BOOL=OFF
         -D2GEOM_TOYS:BOOL=OFF
-        $(cmake-utils_use_has python 2GEOM_BOOST_PYTHON:BOOL)
         "
+    use python && mycmakeargs+=" -D2GEOM_BOOST_PYTHON:BOOL=ON "
+    use python || mycmakeargs+=" -D2GEOM_BOOST_PYTHON:BOOL=OFF "
+
     cmake-utils_src_configure
+}
+
+src_compile() {
+	cd "${CMAKE_BUILD_DIR}"
+	emake
+	use python && emake py2geom
 }
 
 src_install() {
