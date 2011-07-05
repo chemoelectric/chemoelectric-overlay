@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<!-- 
+$Header: /var/cvsroot/gentoo-x86/skel.metadata.xml,v 1.18 2008/07/28 19:27:05 cardoe Exp $
+-->
+
+<pkgmetadata>
+<herd>no-herd</herd>
+<maintainer>
+  <email>github@crudfactory.com</email>
+</maintainer>
+<use>
+  <flag name='emacs'>install elisp files</flag>
+  <flag name='mpir'>use <pkg>sci-libs/mpir</pkg> instead of <pkg>dev-libs/gmp</pkg></flag>
+  <flag name='static-llvm'>link with the static LLVM libraries</flag>
+</use>
+</pkgmetadata>
