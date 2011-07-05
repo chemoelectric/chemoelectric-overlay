@@ -13,7 +13,7 @@ KEYWORDS="~amd64"
 
 # static-llvm is the default, because currently Pure built from this
 # ebuild has trouble finding the shared libraries at run time.
-IUSE="doc emacs libedit mpir readline +static-llvm"
+IUSE="doc examples emacs libedit mpir readline +static-llvm"
 
 MY_DOCS_V="${PV}"
 SRC_URI="${SRC_URI} doc? ( http://pure-lang.googlecode.com/files/pure-docs-${MY_DOCS_V}.tar.gz )"
@@ -57,5 +57,9 @@ src_install() {
 		dosym "${html_dir}" "${docs_dir}"
 
 		popd
+	fi
+
+	if use examples ; then
+		dodoc -r examples
 	fi
 }
