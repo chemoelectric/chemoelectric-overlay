@@ -1,3 +1,7 @@
+# Barry Schwartz (5 Jul 2011)
+# Live ebuild.
+=dev-pure/pure-octave-9999
+
 # Barry Schwartz (26 Jun 2011)
 # Quickly adapted from an ebuild on sunrise.
 # Not checked carefully for IUSE candidates and so forth.
