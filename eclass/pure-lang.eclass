@@ -19,7 +19,7 @@ EXPORT_FUNCTIONS src_compile src_install
 
 pure-lang_src_compile() {
 	test x"${PV}" = x9999 && cd ${PN}
-	emake CC="$(tc-getCC)" CXX="$(tc-getCXX)" libdir="${EPREFIX}/usr/$(get_libdir)"
+	emake CC="$(tc-getCC)" CXX="$(tc-getCXX)" libdir="${EPREFIX}/usr/$(get_libdir)" ${1+"$@"}
 }
 
 any_exist() {
@@ -28,7 +28,7 @@ any_exist() {
 
 pure-lang_src_install() {
 	test x"${PV}" = x9999 && cd ${PN}
-	emake install CC="$(tc-getCC)" CXX="$(tc-getCXX)" libdir="${EPREFIX}/usr/$(get_libdir)" DESTDIR="${D}"
+	emake install CC="$(tc-getCC)" CXX="$(tc-getCXX)" libdir="${EPREFIX}/usr/$(get_libdir)" DESTDIR="${D}" ${1+"$@"}
 	any_exist README* && dodoc README*
 	any_exist *.html && dodoc *.html
 	test -d examples && dodoc -r examples
