@@ -19,5 +19,4 @@ DEPEND="${RDEPEND} >=dev-pure/pure-doc-0.6"
 src_install() {
 	pure-lang_src_install
 	dodoc doc/pure-posix.html
-	dodoc -r examples
 }

@@ -17,8 +17,3 @@ DEPEND="
     >=sci-libs/gsl-1.15
 "
 RDEPEND="${DEPEND}"
-
-src_install() {
-	pure-lang_src_install
-	dodoc -r examples
-}
