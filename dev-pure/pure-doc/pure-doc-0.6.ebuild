@@ -12,7 +12,5 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-RESTRICT="strip"
-
 DEPEND=""
 RDEPEND="${DEPEND}"

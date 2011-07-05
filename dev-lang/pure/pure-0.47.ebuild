@@ -37,6 +37,10 @@ src_configure() {
 		$(use_with static-llvm)
 }
 
+src_compile() {
+	default
+}
+
 src_install() {
 	default
 
