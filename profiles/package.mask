@@ -1,3 +1,7 @@
+# Barry Schwartz (7 Jul 2011)
+# Live ebuild.
+=dev-ml/batteries-9999
+
 # Barry Schwartz (5 Jul 2011)
 # Live ebuild.
 =dev-pure/pure-octave-9999
