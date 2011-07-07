@@ -3,17 +3,18 @@
 
 EAPI="3"
 
-EGIT_REPO_URI="http://github.com/ocaml-batteries-team/batteries-included.git"
-
-inherit git-2 multilib eutils
+inherit multilib eutils
 
 DESCRIPTION="Batteries is just the OCaml development platform"
 HOMEPAGE="http://batteries.forge.ocamlcore.org/"
+SRC_URI="https://forge.ocamlcore.org/frs/download.php/643/${P}.tar.gz"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64"
 IUSE="+ocamlopt doc"
+
+S="${WORKDIR}/${PN}-1.3.0"
 
 RDEPEND=">=dev-lang/ocaml-3.12.1
 	ocamlopt? ( >=dev-lang/ocaml-3.12.1[ocamlopt] )
@@ -25,11 +26,12 @@ RDEPEND=">=dev-lang/ocaml-3.12.1
 DEPEND="${RDEPEND}"
 
 my_emake() {
-	emake OCAMLBUILD="ocamlbuild -no-hygiene" ${1+"$@"}
+	emake CAMVER=0.8.2 OCAMLBUILD="ocamlbuild -no-hygiene" ${1+"$@"}
 }
 
 src_compile() {
-	my_emake OCAMLBUILD="ocamlbuild -no-hygiene" || die "emake all failed"
+	my_emake camomile82
+	my_emake || die "emake all failed"
 	if use doc; then
 		my_emake doc || die "emake doc failed"
 	fi
