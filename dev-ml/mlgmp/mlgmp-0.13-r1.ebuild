@@ -54,6 +54,10 @@ src_unpack() {
 	create_meta_file
 }
 
+src_compile() {
+	emake -j1 || die "emake failed"
+}
+
 src_install() {
     # Use findlib to install properly, especially to avoid
     # the shared library mess
