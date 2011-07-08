@@ -14,7 +14,7 @@ SRC_URI=""
 
 LICENSE="MIT"
 SLOT="1.0"
-KEYWORDS="~amd64"
+KEYWORDS=""
 IUSE="doc"
 
 # Purposefully dropped the xml USE flag and libxml2 support.  Expat is the

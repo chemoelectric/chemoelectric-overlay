@@ -9,7 +9,7 @@ inherit pure-lang
 DESCRIPTION="Embed GNU Octave in Pure"
 LICENSE="GPL-3"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS=""
 IUSE=""
 
 DEPEND="

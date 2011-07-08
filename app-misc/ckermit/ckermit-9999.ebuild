@@ -12,7 +12,7 @@ SRC_URI=""
 
 LICENSE="Kermit"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS=""
 IUSE="ssl telnet"
 
 RDEPEND="
