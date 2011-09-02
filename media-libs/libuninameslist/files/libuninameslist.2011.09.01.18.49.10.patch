@@ -1,0 +1,104 @@
+--- libuninameslist.UNPATCHED/./Makefile.in	2009-12-31 03:22:55.000000000 +0000
++++ libuninameslist/./Makefile.in	2011-09-01 23:48:39.572514691 +0000
+@@ -8,16 +8,16 @@
+ libdir = @libdir@
+ incdir = @includedir@
+ 
+-UN_VERSION=0
+-UN_REVISION=2
+-UN_AGE=0
++UN_VERSION=@UN_VERSION@
++UN_REVISION=@UN_REVISION@
++UN_AGE=@UN_AGE@
+ 
+ LIBTOOL = @LIBTOOL@
+ CC = @CC@
+ INSTALL = @INSTALL@
+ INSTALL_DATA = @INSTALL_DATA@
+ 
+-WFLAGS = -Wmissing-prototypes -Wunused -Wimplicit -Wreturn-type -Wparentheses
++WFLAGS = @WFLAGS@
+ CFLAGS = @CFLAGS@ $(WFLAGS)
+ LDFLAGS = @LDFLAGS@
+ 
+@@ -43,12 +43,18 @@
+ 	$(LIBTOOL) --finish $(DESTDIR)$(libdir)
+ 	mkdir -p $(DESTDIR)$(incdir)
+ 	$(INSTALL_DATA) nameslist.h $(DESTDIR)$(incdir)/uninameslist.h
++	mkdir -p $(DESTDIR)$(libdir)/pkgconfig
++	$(INSTALL_DATA) libuninameslist.pc $(DESTDIR)$(libdir)/pkgconfig; \
++	$(INSTALL_DATA) libuninameslist-fr.pc $(DESTDIR)$(libdir)/pkgconfig; \
+ 
+ clean:
+-	-rm -f *.lo *.o *.la
++	-rm -rf *.lo *.o *.la *.pc .libs
+ 
+-distclean cleaner:
+-	-rm -f *.lo *.o *.la libuninameslist.la Makefile
++distclean cleaner: clean
++	-rm -rf Makefile
++
++evencleaner: cleaner
++	-rm -rf autom4te.cache config.log config.status libtool
+ 
+ 
+ #nameslist.c nameslist-fr.c: buildnameslist NamesList.txt ListeDesNoms-4.0.0.txt
+--- libuninameslist.UNPATCHED/./configure.in	2008-04-08 00:35:42.000000000 +0000
++++ libuninameslist/./configure.in	2011-09-01 22:48:55.830617398 +0000
+@@ -5,6 +5,13 @@
+ AC_PROG_INSTALL
+ AC_CANONICAL_HOST
+ 
++AC_SUBST(WFLAGS)
++if test "${GCC}" = yes ; then
++   WFLAGS="-Wmissing-prototypes -Wunused -Wimplicit -Wreturn-type -Wparentheses"
++else
++   WFLAGS=""
++fi
++
+ case "$host" in
+ *-pc-cygwin*)
+  AC_DEFINE(__CygWin,1)
+@@ -12,6 +19,13 @@
+  ;;
+ esac
+ 
++AC_SUBST(UN_VERSION)
++AC_SUBST(UN_REVISION)
++AC_SUBST(UN_AGE)
++UN_VERSION=0
++UN_REVISION=2
++UN_AGE=0
++
+ AC_PROG_LIBTOOL
+ 
+-AC_OUTPUT(Makefile)
++AC_OUTPUT(Makefile libuninameslist.pc libuninameslist-fr.pc)
+--- libuninameslist.UNPATCHED/./libuninameslist.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ libuninameslist/./libuninameslist.pc.in	2011-09-01 22:20:57.203312318 +0000
+@@ -0,0 +1,11 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: libuninameslist
++Description: Unicode Annotations
++Version: @UN_VERSION@.@UN_REVISION@
++Libs: -L${libdir} -luninameslist
++Cflags: -I${includedir}
++
+--- libuninameslist.UNPATCHED/./libuninameslist-fr.pc.in	1970-01-01 00:00:00.000000000 +0000
++++ libuninameslist/./libuninameslist-fr.pc.in	2011-09-01 22:36:10.785217664 +0000
+@@ -0,0 +1,11 @@
++prefix=@prefix@
++exec_prefix=@exec_prefix@
++libdir=@libdir@
++includedir=@includedir@
++
++Name: libuninameslist-fr
++Description: Unicode Annotations (French)
++Version: @UN_VERSION@.@UN_REVISION@
++Libs: -L${libdir} -luninameslist-fr
++Cflags: -I${includedir}
++
