@@ -1,3 +1,13 @@
+# Barry Schwartz (17 Sep 2011)
+# Rescued from Portage, where they are scheduled for removal.
+=net-zope/transaction-1.1.1
+=net-zope/zc-lockfile-1.0.0
+=net-zope/zconfig-2.9.0
+=net-zope/zdaemon-2.0.4
+=net-zope/zodb-3.10.3
+=net-zope/zope-event-3.5.0.1
+=net-zope/zope-proxy-3.6.1
+
 # Barry Schwartz (26 Jun 2011)
 # Quickly adapted from an ebuild on sunrise.
 # Not checked carefully for IUSE candidates and so forth.
