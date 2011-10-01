@@ -46,7 +46,7 @@ src_compile() {
 		cd "${WORKDIR}"
 		cp -r "${PN}" "${name}"
 		cd "${name}"
-		emake PYVER="${PYTHON_ABI}" PYVER_PACK="${abi}" \
+		emake -j1 PYVER="${PYTHON_ABI}" PYVER_PACK="${abi}" \
 		      get_libdir="$(get_libdir)" || die "emake failed"
 	}
 	python_execute_function -s compile_abi_pycaml
