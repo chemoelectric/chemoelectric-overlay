@@ -1,5 +1,5 @@
---- lacaml-release-5.5.2.ORIG/OCamlMakefile	2011-09-17 19:32:38.605114876 +0000
-+++ lacaml-release-5.5.2/OCamlMakefile	2011-09-17 19:48:56.912668900 +0000
+--- lacaml-release-5.5.2.ORIG/OCamlMakefile	2011-08-09 04:01:50.000000000 +0000
++++ lacaml-release-5.5.2/OCamlMakefile	2011-10-02 04:12:22.075250877 +0000
 @@ -62,6 +62,7 @@
  
  export LIBS
@@ -17,15 +17,16 @@
  ifdef MSVC
    ifndef STATIC
    # MSVC libraries do not have 'lib' prefix
---- lacaml-release-5.5.2.ORIG/lib/Makefile	2011-09-17 19:32:38.666111232 +0000
-+++ lacaml-release-5.5.2/lib/Makefile	2011-09-17 19:59:09.828052155 +0000
-@@ -79,7 +79,8 @@
+--- lacaml-release-5.5.2.ORIG/lib/Makefile	2011-08-09 04:01:50.000000000 +0000
++++ lacaml-release-5.5.2/lib/Makefile	2011-10-02 05:51:38.794846778 +0000
+@@ -79,7 +79,9 @@
  LIB_PACK_NAME := lacaml
  #CFLAGS	:= -fPIC -DPIC -Wall -Werror -Wno-unused -Wno-long-long
  CFLAGS := -O2 -fPIC -DPIC
 -CLIBS := $(LAPACK) $(BLAS)
 +CLIBS :=
 +CLIBS2 := $(shell pkg-config --libs lapack)
++OCAMLMKLIB_FLAGS := $(shell pkg-config --libs lapack)
  RESULT := lacaml
  
  DOC_FILES = $(LIB_PACK_NAME).mli
