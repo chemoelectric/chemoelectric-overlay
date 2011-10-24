@@ -18,6 +18,7 @@ SRC_URI="${SRC_URI} doc? ( http://pure-lang.googlecode.com/files/pure-docs-${MY_
 
 DEPEND="
     >=sys-devel/llvm-2.9-r2
+    >=dev-libs/mpfr-3.0.1_p4
     emacs? ( virtual/emacs )
     libedit? ( >=dev-libs/libedit-20110709.3.0 )
     mpir? ( >=sci-libs/mpir-2.3.1 )
