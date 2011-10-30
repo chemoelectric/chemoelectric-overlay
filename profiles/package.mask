@@ -1,3 +1,10 @@
+# Barry Schwartz (29 Oct 2011)
+# Science overlay has this ebuild but with CFLAGS respected, which I
+# consider a very bad idea, at least for AMD64. Unmask this to get the
+# same ebuild but with the CFLAGS ignored. You probably want to unset
+# FFLAGS in your Portage/Paludis configurations for this ebuild, too.
+=sci-libs/atlas-3.9.52
+
 # Barry Schwartz (17 Sep 2011)
 # Rescued from Portage, where they are scheduled for removal.
 =net-zope/transaction-1.1.1
