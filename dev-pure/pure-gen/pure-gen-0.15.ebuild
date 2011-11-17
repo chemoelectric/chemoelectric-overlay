@@ -12,10 +12,10 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-RDEPEND=">=dev-lang/pure-0.47"
+RDEPEND=">=dev-lang/pure-0.49"
 DEPEND="
     ${RDEPEND}
-    >=dev-lang/ghc-6.12.3-r2
-    >=dev-haskell/language-c-0.3.1.1
+    >=dev-lang/ghc-7.0.4
+    >=dev-haskell/language-c-0.4.1
 "
 
