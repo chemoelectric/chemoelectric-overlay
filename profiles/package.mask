@@ -1,3 +1,10 @@
+# Barry Schwartz (19 Dec 2011)
+# Science overlay has this ebuild but with CFLAGS respected, which I
+# consider a very bad idea, at least for AMD64. Unmask this to get the
+# same ebuild but with the CFLAGS ignored. This version also unsets
+# FFLAGS.
+=sci-libs/atlas-3.9.52-r1
+
 # Barry Schwartz (29 Oct 2011)
 # Science overlay has this ebuild but with CFLAGS respected, which I
 # consider a very bad idea, at least for AMD64. Unmask this to get the
