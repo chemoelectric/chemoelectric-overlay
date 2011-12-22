@@ -14,6 +14,6 @@ IUSE=""
 
 DEPEND="
     >=dev-lang/pure-0.49
-    >=sci-libs/gsl-1.15-r2
+    >=sci-libs/gsl-1.15
 "
 RDEPEND="${DEPEND}"
