@@ -1,3 +1,9 @@
+# Barry Schwartz (21 Dec 2011)
+# This is the ebuild from portage with the dependence on eselect-cblas
+# removed so it can be mixed with current ebuilds in the science
+# overlay.
+=sci-libs/gsl-1.15
+
 # Barry Schwartz (19 Dec 2011)
 # Science overlay has this ebuild but with CFLAGS respected, which I
 # consider a very bad idea, at least for AMD64. Unmask this to get the
