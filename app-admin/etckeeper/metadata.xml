@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+<herd>no-herd</herd>
+<maintainer><email>portage-overlay@funroll-loops.de</email></maintainer>
+<use>
+  <flag name='bzr'>Support <pkg>dev-vcs/bzr</pkg> as vsc backend</flag>
+  <flag name='git'>Support <pkg>dev-vcs/git</pkg> as vsc backend</flag>
+  <flag name='mercurial'>Support <pkg>dev-vcs/mercurial</pkg> as vcs backend</flag>
+</use>
+</pkgmetadata>
