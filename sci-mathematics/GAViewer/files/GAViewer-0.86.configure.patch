@@ -1,0 +1,19 @@
+--- GAViewer-0.86.ORIG/configure.ac	2010-06-19 19:04:31.000000000 +0000
++++ GAViewer-0.86/configure.ac	2012-01-14 17:13:10.804641071 +0000
+@@ -6,11 +6,11 @@
+ AC_PROG_RANLIB
+ AQSIS_CHECK_FLTK
+ 
+-AC_CHECK_FILE(/usr/lib64/libantlr.a, ANTLR_LIBS="/usr/lib64/libantlr.a", )
+-AC_CHECK_FILE(/usr/local/lib64/libantlr.a, ANTLR_LIBS="/usr/local64/lib/libantlr.a", )
+-AC_CHECK_FILE(/usr/lib/libantlr.a, ANTLR_LIBS="/usr/lib/libantlr.a", )
+-AC_CHECK_FILE(/usr/local/lib/libantlr.a, ANTLR_LIBS="/usr/local/lib/libantlr.a", )
+-AC_SUBST([ANTLR_LIBS])
++dnl AC_CHECK_FILE(/usr/lib64/libantlr.a, ANTLR_LIBS="/usr/lib64/libantlr.a", )
++dnl AC_CHECK_FILE(/usr/local/lib64/libantlr.a, ANTLR_LIBS="/usr/local64/lib/libantlr.a", )
++dnl AC_CHECK_FILE(/usr/lib/libantlr.a, ANTLR_LIBS="/usr/lib/libantlr.a", )
++dnl AC_CHECK_FILE(/usr/local/lib/libantlr.a, ANTLR_LIBS="/usr/local/lib/libantlr.a", )
++AC_SUBST([ANTLR_LIBS],[`antlr-config --libs`])
+ 
+ dnl 
+ dnl AC_CHECK_FILE(/usr/lib64/libantlr.a, ANTLR_LIBS="/usr/lib64/libantlr.a", 
