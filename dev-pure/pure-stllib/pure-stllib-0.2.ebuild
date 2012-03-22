@@ -12,7 +12,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-RDEPEND=">=dev-lang/pure-0.52"
+RDEPEND=">=dev-lang/pure-0.53"
 DEPEND="${RDEPEND}"
 
 src_install() {
