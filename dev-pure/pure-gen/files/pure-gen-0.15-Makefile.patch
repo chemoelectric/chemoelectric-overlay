@@ -1,0 +1,11 @@
+--- pure-gen-0.15.ORIG/Makefile	2011-11-16 02:40:36.000000000 +0000
++++ pure-gen-0.15/Makefile	2012-03-25 22:03:24.015007494 +0000
+@@ -57,7 +57,7 @@
+ # needed to do without this kludge.
+ 
+ dump-ast: dump-ast.hs
+-	ghc -XTypeSynonymInstances --make $< -o $@
++	ghc -XTypeSynonymInstances -XFlexibleInstances --make $< -o $@
+ 
+ # Minimal test suite:
+ 
