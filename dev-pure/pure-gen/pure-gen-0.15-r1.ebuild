@@ -9,7 +9,7 @@ inherit pure-lang eutils
 DESCRIPTION="C interface/module generator for Pure"
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="-*"
 IUSE=""
 
 RDEPEND=">=dev-lang/pure-0.53"
