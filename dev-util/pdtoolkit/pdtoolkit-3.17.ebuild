@@ -42,6 +42,14 @@ src_install() {
 	fi
 
 	make install || die "make install"
+	pushd ${my_image}
+	# Chasm-Interop looks here for the library.
+	ln -sv ${archdir}/lib .
+	# This probably can’t hurt.
+	ln -sv ${archdir}/bin .
+	# This is cruft.
+	rm -f ${archdir}/include
+	popd
 	mkdir -p  ${D}${my_targetbase}
     cp -r ${my_image} ${D}${my_targetbase}
 
