@@ -8,7 +8,7 @@ inherit multilib
 
 DESCRIPTION="Program Database Toolkit"
 HOMEPAGE="http://www.cs.uoregon.edu/Research/pdt/home.php"
-SRC_URI="http://tau.uoregon.edu/pdt.tgz"
+SRC_URI="http://tau.uoregon.edu/pdt.tgz -> ${P}.tar.gz"
 LICENSE="PDT GPL-2"
 
 SLOT="0"
