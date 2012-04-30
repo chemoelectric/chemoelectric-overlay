@@ -4,7 +4,7 @@
 
 EAPI=4
 
-inherit multilib
+inherit multilib flag-o-matic
 
 DESCRIPTION="Chasm Language Interoperability Tools"
 HOMEPAGE="http://chasm-interop.sourceforge.net/"
@@ -13,7 +13,7 @@ SRC_URI="mirror://sourceforge/chasm-interop/chasm-interop/chasm_1.4.RC3/chasm_1.
 LICENSE="chasm-interop"
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE="examples pdtoolkit xalan"
+IUSE="examples pdtoolkit xalan pic"
 
 DEPEND="
     pdtoolkit? ( >=dev-util/pdtoolkit-3.17 )
@@ -26,6 +26,10 @@ S="${WORKDIR}/chasm"
 
 src_configure() {
 	local pdt_flag xalan_flag f90_flag
+
+	use pic && append-cflags -fPIC
+	use pic && append-cxxflags -fPIC
+	use pic && append-fflags -fPIC
 
 	use pdtoolkit && pdt_flag=--with-pdt-root=/usr/$(get_libdir)/pdtoolkit
 	use xalan && xalan_flag=--with-xalan-root=/usr
