@@ -13,7 +13,7 @@ LICENSE="PDT GPL-2"
 
 SLOT="0"
 KEYWORDS="~amd64"
-IUSE=""
+IUSE="pic"
 
 # Eliminate QA notice about unstripped binaries.
 RESTRICT="strip"
@@ -28,6 +28,14 @@ src_configure() {
 	local my_image=${WORKDIR}/${PN}
 
 	./configure -targetprefix=/${my_target} -prefix=${my_image} || die "configure"
+}
+
+src_compile() {
+	export CXX="`tc-getCXX` -w -Wall -ansi -D_XOPEN_SOURCE"
+	if use pic; then
+		CXX="${CXX} -fPIC"
+	fi
+	emake CXX="${CXX} ${CPPFLAGS} ${CXXFLAGS}"
 }
 
 src_install() {
@@ -54,6 +62,7 @@ src_install() {
     cp -r ${my_image} ${D}${my_targetbase}
 
 	echo "PATH=\"/${my_target}/${archdir}/bin\"" > 99${PN}
+	echo "ROOTPATH=\"/${my_target}/${archdir}/bin\"" >> 99${PN}
 	insinto /etc/env.d
 	doins 99${PN}
 }
