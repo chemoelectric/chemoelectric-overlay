@@ -1,0 +1,15 @@
+--- pure-0.52.ORIG/Makefile.in	2012-03-06 02:54:23.000000000 +0000
++++ pure-0.52/Makefile.in	2012-03-09 23:56:38.626289842 +0000
+@@ -321,10 +321,10 @@
+ ifeq ($(sharedlib), yes)
+ 	$(INSTALL) $(libpure) $(DESTDIR)$(libdir)/$(libpure)
+ ifneq ($(libpure), $(libpure_soname))
+-	ln -sf $(libdir)/$(libpure) $(DESTDIR)$(libdir)/$(libpure_soname)
++	ln -sf $(libpure) $(DESTDIR)$(libdir)/$(libpure_soname)
+ endif
+ ifneq ($(libpure), $(libpure_lnkname))
+-	ln -sf $(libdir)/$(libpure) $(DESTDIR)$(libdir)/$(libpure_lnkname)
++	ln -sf $(libpure) $(DESTDIR)$(libdir)/$(libpure_lnkname)
+ endif
+ endif
+ 	$(INSTALL) pure$(EXE) $(DESTDIR)$(bindir)/$(pure_exe)
