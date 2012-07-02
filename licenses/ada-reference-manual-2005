@@ -1,0 +1,137 @@
+Format-Specification: Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Name: ada-reference-manual
+Upstream-Name: Ada Reference Manaul
+Upstream-Contact: agent@ada-auth.org
+ http://www.ada-auth.org/arm.html
+ Stephen Leake <stephen_leake@stephe-leake.org>
+ http://www.stephe-leake.org/ada/arm_info.html
+Maintainer: Stephen Leake <stephen_leake@stephe-leake.org>
+Source: There are two layers of upstream; the formal Ada standard at
+ http://www.ada-auth.org/arm.html, and the intermediate package in
+ monotone at mtn://www.ada-france.org?org.adaic.arm_form (also at
+ http://www.stephe-leake.org/ada/arm_info.html). The
+ org.adaic.arm_form package just provides a convenient repackaging of
+ the ada-auth sources, and adds a Makefile. The Debian source package
+ contains a full copy of the org.adaic.arm_form package.
+License: GPL-3
+/usr/share/common-licenses/GPL-3
+
+Files: arm_texi.ad?
+Copyright: 2003, 2007, 2011, 2012 Stephen Leake.  All Rights Reserved.
+License: GPL-3+
+/usr/share/common-licenses/GPL-3
+
+Files: *.ad?
+Copyright: 2000, 2004, 2005, 2006, 2007, 2008, 2009, 2011 AXE Consultants. All rights reserved.
+License: GPL-3
+/usr/share/common-licenses/GPL-3
+
+Files: *.MSS
+Copyright: 1992, 1993, 1994, 1995  Intermetrics, Inc.
+           2000  The MITRE Corporation, Inc.
+           2004, 2005, 2006  AXE Consultants
+           2004, 2005, 2006  Ada-Europe
+           2008, 2009, 2010, 2011, 2012  AXE Consultants
+           This copyright is assigned to the U.S. Government.  All rights reserved.
+License: ARM_License
+This document may be copied, in whole or in part, in any form or by
+ any means, as is or with alterations, provided that (1) alterations
+ are clearly marked as alterations and (2) this copyright notice is
+ included unmodified in any copy. Compiled copies of standard library
+ units and examples need not contain this copyright notice so long as
+ the notice is included in all copies of source code and
+ documentation.
+ .
+ ---------
+ .
+ Technical Corrigendum 1
+ .
+ This document may be copied, in whole or in part, in any form or by
+ any means, as is, or with alterations, provided that (1) alterations
+ are clearly marked as alterations and (2) this copyright notice is
+ included unmodified in any copy. Any other use or distribution of
+ this document is prohibited without the prior express permission of
+ MITRE. You use this document on the condition that you indemnify and
+ hold harmless MITRE, its Board of Trustees, officers, agents, and
+ employees, from any and all liability or damages to yourself or your
+ hardware or software, or third parties, including attorneys' fees,
+ court costs, and other related costs and expenses, arising out of
+ your use of this document irrespective of the cause of said
+ liability.
+ .
+ MITRE MAKES THIS DOCUMENT AVAILABLE ON AN "AS IS" BASIS AND MAKES NO
+ WARRANTY, EXPRESS OR IMPLIED, AS TO THE ACCURACY, CAPABILITY,
+ EFFICIENCY MERCHANTABILITY, OR FUNCTIONING OF THIS DOCUMENT. IN NO
+ EVENT WILL MITRE BE LIABLE FOR ANY GENERAL, CONSEQUENTIAL, INDIRECT,
+ INCIDENTAL, EXEMPLARY, OR SPECIAL DAMAGES, EVEN IF MITRE HAS BEEN
+ ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ .
+ Amendment 1
+ .
+ This document may be copied, in whole or in part, in any form or by
+ any means, as is, or with alterations, provided that (1) alterations
+ are clearly marked as alterations and (2) this copyright notice is
+ included unmodified in any copy. Any other use or distribution of
+ this document is prohibited without the prior express permission of
+ AXE.
+ .
+ You use this document on the condition that you indemnify and hold
+ harmless AXE, its board, officers, agents, and employees, from any
+ and all liability or damages to yourself or your hardware or
+ software, or third parties, including attorneys' fees, court costs,
+ and other related costs and expenses, arising out of your use of this
+ document irrespective of the cause of said liability.
+ .
+ AXE MAKES THIS DOCUMENT AVAILABLE ON AN "AS IS" BASIS AND MAKES NO
+ WARRANTY, EXPRESS OR IMPLIED, AS TO THE ACCURACY, CAPABILITY,
+ EFFICIENCY MERCHANTABILITY, OR FUNCTIONING OF THIS DOCUMENT. IN NO
+ EVENT WILL AXE BE LIABLE FOR ANY GENERAL, CONSEQUENTIAL, INDIRECT,
+ INCIDENTAL, EXEMPLARY, OR SPECIAL DAMAGES, EVEN IF AXE HAS BEEN
+ ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ .
+ Third Edition
+ .
+ This document may be copied, in whole or in part, in any form or by
+ any means, as is, or with alterations, provided that (1) alterations
+ are clearly marked as alterations and (2) this copyright notice is
+ included unmodified in any copy. Any other use or distribution of
+ this document is prohibited without the prior express permission of
+ AXE.
+ .
+ You use this document on the condition that you indemnify and hold
+ harmless AXE, its board, officers, agents, and employees, from any and
+ all liability or damages to yourself or your hardware or software, or
+ third parties, including attorneys' fees, court costs, and other
+ related costs and expenses, arising out of your use of this document
+ irrespective of the cause of said liability.
+ .
+ AXE MAKES THIS DOCUMENT AVAILABLE ON AN "AS IS" BASIS AND MAKES NO
+ WARRANTY, EXPRESS OR IMPLIED, AS TO THE ACCURACY, CAPABILITY,
+ EFFICIENCY MERCHANTABILITY, OR FUNCTIONING OF THIS DOCUMENT. IN NO
+ EVENT WILL AXE BE LIABLE FOR ANY GENERAL, CONSEQUENTIAL, INDIRECT,
+ INCIDENTAL, EXEMPLARY, OR SPECIAL DAMAGES, EVEN IF AXE HAS BEEN
+ ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ .
+ Ada 2005 Consolidated Standard
+ .
+ This document may be copied, in whole or in part, in any form or by
+ any means, as is, or with alterations, provided that (1) alterations
+ are clearly marked as alterations and (2) this copyright notice is
+ included unmodified in any copy. Any other use or distribution of
+ this document is prohibited without the prior express permission of
+ Ada-Europe.
+ .
+ You use this document on the condition that you indemnify and hold
+ harmless Ada-Europe and its Board from any and all liability or
+ damages to yourself or your hardware or software, or third parties,
+ including attorneys' fees, court costs, and other related costs and
+ expenses, arising out of your use of this document irrespective of
+ the cause of said liability.
+ .
+ ADA-EUROPE MAKES THIS DOCUMENT AVAILABLE ON AN "AS IS" BASIS AND
+ MAKES NO WARRANTY, EXPRESS OR IMPLIED, AS TO THE ACCURACY,
+ CAPABILITY, EFFICIENCY MERCHANTABILITY, OR FUNCTIONING OF THIS
+ DOCUMENT. IN NO EVENT WILL ADA-EUROPE BE LIABLE FOR ANY GENERAL,
+ CONSEQUENTIAL, INDIRECT, INCIDENTAL, EXEMPLARY, OR SPECIAL DAMAGES,
+ EVEN IF ADA-EUROPE HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH
+ DAMAGES.

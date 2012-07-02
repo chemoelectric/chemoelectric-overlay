@@ -9,9 +9,9 @@ DEBIAN_PKG="${P}_2012.1-2_all.deb"
 DESCRIPTION="Ada Reference Manual"
 HOMEPAGE="http://www.ada-auth.org/arm.html"
 SRC_URI="mirror://debian/pool/main/a/ada-reference-manual/${DEBIAN_PKG}"
-LICENSE="ada-reference-manual-2012"
+LICENSE="ada-reference-manual-2005"
 
-SLOT="2012"
+SLOT="2005"
 
 KEYWORDS="~amd64"
 IUSE=""
