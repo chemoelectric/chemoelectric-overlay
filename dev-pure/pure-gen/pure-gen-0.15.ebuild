@@ -12,6 +12,8 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
+RESTRICT="strip"
+
 RDEPEND=">=dev-lang/pure-0.49"
 DEPEND="
     ${RDEPEND}
