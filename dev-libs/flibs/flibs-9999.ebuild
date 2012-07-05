@@ -18,7 +18,9 @@ KEYWORDS="~amd64"
 IUSE="source"
 
 DEPEND="virtual/pkgconfig
-        sys-devel/gcc[fortran]"
+        sys-devel/gcc[fortran]
+        dev-db/sqlite:3
+        dev-db/unixODBC"
 RDEPEND="sys-devel/gcc[fortran]"
 
 S="${WORKDIR}/${ECVS_LOCALNAME}"
