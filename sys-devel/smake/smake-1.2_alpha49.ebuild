@@ -4,8 +4,6 @@
 
 EAPI=4
 
-inherit multilib
-
 VERSION="1.2"
 QUALIFIER="a49"
 FULL_VERSION="${VERSION}${QUALIFIER}"
@@ -35,20 +33,17 @@ src_compile() {
 
 src_install() {
 	make INS_BASE="${D}usr" install || die "make install failed"
-	if test x"$(get_libdir)" != xlib; then
-		mv "${D}usr/lib" "${D}usr/$(get_libdir)"
-	fi
-	dodir "/usr/share"
-	mv "${D}usr/man" "${D}usr/share"
 
-	# An ugly workaround for a conflict with cdrtools. FIXME: THERE
-	# HAS TO BE A BETTER SOLUTION, IF THIS IS A SOLUTION AT ALL. Worth
-	# investigating, sometime.
-	if test -d "${D}usr/include/schily/amd64-linux-cc"; then
-		mv "${D}usr/include/schily/amd64-linux-cc" "${D}usr/include/schily/amd64-linux-cc-${PN}"
+	# Put manpages in the right place.
+	if test -d "${D}usr/man"; then
+		dodir "/usr/share"
+		mv "${D}usr/man" "${D}usr/share"
 	fi
 
-	# Another ugly (but less ugly) workaround.
+	# Avoid manpage conflicts.
 	mv "${D}usr/share/man/man5/makefiles.5" "${D}usr/share/man/man5/makefiles-${PN}.5"
 	mv "${D}usr/share/man/man5/makerules.5" "${D}usr/share/man/man5/makerules-${PN}.5"
+
+	# Delete the developer stuff.
+	rm -r "${D}usr/lib" "${D}usr/include"
 }
