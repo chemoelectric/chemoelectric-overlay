@@ -48,7 +48,6 @@ src_prepare() {
 
 src_configure() {
 	myesconsargs=(
-        CC="$(tc-getCC)"
 		debug=1
 		optim=-O2
     )
@@ -66,7 +65,7 @@ src_install() {
 		install
 
 	pushd "${WORKDIR}/${P}"
-	dodoc BUGS INSTALL README TESTING CHANGES HACKING
+	dodoc BUGS README TESTING CHANGES HACKING
 	dodoc README.NFS STATUS TODO zfs-fuse.spec
 	popd
 
