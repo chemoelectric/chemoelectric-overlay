@@ -57,6 +57,6 @@ src_install()
     use telnet && dosym kermit /usr/bin/telnet
 
     newman ckuker.nr kermit.1
-    dodoc *.txt {o,}ckermit.ini
+    dodoc *.TXT *.txt {o,}ckermit.ini
 }
 
