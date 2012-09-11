@@ -39,7 +39,7 @@ src_install() {
 	dodoc AUTHORS ChangeLog NEWS README
 	if use doc; then
 		for format in html pdf ps dvi; do
-			make install-${format} DESTDIR="${D}" \
+			emake install-${format} DESTDIR="${D}" \
 				MAKEINFOFLAGS="--no-split"
 		done
 	fi
