@@ -35,7 +35,7 @@ src_configure() {
 }
 
 src_install() {
-	emake -j1 install DESTDIR="${D}"
+	emake install DESTDIR="${D}"
 	dodoc AUTHORS ChangeLog NEWS README
 	if use doc; then
 		for format in html pdf ps dvi; do
