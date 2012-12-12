@@ -9,14 +9,16 @@ inherit pure-lang eutils
 DESCRIPTION="C interface/module generator for Pure"
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="-*"
+KEYWORDS="~amd64"
 IUSE=""
 
-RDEPEND=">=dev-lang/pure-0.53"
+RESTRICT=strip
+
+RDEPEND=">=dev-lang/pure-0.56"
 DEPEND="
     ${RDEPEND}
-    >=dev-lang/ghc-7.4.1
-    >=dev-haskell/language-c-0.4.1
+    >=dev-lang/ghc-7.4.2
+    >=dev-haskell/language-c-0.4.2
 "
 
 src_prepare() {
