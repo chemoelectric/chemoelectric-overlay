@@ -10,9 +10,9 @@ inherit findlib python eutils git
 IUSE=""
 
 DESCRIPTION="Bindings for Python and OCaml"
-HOMEPAGE="http://github.com/chemoelectric/pycaml"
+HOMEPAGE="https://bitbucket.org/chemoelectric/pycaml"
 SRC_URI=""
-EGIT_REPO_URI="git://github.com/chemoelectric/pycaml.git"
+EGIT_REPO_URI="https://chemoelectric@bitbucket.org/chemoelectric/pycaml.git"
 
 LICENSE="LGPL-2.1"
 SLOT="0"
