@@ -4,12 +4,12 @@
 
 EAPI="2"
 
-EGIT_REPO_URI="git://github.com/chemoelectric/${PN}.git"
+EGIT_REPO_URI="https://chemoelectric@bitbucket.org/chemoelectric/${PN}.git"
 
 inherit autotools eutils libtool toolchain-funcs flag-o-matic git
 
 DESCRIPTION="Crud Factory fontconfig: a fork of fontconfig"
-HOMEPAGE="http://github.com/chemoelectric/fontconfig"
+HOMEPAGE="https://bitbucket.org/chemoelectric/fontconfig"
 SRC_URI=""
 
 LICENSE="MIT"
