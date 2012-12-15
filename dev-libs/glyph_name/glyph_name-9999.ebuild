@@ -10,9 +10,9 @@ inherit distutils git
 IUSE="python nolib"
 
 DESCRIPTION="A library for computing Unicode sequences from glyph names"
-HOMEPAGE="http://github.com/chemoelectric/glyph_name"
+HOMEPAGE="https://bitbucket.org/chemoelectric/glyph_name"
 SRC_URI=""
-EGIT_REPO_URI="git://github.com/chemoelectric/glyph_name.git"
+EGIT_REPO_URI="https://chemoelectric@bitbucket.org/chemoelectric/glyph_name.git"
 
 LICENSE="MIT"
 SLOT="0"
