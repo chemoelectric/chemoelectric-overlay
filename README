@@ -4,6 +4,6 @@ edit your /etc/layman/layman.cfg like this:
 ------------------------------------------------------------------------
 
 overlays  : http://www.gentoo.org/proj/en/overlays/repositories.xml
-            http://github.com/chemoelectric/chemoelectric-overlay/raw/master/chemoelectric-overlay.xml
+            https://bitbucket.org/chemoelectric/chemoelectric-overlay/raw/master/chemoelectric-overlay.xml
 
 ------------------------------------------------------------------------
