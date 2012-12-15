@@ -7,10 +7,10 @@ SUPPORT_PYTHON_ABIS="1"
 
 inherit distutils git
 
-DESCRIPTION="A SWIG-made interface to libmagic"
-HOMEPAGE="http://github.com/chemoelectric/pyfilemagic"
+DESCRIPTION="An interface to libmagic"
+HOMEPAGE="https://bitbucket.org/chemoelectric/pyfilemagic"
 SRC_URI=""
-EGIT_REPO_URI="git://github.com/chemoelectric/pyfilemagic.git"
+EGIT_REPO_URI="https://chemoelectric@bitbucket.org/chemoelectric/pyfilemagic.git"
 
 LICENSE="MIT"
 SLOT="0"
