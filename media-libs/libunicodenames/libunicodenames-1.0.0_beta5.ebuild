@@ -7,8 +7,8 @@ EAPI=4
 inherit eutils
 
 DESCRIPTION="a library for retrieving Unicode annotation data"
-HOMEPAGE="https://github.com/sortsmill/libunicodenames"
-SRC_URI="https://github.com/downloads/sortsmill/${PN}/${P}.tar.xz"
+HOMEPAGE="https://bitbucket.org/sortsmill/libunicodenames"
+SRC_URI="${HOMEPAGE}/downloads/${P}.tar.xz"
 LICENSE="LGPL-3"
 
 SLOT="0"
