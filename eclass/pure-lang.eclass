@@ -4,8 +4,8 @@
 
 inherit toolchain-funcs
 
-HOMEPAGE="http://pure-lang.googlecode.com/"
-SRC_URI="http://pure-lang.googlecode.com/files/${P}.tar.gz"
+HOMEPAGE="http://purelang.bitbucket.org/"
+SRC_URI="https://bitbucket.org/purelang/pure-lang/downloads/${P}.tar.gz"
 case "${PV}" in
 	9999)
 		SRC_URI=""

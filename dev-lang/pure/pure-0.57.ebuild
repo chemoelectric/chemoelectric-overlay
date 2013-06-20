@@ -6,18 +6,21 @@ EAPI=4
 
 inherit pure-lang eutils
 
+# FIXME: Add support for the TeXmacs plugin.
+
 DESCRIPTION="A modern-style functional programming language based on term rewriting"
-LICENSE="GPL-3"
+LICENSE="GPL-3 LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64"
 
 IUSE="doc examples emacs libedit mpir readline static-llvm"
 
 MY_DOCS_V="${PV}"
-SRC_URI="${SRC_URI} doc? ( http://pure-lang.googlecode.com/files/pure-docs-${MY_DOCS_V}.tar.gz )"
+SRC_URI="${SRC_URI} doc? ( https://bitbucket.org/purelang/pure-lang/downloads/pure-docs-${MY_DOCS_V}.tar.gz )"
 
 DEPEND="
-    >=sys-devel/llvm-3.0-r2
+    >=sys-devel/llvm-3.2
+    <sys-devel/llvm-3.3
     >=dev-libs/mpfr-3.0.1_p4
     emacs? ( virtual/emacs )
     libedit? ( >=dev-libs/libedit-20110709.3.0 )

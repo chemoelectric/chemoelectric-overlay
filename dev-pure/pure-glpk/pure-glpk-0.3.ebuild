@@ -13,7 +13,7 @@ KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND="
-    >=dev-lang/pure-0.47
+    >=dev-lang/pure-0.57
     >=sci-mathematics/glpk-4.45[mysql,odbc]
     >=dev-db/libiodbc-3.52.7
 "
