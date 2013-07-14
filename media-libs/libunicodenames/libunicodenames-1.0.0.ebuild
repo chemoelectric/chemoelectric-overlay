@@ -25,9 +25,6 @@ RDEPEND="
     python? ( dev-lang/python )
 "
 
-# FIXME: We do not have the Python tests working in an ebuild, yet.
-RESTRICT="test"
-
 src_configure() {
 	econf \
 		--docdir="/usr/share/doc/${P}" \
@@ -45,4 +42,9 @@ src_install() {
 				MAKEINFOFLAGS="--no-split"
 		done
 	fi
+}
+
+src_test() {
+	# FIXME: We do not have the Python tests working in an ebuild, yet.
+	emake check TESTSUITEFLAGS='-k !python'
 }
