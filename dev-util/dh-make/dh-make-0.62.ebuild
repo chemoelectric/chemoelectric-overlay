@@ -4,8 +4,6 @@
 
 EAPI=5
 
-#inherit eutils
-
 DESCRIPTION="Tool that converts source archives into Debian package source"
 HOMEPAGE="http://packages.debian.org/sid/${PN}"
 SRC_URI="mirror://debian/pool/main/d/${PN}/${PN}_${PV}.tar.gz"
