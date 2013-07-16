@@ -12,5 +12,5 @@ LICENSE="ISC"
 SLOT="0"
 KEYWORDS="~amd64"
 
-RDEPEND=""
-DEPEND=""
+RDEPEND=">=app-admin/eselect-debian-origin-1"
+DEPEND="${RDEPEND}"
