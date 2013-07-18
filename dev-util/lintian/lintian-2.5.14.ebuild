@@ -17,12 +17,13 @@ LICENSE="GPL-2"
 SLOT="0"
 
 # FIXME: I am reluctant to activate this version for testing, because
-# I have not examined the src_install adequately.
+# I have not examined the src_install adequately. Also I do not know
+# if the Perl version is high enough.
 KEYWORDS=""
 
 IUSE=""
 
-DEPEND=">=dev-lang/perl-5.8.8-r8"
+DEPEND=">=dev-lang/perl-5.16.2"
 RDEPEND="app-arch/dpkg
 	app-misc/hardening-wrapper
 	dev-perl/Archive-Zip
