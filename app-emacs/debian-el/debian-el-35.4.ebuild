@@ -25,23 +25,23 @@ DEPEND="${RDEPEND}
 MY_TOPDIR="${WORKDIR}/${ARCHIVE_PN}-${PV}"
 S="${MY_TOPDIR}/elisp/${PN}"
 
-ELISP_TEXINFO="debian-el.texi"
+ELISP_TEXINFO="${PN}.texi"
 SITEFILE="50${PN}-gentoo.el"
 
 src_prepare() {
 	(cd "${MY_TOPDIR}" &&
 		QUILT_PATCHES=debian/patches \
 			quilt --quiltrc /dev/null push -a) || die "quilt failed"
-	/bin/sh debian-el-loaddefs.make || die "debian-el-loaddefs.make failed"
+	/bin/sh ${PN}-loaddefs.make || die "${PN}-loaddefs.make failed"
 	elisp_src_prepare
-	sed -i -e 's|^\(@setfilename info/debian-el[ 	]*$\)|@c \1|' \
-		debian-el.texi || die "sed failed"
+	sed -i -e 's|^\(@setfilename info/'"${PN}"'[ 	]*$\)|@c \1|' \
+		${PN}.texi || die "sed failed"
 }
 
 src_compile() {
-	/bin/sh debian-el-loaddefs.make || die "debian-el-loaddefs.make failed"
-	elisp-compile apt-sources.el debian-bug.el debian-el-loaddefs.el \
-		apt-utils.el debian-el.el deb-view.el preseed.el \
+	# Do not compile gnus-BTS.el.
+	elisp-compile apt-sources.el debian-bug.el ${PN}-loaddefs.el \
+		apt-utils.el ${PN}.el deb-view.el preseed.el \
 		|| die "elisp-compile failed"
 	[[ -n ${ELISP_TEXINFO} ]] && \
 		(makeinfo ${ELISP_TEXINFO} || die "makeinfo failed")
@@ -49,5 +49,5 @@ src_compile() {
 
 src_install() {
 	elisp_src_install
-	dodoc "${MY_TOPDIR}"/debian/{{,debian-el.}README.Debian,debian-el.copyright}
+	dodoc "${MY_TOPDIR}"/debian/{{,${PN}.}README.Debian,${PN}.copyright}
 }
