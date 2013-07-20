@@ -8,7 +8,7 @@
  ((not (file-exists-p (concat "@SITELISP@/preseed.elc")))
   (message "Package debian-el not fully installed.  Skipping setup."))
  (t (add-to-list 'load-path "@SITELISP@")
-  
-;;  (require 'debian-el)
+    
+    ;; (require 'debian-el)
 
     ))
