@@ -6,7 +6,7 @@ EAPI=5
 
 EGIT_REPO_URI="git://git.fedorahosted.org/git/${PN}.git"
 
-inherit eutils user git-2
+inherit eutils autotools user git-2
 
 DESCRIPTION="create chroots and build packages in them for Fedora and RedHat"
 HOMEPAGE="http://fedoraproject.org/wiki/Projects/Mock"
