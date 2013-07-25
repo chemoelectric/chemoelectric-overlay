@@ -10,7 +10,7 @@ inherit perl-module
 
 DESCRIPTION="Parse a simple configuration file"
 
-LICENSE="|| ( Artistic GPL-1 GPL-2 GPL-3 )"
+LICENSE="GPL-2+"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
