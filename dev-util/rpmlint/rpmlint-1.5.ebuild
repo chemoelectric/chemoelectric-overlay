@@ -15,11 +15,13 @@ IUSE=""
 
 DEPEND="
 	>=dev-lang/python-2.4
+	<dev-lang/python-3
 	>=app-arch/rpm-4.4.2.2[python]
 	sys-apps/sed
 "
 RDEPEND="
 	>=dev-lang/python-2.4
+	<dev-lang/python-3
 	>=app-arch/rpm-4.4.2.2[python]
 	sys-apps/file
 	sys-devel/binutils
