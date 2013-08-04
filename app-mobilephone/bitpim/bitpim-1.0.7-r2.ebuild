@@ -3,11 +3,11 @@
 # $Header: $
 
 EAPI=5
-PYTHON_COMPAT=( python{2_6,2_7} )
+PYTHON_COMPAT=( python2_{6,7} )
 
-inherit eutils fdo-mime multilib subversion distutils-r1
+inherit distutils-r1 eutils fdo-mime multilib subversion
 
-DESCRIPTION="Program to view and manipulate data on many LG and Sanyo Sprint mobile phones"
+DESCRIPTION="Program to view and manipulate data on LG VX4400/VX6000 and many Sanyo Sprint mobile phones"
 HOMEPAGE="http://www.bitpim.org/"
 SRC_URI=""
 ESVN_REPO_URI="https://bitpim.svn.sourceforge.net/svnroot/bitpim/releases/1.0.7/"
@@ -15,38 +15,41 @@ ESVN_REPO_URI="https://bitpim.svn.sourceforge.net/svnroot/bitpim/releases/1.0.7/
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
+# this needs fixing
+#KEYWORDS="~amd64 ~ppc ~ppc64 ~x86"
 IUSE="crypt evo usb"
 
-COMMON_DEPEND="
-	=dev-python/wxpython-2.8*
-	dev-python/python-dsv
+COMMON_DEPEND="dev-python/apsw
 	dev-python/pyserial
-	dev-python/apsw
-	crypt? ( >=dev-python/paramiko-1.7.1
-		dev-python/pycrypto )
-	usb? ( virtual/libusb:0 )
-"
-DEPEND="
-	${COMMON_DEPEND}
-	usb? ( dev-lang/swig )
-"
-RDEPEND="
-	${COMMON_DEPEND}
-	media-video/ffmpeg
+	dev-python/python-dsv
+	dev-python/wxpython:2.8
+	crypt? (
+		>=dev-python/paramiko-1.7.1
+		dev-python/pycrypto
+	)
+	usb? ( virtual/libusb:0 )"
+DEPEND="${COMMON_DEPEND}
+	usb? ( dev-lang/swig )"
+RDEPEND="${COMMON_DEPEND}
 	media-libs/netpbm
-	dev-lang/python
-"
+	virtual/ffmpeg"
 
 src_unpack() {
 	subversion_src_unpack
 }
 
+pkg_setup() {
+	python_set_active_version 2
+	python_pkg_setup
+}
+
 src_prepare() {
-	python_export_best EPYTHON
 	epatch "${FILESDIR}/${P}-gentoo.patch"
 	epatch "${FILESDIR}/${P}-ffmpeg_quality.patch"
 	epatch "${FILESDIR}/${P}-gcc43.patch"
-	sed -i -e 's/^PYTHONVER=.*/PYTHONVER='${EPYTHON}'/' src/native/usb/build.sh
+
+	python_export_best EPYTHON
+	sed -i "s/^PYTHONVER=.*/PYTHONVER=${EPYTHON}/" src/native/usb/build.sh
 }
 
 src_compile() {
@@ -58,7 +61,7 @@ src_compile() {
 
 	# strings
 	cd "${S}/src/native/strings"
-	distutils_src_compile
+	distutils-r1_src_compile
 
 	# bmp2avi
 	cd "${S}/src/native/av/bmp2avi"
@@ -100,7 +103,7 @@ src_install() {
 
 	# strings
 	cd "${S}/src/native/strings"
-	distutils_src_install
+	distutils-r1_src_install
 
 	cd "${S}"
 	insinto $RLOC/native/strings
@@ -138,19 +141,20 @@ src_install() {
 	fi
 
 	# Desktop file
-	insinto /usr/share/applications
 	sed -i -e "s|%%INSTALLBINDIR%%|/usr/bin|" -e "s|%%INSTALLLIBDIR%%|${RLOC}|" \
 		packaging/bitpim.desktop
-	doins packaging/bitpim.desktop
+	domenu packaging/bitpim.desktop
+
+	python_optimize "${D}/usr/$(get_libdir)/${P}"
 }
 
 pkg_postinst() {
-	# Optimize in installed directory
-	python_mod_optimize /usr/$(get_libdir)/${P}
 	fdo-mime_desktop_database_update
+
+	elog "If you have trouble with USE=usb, try reconfiguring with USE=-usb"
+	elog "and use the qcaux USB-to-serial Linux kernel module."
 }
 
 pkg_postrm() {
-	python_mod_cleanup /usr/$(get_libdir)/${P}
 	fdo-mime_desktop_database_update
 }
