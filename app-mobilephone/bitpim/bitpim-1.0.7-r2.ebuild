@@ -5,12 +5,18 @@
 EAPI=5
 PYTHON_COMPAT=( python2_{6,7} )
 
-inherit distutils-r1 eutils fdo-mime multilib subversion
+#inherit distutils-r1 eutils fdo-mime multilib subversion
+inherit distutils-r1 eutils fdo-mime multilib
 
 DESCRIPTION="Program to view and manipulate data on LG VX4400/VX6000 and many Sanyo Sprint mobile phones"
 HOMEPAGE="http://www.bitpim.org/"
-SRC_URI=""
-ESVN_REPO_URI="https://bitpim.svn.sourceforge.net/svnroot/bitpim/releases/1.0.7/"
+
+DEB_PLUS='+dfsg1'
+DEB_EXTRA=3
+DEB_ORIG="${PN}_${PV}${DEB_PLUS}.orig.tar.gz"
+SRC_URI="mirror://debian/pool/main/${PN:0:1}/${PN}/${DEB_ORIG}"
+
+#ESVN_REPO_URI="svn://svn.code.sf.net/p/${PN}/code/releases/${PV}"
 
 LICENSE="GPL-2"
 SLOT="0"
@@ -34,14 +40,11 @@ RDEPEND="${COMMON_DEPEND}
 	media-libs/netpbm
 	virtual/ffmpeg"
 
-src_unpack() {
-	subversion_src_unpack
-}
+S="${WORKDIR}/${P}${DEB_PLUS}"
 
-pkg_setup() {
-	python_set_active_version 2
-	python_pkg_setup
-}
+#src_unpack() {
+#	subversion_src_unpack
+#}
 
 src_prepare() {
 	epatch "${FILESDIR}/${P}-gentoo.patch"
@@ -92,8 +95,9 @@ src_install() {
 	doins src/native/*.py
 	insinto ${RLOC}/native/qtopiadesktop
 	doins src/native/qtopiadesktop/*.py
-	insinto ${RLOC}/native/outlook
-	doins src/native/outlook/*.py
+# Debian removed src/native/outlook/ when they made their tarball.
+#	insinto ${RLOC}/native/outlook
+#	doins src/native/outlook/*.py
 	insinto ${RLOC}/native/egroupware
 	doins src/native/egroupware/*.py
 	if use evo ; then
