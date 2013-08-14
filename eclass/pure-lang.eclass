@@ -7,9 +7,9 @@ inherit toolchain-funcs
 HOMEPAGE="http://purelang.bitbucket.org/"
 SRC_URI="https://bitbucket.org/purelang/pure-lang/downloads/${P}.tar.gz"
 case "${PV}" in
-	9999)
+	9999*)
 		SRC_URI=""
-		EHG_REPO_URI="https://pure-lang.googlecode.com/hg"
+		EHG_REPO_URI="https://bitbucket.org/purelang/pure-lang"
 		EHG_PROJECT="pure-lang"
 		inherit mercurial
 		;;
