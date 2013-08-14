@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -19,14 +19,14 @@ MY_DOCS_V="${PV}"
 SRC_URI="${SRC_URI} doc? ( https://bitbucket.org/purelang/pure-lang/downloads/pure-docs-${MY_DOCS_V}.tar.gz )"
 
 DEPEND="
-    >=sys-devel/llvm-3.1
-    <sys-devel/llvm-3.3
-    >=dev-libs/mpfr-3.0.1_p4
-    emacs? ( virtual/emacs )
-    libedit? ( >=dev-libs/libedit-20110709.3.0 )
-    mpir? ( >=sci-libs/mpir-2.3.1 )
-    !mpir? ( >=dev-libs/gmp-5.0.2_p1 )
-    readline? ( >=sys-libs/readline-6.2_p1 )
+	>=sys-devel/llvm-3.1
+	<sys-devel/llvm-3.3
+	>=dev-libs/mpfr-3.0.1_p4
+	emacs? ( virtual/emacs )
+	libedit? ( >=dev-libs/libedit-20110709.3.0 )
+	mpir? ( >=sci-libs/mpir-2.3.1 )
+	!mpir? ( >=dev-libs/gmp-5.0.2_p1 )
+	readline? ( >=sys-libs/readline-6.2_p1 )
 "
 RDEPEND="${DEPEND}"
 
