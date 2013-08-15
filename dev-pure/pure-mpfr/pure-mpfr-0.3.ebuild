@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -13,8 +13,8 @@ KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND="
-    >=dev-lang/pure-0.49
-    >=dev-libs/mpfr-3.0.1_p4
-    >=dev-libs/gmp-5.0.2
+	>=dev-lang/pure-0.49
+	>=dev-libs/mpfr-3.0.1_p4
+	>=dev-libs/gmp-5.0.2
 "
 RDEPEND="${DEPEND}"

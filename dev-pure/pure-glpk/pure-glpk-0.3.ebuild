@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -13,9 +13,9 @@ KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND="
-    >=dev-lang/pure-0.57
-    >=sci-mathematics/glpk-4.45[mysql,odbc]
-    >=dev-db/libiodbc-3.52.7
+	>=dev-lang/pure-0.57
+	>=sci-mathematics/glpk-4.45[mysql,odbc]
+	>=dev-db/libiodbc-3.52.7
 "
 RDEPEND="${DEPEND}"
 

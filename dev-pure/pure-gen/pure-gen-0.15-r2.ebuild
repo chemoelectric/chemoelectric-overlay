@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -16,9 +16,9 @@ RESTRICT=strip
 
 RDEPEND=">=dev-lang/pure-0.56"
 DEPEND="
-    ${RDEPEND}
-    >=dev-lang/ghc-7.4.2
-    >=dev-haskell/language-c-0.4.2
+	${RDEPEND}
+	>=dev-lang/ghc-7.4.2
+	>=dev-haskell/language-c-0.4.2
 "
 
 src_prepare() {
