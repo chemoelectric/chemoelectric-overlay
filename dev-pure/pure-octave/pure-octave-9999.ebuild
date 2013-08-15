@@ -1,4 +1,4 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -13,7 +13,7 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
-    >=dev-lang/pure-0.47
-    >=sci-mathematics/octave-3.4.0-r1
+	>=dev-lang/pure-0.47
+	>=sci-mathematics/octave-3.4.0-r1
 "
 RDEPEND="${DEPEND}"
