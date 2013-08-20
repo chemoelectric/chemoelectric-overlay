@@ -1,9 +1,16 @@
-# Copyright 1999-2009, 2013 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+#
+# FIXME: This is a bad, unexamined ebuild. It ought to have multiple
+# Python compatibilities and select the best Python.
+#
 
 EAPI=5
+PYTHON_COMPAT=( python2_7 )
 
-inherit distutils eutils
+inherit distutils-r1 eutils
 
 DESCRIPTION="Transform DocBook using TeX macros"
 SRC_URI="mirror://sourceforge/${PN}/${P}.tar.bz2"
@@ -28,7 +35,7 @@ src_prepare() {
 }
 
 src_install() {
-	distutils_src_install
+	distutils-r1_src_install
 	dodir "/usr/share/doc/${PF}"
 	mv "${D}usr/share/doc/${PN}"/* "${D}usr/share/doc/${PF}" || die "failed moving docdir contents"
 	rmdir "${D}usr/share/doc/${PN}" || die "failed removing ${D}usr/share/doc/${PN}"
