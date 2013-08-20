@@ -16,10 +16,10 @@ SRC_URI="mirror://debian/pool/main/l/${PN}/${PN}_${PV}${MY_PVR}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 
-# FIXME: I am reluctant to activate this version for testing, because
-# I have not examined the src_install adequately. Also I do not know
-# if the Perl version is high enough.
-KEYWORDS=""
+# I am reluctant to activate this version, because I have not examined
+# the src_install adequately. Also I do not know if the Perl version
+# is high enough.
+KEYWORDS="-amd64 -x86"
 
 IUSE=""
 

@@ -1,8 +1,3 @@
-# Barry Schwartz (7 Mar 2012)
-# The regular rkhunter ebuild, patched for compatibility with
-# newer versions of sys-apps/file.
-=sys-apps/rkhunter-1.3.8
-
 # Barry Schwartz (21 Dec 2011)
 # This is the ebuild from portage with the dependence on eselect-cblas
 # removed so it can be mixed with current ebuilds in the science
@@ -22,23 +17,3 @@
 # same ebuild but with the CFLAGS ignored. You probably want to unset
 # FFLAGS in your Portage/Paludis configurations for this ebuild, too.
 =sci-libs/atlas-3.9.52
-
-# Barry Schwartz (17 Sep 2011)
-# Rescued from Portage, where they are scheduled for removal.
-=net-zope/transaction-1.1.1
-=net-zope/zc-lockfile-1.0.0
-=net-zope/zconfig-2.9.0
-=net-zope/zdaemon-2.0.4
-=net-zope/zodb-3.10.3
-=net-zope/zope-event-3.5.0.1
-=net-zope/zope-proxy-3.6.1
-
-# Barry Schwartz (26 Jun 2011)
-# Quickly adapted from an ebuild on sunrise.
-# Not checked carefully for IUSE candidates and so forth.
-=media-libs/leptonica-1.68
-
-# Barry Schwartz (11 Jun 2011)
-# Portage has an ebuild (that is, this one, but w/o the camlp4 patch).
-=dev-lang/ocaml-3.12.0-r1
-=dev-lang/ocaml-3.12.0
