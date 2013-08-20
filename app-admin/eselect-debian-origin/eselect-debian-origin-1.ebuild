@@ -10,11 +10,9 @@ inherit eutils toolchain-funcs
 inherit alternatives-2
 
 DESCRIPTION="Alternatives for Debian-derived distribution origin"
-HOMEPAGE=""
-SRC_URI=""
+HOMEPAGE="http://FIXME"
 
-# FIXME FIXME FIXME
-LICENSE=""
+LICENSE="FIXME"
 
 SLOT="0"
 KEYWORDS="~amd64"
