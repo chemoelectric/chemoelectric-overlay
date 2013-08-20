@@ -3,8 +3,9 @@
 # $Header: $
 
 EAPI=5
+PYTHON_COMPAT=( python2_{6,7} )
 
-inherit distutils
+inherit distutils-r1
 
 DESCRIPTION="Launchpad web services client library"
 HOMEPAGE="https://launchpad.net/ubuntu/+source/${PN}"
@@ -25,6 +26,6 @@ RDEPEND="${DEPEND}"
 S="${WORKDIR}/launchpadlib-${PV}"
 
 src_install () {
-	distutils_src_install
+	distutils-r1_src_install
 	dodoc README* HACKING* PKG-INFO
 }
