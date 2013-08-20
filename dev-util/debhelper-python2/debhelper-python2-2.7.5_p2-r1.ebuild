@@ -3,8 +3,9 @@
 # $Header: $
 
 EAPI=5
+PYTHON_COMPAT=( python2_7 )
 
-inherit eutils python
+inherit eutils python-single-r1
 
 DEBIAN_PN="python-defaults"
 DEBIAN_PV="2.7.5-2"
