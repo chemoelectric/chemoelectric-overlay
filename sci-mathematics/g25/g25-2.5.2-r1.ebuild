@@ -1,4 +1,4 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -23,7 +23,7 @@ S="${WORKDIR}"
 
 src_compile() {
 	if ! use binary; then
-		cd ${P}
+		cd "${P}"
 		export MONO_IOMAP=all # makes mono tools case/slash insensitive
 		cd g25/vs2008 || die "cd g25/vs2008"
 		xbuild g25.sln /p:Configuration=Release || die "xbuild g25.sln"
@@ -38,15 +38,15 @@ src_install() {
 	local datadir bindir
 
 	if use binary; then
-		cp -r usr ${D} || die "recursive copy failed"
+		cp -r usr "${D}" || die "recursive copy failed"
 		dodoc usr/share/g25/doc/g25_user_manual.pdf
-		rm -f ${D}usr/share/doc/g25_user_manual.pdf
+		rm -f "${D}"usr/share/doc/g25_user_manual.pdf
 		dosym /usr/share/doc/${PF}/g25_user_manual.pdf /usr/share/g25/doc/g25_user_manual.pdf
 	else
 		datadir=/usr/share/
 		bindir=/usr/bin/
 
-		cd ${P}
+		cd "${P}"
 
 		insinto ${datadir}g25/bin
 		doins g25/vs2008/bin/Release/g25.exe
@@ -62,11 +62,11 @@ src_install() {
 
 		doman g25/g25.1 g25/g25_test_generator.1
 
-		cd ${S}
-		echo mono ${ROOT}usr/share/g25/bin/g25.exe '"$@"' >> g25
-		echo mono ${ROOT}usr/share/g25/bin/g25_diff.exe '"$@"' >> g25_diff
-		echo mono ${ROOT}usr/share/g25/bin/g25_test_generator.exe '"$@"' >> g25_test_generator
-		echo mono ${ROOT}usr/share/g25/bin/g25_copy_resource.exe '"$@"' >> g25_copy_resource
+		cd "${S}"
+		echo mono "${ROOT}"usr/share/g25/bin/g25.exe '"$@"' >> g25
+		echo mono "${ROOT}"usr/share/g25/bin/g25_diff.exe '"$@"' >> g25_diff
+		echo mono "${ROOT}"usr/share/g25/bin/g25_test_generator.exe '"$@"' >> g25_test_generator
+		echo mono "${ROOT}"usr/share/g25/bin/g25_copy_resource.exe '"$@"' >> g25_copy_resource
 		dobin g25 g25_diff g25_test_generator g25_copy_resource
 	fi
 }
