@@ -1,16 +1,21 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="4"
+EAPI=5
 
-inherit eutils
+inherit eutils versionator
+
+CKUVERSION="$(get_version_component_range 3)"
+CKUDEVVERS="$(get_version_component_range 4)"
+CKUDEVVERS="${CKUDEVVERS/pre/dev}"
+CKUDOCVERS=302
 
 DESCRIPTION="C-Kermit"
 HOMEPAGE="http://www.kermitproject.org/"
 SRC_URI="
-	ftp://ftp.kermitproject.org/kermit/archives/cku302txt.tar.gz
-	ftp://ftp.kermitproject.org/kermit/test/tar/cku304-dev02.tar.gz
+	ftp://ftp.kermitproject.org/kermit/archives/cku${CKUDOCVERS}txt.tar.gz
+	ftp://ftp.kermitproject.org/kermit/test/tar/cku${CKUVERSION}-${CKUDEVVERS}.tar.gz
 "
 
 LICENSE="BSD"
@@ -22,7 +27,7 @@ RDEPEND="
 	>=dev-libs/lockdev-1.0.3.1.5
 	sys-libs/ncurses
 	virtual/pam
-	ssl? ( >=dev-libs/openssl-1.0.0j )
+	ssl? ( >=dev-libs/openssl-1.0.1c )
 "
 DEPEND="${RDEPEND}"
 
@@ -59,4 +64,3 @@ src_install()
 	newman ckuker.nr kermit.1
 	dodoc *.TXT *.txt {o,}ckermit.ini
 }
-
