@@ -17,9 +17,9 @@ IUSE=""
 
 DEPEND="dev-util/pkgconfig"
 RDEPEND="
-    ${DEPEND}
-    >=dev-lang/ocaml-3.12.1
-    >=virtual/lapack-3.3
+	${DEPEND}
+	>=dev-lang/ocaml-3.12.1
+	>=virtual/lapack-3.3
 "
 
 S="${WORKDIR}/${PN}-release-${PV}"
@@ -33,5 +33,5 @@ src_compile() {
 }
 
 src_install() {
-    findlib_src_install
+	findlib_src_install
 }

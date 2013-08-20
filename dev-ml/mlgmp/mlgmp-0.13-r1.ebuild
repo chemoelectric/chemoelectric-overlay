@@ -17,9 +17,9 @@ KEYWORDS="~x86 ~amd64"
 
 IUSE=""
 DEPEND="
-    >=dev-lang/ocaml-3.11.0
-    >=dev-libs/gmp-4.2.4
-    >=dev-ml/ocaml-make-6.28.0
+	>=dev-lang/ocaml-3.11.0
+	>=dev-libs/gmp-4.2.4
+	>=dev-ml/ocaml-make-6.28.0
   "
 
 S="${WORKDIR}/${PN}"
@@ -59,8 +59,8 @@ src_compile() {
 }
 
 src_install() {
-    # Use findlib to install properly, especially to avoid
-    # the shared library mess
-    findlib_src_preinst
-    ocamlfind install gmp * META
+	# Use findlib to install properly, especially to avoid
+	# the shared library mess
+	findlib_src_preinst
+	ocamlfind install gmp * META
 }

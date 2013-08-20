@@ -16,12 +16,12 @@ KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND="
-    >=sys-libs/zlib-1.2.5-r2
+	>=sys-libs/zlib-1.2.5-r2
 	virtual/jpeg
 	>=media-libs/giflib-4.1.6-r1
 	>=media-libs/tiff-4.0.0_beta7
-    >=media-libs/libpng-1.4.7
-    >=media-libs/libwebp-0.1.2
+	>=media-libs/libpng-1.4.7
+	>=media-libs/libwebp-0.1.2
 "
 RDEPEND="${DEPEND}"
 

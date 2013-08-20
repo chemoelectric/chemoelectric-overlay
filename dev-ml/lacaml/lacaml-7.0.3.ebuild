@@ -16,13 +16,13 @@ KEYWORDS="~amd64"
 IUSE=""
 
 RDEPEND="
-    >=dev-ml/findlib-1.3.3-r1
-    >=dev-lang/ocaml-4.00.1
-    >=virtual/lapack-3.3
+	>=dev-ml/findlib-1.3.3-r1
+	>=dev-lang/ocaml-4.00.1
+	>=virtual/lapack-3.3
 "
 DEPEND="
-    ${RDEPEND}
-    virtual/pkgconfig
+	${RDEPEND}
+	virtual/pkgconfig
 "
 
 src_prepare() {

@@ -11,9 +11,9 @@ DEBIAN_V=8
 DESCRIPTION="ZFS-FUSE: a port of the ZFS file system from Sun"
 HOMEPAGE="http://zfs-fuse.net/"
 SRC_URI="mirror://debian/pool/main/z/${PN}/${PN}_${PV}.orig.tar.bz2
-         mirror://debian/pool/main/z/zfs-fuse/${PN}_${PV}-${DEBIAN_V}.debian.tar.gz
-         http://hub.opensolaris.org/bin/download/Community+Group+zfs/docs/zfsadmin.pdf -> ${P}-zfsadmin.pdf
-         http://hub.opensolaris.org/bin/download/Community+Group+zfs/docs/ondiskformat0822.pdf -> ${P}-ondiskformat0822.pdf"
+	     mirror://debian/pool/main/z/zfs-fuse/${PN}_${PV}-${DEBIAN_V}.debian.tar.gz
+	     http://hub.opensolaris.org/bin/download/Community+Group+zfs/docs/zfsadmin.pdf -> ${P}-zfsadmin.pdf
+	     http://hub.opensolaris.org/bin/download/Community+Group+zfs/docs/ondiskformat0822.pdf -> ${P}-ondiskformat0822.pdf"
 LICENSE="CDDL"
 
 SLOT="0"
@@ -21,9 +21,9 @@ KEYWORDS="~amd64"
 IUSE=""
 
 RDEPEND=">=dev-libs/openssl-1.0.0j
-         >=dev-libs/libaio-0.3.109-r2"
+	     >=dev-libs/libaio-0.3.109-r2"
 DEPEND=">=sys-fs/fuse-2.8.6
-        ${RDEPEND}"
+	    ${RDEPEND}"
 
 S="${WORKDIR}/${P}/src"
 
@@ -50,15 +50,15 @@ src_configure() {
 	myesconsargs=(
 		debug=1
 		optim=-O2
-    )
+	)
 }
 
 src_compile() {
-    escons
+	escons
 }
 
 src_install() {
-    escons \
+	escons \
 		cfg_dir="${D}"etc/zfs \
 		install_dir="${D}"usr/sbin \
 		man_dir="${D}"usr/share/man/man8 \

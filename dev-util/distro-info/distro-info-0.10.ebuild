@@ -17,7 +17,7 @@ IUSE="test"
 
 RDEPEND=">=dev-util/distro-info-data-0.16"
 DEPEND="${RDEPEND}
-    test? ( dev-util/shunit2 )
+	test? ( dev-util/shunit2 )
 "
 
 src_prepare () {

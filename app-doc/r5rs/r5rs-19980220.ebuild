@@ -7,10 +7,10 @@ EAPI=4
 DESCRIPTION="Revised5 Report on the Algorithmic Language Scheme"
 HOMEPAGE="http://www.schemers.org/Documents/Standards/R5RS/"
 SRC_URI="
-    ${HOMEPAGE}/r5rs.dvi
-    ${HOMEPAGE}/r5rs.ps
-    ${HOMEPAGE}/r5rs.pdf
-    ${HOMEPAGE}/r5rs-html.tar.gz
+	${HOMEPAGE}/r5rs.dvi
+	${HOMEPAGE}/r5rs.ps
+	${HOMEPAGE}/r5rs.pdf
+	${HOMEPAGE}/r5rs-html.tar.gz
 "
 
 # FIXME.

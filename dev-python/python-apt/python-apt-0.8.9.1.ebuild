@@ -16,8 +16,8 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 DEPEND="
-    dev-lang/python
-    >=sys-apps/apt-0.8.11
+	dev-lang/python
+	>=sys-apps/apt-0.8.11
 "
 RDEPEND="${DEPEND}"
 

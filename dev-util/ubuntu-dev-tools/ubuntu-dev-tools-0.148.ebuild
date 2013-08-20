@@ -15,19 +15,19 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 RDEPEND="
-    >=dev-util/pbuilder-0.215
-    >=dev-util/distro-info-0.10
-    >=dev-python/python-apt-0.8.9.1
-    >=dev-python/python-launchpadlib-1.10.2
-    dev-python/setuptools
-    dev-python/pylint
-    dev-python/httplib2
-    dev-python/mox
-    dev-python/soappy
-    virtual/python-unittest2
-    dev-perl/libwww-perl
-    sys-apps/lsb-release
+	>=dev-util/pbuilder-0.215
+	>=dev-util/distro-info-0.10
+	>=dev-python/python-apt-0.8.9.1
+	>=dev-python/python-launchpadlib-1.10.2
+	dev-python/setuptools
+	dev-python/pylint
+	dev-python/httplib2
+	dev-python/mox
+	dev-python/soappy
+	virtual/python-unittest2
+	dev-perl/libwww-perl
+	sys-apps/lsb-release
 "
 DEPEND="
-    ${RDEPEND}
+	${RDEPEND}
 "

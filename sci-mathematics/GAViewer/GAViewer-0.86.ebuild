@@ -16,9 +16,9 @@ KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND=">=x11-libs/fltk-1.3.0:1
-        >=dev-java/antlr-2.7.7-r5:0
-        >=media-libs/libpng-1.5.6
-        >=sys-libs/zlib-1.2.5.1-r2"
+	    >=dev-java/antlr-2.7.7-r5:0
+	    >=media-libs/libpng-1.5.6
+	    >=sys-libs/zlib-1.2.5.1-r2"
 RDEPEND="${DEPEND}"
 
 src_prepare() {

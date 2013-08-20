@@ -9,7 +9,7 @@ inherit rpm
 DESCRIPTION="Gaigen 2.5, a code generator for geometric algebra"
 HOMEPAGE="http://g25.sourceforge.net/"
 SRC_URI="binary? ( mirror://sourceforge/${PN}/${P}-1.noarch.rpm )
-         !binary? ( mirror://sourceforge/${PN}/${P}.tar.gz )"
+	     !binary? ( mirror://sourceforge/${PN}/${P}.tar.gz )"
 LICENSE="GPL-2"
 
 SLOT="0"

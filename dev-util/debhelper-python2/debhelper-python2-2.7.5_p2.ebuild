@@ -19,7 +19,7 @@ KEYWORDS="~amd64"
 
 RDEPEND="dev-util/debhelper"
 DEPEND="${RDEPEND}
-    dev-python/docutils
+	dev-python/docutils
 "
 
 S="${WORKDIR}/${DEBIAN_PN}-debian"
@@ -40,7 +40,7 @@ src_install() {
 
 	dobin dh_python2 pyclean pycompile
 	doman dh_python2.1 pyclean.1 pycompile.1
-    dodoc debian/changelog README*
+	dodoc debian/changelog README*
 
 	insinto "${perllibdir}/Sequence"
 	doins python2.pm

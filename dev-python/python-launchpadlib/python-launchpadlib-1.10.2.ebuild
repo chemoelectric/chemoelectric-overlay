@@ -16,9 +16,9 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 DEPEND="
-    dev-lang/python
-    dev-python/simplejson
-    dev-python/httplib2
+	dev-lang/python
+	dev-python/simplejson
+	dev-python/httplib2
 "
 RDEPEND="${DEPEND}"
 

@@ -16,9 +16,9 @@ KEYWORDS="~amd64"
 IUSE="examples pdtoolkit xalan pic"
 
 DEPEND="
-    pdtoolkit? ( >=dev-util/pdtoolkit-3.17 )
-    xalan?     ( >=dev-libs/xalan-c-1.11.0_pre1153059 )
-    sys-devel/gcc[fortran]
+	pdtoolkit? ( >=dev-util/pdtoolkit-3.17 )
+	xalan?     ( >=dev-libs/xalan-c-1.11.0_pre1153059 )
+	sys-devel/gcc[fortran]
 "
 RDEPEND="${DEPEND}"
 

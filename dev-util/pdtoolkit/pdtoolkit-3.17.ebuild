@@ -59,7 +59,7 @@ src_install() {
 	rm -f ${archdir}/include
 	popd
 	mkdir -p  ${D}${my_targetbase}
-    cp -r ${my_image} ${D}${my_targetbase}
+	cp -r ${my_image} ${D}${my_targetbase}
 
 	echo "PATH=\"/${my_target}/${archdir}/bin\"" > 99${PN}
 	echo "ROOTPATH=\"/${my_target}/${archdir}/bin\"" >> 99${PN}

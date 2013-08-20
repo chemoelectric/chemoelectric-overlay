@@ -14,8 +14,8 @@ KEYWORDS="~amd64"
 
 DEPEND=""
 RDEPEND="
-    dev-lang/perl
-    virtual/perl-Getopt-Long
+	dev-lang/perl
+	virtual/perl-Getopt-Long
 "
 
 S="${WORKDIR}/${PN}"

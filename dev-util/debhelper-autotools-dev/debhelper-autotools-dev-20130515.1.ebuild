@@ -23,7 +23,7 @@ S="${WORKDIR}/${DEBIAN_PN}-${PV}"
 
 src_compile() {
 	pod2man -c Debhelper debian/dh_autotools-dev_updateconfig  debian/dh_autotools-dev_updateconfig.1
-    pod2man -c Debhelper debian/dh_autotools-dev_restoreconfig debian/dh_autotools-dev_restoreconfig.1
+	pod2man -c Debhelper debian/dh_autotools-dev_restoreconfig debian/dh_autotools-dev_restoreconfig.1
 }
 
 src_install() {
@@ -31,7 +31,7 @@ src_install() {
 
 	dobin debian/dh_autotools-dev_updateconfig debian/dh_autotools-dev_restoreconfig
 	doman debian/dh_autotools-dev_updateconfig.1 debian/dh_autotools-dev_restoreconfig.1
-    dodoc debian/changelog
+	dodoc debian/changelog
 
 	insinto "${perllibdir}/Sequence"
 	doins debian/autotools_dev.pm

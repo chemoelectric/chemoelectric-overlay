@@ -16,8 +16,8 @@ KEYWORDS="~amd64"
 IUSE=""
 
 RDEPEND="
-    >=dev-ml/findlib-1.3.3-r1
-    >=dev-lang/ocaml-4.00.1
-    >=sci-libs/gsl-1.15
+	>=dev-ml/findlib-1.3.3-r1
+	>=dev-lang/ocaml-4.00.1
+	>=sci-libs/gsl-1.15
 "
 DEPEND="${RDEPEND}"

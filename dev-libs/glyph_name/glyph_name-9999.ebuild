@@ -22,7 +22,7 @@ RDEPEND="
 	python? ( >=dev-lang/python-2.6.4 )
 	"
 DEPEND="
-        >=dev-lang/python-2.6.4
+	    >=dev-lang/python-2.6.4
 	!nolib? ( >=dev-util/scons-1.2.0-r1
 	          sys-devel/m4 )
 	${RDEPEND}

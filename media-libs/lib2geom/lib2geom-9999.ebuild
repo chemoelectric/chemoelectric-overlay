@@ -30,21 +30,21 @@ DEPEND="${RDEPEND}"
 
 src_prepare() {
 	cd ${S}
-    sed -i -e '
-      s|${PYTHON_LIB_INSTALL}/\.\./dist-packages|/usr/'"$(get_libdir)"'/python'"${PYTHON_ABI}"'/site-packages|
-      ' src/2geom/py2geom/CMakeLists.txt || die "sed of CMakeLists.txt failed"
+	sed -i -e '
+	  s|${PYTHON_LIB_INSTALL}/\.\./dist-packages|/usr/'"$(get_libdir)"'/python'"${PYTHON_ABI}"'/site-packages|
+	  ' src/2geom/py2geom/CMakeLists.txt || die "sed of CMakeLists.txt failed"
 }
 
 src_configure() {
 	local mycmakeargs="
-        -D2GEOM_BUILD_SHARED:BOOL=ON
-        -D2GEOM_LPE_TOYS:BOOL=OFF
-        -D2GEOM_TOYS:BOOL=OFF
-        "
-    use python && mycmakeargs+=" -D2GEOM_BOOST_PYTHON:BOOL=ON "
-    use python || mycmakeargs+=" -D2GEOM_BOOST_PYTHON:BOOL=OFF "
+	    -D2GEOM_BUILD_SHARED:BOOL=ON
+	    -D2GEOM_LPE_TOYS:BOOL=OFF
+	    -D2GEOM_TOYS:BOOL=OFF
+	    "
+	use python && mycmakeargs+=" -D2GEOM_BOOST_PYTHON:BOOL=ON "
+	use python || mycmakeargs+=" -D2GEOM_BOOST_PYTHON:BOOL=OFF "
 
-    cmake-utils_src_configure
+	cmake-utils_src_configure
 }
 
 src_compile() {
@@ -54,14 +54,14 @@ src_compile() {
 }
 
 src_install() {
-    local config_h
+	local config_h
 
-    # Sanitize headers by removing includes of config.h.
+	# Sanitize headers by removing includes of config.h.
 	sed -i -e '/#include "config\.h"/d' src/2geom/*.h || die "sed of headers failed"
 
-    cmake-utils_src_install
+	cmake-utils_src_install
 
-    (cd doc && (make manual.pdf || "make manual.pdf failed"))
-    dodoc -r doc
-    (cd src/2geom && dodoc -r toys)
+	(cd doc && (make manual.pdf || "make manual.pdf failed"))
+	dodoc -r doc
+	(cd src/2geom && dodoc -r toys)
 }

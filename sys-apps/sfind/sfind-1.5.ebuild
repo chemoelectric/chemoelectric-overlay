@@ -23,8 +23,8 @@ IUSE=""
 # for libschily.
 RDEPEND=">=app-cdr/cdrtools-3.00"
 DEPEND="
-    ${RDEPEND}
-    >=sys-devel/smake-1.2_alpha49
+	${RDEPEND}
+	>=sys-devel/smake-1.2_alpha49
 "
 
 S="${WORKDIR}/${SCHILY_NV}/sfind"

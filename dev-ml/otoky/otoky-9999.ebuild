@@ -18,8 +18,8 @@ KEYWORDS="~amd64"
 IUSE="tokyotyrant"
 
 DEPEND="
-    >=dev-db/tokyocabinet-1.4.47
-    tokyotyrant? ( >=net-misc/tokyotyrant-1.1.41 )
+	>=dev-db/tokyocabinet-1.4.47
+	tokyotyrant? ( >=net-misc/tokyotyrant-1.1.41 )
 "
 RDEPEND="${DEPEND}"
 
@@ -32,5 +32,5 @@ src_configure() {
 }
 
 src_install() {
-    findlib_src_install
+	findlib_src_install
 }

@@ -34,8 +34,8 @@ RDEPEND="app-arch/dpkg
 	dev-perl/Apt-Pkg
 	dev-perl/TimeDate
 	dev-perl/URI
-    dev-perl/List-MoreUtils
-    dev-perl/Email-Valid
+	dev-perl/List-MoreUtils
+	dev-perl/Email-Valid
 	dev-util/diffstat
 	dev-util/intltool-debian
 	sys-apps/man-db
