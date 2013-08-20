@@ -3,8 +3,9 @@
 # $Header: $
 
 EAPI=5
+PYTHON_COMPAT=( python{2_{6,7},3_{1,2,3}} )
 
-inherit distutils
+inherit distutils-r1
 
 DESCRIPTION="Python interface to libapt-pkg"
 HOMEPAGE="http://packages.debian.org/sid/${PN}"
