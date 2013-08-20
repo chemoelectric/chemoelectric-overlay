@@ -4,7 +4,10 @@
 
 EAPI=5
 
-inherit distutils
+# FIXME: Maybe pick a `best' Python.
+PYTHON_COMPAT=( python2_7 )
+
+inherit distutils-r1
 
 DESCRIPTION="Useful tools for Ubuntu developers"
 HOMEPAGE="https://launchpad.net/${PN}"
