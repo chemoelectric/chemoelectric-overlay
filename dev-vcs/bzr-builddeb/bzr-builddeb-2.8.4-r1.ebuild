@@ -5,7 +5,7 @@
 EAPI=5
 
 # FIXME: Is this supposed to work for multiple python versions?
-PYTHON_COMPAT=( python{2_{6,7},3_{1,2,3}} )
+PYTHON_COMPAT=( python2_{6,7} )
 
 inherit distutils-r1
 
