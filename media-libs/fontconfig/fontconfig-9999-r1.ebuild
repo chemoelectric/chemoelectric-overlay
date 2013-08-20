@@ -1,12 +1,12 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI="2"
+EAPI=5
 
 EGIT_REPO_URI="https://chemoelectric@bitbucket.org/chemoelectric/${PN}.git"
 
-inherit autotools eutils libtool toolchain-funcs flag-o-matic git
+inherit autotools eutils libtool toolchain-funcs flag-o-matic git-2
 
 DESCRIPTION="Crud Factory fontconfig: a fork of fontconfig"
 HOMEPAGE="https://bitbucket.org/chemoelectric/fontconfig"
@@ -23,7 +23,7 @@ IUSE="doc"
 RDEPEND=">=media-libs/freetype-2.2.1
 	>=dev-libs/expat-1.95.3"
 DEPEND="${RDEPEND}
-	dev-util/pkgconfig
+	virtual/pkgconfig
 	doc? (
 		app-text/docbook-sgml-utils[jadetex]
 		=app-text/docbook-sgml-dtd-3.1*
@@ -78,8 +78,9 @@ src_install() {
 	insinto /etc/fonts
 	doins "${S}"/fonts.conf
 
-	dodoc doc/fontconfig-user.{txt,pdf}
-	dodoc AUTHORS ChangeLog README
+	for i in AUTHORS ChangeLog README doc/fontconfig-user.{txt,pdf}; do
+		test -f "${i}" && dodoc "${i}"
+	done
 
 	if [[ -e ${D}usr/share/doc/fontconfig/ ]];  then
 		mv "${D}"usr/share/doc/fontconfig/* "${D}"/usr/share/doc/${P}
