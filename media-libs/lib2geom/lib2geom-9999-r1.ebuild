@@ -1,5 +1,6 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
+# $Header: $
 
 EAPI="4"
 ESVN_REPO_URI="http://${PN}.svn.sourceforge.net/svnroot/${PN}/${PN}/trunk"
@@ -18,32 +19,31 @@ KEYWORDS="~amd64"
 IUSE="python"
 
 RDEPEND="
-   x11-libs/gtk+:2
-   dev-cpp/gtkmm:2.4
-   >=x11-libs/cairo-1.10.2-r1
-   >=dev-cpp/cairomm-1.9.8
-   >=dev-libs/boost-1.46.1
-   >=sci-libs/gsl-1.15
-   python? ( =dev-lang/python-${PYTHON_ABI}* )
+	x11-libs/gtk+:2
+	dev-cpp/gtkmm:2.4
+	>=x11-libs/cairo-1.10.2-r1
+	>=dev-cpp/cairomm-1.9.8
+	>=dev-libs/boost-1.46.1
+	>=sci-libs/gsl-1.15
+	python? ( =dev-lang/python-${PYTHON_ABI}* )
 "
 DEPEND="${RDEPEND}
-   >=dev-util/ragel-6.6-r1
+	>=dev-util/ragel-6.6-r1
 "
 
 src_prepare() {
-	cd ${S}
 	sed -i -e 's/rlgen-cd/ragel/g' src/2geom/CMakeLists.txt || die "sed of CMakeLists.txt failed"
 	sed -i -e '
-	  s|${PYTHON_LIB_INSTALL}/\.\./dist-packages|/usr/'"$(get_libdir)"'/python'"${PYTHON_ABI}"'/site-packages|
+	  s|"${PYTHON_LIB_INSTALL}"/\.\./dist-packages|/usr/'"$(get_libdir)"'/python'"${PYTHON_ABI}"'/site-packages|
 	  ' src/2geom/py2geom/CMakeLists.txt || die "sed of py2geom/CMakeLists.txt failed"
 }
 
 src_configure() {
 	local mycmakeargs="
-	    -D2GEOM_BUILD_SHARED:BOOL=ON
-	    -D2GEOM_LPE_TOYS:BOOL=OFF
-	    -D2GEOM_TOYS:BOOL=OFF
-	    "
+		 -D2GEOM_BUILD_SHARED:BOOL=ON
+		 -D2GEOM_LPE_TOYS:BOOL=OFF
+		 -D2GEOM_TOYS:BOOL=OFF
+		 "
 	use python && mycmakeargs+=" -D2GEOM_BOOST_PYTHON:BOOL=ON "
 	use python || mycmakeargs+=" -D2GEOM_BOOST_PYTHON:BOOL=OFF "
 
