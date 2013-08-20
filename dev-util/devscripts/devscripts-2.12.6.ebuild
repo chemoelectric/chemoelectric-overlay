@@ -26,5 +26,5 @@ src_prepare () {
 
 src_install () {
 	default
-	find ${D} -name 'checkbashisms*' -exec rm {} \;
+	find "${D}" -name 'checkbashisms*' -exec rm {} \;
 }
