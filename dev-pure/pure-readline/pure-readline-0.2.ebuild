@@ -7,7 +7,7 @@ EAPI=4
 inherit pure-lang
 
 DESCRIPTION="Pure readline interface"
-LICENSE="as-is"
+LICENSE="GNUAllPermissive"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
