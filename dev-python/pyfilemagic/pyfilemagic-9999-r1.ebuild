@@ -1,16 +1,16 @@
-# Copyright 1999-2008 Gentoo Foundation
+# Copyright 1999-2013 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header$
+# $Header: $
 
-EAPI="2"
-SUPPORT_PYTHON_ABIS="1"
+EAPI=5
+#SUPPORT_PYTHON_ABIS="1"
+PYTHON_COMPAT=( python{2_{6,7},3_{1,2,3}} )
 
-inherit distutils git
+inherit distutils-r1 git-2
 
 DESCRIPTION="An interface to libmagic"
 HOMEPAGE="https://bitbucket.org/chemoelectric/pyfilemagic"
-SRC_URI=""
-EGIT_REPO_URI="https://chemoelectric@bitbucket.org/chemoelectric/pyfilemagic.git"
+EGIT_REPO_URI="${HOMEPAGE}.git"
 
 LICENSE="MIT"
 SLOT="0"
@@ -26,8 +26,7 @@ DEPEND="
 
 S="${WORKDIR}/${PN}"
 
-src_compile() {
-	cd "${S}"
-	cp setup-no_cython.py setup.py
-	distutils_src_compile || die "distutils_src_compile failed"
+src_prepare() {
+	cp setup-no_cython.py setup.py || die
+	distutils-r1_src_prepare
 }
