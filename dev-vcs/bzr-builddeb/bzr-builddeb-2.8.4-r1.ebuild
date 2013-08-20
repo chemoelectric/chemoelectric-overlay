@@ -4,7 +4,10 @@
 
 EAPI=5
 
-inherit distutils
+# FIXME: Is this supposed to work for multiple python versions?
+PYTHON_COMPAT=( python{2_{6,7},3_{1,2,3}} )
+
+inherit distutils-r1
 
 DESCRIPTION="bzr plugin for Debian package management"
 HOMEPAGE="https://launchpad.net/ubuntu/raring/+source/${PN}"
