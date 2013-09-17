@@ -29,5 +29,10 @@ src_install() {
 		dosym "${html_dir}" "${docs_dir}"
 	)
 
-	dodoc quickref/pure-quickref.pdf
+	# The PQR is not included in releases and so should not be
+	# included here, as it was in pure-docs-9999.ebuild.
+	#
+	# FIXME: We could have a PQR ebuild of its own, though.
+	#
+	#dodoc quickref/pure-quickref.pdf
 }
