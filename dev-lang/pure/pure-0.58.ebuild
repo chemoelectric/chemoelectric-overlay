@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -17,6 +17,7 @@ IUSE="doc examples emacs libedit mpir readline static-llvm"
 
 DEPEND="
 	>=sys-devel/llvm-3.2
+	<sys-devel/llvm-3.4
 	>=dev-libs/mpfr-3.0.1_p4
 	emacs? ( virtual/emacs )
 	libedit? ( >=dev-libs/libedit-20110709.3.0 )
