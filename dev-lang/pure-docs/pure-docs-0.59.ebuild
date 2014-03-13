@@ -4,8 +4,6 @@
 
 EAPI=5
 
-inherit multilib
-
 DESCRIPTION="Documentation for the Pure language"
 HOMEPAGE="https://bitbucket.org/purelang/purelang.bitbucket.org"
 SRC_URI="https://bitbucket.org/purelang/pure-lang/downloads/${P}.tar.gz"
