@@ -58,8 +58,9 @@ src_install() {
 
 	emake DESTDIR="${D}" install
 
-	if use X; then
-		doicon --size 96 ../share/pkgs/drracket/drracket/drracket.png
-		make_desktop_entry drracket "DrRacket" drracket "Development"
-	fi
+	ls "${D}"/usr/share/applications/*.desktop > /dev/null 2> /dev/null && {
+		sed -i -e "s|${D}||g" "${D}"/usr/share/applications/*.desktop || {
+			die "modification of desktop files failed"
+		}
+	}
 }
