@@ -4,8 +4,6 @@
 
 EAPI="5"
 
-inherit eutils
-
 DESCRIPTION="Racket is a general-purpose programming language with strong support for domain-specific languages."
 HOMEPAGE="http://racket-lang.org/"
 SRC_URI="http://mirror.racket-lang.org/installers/${PV}/${P}-src-unix.tgz"
@@ -13,15 +11,17 @@ SRC_URI="http://mirror.racket-lang.org/installers/${PV}/${P}-src-unix.tgz"
 LICENSE="LGPL-3"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-#IUSE="backtrace cairo doc futures jit places plot threads X"
 IUSE="cairo doc futures jit places plot threads X"
 
 RDEPEND="dev-db/sqlite:3 x11-libs/cairo[X?] virtual/libffi"
 
-# see bug 426316: racket/draw (which depends on cairo) is sometimes used in compile-time code or when rendering documentation
-DEPEND="${RDEPEND} x11-libs/cairo !dev-tex/slatex"
+# see bug 426316: racket/draw (which depends on cairo) is sometimes
+# used in compile-time code or when rendering documentation
+DEPEND="${RDEPEND} x11-libs/cairo"
 
-EGIT_SOURCEDIR="${WORKDIR}/${P}"
+# Racket installs its own ‘slatex’ program.
+DEPEND+=" !dev-tex/slatex"
+
 S="${WORKDIR}/${P}/src"
 
 src_prepare() {
@@ -44,7 +44,6 @@ src_configure() {
 		$(use_enable threads pthread) \
 		--enable-shared \
 		--enable-foreign \
-		--enable-libs \
 		--enable-libffi \
 		--disable-backtrace \
 		--disable-strip
