@@ -11,7 +11,6 @@ DESCRIPTION="GNU Ubiquitous Intelligent Language for Extensions"
 HOMEPAGE="http://www.gnu.org/software/guile/"
 #SRC_URI="mirror://gnu/guile/${P}.tar.gz"
 EGIT_REPO_URI="git://git.sv.gnu.org/guile.git"
-EGIT_MASTER="stable-2.0"
 
 LICENSE="LGPL-3"
 KEYWORDS=""
@@ -31,8 +30,8 @@ DEPEND="${RDEPEND}
 	doc? ( sys-apps/texinfo )
 "
 
-SLOT="2"
-MAJOR="2"
+SLOT="2.2"
+MAJOR="2.2"
 
 src_prepare() {
 	# for live ebuilds
