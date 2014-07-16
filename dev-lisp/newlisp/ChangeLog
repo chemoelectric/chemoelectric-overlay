@@ -1,0 +1,10 @@
+# ChangeLog for dev-lisp/newlisp
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*newlisp-10.6.0 (16 Jul 2014)
+
+  16 Jul 2014; Barry Schwartz <github@crudfactory.com> +newlisp-10.6.0.ebuild,
+  +files/newlisp-makefile-install-10.6.0.patch, +metadata.xml:
+  Adapted from the lisp overlay.
+
