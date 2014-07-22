@@ -1,0 +1,10 @@
+# ChangeLog for dev-perl/Parse-DebianChangelog
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*Parse-DebianChangelog-1.2.0-r1 (22 Jul 2014)
+
+  22 Jul 2014; Barry Schwartz <sortsmill@crudfactory.com>
+  +Parse-DebianChangelog-1.2.0-r1.ebuild, +metadata.xml:
+  Based on sunrise.
+
