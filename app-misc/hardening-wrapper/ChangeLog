@@ -1,0 +1,10 @@
+# ChangeLog for app-misc/hardening-wrapper
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*hardening-wrapper-2.5 (22 Jul 2014)
+
+  22 Jul 2014; Barry Schwartz <sortsmill@crudfactory.com>
+  +hardening-wrapper-2.5.ebuild, +metadata.xml:
+  Initial commit of app-misc/hardening-wrapper, adapted from sunrise.
+
