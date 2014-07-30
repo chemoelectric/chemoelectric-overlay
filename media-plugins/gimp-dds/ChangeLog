@@ -1,6 +1,11 @@
 # ChangeLog for media-plugins/gimp-dds
-# Copyright 1999-2012 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+*gimp-dds-3.0.1 (30 Jul 2014)
+
+  30 Jul 2014; trashman -gimp-dds-2.0.9.ebuild, +gimp-dds-3.0.1.ebuild:
+  Bump version to 3.0.1. Upstream no longer supplies 2.0.9.
 
   05 May 2012; Mike Gilbert <floppym@gentoo.org> gimp-dds-2.0.9.ebuild:
   Use pkgconfig virtual.
