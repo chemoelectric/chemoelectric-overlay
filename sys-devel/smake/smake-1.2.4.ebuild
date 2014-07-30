@@ -1,16 +1,12 @@
-# Copyright 1999-2012 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
-
-VERSION="1.2"
-QUALIFIER="a49"
-FULL_VERSION="${VERSION}${QUALIFIER}"
+EAPI=5
 
 DESCRIPTION="Schily's make"
-HOMEPAGE="http://cdrecord.berlios.de/private/smake.html"
-SRC_URI="ftp://ftp.berlios.de/pub/${PN}/alpha/${PN}-${FULL_VERSION}.tar.bz2"
+HOMEPAGE="https://sourceforge.net/projects/s-make/"
+SRC_URI="mirror://sourceforge/s-make/${P}.tar.bz2"
 LICENSE="CDDL-Schily"
 
 SLOT="0"
@@ -21,18 +17,12 @@ IUSE=""
 DEPEND=""
 RDEPEND=""
 
-S="${WORKDIR}/${PN}-${VERSION}/"
-
 src_configure() {
 	:
 }
 
-src_compile() {
-	make COPTX=-DTRY_EXT2_FS || die "make failed"
-}
-
 src_install() {
-	make INS_BASE="${D}usr" install || die "make install failed"
+	emake INS_BASE="${D}usr" install
 
 	# Put manpages in the right place.
 	if test -d "${D}usr/man"; then
