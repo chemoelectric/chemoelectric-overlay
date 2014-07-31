@@ -36,7 +36,7 @@ pure-lang_src_unpack() {
 }
 
 pure-lang_src_compile() {
-	emake CC="$(tc-getCC)" CXX="$(tc-getCXX)" libdir="${EPREFIX}/usr/$(get_libdir)" ${1+"$@"}
+	emake CC="$(tc-getCC)" CXX="$(tc-getCXX)" CFLAGS="${CFLAGS}" libdir="${EPREFIX}/usr/$(get_libdir)" ${1+"$@"}
 }
 
 any_exist() {
