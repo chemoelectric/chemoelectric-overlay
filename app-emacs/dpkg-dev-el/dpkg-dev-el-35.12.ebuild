@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -10,7 +10,7 @@ ARCHIVE_PN="emacs-goodies-el"
 
 DESCRIPTION="Emacs helpers specific to Debian development"
 HOMEPAGE="http://packages.debian.org/search?keywords=dpkg-dev-el"
-SRC_URI="mirror://debian/pool/main/e/${ARCHIVE_PN}/${ARCHIVE_PN}_${PV}.tar.gz"
+SRC_URI="mirror://debian/pool/main/e/${ARCHIVE_PN}/${ARCHIVE_PN}_${PV}.tar.xz"
 
 LICENSE="GPL-2+"
 SLOT="0"
