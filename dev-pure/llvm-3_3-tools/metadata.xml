@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <longdescription>
+    This package is a workaround for bugs in LLVM 3.4. It is needed,
+    for instance, to build dev-pure/pure-gen, if you are using LLVM
+    3.4.
+  </longdescription>
+  <maintainer>
+    <email>sortsmill@crudfactory.com</email>
+    <name>Barry Schwartz</name>
+  </maintainer>
+</pkgmetadata>
