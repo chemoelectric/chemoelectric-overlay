@@ -1,96 +1,140 @@
-# Copyright 1999-2011 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
-inherit eutils toolchain-funcs versionator alternatives-2
+EAPI=5
 
-LAPACKP=lapack-3.3.1
+FORTRAN_NEEDED=fortran
+inherit eutils toolchain-funcs fortran-2 versionator alternatives-2 multilib
+
+LAPACKP=lapack-3.5.0.tgz
 
 DESCRIPTION="Automatically Tuned Linear Algebra Software"
 HOMEPAGE="http://math-atlas.sourceforge.net/"
 SRC_URI="mirror://sourceforge/math-atlas/${PN}${PV}.tar.bz2
-	fortran? ( lapack? ( http://www.netlib.org/lapack/${LAPACKP}.tgz ) )"
+	fortran? ( lapack? ( http://www.netlib.org/lapack/${LAPACKP} ) )"
 
 LICENSE="BSD"
 SLOT="0"
-KEYWORDS="~amd64 ~x86 ~amd64-linux"
-IUSE="fortran doc lapack static-libs threads"
+KEYWORDS="~amd64 ~x86 ~amd64-linux ~x86-linux"
+IUSE="fortran doc generic lapack static-libs threads"
 
-RDEPEND="fortran? ( virtual/fortran )"
-DEPEND="${RDEPEND}
-	!prefix? ( sys-power/cpufrequtils )"
+RDEPEND=""
+DEPEND="${RDEPEND}"
 
 S="${WORKDIR}/ATLAS"
 
-atlas_configure() {
-	local mycc="$(tc-getCC)"
-	# http://sourceforge.net/tracker/?func=detail&aid=3301697&group_id=23725&atid=379483
-	[[ ${mycc} == *gcc* ]] && mycc=gcc
-	local myconf=(
-		"--prefix=${ED}/usr"
-		"--libdir=${ED}/usr/$(get_libdir)"
-		"--incdir=${ED}/usr/include"
-		"--cc=${mycc}"
-		"-C ac ${mycc}"
-		"-D c -DWALL"
-#		"-F ac '${CFLAGS}'"
-		"-Ss pmake '\$(MAKE) ${MAKEOPTS}'"
-	)
-
-	# OpenMP shown to decreased performance over POSIX threads
-	# (at least in 3.9.39, see atlas-dev mailing list)
-	if use threads; then
-		myconf+=( "-t -1" "-Si omp 0" )
-	else
-		myconf+=( "-t  0" "-Si omp 0" )
-	fi
-
-	if use amd64 || use ppc64 || use sparc; then
-		if [ ${ABI} = amd64 ] || [ ${ABI} = ppc64 ] || [ ${ABI} = sparc64 ] ; then
-			myconf+=( "-b 64" )
-		elif [ ${ABI} = x86 ] || [ ${ABI} = ppc ] || [ ${ABI} = sparc32 ] ; then
-			myconf+=( "-b 32" )
-		else
-			myconf+=( "-b 64" )
+pkg_setup() {
+	local _cpufreq
+	for _cpufreq in /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor; do
+		if [ -f ${_cpufreq} ]; then
+			if ! grep -q performance ${_cpufreq}; then
+				echo 2> /dev/null performance > ${_cpufreq} || \
+					die "${PN} needs all cpu set to performance"
+			fi
 		fi
-	elif use ppc || use x86; then
-		myconf+=( "-b 32" )
-	elif use ia64; then
-		myconf+=( "-b 64" )
-	else #hppa alpha ...
-		myconf+=( "" )
-	fi
-	if use fortran; then
-		myconf+=(
-			"-C if $(tc-getFC)"
-#			"-F if '${FFLAGS}'"
-		)
-		if use lapack; then
-			myconf+=(
-				"-Si latune 1"
-				"--with-netlib-lapack-tarfile=${DISTDIR}/${LAPACKP}.tgz"
-			)
-		else
-			myconf+=( "-Si latune 0" )
-		fi
-	else
-		myconf+=( "-Si latune 0" "--nof77" )
-	fi
-	local confdir="${S}_${1}"; shift
-	myconf+=( $@ )
-	mkdir "${confdir}" && cd "${confdir}"
-	"${S}"/configure ${myconf[@]} || die "configure in ${confdir} failed"
+	done
+	use fortran && fortran-2_pkg_setup
 }
 
-atlas_compile() {
-	pushd "${S}_${1}" > /dev/null
-	# atlas does its own parallel builds
-	emake -j1 build
-	cd lib
-	emake libclapack.a
-	[[ -e libptcblas.a ]] && emake libptclapack.a
-	popd > /dev/null
+src_prepare() {
+	epatch "${FILESDIR}"/${PN}-3.10.0-x32-support.patch
+}
+
+src_configure() {
+	# hack needed to trick the flaky gcc detection
+	local mycc="$(type -P $(tc-getCC))"
+	[[ ${mycc} == *gcc* ]] && mycc=gcc
+	atlas_configure() {
+		local myconf=(
+			--prefix="${ED}/usr"
+			--libdir="${ED}/usr/$(get_libdir)"
+			--incdir="${ED}/usr/include"
+			--cc="$(tc-getCC)"
+			"-D c -DWALL"
+			"-C acg '${mycc}'"
+#			"-F acg '${CFLAGS}'"
+			"-Ss pmake '\$(MAKE) ${MAKEOPTS}'"
+		)
+
+		# OpenMP shown to decreased performance over POSIX threads
+		# (at least in 3.9.x, see atlas-dev mailing list)
+		if use threads; then
+			if use generic; then # 2 threads is most generic
+				myconf+=( "-t 2" "-Si omp 0" )
+			else
+				myconf+=( "-t -1" "-Si omp 0" )
+			fi
+		else
+			myconf+=( "-t  0" "-Si omp 0" )
+		fi
+
+		if use amd64 || use ppc64 || use sparc; then
+			if [ ${ABI} = amd64 ] || [ ${ABI} = ppc64 ] || [ ${ABI} = sparc64 ] ; then
+				myconf+=( "-b 64" )
+			elif [ ${ABI} = x86 ] || [ ${ABI} = ppc ] || [ ${ABI} = sparc32 ] ; then
+				myconf+=( "-b 32" )
+			elif [ ${ABI} = x32 ] ; then
+				myconf+=( "-b 48" )
+			else
+				myconf+=( "-b 64" )
+			fi
+		elif use ppc || use x86; then
+			myconf+=( "-b 32" )
+		elif use ia64; then
+			myconf+=( "-b 64" )
+		fi
+		if use fortran; then
+			myconf+=(
+				"-C if '$(type -P $(tc-getFC))'"
+#				"-F if '${FFLAGS}'"
+			)
+			if use lapack; then
+				myconf+=(
+					"-Si latune 1"
+					"--with-netlib-lapack-tarfile=${DISTDIR}/${LAPACKP}"
+				)
+			else
+				myconf+=( "-Si latune 0" )
+			fi
+		else
+			myconf+=( "-Si latune 0" "--nof77" )
+		fi
+		# generic stuff found by make make xprint_enums in atlas build dir
+		# basically assuming sse2+sse1 and 2 threads max
+		use generic && use x86   && myconf+=( "-V 384 -A 13")
+		use generic && use amd64 && myconf+=( "-V 384 -A 24")
+
+		local confdir="${S}_${1}"; shift
+		myconf+=( $@ )
+		mkdir "${confdir}" && cd "${confdir}"
+		# for debugging
+		echo ${myconf[@]} > myconf.out
+		"${S}"/configure ${myconf[@]} || die "configure in ${confdir} failed"
+	}
+
+	atlas_configure shared "-Fa alg -fPIC" ${EXTRA_ECONF}
+	use static-libs && atlas_configure static ${EXTRA_ECONF}
+}
+
+src_compile() {
+	atlas_compile() {
+		pushd "${S}_${1}" > /dev/null
+		# atlas does its own parallel builds
+		emake -j1 build
+		cd lib
+		emake libclapack.a
+		[[ -e libptcblas.a ]] && emake libptclapack.a
+		popd > /dev/null
+	}
+
+	atlas_compile shared
+	use static-libs && atlas_compile static
+}
+
+src_test() {
+	cd "${S}_shared"
+	emake -j1 check time
 }
 
 # transform a static archive into a shared library and install them
@@ -125,53 +169,12 @@ atlas_install_pc() {
 		Version: ${PV}
 		URL: ${HOMEPAGE}
 		Libs: -L\${libdir} -l${libname} $@
+		Libs.private: -L\${libdir} -latlas -lm ${PTLIBS}
 		Cflags: -I\${includedir}/${PN}
 		${PCREQ}
 	EOF
 	insinto /usr/$(get_libdir)/pkgconfig
 	doins ${pcname}.pc
-}
-
-pkg_setup() {
-	if [[ -n $(type -P cpufreq-info) ]]; then
-		[[ -z $(cpufreq-info -d) ]] && return
-		local ncpu=$(LANG=C cpufreq-info | grep -c "analyzing CPU")
-		local cpu=0
-		while [[ ${cpu} -lt ${ncpu} ]]; do
-			if ! $(LANG=C cpufreq-info -p -c ${cpu} | grep -q performance); then
-				ewarn "CPU $cpu is not set to performance"
-				ewarn "Run cpufreq-set -r -g performance as root"
-				die "${PN} needs all cpu set to performance"
-			fi
-			cpu=$(( cpu + 1 ))
-		done
-	else
-		ewarn "Please make sure to disable CPU throttling completely"
-		ewarn "during the compile of ${PN}. Otherwise, all ${PN}"
-		ewarn "generated timings will be completely random and the"
-		ewarn "performance of the resulting libraries will be degraded"
-		ewarn "considerably."
-	fi
-}
-
-src_prepare() {
-	epatch "${FILESDIR}"/3.9.39-bfr-overflow.patch
-}
-
-src_configure() {
-	atlas_configure shared "-Fa alg -fPIC"
-	use static-libs && atlas_configure static
-}
-
-src_compile() {
-	atlas_compile shared
-	use static-libs && atlas_compile static
-}
-
-src_test() {
-	cd "${S}_shared"
-	emake -j1 check
-	emake -j1 time
 }
 
 src_install() {
@@ -192,7 +195,7 @@ src_install() {
 
 	# cblas
 	atlas_install_libs libatlcblas.a -lm -L. -latlas
-	atlas_install_pc atlcblas atlas-cblas -lm -latlas
+	atlas_install_pc atlcblas atlas-cblas
 	alternatives_for cblas atlas 0 \
 		/usr/$(get_libdir)/pkgconfig/cblas.pc atlas-cblas.pc \
 		/usr/include/cblas.h atlas/cblas.h
@@ -200,7 +203,7 @@ src_install() {
 	# cblas threaded
 	if [[ -e libptcblas.a ]]; then
 		atlas_install_libs libptcblas.a -lm -L. -latlas ${PTLIBS}
-		atlas_install_pc ptcblas atlas-cblas-threads -lm -latlas ${PTLIBS}
+		atlas_install_pc ptcblas atlas-cblas-threads
 		alternatives_for cblas atlas-threads 0 \
 			/usr/$(get_libdir)/pkgconfig/cblas.pc atlas-cblas-threads.pc \
 			/usr/include/cblas.h atlas/cblas.h
@@ -210,27 +213,28 @@ src_install() {
 		PCREQ="Requires: cblas"
 		# clapack
 		atlas_install_libs libatlclapack.a -lm -L. -latlas -latlcblas
-		atlas_install_pc atlclapack atlas-clapack -lm -latlas
+		atlas_install_pc atlclapack atlas-clapack
 
 		# clapack threaded
 		if [[ -e libptclapack.a ]]; then
 			atlas_install_libs libptclapack.a -lm -L. -latlas -lptcblas ${PTLIBS}
-			atlas_install_pc ptclapack atlas-clapack-threads -lm -latlas ${PTLIBS}
+			atlas_install_pc ptclapack atlas-clapack-threads
 		fi
 	fi
 
 	if use fortran; then
 		LINK=$(tc-getF77) PCREQ=
+
 		# blas
 		atlas_install_libs libf77blas.a -lm -L. -latlas
-		atlas_install_pc f77blas atlas-blas -lm -latlas
+		atlas_install_pc f77blas atlas-blas
 		alternatives_for blas atlas 0 \
 			/usr/$(get_libdir)/pkgconfig/blas.pc atlas-blas.pc
 
 		# blas threaded
 		if [[ -e libptf77blas.a ]]; then
 			atlas_install_libs libptf77blas.a -lm -L. -latlas ${PTLIBS}
-			atlas_install_pc ptf77blas atlas-blas-threads -lm -latlas ${PTLIBS}
+			atlas_install_pc ptf77blas atlas-blas-threads
 			alternatives_for blas atlas-threads 0 \
 				/usr/$(get_libdir)/pkgconfig/blas.pc atlas-blas-threads.pc
 		fi
@@ -240,15 +244,14 @@ src_install() {
 			# lapack
 			atlas_install_libs libatllapack.a \
 				-lm -L. -latlas -latlcblas -lf77blas
-			atlas_install_pc atllapack atlas-lapack -lm -latlas
+			atlas_install_pc atllapack atlas-lapack
 			alternatives_for lapack atlas 0 \
 				/usr/$(get_libdir)/pkgconfig/lapack.pc atlas-lapack.pc
 			# lapack threaded
 			if [[ -e libptlapack.a ]]; then
 				atlas_install_libs libptlapack.a \
 					-lm -L. -latlas -lptcblas -lptf77blas ${PTLIBS}
-				atlas_install_pc ptlapack atlas-lapack-threads \
-					-lm -latlas ${PTLIBS}
+				atlas_install_pc ptlapack atlas-lapack-threads
 				alternatives_for lapack atlas-threads 0 \
 					/usr/$(get_libdir)/pkgconfig/lapack.pc atlas-lapack-threads.pc
 			fi
@@ -263,5 +266,5 @@ src_install() {
 	dodoc INDEX.txt AtlasCredits.txt ChangeLog
 	use doc && dodoc atlas*pdf cblas.pdf cblasqref.pdf
 	use doc && use fortran && dodoc f77blas*pdf
-	use doc && use fortran && use lapack && dodoc lapack*pdf
+	use doc && use fortran && use lapack && dodoc *lapack*pdf
 }
