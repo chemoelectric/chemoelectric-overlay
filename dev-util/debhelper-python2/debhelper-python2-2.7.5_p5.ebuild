@@ -30,7 +30,7 @@ S="${WORKDIR}/${DEBIAN_PN}-${DEBIAN_PV_BASE}"
 RESTRICT=test
 
 src_compile() {
-	$(PYTHON -2) -c 'import compileall; compileall.compile_dir("debpython", force=1)'
+	${PYTHON} -c 'import compileall; compileall.compile_dir("debpython", force=1)'
 
 	for f in dh_python2 pyclean pycompile; do
 		rst2man.py < "${f}.rst" > "${f}.1"
