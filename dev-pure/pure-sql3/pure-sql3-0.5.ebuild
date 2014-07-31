@@ -1,8 +1,8 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
+EAPI=5
 
 inherit pure-lang
 
@@ -13,8 +13,8 @@ KEYWORDS="~amd64"
 IUSE=""
 
 DEPEND="
-	>=dev-lang/pure-0.47
-	>=dev-db/sqlite-3.7.7.1:3
-	>=dev-libs/gmp-5.0.2
+	dev-lang/pure
+	dev-db/sqlite:3
+	dev-libs/gmp
 "
 RDEPEND="${DEPEND}"
