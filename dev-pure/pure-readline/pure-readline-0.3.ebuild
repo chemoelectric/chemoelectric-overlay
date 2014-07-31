@@ -1,8 +1,8 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-EAPI=4
+EAPI=5
 
 inherit pure-lang
 
@@ -12,6 +12,11 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
-RDEPEND=">=dev-lang/pure-0.56
-	     >=sys-libs/readline-6.2_p1"
+#
+# FIXME: Have this use libedit instead of readline, if Pure is
+# compiled with libedit.
+#
+
+RDEPEND="dev-lang/pure
+	     sys-libs/readline"
 DEPEND="${RDEPEND}"
