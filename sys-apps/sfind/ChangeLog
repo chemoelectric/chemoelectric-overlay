@@ -1,0 +1,10 @@
+# ChangeLog for sys-apps/sfind
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*sfind-1.5-r1 (30 Jul 2014)
+
+  30 Jul 2014; Barry Schwartz <sortsmill@crudfactory.com> -sfind-1.5.ebuild,
+  +sfind-1.5-r1.ebuild:
+  Initial changelog. New ebuild for sfind 1.5 due to shutdown of berlios.de.
+
