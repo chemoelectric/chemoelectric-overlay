@@ -13,8 +13,7 @@ KEYWORDS="~amd64"
 IUSE=""
 
 #
-# FIXME: Have this use libedit instead of readline, if Pure is
-# compiled with libedit.
+# FIXME: Give this a libedit option.
 #
 
 RDEPEND="dev-lang/pure
