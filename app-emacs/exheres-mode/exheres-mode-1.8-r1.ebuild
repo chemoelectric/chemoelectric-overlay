@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -13,9 +13,12 @@ inherit elisp
 
 DESCRIPTION="Major mode for editing files in exheres format"
 HOMEPAGE="http://www.exherbo.org"
-SRC_URI="http://dev.exherbo.org/~pipping/distfiles/${P}.tar.xz"
 
-LICENSE="GPL-3"
+# This package no longer is available upstream, and the version 1.9
+# requires Emacs 24.
+SRC_URI="https://bitbucket.org/chemoelectric/chemoelectric-overlay/downloads/${P}.tar.xz"
+
+LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
