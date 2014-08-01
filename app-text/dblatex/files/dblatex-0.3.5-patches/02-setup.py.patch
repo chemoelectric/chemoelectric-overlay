@@ -1,0 +1,11 @@
+--- dblatex-0.3.5/setup.py.ORIG	2014-08-01 23:25:47.381166641 +0000
++++ dblatex-0.3.5/setup.py	2014-08-01 23:26:06.195072419 +0000
+@@ -78,7 +78,7 @@
+         self._root = install.root
+         if self._root:
+             self._root = os.path.normpath(self._root)
+-        self._package_base = os.path.join(install.install_data,
++        self._package_base = os.path.join("/usr",
+                                           self.data_files[0][0])
+         self._catalogs = install.catalogs
+         self._style = install.style
