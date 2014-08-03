@@ -11,7 +11,7 @@ inherit distutils-r1
 
 DESCRIPTION="Useful tools for Ubuntu developers"
 HOMEPAGE="https://launchpad.net/${PN}"
-SRC_URI="https://launchpad.net/debian/sid/+source/${PN}/${PV}/+files/${PN}_${PV}.tar.gz"
+SRC_URI="https://launchpad.net/debian/sid/+source/${PN}/${PV}/+files/${PN}_${PV}.tar.xz"
 LICENSE="GPL-2 GPL-2+ GPL-3 GPL-3+"
 
 SLOT="0"

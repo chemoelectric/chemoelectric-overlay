@@ -1,0 +1,44 @@
+--- toolchain.eclass.ORIG	2014-08-02 04:43:21.211859101 +0000
++++ toolchain.eclass	2014-08-03 01:25:16.323797173 +0000
+@@ -121,6 +121,7 @@
+ if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ; then
+ 	IUSE+=" altivec"
+ 	IUSE_DEF+=" cxx fortran"
++	IUSE+=" ada"
+ 	[[ -n ${PIE_VER} ]] && IUSE+=" nopie"
+ 	[[ -n ${HTB_VER} ]] && IUSE+=" boundschecking"
+ 	[[ -n ${D_VER}   ]] && IUSE+=" d"
+@@ -846,6 +847,9 @@
+ 	# We do NOT want 'ADA support' in here!
+ 	# is_ada && GCC_LANG+=",ada"
+ 
++	# Oh, yes, we do!
++	is_ada && GCC_LANG+=",ada"
++
+ 	confgcc+=( --enable-languages=${GCC_LANG} )
+ 
+ 	### general options
+@@ -1717,6 +1721,23 @@
+ 		pax-mark -r "${D}${PREFIX}/libexec/gcc/${CTARGET}/${GCC_CONFIG_VER}/cc1"
+ 		pax-mark -r "${D}${PREFIX}/libexec/gcc/${CTARGET}/${GCC_CONFIG_VER}/cc1plus"
+ 	fi
++
++	# Work around gcc-config's ignorance of gnat tools by providing
++	# copies of them under names gcc-config can handle.
++	is_ada && {
++		for gnattool in	gnat gnatbind gnatchop gnatclean gnatfind \
++			gnatkr gnatlink gnatls gnatmake gnatname gnatprep gnatxref
++		do
++			local toollink
++			if is_crosscompile
++			then
++				toollink="${D}${PREFIX}/${CHOST}/${CTARGET}/gcc-bin/${GCC_CONFIG_VER}/${CTARGET}-${gnattool}"
++			else
++				toollink="${D}${PREFIX}/${CTARGET}/gcc-bin/${GCC_CONFIG_VER}/${CTARGET}-${gnattool}"
++			fi
++			[[ -e "${toollink}" ]] || ln -s "${gnattool}" "${toollink}"
++		done
++	}
+ }
+ 
+ # Move around the libs to the right location.  For some reason,
