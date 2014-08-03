@@ -10,17 +10,17 @@ inherit distutils-r1
 
 DESCRIPTION="Python interface to libapt-pkg"
 HOMEPAGE="http://packages.debian.org/sid/${PN}"
-#SRC_URI="mirror://debian/pool/main/p/${PN}/${PN}_${PV}.tar.gz"
-SRC_URI="https://launchpad.net/ubuntu/+archive/primary/+files/${PN}_${PV}.tar.gz"
+SRC_URI="mirror://debian/pool/main/p/${PN}/${PN}_${PV}.tar.xz"
 LICENSE="GPL-2+"
 
 SLOT="0"
 
-KEYWORDS="~amd64"
+#KEYWORDS="~amd64"
+KEYWORDS=""
 
 DEPEND="
 	dev-lang/python
-	>=sys-apps/apt-0.9.7.8
+	>=sys-apps/apt-0.9.7.9
 "
 RDEPEND="${DEPEND}"
 
