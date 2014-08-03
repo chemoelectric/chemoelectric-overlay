@@ -1,4 +1,9 @@
-# Barry Schwartz (15 July 2014)
+# Barry Schwartz (03 Aug 2014) Gcc is crucial to system
+# integrity. Therefore mask my gcc ebuilds so people who want them
+# have to make a positive effort to get them.
+sys-devel/gcc
+
+# Barry Schwartz (15 Jul 2014)
 # I have moved my Guile live ebuilds to the ‘sortsmill’ overlay.
 =dev-scheme/guile-2.0.9999*
 =dev-scheme/guile-9999*
