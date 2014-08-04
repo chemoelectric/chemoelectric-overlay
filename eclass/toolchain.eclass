@@ -122,6 +122,7 @@ if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ; then
 	IUSE+=" altivec"
 	IUSE_DEF+=" cxx fortran"
 	IUSE+=" ada"
+	IUSE+=" gnat-bootstrap"
 	[[ -n ${PIE_VER} ]] && IUSE+=" nopie"
 	[[ -n ${HTB_VER} ]] && IUSE+=" boundschecking"
 	[[ -n ${D_VER}   ]] && IUSE+=" d"
@@ -144,6 +145,15 @@ if use multislot ; then
 	SLOT="${GCC_CONFIG_VER}"
 else
 	SLOT="${GCC_BRANCH_VER}"
+fi
+
+if use gnat-bootstrap ; then
+	if tc_version_is_between 4.7 4.9 ; then
+		GNAT_BOOTSTRAP_BIN=/opt/gnat-bootstrap-4.7/bin
+	else
+		die "There is no gnat-bootstrap support for this version of gcc."
+	fi
+	export PATH="${GNAT_BOOTSTRAP_BIN}:${PATH}"
 fi
 
 #---->> DEPEND <<----
@@ -207,6 +217,12 @@ if in_iuse gcj ; then
 	tc_version_is_at_least 3.4 && GCJ_GTK_DEPS+=" x11-libs/pango"
 	tc_version_is_at_least 4.2 && GCJ_DEPS+=" app-arch/zip app-arch/unzip"
 	DEPEND+=" gcj? ( awt? ( ${GCJ_GTK_DEPS} ) ${GCJ_DEPS} )"
+fi
+
+if in_iuse gnat-bootstrap ; then
+	if tc_version_is_between 4.7 4.9 ; then
+		DEPEND+=" gnat-bootstrap? ( sys-devel/gnat-bootstrap:4.7 )"
+	fi
 fi
 
 PDEPEND=">=sys-devel/gcc-config-1.7"
@@ -1183,6 +1199,11 @@ toolchain_src_configure() {
 	export ac_cv_have_x='have_x=yes ac_x_includes= ac_x_libraries='
 
 	confgcc+=( "$@" ${EXTRA_ECONF} )
+
+	if use gnat-bootstrap
+	then
+		confgcc+=( CC="${GNAT_BOOTSTRAP_BIN}/gcc" CXX="${GNAT_BOOTSTRAP_BIN}/g++" )
+	fi
 
 	# Nothing wrong with a good dose of verbosity
 	echo
