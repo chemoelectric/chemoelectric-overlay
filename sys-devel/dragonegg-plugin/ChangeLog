@@ -1,0 +1,11 @@
+# ChangeLog for sys-devel/dragonegg-plugin
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*dragonegg-plugin-3.4 (04 Aug 2014)
+
+  04 Aug 2014; Barry Schwartz <sortsmill@crudfactory.com>
+  +dragonegg-plugin-3.4.ebuild, +files/dragonegg-gcc-4.8.patch, +metadata.xml:
+  Initial version. Dragonegg ebuild that handles multiple gcc and which
+  installs the plugin where it belongs.
+
