@@ -1,3 +1,9 @@
+# Barry Schwartz (04 Aug 2014)
+# These are hacks for use only until the Portage tree has 14.01.
+# Only the adventurous and those in need should use them.
+=dev-lang/mercury-14.01*
+=dev-lang/mercury-extras-14.01*
+
 # Barry Schwartz (03 Aug 2014)
 # Gcc is crucial to system integrity. Therefore mask my gcc ebuilds so
 # people who want them have to make a positive effort to get them.
