@@ -1,6 +1,6 @@
-# Barry Schwartz (03 Aug 2014) Gcc is crucial to system
-# integrity. Therefore mask my gcc ebuilds so people who want them
-# have to make a positive effort to get them.
+# Barry Schwartz (03 Aug 2014)
+# Gcc is crucial to system integrity. Therefore mask my gcc ebuilds so
+# people who want them have to make a positive effort to get them.
 sys-devel/gcc
 
 # Barry Schwartz (15 Jul 2014)
