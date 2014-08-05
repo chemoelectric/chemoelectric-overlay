@@ -2,6 +2,12 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconfig-openbsd/ChangeLog,v 1.17 2014/07/22 12:42:09 ssuominen Exp $
 
+*pkgconfig-openbsd-20140804 (05 Aug 2014)
+
+  05 Aug 2014; Barry Schwartz <sortsmill@crudfactory.com>
+  -pkgconfig-openbsd-20130507-r1.ebuild, +pkgconfig-openbsd-20140804.ebuild:
+  Bump version, to get rid of ‘experimental feature’ warnings from Perl.
+
   22 Jul 2014; Samuli Suominen <ssuominen@gentoo.org>
   -pkgconfig-openbsd-20130507.ebuild:
   old
