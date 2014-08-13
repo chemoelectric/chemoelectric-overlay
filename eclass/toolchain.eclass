@@ -148,7 +148,7 @@ else
 fi
 
 if use gnat-bootstrap ; then
-	if tc_version_is_between 4.7 4.9 ; then
+	if tc_version_is_between 4.7 4.10 ; then
 		GNAT_BOOTSTRAP_BIN=/opt/gnat-bootstrap-4.7/bin
 	else
 		die "There is no gnat-bootstrap support for this version of gcc."
