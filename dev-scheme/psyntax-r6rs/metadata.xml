@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer>
+    <email>sortsmill@crudfactory.com</email>
+    <name>Barry Schwartz</name>
+  </maintainer>
+  <use>
+    <flag name="bigloo">Bigloo Scheme</flag>
+    <flag name="chicken">Chicken Scheme</flag>
+    <flag name="gambit">Gambit Scheme</flag>
+    <flag name="ikarus">Ikarus Scheme</flag>
+    <flag name="larceny">Larceny Scheme</flag>
+    <flag name="mit-scheme">GNU/MIT Scheme</flag>
+    <flag name="mzscheme">drscheme</flag>
+    <flag name="scheme48">Scheme48</flag>
+  </use>
+</pkgmetadata>
