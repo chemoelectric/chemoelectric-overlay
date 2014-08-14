@@ -1,3 +1,18 @@
+# Barry Schwartz (14 Aug 2014)
+# Our dev-ada/* ebuilds are entirely independent of those in the
+# Portage tree; they assume our own sys-devel/gcc ebuilds and the
+# absence of other Ada installations. Therefore a person should
+# have to make a positive effort to use our dev-ada/* ebuilds.
+dev-ada/booch_components
+
+# Barry Schwartz (13 Aug 2014)
+# This does not produce a useful installation,
+# but is closer to usefulness than is the
+# dev-scheme/psyntax-r6rs-4 ebuild in the lisp overlay
+# (which, for instance, has an outdated SRC_URI and
+# has broken ‘die’ calls).
+=dev-scheme/psyntax-r6rs-4-r1
+
 # Barry Schwartz (04 Aug 2014)
 # These are hacks for use only until the Portage tree has 14.01.
 # Only the adventurous and those in need should use them.
