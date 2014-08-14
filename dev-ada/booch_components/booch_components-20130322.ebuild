@@ -20,6 +20,11 @@ RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/bc-${PVR}"
 
+src_prepare() {
+	sed -i -e "s|../../lib/bc/lib-|../../$(get_libdir)/bc/lib-|" \
+		bc.gpr-for-installation
+}
+
 src_configure() {
 	sed -e 's|\$(prefix)/lib|\$(libdir)|g' Makefile.in > Makefile \
 		|| die "creation of Makefile failed"
