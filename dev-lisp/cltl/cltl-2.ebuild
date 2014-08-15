@@ -7,8 +7,8 @@ EAPI=5
 DESCRIPTION="Common Lisp the Language, 2nd Edition"
 HOMEPAGE="http://www.cs.cmu.edu/Groups/AI/html/cltl/cltl2.html"
 SRC_URI="
-	http://www.cs.cmu.edu/afs/cs.cmu.edu/project/ai-repository/ai/lang/lisp/doc/cltl/cltl_ht.tgz ->
-		${PN}-html-2.tar.gz
+	html? ( http://www.cs.cmu.edu/afs/cs.cmu.edu/project/ai-repository/ai/lang/lisp/doc/cltl/cltl_ht.tgz ->
+			${PN}-html-2.tar.gz )
 	pdf? ( http://www.cs.cmu.edu/afs/cs.cmu.edu/project/ai-repository/ai/lang/lisp/doc/cltl/cltl_ps.tgz ->
 			${PN}-ps-2.tar.gz )
 "
