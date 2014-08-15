@@ -1,8 +1,9 @@
 # Barry Schwartz (14 Aug 2014)
-# Our dev-ada/booch_components ebuild is not based on gnat.eclass,
+# Our dev-ada/* ebuilds below are not based on gnat.eclass,
 # but rather on sys-devel/gcc::chemoelectric.
-# One should have to package-unmask it to use it.
+# One should have to package-unmask them to use them.
 dev-ada/booch_components
+dev-ada/florist
 
 # Barry Schwartz (13 Aug 2014)
 # This does not produce a useful installation,
