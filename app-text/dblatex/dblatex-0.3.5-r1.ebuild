@@ -31,7 +31,9 @@ DEPEND="|| ( ( app-text/texlive
 		 !<app-text/tex4ht-20090611_p1038-r1"
 
 src_prepare() {
-	epatch "${FILESDIR}/${P}-patches"
+	for patch in "${FILESDIR}/${P}-patches/"*.patch; do
+		epatch "${patch}"
+	done
 }
 
 src_install() {
