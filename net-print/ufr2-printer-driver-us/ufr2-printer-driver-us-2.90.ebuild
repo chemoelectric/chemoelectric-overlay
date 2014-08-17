@@ -73,17 +73,8 @@ src_unpack() {
 		|| die "untar failed for ${TOP_DIR}/Documents/guide-ufr2-2.9xUS.tar.gz"
 }
 
-src_prepare() {
-	# Remove system-dependent paths from libtool archives.
-	sed -i \
-		-e 's|/usr/lib/gcc/[^ 	][^ 	]*.la||g' \
-		-e "s|-L/home/[^ 	'][^ 	']*||g" \
-		usr/lib/*.la
-}
-
 src_install() {
-	dodir /etc/cngplp/account/
-	touch "${D}"/etc/cngplp/account/.keep || die "touch failed"
+	keepdir /etc/cngplp/account/
 
 	dobin usr/bin/*
 
@@ -107,4 +98,10 @@ src_install() {
 		exeinto "${cupsexec}${subdir}"
 		doexe "usr/lib/cups/${subdir}/"*
 	done
+
+	# The libtool files likely are not worth fixing; and those that
+	# would be worth fixing could better be handled by building those
+	# particularly libraries from source (which we have considered
+	# doing and may yet do).
+	prune_libtool_files
 }
