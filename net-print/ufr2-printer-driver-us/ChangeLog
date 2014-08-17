@@ -1,0 +1,10 @@
+# ChangeLog for net-print/ufr2-printer-driver-us
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*ufr2-printer-driver-us-2.90 (17 Aug 2014)
+
+  17 Aug 2014; Barry Schwartz <sortsmill@crudfactory.com>
+  +ufr2-printer-driver-us-2.90.ebuild, +metadata.xml:
+  Initial ebuild.
+
