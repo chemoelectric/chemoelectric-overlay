@@ -13,7 +13,6 @@ LICENSE="GPL-3"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-# Do not allow ATS SLOT=0 from the Portage tree to coexist with us.
 RDEPEND="
 	dev-libs/glib
 	x11-libs/gtk+:2
