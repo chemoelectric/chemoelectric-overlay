@@ -4,7 +4,7 @@
 
 EAPI=5
 
-DESCRIPTION="ATS Programming Language"
+DESCRIPTION="ATS1 Programming Language"
 HOMEPAGE="http://www.ats-lang.org"
 SRC_URI="http://downloads.sourceforge.net/project/ats-lang/ats-lang/anairiats-${PV}/${PN}-lang-anairiats-${PV}.tgz"
 
