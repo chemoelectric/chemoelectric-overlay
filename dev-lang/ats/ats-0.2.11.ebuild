@@ -4,9 +4,16 @@
 
 EAPI=5
 
+###
+### FIXME: This package installs stuff in /usr/lib that ought to go
+### elsewhere.
+###
+### FIXME: This package ignores CFLAGS and who knows what else.
+###
+
 DESCRIPTION="ATS1 Programming Language"
 HOMEPAGE="http://www.ats-lang.org"
-SRC_URI="http://downloads.sourceforge.net/project/ats-lang/ats-lang/anairiats-${PV}/${PN}-lang-anairiats-${PV}.tgz"
+SRC_URI="mirror://sourceforge/ats-lang/ats-lang/anairiats-${PV}/${PN}-lang-anairiats-${PV}.tgz"
 
 SLOT="0"
 LICENSE="GPL-3"
