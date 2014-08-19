@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer>
+	<email>sortsmill@crudfactory.com</email>
+	<name>Barry Schwartz</name>
+  </maintainer>
+  <use>
+    <flag name="contrib">Include the ATS2-contrib package</flag>
+  </use>
+</pkgmetadata>
