@@ -1,0 +1,10 @@
+# ChangeLog for dev-lang/algol68g
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*algol68g-2.8 (20 Aug 2014)
+
+  20 Aug 2014; Barry Schwartz <sortsmill@crudfactory.com> +algol68g-2.8.ebuild,
+  +metadata.xml:
+  New ebuild.
+
