@@ -31,6 +31,10 @@ src_configure() {
 		|| die "configure failed"
 }
 
+src_test() {
+	emake tests
+}
+
 src_install() {
 	emake install DESTDIR="${ED}"
 	dodoc RELNOTES HACKING
