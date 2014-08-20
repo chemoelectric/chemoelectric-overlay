@@ -2,6 +2,9 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Aug 2014; Barry Schwartz <sortsmill@crudfactory.com> algol68g-2.8.ebuild:
+  Added USE=doc and also fixed ordinary doc installation.
+
 *algol68g-2.8 (20 Aug 2014)
 
   20 Aug 2014; Barry Schwartz <sortsmill@crudfactory.com> +algol68g-2.8.ebuild,
