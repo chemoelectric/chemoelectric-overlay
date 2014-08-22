@@ -1,3 +1,9 @@
+# Barry Schwartz (22 Aug 2014)
+# There seems to be a bug in Mercury 14.01 that prevents
+# building of the Cairo support in extras on AMD64.
+=dev-lang/mercury-14.01
+=dev-lang/mercury-extras-14.01
+
 # Barry Schwartz (14 Aug 2014)
 # Our dev-ada/* ebuilds below are not based on gnat.eclass,
 # but rather on sys-devel/gcc::chemoelectric.
@@ -12,12 +18,6 @@ dev-ada/florist
 # (which, for instance, has an outdated SRC_URI and
 # has broken ‘die’ calls).
 =dev-scheme/psyntax-r6rs-4-r1
-
-# Barry Schwartz (04 Aug 2014)
-# These are hacks for use only until the Portage tree has 14.01.
-# Only the adventurous and those in need should use them.
-=dev-lang/mercury-14.01*
-=dev-lang/mercury-extras-14.01*
 
 # Barry Schwartz (03 Aug 2014)
 # Gcc is crucial to system integrity. Therefore mask my gcc ebuilds so

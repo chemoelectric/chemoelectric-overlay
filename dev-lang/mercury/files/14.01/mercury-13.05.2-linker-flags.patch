@@ -1,0 +1,22 @@
+diff -ur mercury-srcdist-13.05.2.orig/Makefile mercury-srcdist-13.05.2/Makefile
+--- mercury-srcdist-13.05.2.orig/Makefile	2013-04-09 11:22:16.000000000 +0200
++++ mercury-srcdist-13.05.2/Makefile	2014-02-18 10:15:16.000000000 +0100
+@@ -26,15 +26,15 @@
+ 
+ .PHONY: all
+ all:
+-	$(MMAKE) MMAKEFLAGS=$(PARALLEL) all
++	$(MMAKE) MMAKEFLAGS+=$(PARALLEL) all
+ 
+ .PHONY: libmmc
+ libmmc:
+-	$(MMAKE) MMAKEFLAGS=$(PARALLEL) libmmc
++	$(MMAKE) MMAKEFLAGS+=$(PARALLEL) libmmc
+ 
+ .PHONY: install
+ install:
+-	$(MMAKE) MMAKEFLAGS=$(PARALLEL) DESTDIR=$(DESTDIR) install
++	$(MMAKE) MMAKEFLAGS+=$(PARALLEL) DESTDIR=$(DESTDIR) install
+ 
+ # `mmake clean' has a different meaning to the usual GNU standard `make clean':
+ # it removes the .c files, which makes bootstrapping impossible unless you

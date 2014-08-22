@@ -1,0 +1,12 @@
+diff -ur mercury-srcdist-13.05.2.orig/tests/hard_coded/Mmakefile mercury-srcdist-13.05.2/tests/hard_coded/Mmakefile
+--- mercury-srcdist-13.05.2.orig/tests/hard_coded/Mmakefile	2013-12-02 03:45:44.000000000 +0100
++++ mercury-srcdist-13.05.2/tests/hard_coded/Mmakefile	2014-02-18 10:22:08.000000000 +0100
+@@ -700,7 +700,7 @@
+ PROGS = $(ORDINARY_PROGS) $(PROF_PROGS) $(BROKEN_FOR_LCC_PROGS) \
+ 	$(CLOSURE_LAYOUT_PROGS) $(NON_PROFDEEP_PROGS) \
+ 	$(BACKEND_PROGS) \
+-	$(C_AND_GC_ONLY_PROGS) $(STATIC_LINK_PROGS) \
++	$(C_AND_GC_ONLY_PROGS) \
+ 	$(C_ONLY_PROGS) \
+ 	$(DOTNET_PROGS) $(JAVA_PROGS) $(SOLVER_PROGS) \
+ 	$(TRAILED_PROGS) $(MUTABLE_PROGS) $(TRACE_GOAL_ENV_PROGS) \

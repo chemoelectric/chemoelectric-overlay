@@ -1,0 +1,13 @@
+diff -ur mercury-srcdist-13.05.2.orig/m4/mercury.m4 mercury-srcdist-13.05.2/m4/mercury.m4
+--- mercury-srcdist-13.05.2.orig/m4/mercury.m4	2013-08-05 02:27:58.000000000 +0200
++++ mercury-srcdist-13.05.2/m4/mercury.m4	2014-02-18 10:13:53.000000000 +0100
+@@ -400,7 +400,8 @@
+ 
+ # We default to the Beta 2 version of the library
+ mercury_cv_microsoft_dotnet_library_version=1.0.2411.0
+-if	test $mercury_cv_microsoft_dotnet = "yes" &&
++if	test "$enable_dotnet_grades" = "yes" &&
++	test $mercury_cv_microsoft_dotnet = "yes" &&
+ 	test "$CSC" != "";
+ then
+ 	AC_MSG_CHECKING([version of .NET libraries])

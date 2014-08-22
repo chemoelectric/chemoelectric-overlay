@@ -1,0 +1,30 @@
+diff -urN mercury-srcdist-13.05.2.orig/extras/graphics/mercury_cairo/Mmakefile mercury-srcdist-13.05.2/extras/graphics/mercury_cairo/Mmakefile
+--- mercury-srcdist-13.05.2.orig/extras/graphics/mercury_cairo/Mmakefile	1970-01-01 01:00:00.000000000 +0100
++++ mercury-srcdist-13.05.2/extras/graphics/mercury_cairo/Mmakefile	2014-02-18 11:18:03.000000000 +0100
+@@ -0,0 +1,26 @@
++# To build, do the following:
++#
++# $ mmake depend
++# $ mmake all
++# $ mmake install
++#
++MAIN_TARGET = all
++
++LIBGRADES := $(filter-out java,$(LIBGRADES))
++LIBGRADES := $(filter-out erlang,$(LIBGRADES))
++LIBGRADES := $(filter-out %debug,$(LIBGRADES))
++
++MCFLAGS-mercury_cairo = --no-warn-nothing-exported --no-warn-interface-imports
++
++CFLAGS += -I/usr/include/cairo
++
++MLLIBS = -lcairo
++
++.PHONEY: all depend install
++
++all: libmercury_cairo
++
++depend: mercury_cairo.depend
++
++install:
++	$(MMAKE) libmercury_cairo.install

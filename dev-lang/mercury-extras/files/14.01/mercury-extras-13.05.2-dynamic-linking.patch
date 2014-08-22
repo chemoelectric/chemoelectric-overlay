@@ -1,0 +1,12 @@
+diff -urN mercury-srcdist-13.05.2.orig/extras/dynamic_linking/Mmakefile mercury-srcdist-13.05.2/extras/dynamic_linking/Mmakefile
+--- mercury-srcdist-13.05.2.orig/extras/dynamic_linking/Mmakefile	2013-04-09 11:22:16.000000000 +0200
++++ mercury-srcdist-13.05.2/extras/dynamic_linking/Mmakefile	2014-02-18 11:19:34.000000000 +0100
+@@ -11,7 +11,7 @@
+ MLFLAGS = --shared
+ 
+ # Link in the `-ldl' library (this may not be needed on some systems)
+-MLLIBS = -ldl
++MLLIBS = -L/usr/lib -ldl
+ 
+ # enable C-level debugging
+ CFLAGS = -g

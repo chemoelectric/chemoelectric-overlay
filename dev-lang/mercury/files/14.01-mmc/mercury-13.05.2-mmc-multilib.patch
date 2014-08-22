@@ -1,0 +1,98 @@
+diff -ur mercury-srcdist-13.05.2.orig/compiler/file_util.m mercury-srcdist-13.05.2/compiler/file_util.m
+--- mercury-srcdist-13.05.2.orig/compiler/file_util.m	2013-12-02 03:45:42.000000000 +0100
++++ mercury-srcdist-13.05.2/compiler/file_util.m	2014-02-18 10:23:22.000000000 +0100
+@@ -259,7 +259,7 @@
+     ( InstallNamePath0 = "" ->
+         globals.lookup_string_option(Globals, install_prefix, InstallPrefix),
+         grade_directory_component(Globals, GradeDir),
+-        InstallNamePath = InstallPrefix / "lib" / "mercury" / "lib" / GradeDir
++        InstallNamePath = InstallPrefix / "@libdir@" / "mercury" / "lib" / GradeDir
+     ;
+         InstallNamePath = InstallNamePath0
+     ),
+diff -ur mercury-srcdist-13.05.2.orig/compiler/make.program_target.m mercury-srcdist-13.05.2/compiler/make.program_target.m
+--- mercury-srcdist-13.05.2.orig/compiler/make.program_target.m	2013-12-02 03:45:42.000000000 +0100
++++ mercury-srcdist-13.05.2/compiler/make.program_target.m	2014-02-18 10:23:22.000000000 +0100
+@@ -1371,7 +1371,7 @@
+         ),
+ 
+         globals.lookup_string_option(Globals, install_prefix, Prefix),
+-        LibDir = Prefix/"lib"/"mercury",
++        LibDir = Prefix/"@libdir@"/"mercury",
+         list.map_foldl(
+             install_subdir_file(Globals, SubdirLinkSucceeded, LibDir/"ints",
+                 ModuleName),
+@@ -1424,7 +1424,7 @@
+     globals.lookup_accumulating_option(Globals, extra_library_header,
+         ExtraHdrs),
+     globals.lookup_string_option(Globals, install_prefix, Prefix),
+-    IncDir = Prefix / "lib" / "mercury" / "inc",
++    IncDir = Prefix / "@libdir@" / "mercury" / "inc",
+     list.foldl2(install_extra_header(Globals, IncDir), ExtraHdrs,
+         yes, ExtraHdrsSucceeded, !IO).
+ 
+@@ -1573,24 +1573,24 @@
+         globals.lookup_string_option(Globals, install_prefix, Prefix),
+ 
+         ( string.prefix(GradeDir, "csharp") ->
+-            GradeLibDir = Prefix/"lib"/"mercury"/"lib"/GradeDir,
++            GradeLibDir = Prefix/"@libdir@"/"mercury"/"lib"/GradeDir,
+             install_file(Globals, DllFileName, GradeLibDir, LibsSucceeded,
+                 !IO),
+             InitSucceeded = yes
+         ; string.prefix(GradeDir, "java") ->
+-            GradeLibDir = Prefix/"lib"/"mercury"/"lib"/GradeDir,
++            GradeLibDir = Prefix/"@libdir@"/"mercury"/"lib"/GradeDir,
+             install_file(Globals, JarFileName, GradeLibDir, LibsSucceeded,
+                 !IO),
+             InitSucceeded = yes
+         ; string.prefix(GradeDir, "erlang") ->
+-            GradeLibDir = Prefix/"lib"/"mercury"/"lib"/GradeDir,
++            GradeLibDir = Prefix/"@libdir@"/"mercury"/"lib"/GradeDir,
+             % Our "Erlang archives" are actually directories.
+             install_directory(Globals, ErlangArchiveFileName, GradeLibDir,
+                 LibsSucceeded, !IO),
+             install_grade_init(Globals, GradeDir, ModuleName, InitSucceeded,
+                 !IO)
+         ;
+-            GradeLibDir = Prefix/"lib"/"mercury"/"lib"/GradeDir,
++            GradeLibDir = Prefix/"@libdir@"/"mercury"/"lib"/GradeDir,
+             maybe_install_library_file(Globals, "static", LibFileName,
+                 GradeLibDir, LibSuccess, !IO),
+             ( LibFileName = SharedLibFileName ->
+@@ -1621,7 +1621,7 @@
+ 
+ install_grade_init(Globals, GradeDir, ModuleName, Succeeded, !IO) :-
+     globals.lookup_string_option(Globals, install_prefix, Prefix),
+-    GradeModulesDir = Prefix / "lib" / "mercury" / "modules" / GradeDir,
++    GradeModulesDir = Prefix / "@libdir@" / "mercury" / "modules" / GradeDir,
+     module_name_to_file_name(Globals, ModuleName, ".init", do_not_create_dirs,
+         InitFileName, !IO),
+     install_file(Globals, InitFileName, GradeModulesDir, Succeeded, !IO).
+@@ -1638,7 +1638,7 @@
+     (
+         MaybeImports = yes(_Imports),
+         globals.lookup_string_option(Globals, install_prefix, Prefix),
+-        LibDir = Prefix/"lib"/"mercury",
++        LibDir = Prefix/"@libdir@"/"mercury",
+ 
+         globals.get_target(Globals, Target),
+         globals.lookup_bool_option(Globals, highlevel_code, HighLevelCode),
+@@ -1785,7 +1785,7 @@
+ 
+ make_install_dirs(Globals, Result, LinkResult, !IO) :-
+     globals.lookup_string_option(Globals, install_prefix, Prefix),
+-    LibDir = Prefix/"lib"/"mercury",
++    LibDir = Prefix/"@libdir@"/"mercury",
+     make_directory(LibDir/"inc", Result1, !IO),
+     make_directory(LibDir/"modules", Result2, !IO),
+ 
+@@ -1816,7 +1816,7 @@
+ 
+ make_grade_install_dirs(Globals, Grade, Result, LinkResult, !IO) :-
+     globals.lookup_string_option(Globals, install_prefix, Prefix),
+-    LibDir = Prefix/"lib"/"mercury",
++    LibDir = Prefix/"@libdir@"/"mercury",
+ 
+     GradeIntsSubdir = LibDir/"ints"/Grade/"Mercury",
+     make_directory(GradeIntsSubdir, Result1, !IO),
