@@ -28,23 +28,3 @@ sys-devel/gcc
 # I have moved my Guile live ebuilds to the ‘sortsmill’ overlay.
 =dev-scheme/guile-2.0.9999*
 =dev-scheme/guile-9999*
-
-# Barry Schwartz (21 Dec 2011)
-# This is the ebuild from portage with the dependence on eselect-cblas
-# removed so it can be mixed with current ebuilds in the science
-# overlay.
-=sci-libs/gsl-1.15
-
-# Barry Schwartz (19 Dec 2011)
-# Science overlay has this ebuild but with CFLAGS respected, which I
-# consider a very bad idea, at least for AMD64. Unmask this to get the
-# same ebuild but with the CFLAGS ignored. This version also unsets
-# FFLAGS.
-=sci-libs/atlas-3.9.52-r1
-
-# Barry Schwartz (29 Oct 2011)
-# Science overlay has this ebuild but with CFLAGS respected, which I
-# consider a very bad idea, at least for AMD64. Unmask this to get the
-# same ebuild but with the CFLAGS ignored. You probably want to unset
-# FFLAGS in your Portage/Paludis configurations for this ebuild, too.
-=sci-libs/atlas-3.9.52
