@@ -59,8 +59,35 @@ src_prepare() {
 		Mmakefile || die "sed default packages failed"
 
 	if use cairo; then
-		sed -i -e "s:lex[ \t]*\\\\:graphics/mercury_cairo lex \\\\:" Mmakefile \
-			|| die "sed cairo failed"
+		# Workaround for Mercury bug
+		# https://www.mercurylang.org/bugs/view.php?id=354
+		{
+			echo
+			echo 'graphics/mercury_cairo_depend: %_depend:'
+			echo '	cd $* && $(MMAKE) $(MMAKEFLAGS) depend'
+			echo
+			echo 'graphics/mercury_cairo: %:'
+			echo '	cd $* && $(MMAKE) $(MMAKEFLAGS)'
+			echo
+			echo 'graphics/mercury_cairo_install: %_install:'
+			echo '	cd $* && $(MMAKE) $(MMAKEFLAGS) --use-mmc-make install MCFLAGS="${MCFLAGS} --trace-table-io-only-retry"'
+			echo
+			echo 'graphics/mercury_cairo_clean: %_clean:'
+			echo '	cd $* && $(MMAKE) $(MMAKEFLAGS) clean'
+			echo
+			echo 'graphics/mercury_cairo_realclean: %_realclean:'
+			echo '	cd $* && $(MMAKE) $(MMAKEFLAGS) realclean'
+
+		} | cat Mmakefile - > "${T}/Mmakefile.tmp" \
+			&& mv "${T}/Mmakefile.tmp" Mmakefile \
+			|| die "cairo workaround failed"
+			sed -i \
+				-e 's|^\(depend: \$(SUBDIRS:%=%_depend)[ 	]*\)$|\1 graphics/mercury_cairo_depend|' \
+				-e 's|^\(all: \$(SUBDIRS)[ 	]*\)$|\1 graphics/mercury_cairo|' \
+				-e 's|^\(install: all \$(SUBDIRS:%=%_install)[ 	]*\)$|\1 graphics/mercury_cairo_install|' \
+				-e 's|^\(clean: \$(SUBDIRS:%=%_clean)[ 	]*\)$|\1 graphics/mercury_cairo_clean|' \
+				-e 's|^\(realclean: \$(SUBDIRS:%=%_realclean)[ 	]*\)$|\1 graphics/mercury_cairo_realclean|' \
+				Mmakefile || die "sed cairo failed"
 	fi
 
 	if use glut; then

@@ -1,6 +1,5 @@
-# Barry Schwartz (22 Aug 2014)
-# There seems to be a bug in Mercury 14.01 that prevents
-# building of the Cairo support in extras on AMD64.
+# Barry Schwartz (25 Aug 2014)
+# Masked for testing.
 =dev-lang/mercury-14.01
 =dev-lang/mercury-extras-14.01
 
