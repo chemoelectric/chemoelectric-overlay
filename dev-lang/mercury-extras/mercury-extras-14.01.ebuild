@@ -81,13 +81,13 @@ src_prepare() {
 		} | cat Mmakefile - > "${T}/Mmakefile.tmp" \
 			&& mv "${T}/Mmakefile.tmp" Mmakefile \
 			|| die "cairo workaround failed"
-			sed -i \
-				-e 's|^\(depend: \$(SUBDIRS:%=%_depend)[ 	]*\)$|\1 graphics/mercury_cairo_depend|' \
-				-e 's|^\(all: \$(SUBDIRS)[ 	]*\)$|\1 graphics/mercury_cairo|' \
-				-e 's|^\(install: all \$(SUBDIRS:%=%_install)[ 	]*\)$|\1 graphics/mercury_cairo_install|' \
-				-e 's|^\(clean: \$(SUBDIRS:%=%_clean)[ 	]*\)$|\1 graphics/mercury_cairo_clean|' \
-				-e 's|^\(realclean: \$(SUBDIRS:%=%_realclean)[ 	]*\)$|\1 graphics/mercury_cairo_realclean|' \
-				Mmakefile || die "sed cairo failed"
+		sed -i \
+			-e 's|^\(depend: \$(SUBDIRS:%=%_depend)[ 	]*\)$|\1 graphics/mercury_cairo_depend|' \
+			-e 's|^\(all: \$(SUBDIRS)[ 	]*\)$|\1 graphics/mercury_cairo|' \
+			-e 's|^\(install: all \$(SUBDIRS:%=%_install)[ 	]*\)$|\1 graphics/mercury_cairo_install|' \
+			-e 's|^\(clean: \$(SUBDIRS:%=%_clean)[ 	]*\)$|\1 graphics/mercury_cairo_clean|' \
+			-e 's|^\(realclean: \$(SUBDIRS:%=%_realclean)[ 	]*\)$|\1 graphics/mercury_cairo_realclean|' \
+			Mmakefile || die "sed cairo failed"
 	fi
 
 	if use glut; then
