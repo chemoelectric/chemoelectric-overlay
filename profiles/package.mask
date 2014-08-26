@@ -1,5 +1,8 @@
 # Barry Schwartz (25 Aug 2014)
 # Masked for testing.
+# Known problems:
+#   (1) Fails tests.
+#   (2) mercury-extras build fails if mercury has Java grades.
 =dev-lang/mercury-14.01
 =dev-lang/mercury-extras-14.01
 
