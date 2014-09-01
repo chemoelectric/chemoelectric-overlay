@@ -3,6 +3,8 @@
 # Known problems:
 #   (1) Fails tests.
 #   (2) mercury-extras build fails if mercury has Java grades.
+# Mind you, I think some of these complaints may apply as well
+# to what is in the Portage tree.
 =dev-lang/mercury-14.01
 =dev-lang/mercury-extras-14.01
 
