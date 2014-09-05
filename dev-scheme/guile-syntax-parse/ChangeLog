@@ -1,0 +1,10 @@
+# ChangeLog for dev-scheme/guile-syntax-parse
+# Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+*guile-syntax-parse-9999 (05 Sep 2014)
+
+  05 Sep 2014; Barry Schwartz <sortsmill@crudfactory.com>
+  +guile-syntax-parse-9999.ebuild, +metadata.xml:
+  Initial ebuild.
+
