@@ -2,6 +2,13 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*ats2-9999 (07 Sep 2014)
+*ats2-0.1.1-r1 (07 Sep 2014)
+
+  07 Sep 2014; Barry Schwartz <sortsmill@crudfactory.com>
+  +ats2-0.1.1-r1.ebuild, +ats2-9999.ebuild:
+  New ebuilds using ats2.eclass (which also is new).
+
 *ats2-0.1.1 (19 Aug 2014)
 
   19 Aug 2014; Barry Schwartz <sortsmill@crudfactory.com> +ats2-0.1.1.ebuild,
