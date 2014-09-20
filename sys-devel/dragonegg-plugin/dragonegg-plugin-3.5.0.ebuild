@@ -20,11 +20,11 @@ KEYWORDS="~amd64 ~x86 ~amd64-linux"
 IUSE="llvm-plugins test"
 
 DEPEND="
-	>=sys-devel/gcc-4.6
+	>=sys-devel/gcc-4.7
 	=sys-devel/llvm-${PV}*"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/dragonegg-${PV}"
+S="${WORKDIR}/dragonegg-${PV}.src"
 
 for_all_gcc_targets() {
 	for target in ${DRAGONEGG_GCC_TARGETS} ; do
@@ -52,7 +52,6 @@ prepare_one_gcc_target() {
 }
 
 src_prepare() {
-	epatch "${FILESDIR}/dragonegg-gcc-4.8.patch"
 	for_all_gcc_targets prepare_one_gcc_target
 }
 
