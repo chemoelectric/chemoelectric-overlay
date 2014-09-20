@@ -17,6 +17,15 @@ SRC_URI="http://llvm.org/releases/${PV}/dragonegg-${PV}.src.tar.xz
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86 ~amd64-linux"
+
+# FIXME: With dragonegg version 3.5.0 and USE=llvm-plugins I get
+#
+#   /usr/lib/gcc/x86_64-pc-linux-gnu/4.8.3/plugin/dragonegg.so: undefined symbol: _ZN4llvm25createObjCARCContractPassEv
+#
+# when compiling some ATS2 code with -fplugin=dragonegg. So I am
+# setting USE=-llvm-plugins in my own installation of that version,
+# but YMMV.
+#
 IUSE="llvm-plugins test"
 
 DEPEND="
@@ -35,8 +44,8 @@ for_all_gcc_targets() {
 check_gcc_target() {
 	local major_version=`echo ${1} | sed -e 's/^\([0-9][0-9]*\).*$/\1/'`
 	local minor_version=`echo ${1} | sed -e 's/^[0-9][0-9]*\.\([0-9][0-9]*\).*$/\1/'`
-	[[ ${major_version} -lt 4 || ( ${major_version} -eq 4 && ${minor_version} -lt 6 ) ]] && \
-		die "GCC < 4.6 is not supported by this ebuild"
+	[[ ${major_version} -lt 4 || ( ${major_version} -eq 4 && ${minor_version} -lt 7 ) ]] && \
+		die "GCC < 4.7 is not supported by this ebuild"
 }
 
 pkg_setup() {
