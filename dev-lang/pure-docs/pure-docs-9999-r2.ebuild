@@ -24,7 +24,7 @@ src_install() {
 
 	# FIXME: Should this be the the architecture-dependent libdir? Is
 	# this messed up throughout my ebuilds?
-	local docs_dir="${EPREFIX}/usr/lib/${PN}/docs"
+	local docs_dir="${EPREFIX}/usr/lib/pure/docs"
 
 	local html_dir="${EPREFIX}/usr/share/doc/${PF}/html"
 	emake install datadir="${html_dir}" DESTDIR="${D}"

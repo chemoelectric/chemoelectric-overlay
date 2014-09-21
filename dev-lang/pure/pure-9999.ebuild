@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -27,6 +27,8 @@ DEPEND="
 RDEPEND="${DEPEND}"
 
 src_prepare() {
+	epatch_user
+
 	# Use relative links for shared library versions. The unaltered
 	# Makefile.in results in absolute links.
 	sed -i -e 's#\(ln -sf \)\$(libdir)/\(\$(libpure) \$(DESTDIR)\$(libdir)/\$(libpure_\(so\|\lnk\)name)\)#\1\2#' \
