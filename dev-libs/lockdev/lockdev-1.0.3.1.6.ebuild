@@ -1,8 +1,8 @@
-# Copyright 1999-2009 Gentoo Foundation
+# Copyright 1999-2014 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/dev-libs/lockdev/lockdev-1.0.3.1.2-r1.ebuild,v 1.3 2009/11/26 17:17:59 maekke Exp $
 
-EAPI="2"
+EAPI=5
 
 GENTOO_DEPEND_ON_PERL="no"
 inherit toolchain-funcs base perl-module eutils versionator autotools
@@ -26,7 +26,7 @@ KEYWORDS="~amd64"
 IUSE="perl"
 
 DEPEND="
-	perl? ( dev-lang/perl[-build] )
+	perl? ( dev-lang/perl )
 "
 RDEPEND="${DEPEND}"
 
