@@ -2,6 +2,11 @@
 # Copyright 1999-2014 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*pure-0.63 (23 Oct 2014)
+
+  23 Oct 2014; Barry Schwartz <sortsmill@crudfactory.com> +pure-0.63.ebuild:
+  New release of Pure.
+
   21 Sep 2014; Barry Schwartz <sortsmill@crudfactory.com> pure-0.62.ebuild,
   pure-9999.ebuild:
   Add epatch_user call to the highest-version pure ebuilds.
