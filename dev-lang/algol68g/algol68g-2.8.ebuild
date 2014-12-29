@@ -35,7 +35,7 @@ RDEPEND="
 	readline? ( sys-libs/readline )
 	gsl? ( sci-libs/gsl )
 	plotutils? ( media-libs/plotutils )
-	postgres? ( dev-db/postgresql-base )
+	postgres? ( dev-db/postgresql )
 "
 DEPEND="${RDEPEND}"
 
