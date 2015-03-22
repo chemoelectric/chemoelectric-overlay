@@ -36,7 +36,7 @@ IUSE="+contrib"
 
 # FIXME: The dependence on dev-libs/gmp will go away in future
 # versions of ATS2.
-RDEPEND="dev-libs/gmp"
+RDEPEND="dev-libs/gmp:0"
 
 # FIXME: Are there any interesting build dependencies? And will we
 # need pkg-config at all, once dev-libs/gmp is not needed?
