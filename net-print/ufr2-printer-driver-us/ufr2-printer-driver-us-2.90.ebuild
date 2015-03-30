@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -24,6 +24,7 @@ COMMON_DEPEND="
 	dev-libs/glib:2
 	dev-libs/libxml2
 	media-libs/fontconfig
+	media-libs/libpng:1.2
 	gnome-base/libglade
 	x11-libs/cairo
 	x11-libs/gtk+:2
