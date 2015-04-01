@@ -34,7 +34,7 @@ DEPEND="
 	)
 "
 PDEPEND="
-	!x86-winnt? ( app-admin/eselect-fontconfig )
+	!x86-winnt? ( app-eselect/eselect-fontconfig )
 	virtual/ttf-fonts
 "
 
@@ -46,7 +46,7 @@ pkg_setup() {
 	DOC_CONTENTS="Please make fontconfig configuration changes using
 	   \`eselect fontconfig\`. Any changes made to /etc/fonts/fonts.conf will be
 	   overwritten. If you need to reset your configuration to upstream defaults,
-	   delete the directory ${EROOT}etc/fonts/conf.d/ and re-emerge fontconfig."
+	   delete the directory ""${EROOT}""etc/fonts/conf.d/ and re-emerge fontconfig."
 }
 
 src_prepare() {

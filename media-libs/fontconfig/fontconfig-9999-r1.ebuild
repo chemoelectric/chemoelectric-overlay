@@ -1,4 +1,4 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -28,7 +28,7 @@ DEPEND="${RDEPEND}
 		app-text/docbook-sgml-utils[jadetex]
 		=app-text/docbook-sgml-dtd-3.1*
 	)"
-PDEPEND="app-admin/eselect-fontconfig
+PDEPEND="app-eselect/eselect-fontconfig
 	virtual/ttf-fonts"
 
 src_prepare() {
