@@ -11,7 +11,7 @@ inherit pure-lang eutils autotools
 DESCRIPTION="A modern-style functional programming language based on term rewriting"
 LICENSE="GPL-3 LGPL-3"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64"
 
 IUSE="doc examples emacs libedit mpir pcre readline static-llvm"
 
