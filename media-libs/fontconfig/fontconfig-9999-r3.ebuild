@@ -34,7 +34,7 @@ DEPEND="
 	)
 "
 PDEPEND="
-	!x86-winnt? ( app-admin/eselect-fontconfig )
+	!x86-winnt? ( app-eselect/eselect-fontconfig )
 	virtual/ttf-fonts
 "
 
