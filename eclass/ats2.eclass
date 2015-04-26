@@ -81,9 +81,15 @@ ats2_src_compile() {
 }
 
 ats2_src_install() {
-	# Get the current Postiats version from configure.ac rather than
-	# from ${PV}. Using ${PV} will not work for live ebuilds.
-	local my_pv=`sed -e '/^AC_INIT/{s:^AC_INIT(\[.*\],[ ]*\[\([0123456789.]*\)\],.*:\1:; p}; d' configure.ac`
+	# Get the current Postiats version from VERSION or from
+	# configure.ac, rather than from ${PV}. Using ${PV} will not work
+	# for live ebuilds.
+	local my_pv=""
+	[[ -r VERSION ]] &&
+		my_pv=`sed -e '1{s:^[ ]*\([0123456789]\(\.[0123456789]*\)*\)[ ]*$:\1:; p}; d' VERSION`
+	[[ x"${my_pv}" = x ]] &&
+		my_pv=`sed -e '/^AC_INIT/{s:^AC_INIT(\[.*\],[ ]*\[\([0123456789.]*\)\],.*:\1:; p}; d' configure.ac`
+
 	local patshome="/usr/lib/${PN}-postiats-${my_pv}"
 
 	default
