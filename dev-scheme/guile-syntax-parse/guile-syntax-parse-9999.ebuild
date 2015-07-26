@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -7,8 +7,8 @@ EAPI=5
 inherit autotools git-2
 
 DESCRIPTION="Racket's syntax-parse adapted for Guile"
-HOMEPAGE="https://gitorious.org/guile-syntax-parse"
-EGIT_REPO_URI="https://gitorious.org/guile-syntax-parse/guile-syntax-parse.git"
+HOMEPAGE="https://gitlab.com/guile-syntax-parse/guile-syntax-parse"
+EGIT_REPO_URI="https://gitlab.com/guile-syntax-parse/guile-syntax-parse.git"
 LICENSE="LGPL-2"
 
 SLOT="0"
