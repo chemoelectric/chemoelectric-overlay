@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -54,7 +54,7 @@ src_test() {
 
 src_install() {
 	local lib="$(get_libdir)"
-	dodoc README BUILDING DEPENDENCY_TRACKING
+	dodoc README README.BUILDING DEPENDENCY_TRACKING
 	pushd bin > /dev/null
 	cp "${FILESDIR}"/redcsl "${FILESDIR}"/csl .
 	sed -e "s/lib/${lib}/" -i redcsl
