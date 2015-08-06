@@ -12,7 +12,7 @@
 ### ebuild, and an eselect choice)
 ###
 
-inherit toolchain-funcs elisp-common
+inherit eutils toolchain-funcs elisp-common
 
 DESCRIPTION="ATS2 Programming Language"
 HOMEPAGE="http://www.ats-lang.org"
@@ -66,6 +66,7 @@ ats2_src_unpack() {
 
 ats2_src_prepare() {
 	default
+	epatch_user
 	[[ "${DO_AUTOTOOLS}" == "yes" ]] && {
 		[[ ! -f Makefile.am ]] && {
 			sed -i -e '/^[ 	]*AM_INIT_AUTOMAKE[ 	]*$/d' configure.ac \
