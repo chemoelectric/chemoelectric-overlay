@@ -1,4 +1,4 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
@@ -12,7 +12,7 @@
 ### ebuild, and an eselect choice)
 ###
 
-inherit toolchain-funcs
+inherit toolchain-funcs elisp-common
 
 DESCRIPTION="ATS2 Programming Language"
 HOMEPAGE="http://www.ats-lang.org"
@@ -32,7 +32,7 @@ else
 fi
 
 LICENSE="GPL-3"
-IUSE="+contrib"
+IUSE="+contrib emacs"
 
 # FIXME: The dependence on dev-libs/gmp will go away in future
 # versions of ATS2.
@@ -43,6 +43,7 @@ RDEPEND="dev-libs/gmp:0"
 DEPEND="
 	${RDEPEND}
 	virtual/pkgconfig
+	emacs? ( virtual/emacs )
 "
 
 S="${WORKDIR}/ATS2-Postiats-${PV}"
@@ -78,6 +79,11 @@ ats2_src_prepare() {
 
 ats2_src_compile() {
 	emake -j1 all CCOMP="$(tc-getCC)"
+
+	if use emacs; then
+		einfo "Compiling emacs lisp files"
+		elisp-compile "utils/emacs/"*.el || die "elisp-compile failed"
+	fi
 }
 
 ats2_src_install() {
@@ -111,4 +117,15 @@ ats2_src_install() {
 	} \
 		> "${T}/50ats2" || die "failed to make 50ats2"
 	doenvd "${T}/50ats2"
+
+	if use emacs; then
+		pushd "utils/emacs" > /dev/null
+		elisp-install "${PN}" *.el *.elc || die "elisp-install failed"
+		cat > "50${PN}-gentoo.el" <<EOF
+;; site-init for dev-lang/${PN}
+(add-to-list 'load-path "@SITELISP@")
+EOF
+		elisp-site-file-install "50${PN}-gentoo.el"
+		popd > /dev/null
+	fi
 }
