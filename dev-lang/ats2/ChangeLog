@@ -2,6 +2,13 @@
 # Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  20 Aug 2015; Barry Schwartz <sortsmill@crudfactory.com>
+  -ats2-0.1.1-r1.ebuild, -ats2-0.1.3.ebuild, -ats2-0.1.4.ebuild,
+  -ats2-0.1.5.ebuild, -ats2-0.1.7.ebuild, -ats2-0.1.10.ebuild,
+  -ats2-0.1.11.ebuild, -ats2-0.1.12.ebuild, -ats2-0.1.13.ebuild:
+  Remove all the ATS2 ebuilds except the package-masked live ebuild. Use
+  sortsmill overlay instead.
+
 *ats2-0.1.13 (22 May 2015)
 
   22 May 2015; Barry Schwartz <sortsmill@crudfactory.com> +ats2-0.1.13.ebuild:
