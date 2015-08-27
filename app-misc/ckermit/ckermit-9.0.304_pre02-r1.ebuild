@@ -1,6 +1,6 @@
-# Copyright 1999-2013 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
+# $Id$
 
 EAPI=5
 
@@ -25,7 +25,7 @@ IUSE="ssl telnet"
 
 RDEPEND="
 	>=dev-libs/lockdev-1.0.3.1.5
-	sys-libs/ncurses
+	sys-libs/ncurses:=
 	virtual/pam
 	ssl? ( >=dev-libs/openssl-1.0.0j )
 "
