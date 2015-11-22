@@ -9,9 +9,12 @@ inherit eutils
 DESCRIPTION="CUPS driver (US edition) for Canon printers whose printer control language is UFR II"
 
 HOMEPAGE="http://usa.canon.com/cusa/support/consumer/printers_multifunction/imageclass_series/imageclass_mf4890dw#DriversAndSoftware"
-SRC_URI="Linux_UFRII_PrinterDriver_V290_us_EN.tar.gz"
+SRC_URI="Linux_UFRII_PrinterDriver_V310_us_EN.tar.gz"
 
-LICENSE="LICENSE-common-2.90 LICENSE-ufr2drv-2.90"
+# FIXME: The ‘common’ package ought to be a separate ebuild,
+# to avoid conflict should we want to install multiple UFR-II
+# printers.
+LICENSE="LICENSE-common-3.40 LICENSE-ufr2drv-3.10"
 
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
@@ -46,21 +49,21 @@ RDEPEND="${COMMON_DEPEND}"
 S="${WORKDIR}"
 
 pkg_setup() {
-	export TOP_DIR="Linux_UFRII_PrinterDriver_V290_us_EN"
+	export TOP_DIR="Linux_UFRII_PrinterDriver_V310_us_EN"
 	export DEB_COMMON_FILE
 	export DEB_UFR2_FILE
 	use x86 && {
-		DEB_COMMON_FILE="${TOP_DIR}/64-bit_Driver/Debian/cndrvcups-common_2.90-1_i386.deb"
-		DEB_UFR2_FILE="${TOP_DIR}/64-bit_Driver/Debian/cndrvcups-ufr2-us_2.90-1_amd64.deb"
+		DEB_COMMON_FILE="${TOP_DIR}/64-bit_Driver/Debian/cndrvcups-common_3.40-1_i386.deb"
+		DEB_UFR2_FILE="${TOP_DIR}/64-bit_Driver/Debian/cndrvcups-ufr2-us_3.10-1_amd64.deb"
 	}
 	use amd64 && {
-		DEB_COMMON_FILE="${TOP_DIR}/64-bit_Driver/Debian/cndrvcups-common_2.90-1_amd64.deb"
-		DEB_UFR2_FILE="${TOP_DIR}/32-bit_Driver/Debian/cndrvcups-ufr2-us_2.90-1_i386.deb"
+		DEB_COMMON_FILE="${TOP_DIR}/64-bit_Driver/Debian/cndrvcups-common_3.40-1_amd64.deb"
+		DEB_UFR2_FILE="${TOP_DIR}/32-bit_Driver/Debian/cndrvcups-ufr2-us_3.10-1_i386.deb"
 	}
 }
 
 pkg_nofetch() {
-	einfo "Please download \`UFR II Printer Driver for Linux Version 2.90'"
+	einfo "Please download \`UFR II Printer Driver for Linux Version 3.10'"
 	einfo "from the \`Drivers & Software->Drivers' submenu at"
 	einfo "http://usa.canon.com/cusa/support/consumer/printers_multifunction/imageclass_series/imageclass_mf4890dw"
 	einfo "and put the file in ${DISTDIR}"
@@ -70,8 +73,8 @@ src_unpack() {
 	default
 	dpkg -x "${DEB_COMMON_FILE}" . || die "dpkg failed for ${DEB_COMMON_FILE}"
 	dpkg -x "${DEB_UFR2_FILE}" . || die "dpkg failed for ${DEB_UFR2_FILE}"
-	(gzip -d < "${TOP_DIR}/Documents/guide-ufr2-2.9xUS.tar.gz" | tar xf -) \
-		|| die "untar failed for ${TOP_DIR}/Documents/guide-ufr2-2.9xUS.tar.gz"
+	(gzip -d < "${TOP_DIR}/Documents/guide-ufr2-3.1xUS.tar.gz" | tar xf -) \
+		|| die "untar failed for ${TOP_DIR}/Documents/guide-ufr2-3.1xUS.tar.gz"
 }
 
 src_install() {
@@ -87,7 +90,7 @@ src_install() {
 		|| die "renaming the doc directory failed"
 	cp "${TOP_DIR}/Documents/"*.txt "${docdir}" \
 		|| die "copying to the renamed doc directory failed"
-	cp -R guide-ufr2-2.9xUS/* "${docdir}/html/." \
+	cp -R guide-ufr2-3.1xUS/* "${docdir}/html/." \
 		|| die "copying the guide to the renamed doc directory failed"
 
 	dolib.a usr/lib/*.{a,la}
