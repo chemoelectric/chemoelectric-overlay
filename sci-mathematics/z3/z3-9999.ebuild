@@ -29,7 +29,7 @@ DEPEND="
 "
 
 pkg_setup() {
-	if [[ ${MERGE_TYPE} != binary ]]; then
+	if [[ "${MERGE_TYPE}" != binary ]]; then
 		if [[ $(tc-getCXX)$ == *g++* ]] && ! tc-has-openmp; then
 			ewarn "Please use an openmp compatible compiler"
 			ewarn "like >gcc-4.2 with USE=openmp"
@@ -39,6 +39,7 @@ pkg_setup() {
 }
 
 src_configure() {
+	append-cxxflags -fopenmp
 	append-ldflags -fopenmp
 	python_export_best
 	${EPYTHON} scripts/mk_make.py --prefix=/usr || die
@@ -46,11 +47,11 @@ src_configure() {
 
 src_compile() {
 	emake --directory="build" \
-		CXX=$(tc-getCXX) \
-		LINK="$(tc-getCXX) ${LDFLAGS}" \
-		LINK_FLAGS="${LDFLAGS}"
+		  CXX="$(tc-getCXX)" \
+		  LINK="$(tc-getCXX) ${LDFLAGS}" \
+		  LINK_FLAGS="${LDFLAGS}"
 }
 
 src_install() {
-	emake --directory="build" install DESTDIR="${D}"
+	emake --directory="build" install DESTDIR="${ED}"
 }
