@@ -1,3 +1,8 @@
+# Barry Schwartz (18 Dec 2015)
+# I have moved these to the ‘sortsmill’ overlay.
+dev-ats2/patsolve_z3
+sci-mathematics/z3
+
 # Barry Schwartz (19 Aug 2015)
 # I have moved ats1 (anairiats) ebuilds to the ‘sortsmill’ overlay.
 dev-lang/ats
