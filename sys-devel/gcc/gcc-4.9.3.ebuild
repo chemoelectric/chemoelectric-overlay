@@ -4,11 +4,11 @@
 
 EAPI="4"
 
-PATCH_VER="1.2"
+PATCH_VER="1.4"
 UCLIBC_VER="1.0"
 
 # Hardened gcc 4 stuff
-PIE_VER="0.6.2"
+PIE_VER="0.6.4"
 SPECS_VER="0.2.0"
 SPECS_GCC_VER="4.4.3"
 # arch/libc configurations known to be stable with {PIE,SSP}-by-default
@@ -22,11 +22,7 @@ SSP_UCLIBC_STABLE="x86 amd64 mips ppc ppc64 arm"
 
 inherit eutils toolchain
 
-DESCRIPTION="The GNU Compiler Collection"
-
-LICENSE="GPL-3+ LGPL-3+ || ( GPL-3+ libgcc libstdc++ gcc-runtime-library-exception-3.1 ) FDL-1.3+"
-
-KEYWORDS="~amd64"
+KEYWORDS="alpha amd64 arm arm64 hppa ia64 m68k ~mips ppc ppc64 s390 sh ~sparc x86 ~amd64-fbsd ~x86-fbsd"
 
 RDEPEND=""
 DEPEND="${RDEPEND}

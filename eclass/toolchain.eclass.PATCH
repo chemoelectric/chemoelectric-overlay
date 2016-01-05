@@ -1,20 +1,28 @@
---- toolchain.eclass.ORIG	2014-08-02 04:43:21.211859101 +0000
-+++ toolchain.eclass	2014-08-04 06:08:23.335312129 +0000
-@@ -121,6 +121,8 @@
- if [[ ${PN} != "kgcc64" && ${PN} != gcc-* ]] ; then
- 	IUSE+=" altivec"
- 	IUSE_DEF+=" cxx fortran"
-+	IUSE+=" ada"
-+	IUSE+=" gnat-bootstrap"
- 	[[ -n ${PIE_VER} ]] && IUSE+=" nopie"
- 	[[ -n ${HTB_VER} ]] && IUSE+=" boundschecking"
- 	[[ -n ${D_VER}   ]] && IUSE+=" d"
-@@ -145,6 +147,15 @@
- 	SLOT="${GCC_BRANCH_VER}"
+--- /usr/portage/eclass/toolchain.eclass	2015-12-31 05:31:02.000000000 +0000
++++ toolchain.eclass	2016-01-04 21:07:54.368539880 +0000
+@@ -1,4 +1,4 @@
+-# Copyright 1999-2015 Gentoo Foundation
++# Copyright 1999-2016 Gentoo Foundation
+ # Distributed under the terms of the GNU General Public License v2
+ # $Id$
+ 
+@@ -154,6 +154,10 @@
+ 	tc_version_is_at_least 4.9 && IUSE+=" cilk"
+ 	tc_version_is_at_least 5.0 && IUSE+=" jit"
+ 	tc_version_is_at_least 6.0 && IUSE+=" pie +ssp"
++
++	# Chemoelectric overlay supports Ada.
++	IUSE_DEF+=( ada gnat-bootstrap )
++
+ fi
+ 
+ IUSE+=" ${IUSE_DEF[*]/#/+}"
+@@ -168,6 +172,15 @@
+ 	SLOT="${GCCMAJOR}"
  fi
  
 +if use gnat-bootstrap ; then
-+	if tc_version_is_between 4.7 4.9 ; then
++	if tc_version_is_between 4.7 5.4 ; then
 +		GNAT_BOOTSTRAP_BIN=/opt/gnat-bootstrap-4.7/bin
 +	else
 +		die "There is no gnat-bootstrap support for this version of gcc."
@@ -25,12 +33,12 @@
  #---->> DEPEND <<----
  
  RDEPEND="sys-libs/zlib
-@@ -208,6 +219,12 @@
+@@ -223,6 +236,12 @@
  	DEPEND+=" gcj? ( awt? ( ${GCJ_GTK_DEPS} ) ${GCJ_DEPS} )"
  fi
  
 +if in_iuse gnat-bootstrap ; then
-+	if tc_version_is_between 4.7 4.9 ; then
++	if tc_version_is_between 4.7 5.4 ; then
 +		DEPEND+=" gnat-bootstrap? ( sys-devel/gnat-bootstrap:4.7 )"
 +	fi
 +fi
@@ -38,7 +46,21 @@
  PDEPEND=">=sys-devel/gcc-config-1.7"
  
  #---->> S + SRC_URI essentials <<----
-@@ -846,6 +863,9 @@
+@@ -835,6 +854,13 @@
+ 		confgcc+=( --with-python-dir=${DATAPATH/$PREFIX/}/python )
+ 	fi
+ 
++	if use gnat-bootstrap ;	then
++		confgcc+=( CC="${GNAT_BOOTSTRAP_BIN}/gcc"
++				   CXX="${GNAT_BOOTSTRAP_BIN}/g++"
++				   GNATBIND="${GNAT_BOOTSTRAP_BIN}/gnatbind"
++				   GNATMAKE="${GNAT_BOOTSTRAP_BIN}/gnatmake" )
++	fi
++
+ 	### language options
+ 
+ 	local GCC_LANG="c"
+@@ -861,6 +887,9 @@
  	# We do NOT want 'ADA support' in here!
  	# is_ada && GCC_LANG+=",ada"
  
@@ -48,19 +70,7 @@
  	confgcc+=( --enable-languages=${GCC_LANG} )
  
  	### general options
-@@ -1180,6 +1200,11 @@
- 
- 	confgcc+=( "$@" ${EXTRA_ECONF} )
- 
-+	if use gnat-bootstrap
-+	then
-+		confgcc+=( CC="${GNAT_BOOTSTRAP_BIN}/gcc" CXX="${GNAT_BOOTSTRAP_BIN}/g++" )
-+	fi
-+
- 	# Nothing wrong with a good dose of verbosity
- 	echo
- 	einfo "PREFIX:          ${PREFIX}"
-@@ -1717,6 +1742,23 @@
+@@ -1770,6 +1799,23 @@
  		pax-mark -r "${D}${PREFIX}/libexec/gcc/${CTARGET}/${GCC_CONFIG_VER}/cc1"
  		pax-mark -r "${D}${PREFIX}/libexec/gcc/${CTARGET}/${GCC_CONFIG_VER}/cc1plus"
  	fi
