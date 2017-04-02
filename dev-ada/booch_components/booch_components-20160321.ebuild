@@ -1,6 +1,5 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
 EAPI=5
 
@@ -15,7 +14,7 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
 
-DEPEND="sys-devel/gcc[ada]"
+DEPEND="virtual/ada:*"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/bc-${PVR}"
@@ -31,7 +30,10 @@ src_configure() {
 }
 
 src_compile() {
-	emake GPRBUILD="gnatmake ${GNATMAKEFLAGS}" \
+	# FIXME: Install a real gprbuild.
+	# FIXME: Figure out the flags here. GNATMAKEFLAGS was my old variable;
+	#        ADAFLAGS is used by the gnat-gpl maintainer.
+	emake GPRBUILD="gnatmake ${GNATMAKEFLAGS} ${ADAFLAGS}" \
 		tcprefix=/usr libdir=/usr/"$(get_libdir)"
 }
 
