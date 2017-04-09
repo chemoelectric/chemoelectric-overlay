@@ -1,0 +1,14 @@
+# ChangeLog for dev-ada/booch_components
+# Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  09 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  booch_components-20160321.ebuild:
+  Bump to Booch Components to 20160321, and also add support for virtual/ada.
+
+*booch_components-20130322 (14 Aug 2014)
+
+  14 Aug 2014; Barry Schwartz <sortsmill@crudfactory.com>
+  +booch_components-20130322.ebuild, +metadata.xml:
+  Initial commit of Booch components for sys-devel/gcc[ada].
+
