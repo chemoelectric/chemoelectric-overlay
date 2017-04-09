@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <longdescription>
+    A binary build of GCC with C, C++, and Ada support, primarily for
+    bootstrapping Ada support in
+    sys-devel/gcc::chemoelectric. However, one might, for instance,
+    use this binary build to recover from a broken system compiler.
+  </longdescription>
+  <maintainer type="person">
+    <email>sortsmill@crudfactory.com</email>
+    <name>Barry Schwartz</name>
+  </maintainer>
+</pkgmetadata>
