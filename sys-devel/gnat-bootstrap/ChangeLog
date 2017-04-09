@@ -2,6 +2,9 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  09 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com> ChangeLog:
+  Remove deprecated Header field from the ebuild.
+
 *gnat-bootstrap-4.7.4 (04 Aug 2014)
 
   04 Aug 2014; Barry Schwartz <sortsmill@crudfactory.com>
