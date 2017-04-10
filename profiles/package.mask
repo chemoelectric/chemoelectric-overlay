@@ -1,15 +1,8 @@
-# Barry Schwartz (18 Dec 2015)
-# I have moved these to the ‘sortsmill’ overlay.
-dev-ats2/patsolve_z3
-sci-mathematics/z3
-
-# Barry Schwartz (19 Aug 2015)
-# I have moved ats1 (anairiats) ebuilds to the ‘sortsmill’ overlay.
-dev-lang/ats
-
-# Barry Schwartz (11 Aug 2015)
-# I have moved ats2 live ebuilds to the ‘sortsmill’ overlay.
-=dev-lang/ats2-9999*
+# Barry Schwartz (10 Apr 2017)
+# Gcc is crucial to system integrity. Therefore mask my gcc ebuilds so
+# people who want them have to make a positive effort to get them.
+sys-devel/gcc
+virtual/gnat
 
 # Barry Schwartz (25 Aug 2014)
 # Masked for testing.
@@ -21,13 +14,6 @@ dev-lang/ats
 =dev-lang/mercury-14.01
 =dev-lang/mercury-extras-14.01
 
-# Barry Schwartz (14 Aug 2014)
-# Our dev-ada/* ebuilds below are not based on gnat.eclass,
-# but rather on sys-devel/gcc::chemoelectric.
-# One should have to package-unmask them to use them.
-dev-ada/booch_components
-dev-ada/florist
-
 # Barry Schwartz (13 Aug 2014)
 # This does not produce a useful installation,
 # but is closer to usefulness than is the
@@ -35,13 +21,3 @@ dev-ada/florist
 # (which, for instance, has an outdated SRC_URI and
 # has broken ‘die’ calls).
 =dev-scheme/psyntax-r6rs-4-r1
-
-# Barry Schwartz (03 Aug 2014)
-# Gcc is crucial to system integrity. Therefore mask my gcc ebuilds so
-# people who want them have to make a positive effort to get them.
-sys-devel/gcc
-
-# Barry Schwartz (15 Jul 2014)
-# I have moved my Guile live ebuilds to the ‘sortsmill’ overlay.
-=dev-scheme/guile-2.0.9999*
-=dev-scheme/guile-9999*

@@ -4,6 +4,11 @@
 
   10 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com>
   booch_components-20160321.ebuild:
+  Switch back to dependency on virtual/ada, to go with providing virtual/gnat
+  in my overlay.
+
+  10 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  booch_components-20160321.ebuild:
   I am removing the virtual/ada support, because I saw it being pulled in and I
   do not want to deal with that kind of behavior, plus a set of multiple layers
   of virtuals over which I have little control.

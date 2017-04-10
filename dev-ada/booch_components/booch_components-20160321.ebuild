@@ -14,7 +14,7 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE=""
 
-DEPEND="sys-devel/gcc:*[ada]"
+DEPEND="virtual/ada:*"
 RDEPEND="${DEPEND}"
 
 S="${WORKDIR}/bc-${PVR}"
