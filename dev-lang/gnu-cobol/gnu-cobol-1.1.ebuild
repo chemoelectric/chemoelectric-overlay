@@ -1,6 +1,5 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
 EAPI=5
 
@@ -19,10 +18,10 @@ SLOT="0"
 KEYWORDS="~amd64 ~ppc ~x86"
 IUSE="berkdb nls readline"
 
-RDEPEND="dev-libs/gmp
-	berkdb? ( =sys-libs/db-4* )
-	sys-libs/ncurses
-	readline? ( sys-libs/readline )
+RDEPEND="dev-libs/gmp:=
+	berkdb? ( =sys-libs/db-4*:= )
+	sys-libs/ncurses:=
+	readline? ( sys-libs/readline:= )
 	!dev-lang/open-cobol"
 DEPEND="${RDEPEND}
 	sys-devel/libtool"

@@ -6,7 +6,7 @@
     for instance, to build dev-pure/pure-gen, if you are using LLVM
     3.4.
   </longdescription>
-  <maintainer>
+  <maintainer type="person">
     <email>sortsmill@crudfactory.com</email>
     <name>Barry Schwartz</name>
   </maintainer>

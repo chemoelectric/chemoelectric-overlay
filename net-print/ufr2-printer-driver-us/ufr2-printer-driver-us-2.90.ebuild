@@ -1,12 +1,11 @@
-# Copyright 1999-2015 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Id$
 
 EAPI=5
 
 inherit eutils
 
-DESCRIPTION="CUPS driver (US edition) for Canon printers whose printer control language is UFR II"
+DESCRIPTION="CUPS driver (US edition) for Canon printers whose PCL is UFR II"
 
 HOMEPAGE="http://usa.canon.com/cusa/support/consumer/printers_multifunction/imageclass_series/imageclass_mf4890dw#DriversAndSoftware"
 SRC_URI="Linux_UFRII_PrinterDriver_V290_us_EN.tar.gz"

@@ -1,6 +1,5 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
 # Based in part on 'exheres-mode-1.7.1-r1.exheres-0' which is
 #     Copyright 2009 Elias Pipping <pipping@exherbo.org>

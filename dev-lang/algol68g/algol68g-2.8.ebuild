@@ -1,6 +1,5 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
 EAPI=5
 
@@ -31,11 +30,11 @@ KEYWORDS="~x86 ~amd64"
 IUSE="doc +compiler ncurses readline gsl +parallel plotutils postgres"
 
 RDEPEND="
-	ncurses? ( sys-libs/ncurses )
-	readline? ( sys-libs/readline )
+	ncurses? ( sys-libs/ncurses:= )
+	readline? ( sys-libs/readline:= )
 	gsl? ( sci-libs/gsl )
 	plotutils? ( media-libs/plotutils )
-	postgres? ( dev-db/postgresql )
+	postgres? ( dev-db/postgresql:= )
 "
 DEPEND="${RDEPEND}"
 

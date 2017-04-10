@@ -2,7 +2,8 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <maintainer type="person">
-    <email>github@crudfactory.com</email>
+    <name>Barry Schwartz</name>
+    <email>sortsmill@crudfactory.com</email>
   </maintainer>
   <use>
     <flag name='telnet'>Make 'telnet' a link to 'kermit'</flag>

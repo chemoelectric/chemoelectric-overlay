@@ -1,12 +1,11 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
 EAPI=5
 
 inherit autotools git-2
 
-DESCRIPTION="Replacements for parts of POSIX whose behaviour is inconsistent across *NIX flavors"
+DESCRIPTION="Replacements for parts of POSIX whose behavior is inconsistent among OSes"
 HOMEPAGE="https://github.com/sionescu/libfixposix"
 EGIT_REPO_URI="https://github.com/sionescu/libfixposix.git"
 LICENSE="Boost-1.0"
