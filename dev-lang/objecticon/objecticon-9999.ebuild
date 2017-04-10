@@ -1,14 +1,13 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
 EAPI=5
 
 inherit subversion autotools multilib
 
 DESCRIPTION="An object-oriented extension of the Icon programming language"
-HOMEPAGE="http://objecticon.googlecode.com"
-ESVN_REPO_URI="${HOMEPAGE}/svn/trunk"
+HOMEPAGE="http://objecticon.sourceforge.net"
+ESVN_REPO_URI="svn://svn.code.sf.net/p/objecticon/code/trunk"
 LICENSE="MIT"
 
 SLOT="0"
@@ -17,12 +16,12 @@ IUSE="doc X jpeg png cairo zlib mysql ssl"
 
 COMMON_DEPEND="
 	X? ( x11-libs/libX11 x11-libs/libXrender x11-libs/libXft media-libs/fontconfig media-libs/freetype:2 )
-	jpeg? ( virtual/jpeg )
-	png? ( media-libs/libpng )
-	cairo? ( x11-libs/cairo )
-	zlib? ( sys-libs/zlib )
+	jpeg? ( virtual/jpeg:= )
+	png? ( media-libs/libpng:= )
+	cairo? ( x11-libs/cairo:= )
+	zlib? ( sys-libs/zlib:= )
 	mysql? ( virtual/mysql )
-	ssl? ( dev-libs/openssl )
+	ssl? ( dev-libs/openssl:= )
 "
 DEPEND="${COMMON_DEPEND}"
 RDEPEND="${COMMON_DEPEND}"
