@@ -5,6 +5,7 @@ EAPI=5
 
 GENTOO_DEPEND_ON_PERL="no"
 inherit toolchain-funcs perl-module eutils versionator autotools
+inherit multilib-minimal
 
 MAJOR=$(get_major_version)
 MY_PV=$(get_version_component_range 1-3)
@@ -33,74 +34,78 @@ PATCHES=(
 	"${FILESDIR}/${MY_P}-add-autotools.patch"
 	"${FILESDIR}/${MY_P}-fix-perl.patch"
 	"${FILESDIR}/${MY_P}-static-inline.patch"
+	"${FILESDIR}/${MY_P}-symlinks.patch"
 )
 
-S=${WORKDIR}/${PN}-${MY_PV}
-PERL_S=${S}/LockDev
+S="${WORKDIR}/${PN}-${MY_PV}"
+
+using_perl() {
+	multilib_is_native_abi && use perl
+}
 
 pkg_setup() {
-	use perl && perl-module_pkg_setup
+	use perl && perl_set_version
 }
 
 src_prepare() {
-	cd "${WORKDIR}"
+	cd "${WORKDIR}" || die
 	# Note: we do *not* want to be in ${S} for this, as that breaks the patch
 	epatch "${WORKDIR}/${DEB_P}.diff"
 
-	cd "${S}"
-	for x in ${PATCHES}; do
-		debug-print "$FUNCNAME: patching from ${x}"
-		epatch "${x}"
-	done
+	cd "${S}" || die
+	epatch "${PATCHES[@]}"
 	epatch_user
 
 	eautoreconf
+
+	multilib_copy_sources
 }
 
-src_configure() {
+multilib_src_configure() {
 	econf
 
-	if use perl; then
-		cd "${PERL_S}"
+	if using_perl; then
+		cd "LockDev" || die
 		perl-module_src_configure
 	fi
 }
 
-src_compile() {
-	emake || die "emake failed"
+multilib_src_compile() {
+	emake
 
-	if use perl; then
-		cd "${PERL_S}"
+	if using_perl; then
+		cd "LockDev" || die
 		perl-module_src_compile
 	fi
 }
 
-src_test() {
-	if use perl; then
-		cd "${PERL_S}"
+multilib_src_test() {
+	if using_perl; then
+		cd "LockDev" || die
 		SRC_TEST="do"
-		export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}${S}/.libs"
+		export LD_LIBRARY_PATH="${LD_LIBRARY_PATH:+${LD_LIBRARY_PATH}:}${BUILD_DIR}/.libs"
 		perl-module_src_test
 	fi
 }
 
-src_install() {
-	emake DESTDIR="${D}" install || die "make install failed"
+multilib_src_install() {
+	emake DESTDIR="${D}" install
 
-	dodoc AUTHORS ChangeLog* debian/NEWS README.debug || die "dodoc failed"
-	newdoc debian/changelog changelog.debian || die "newdoc changelog.debian failed"
-
-	if use perl; then
-		cd "${PERL_S}"
+	if using_perl; then
+		cd "LockDev" || die
 		mytargets="pure_install"
-		docinto perl
+#		docinto perl
 		perl-module_src_install
 	fi
+}
 
-	# Remove *.la files
-	find "${D}" -name "*.la" -exec rm {} + || die "removal of *.la files failed"
+multilib_src_install_all() {
+	dodoc AUTHORS ChangeLog* debian/NEWS README.debug
+	newdoc debian/changelog changelog.debian
+
+	prune_libtool_files --all
 }
 
 pkg_preinst() {
-	use perl && perl-module_pkg_preinst
+	use perl && perl_set_version
 }
