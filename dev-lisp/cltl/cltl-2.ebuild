@@ -12,8 +12,7 @@ SRC_URI="
 			${PN}-ps-2.tar.gz )
 "
 
-# FIXME: Add LICENSE.
-LICENSE=""
+LICENSE="cltl"
 
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
