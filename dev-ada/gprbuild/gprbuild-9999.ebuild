@@ -16,8 +16,9 @@ SLOT="0"
 KEYWORDS="~x86 ~amd64"
 IUSE="first-time-bootstrap doc examples libgpr"
 
-RDEPEND="virtual/ada:*"
+RDEPEND=""
 DEPEND="
+	virtual/ada:*
 	${RDEPEND}
 	!first-time-bootstrap? (
 		${CATEGORY}/${PN}:*

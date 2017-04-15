@@ -2,6 +2,10 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  15 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com> gprbuild-9999.ebuild:
+  Gprbuild does not really need Ada installed at runtime, because it uses
+  static binding.
+
   15 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com> gprbuild-9999.ebuild,
   metadata.xml:
   Add an option to install libgpr.
