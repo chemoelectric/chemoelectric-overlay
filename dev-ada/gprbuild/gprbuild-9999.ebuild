@@ -14,7 +14,7 @@ XMLADA_REPO_URI="https://github.com/AdaCore/xmlada.git"
 LICENSE="GPL-3+ gcc-runtime-library-exception-3.1"
 SLOT="0"
 KEYWORDS="~x86 ~amd64"
-IUSE="first-time-bootstrap doc examples"
+IUSE="first-time-bootstrap doc examples libgpr"
 
 RDEPEND="virtual/ada:*"
 DEPEND="
@@ -26,7 +26,11 @@ DEPEND="
 	)
 "
 
-# FIXME: Install libgpr.
+# FIXME: Deal with the QA notices. I think these might just be
+# annoyingly loud warnings about there being trampolines in the
+# compiled code. It’s not my fault GNAT implements nested functions as
+# stack-frame trampolines, nor do I care very much, although they
+# probably should do it differently.
 
 src_unpack() {
 	git-r3_fetch
@@ -81,6 +85,9 @@ src_compile() {
 			--datarootdir="/usr/share" || die
 	else
 		emake all
+		use libgpr && emake libgpr.build.static
+		use libgpr && emake libgpr.build.static-pic
+		use libgpr && emake libgpr.build.shared
 		use doc && {
 			emake -C doc info
 			emake -C doc html
@@ -94,6 +101,9 @@ src_install() {
 		cp -R "${WORKDIR}/staging/usr/"* "${D}" || die
 	else
 		emake install prefix="${D}/usr"
+		use libgpr && emake libgpr.install.static prefix="${D}/usr"
+		use libgpr && emake libgpr.install.static-pic prefix="${D}/usr"
+		use libgpr && emake libgpr.install.shared prefix="${D}/usr"
 		einstalldocs
 		local pn_doc="${D}/usr/share/doc/${PN}"
 		use doc && {
