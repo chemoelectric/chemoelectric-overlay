@@ -7,7 +7,7 @@ inherit multilib
 
 DESCRIPTION="Booch Components for Ada"
 HOMEPAGE="http://booch95.sourceforge.net/"
-SRC_URI="mirror://sourceforge/booch95/bc-${PVR}.tgz"
+SRC_URI="mirror://sourceforge/booch95/bc-${PV}.tgz"
 LICENSE="GPL-2+"
 
 SLOT="0"

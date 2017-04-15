@@ -22,8 +22,9 @@ DEPEND="
 	doc? ( dev-python/sphinx:*[latex] )
 "
 
-# FIXME: Do a multilib build. Indeed, currently this is installing
-# 64-bit shared libraries to "/usr/lib" rather than "/usr/lib64"!
+# FIXME: Currently this is installing 64-bit shared libraries to
+# "/usr/lib" rather than "/usr/lib64", and is not installing 32-bit
+# shared libraries at all.
 
 # FIXME: If unnmodified, gprbuild uses RPATH and emerge is forced to
 # edit the results. See the QA notices emerge generates, which may
@@ -31,11 +32,6 @@ DEPEND="
 # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=569723
 
 HTML_DOCS=""
-
-src_configure() {
-	# Make linkage to this library be shared by default.
-	econf --enable-shared
-}
 
 src_compile() {
 	default
