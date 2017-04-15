@@ -2,6 +2,12 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*booch_components-20160321-r1 (15 Apr 2017)
+
+  15 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  booch_components-20160321.ebuild, +booch_components-20160321-r1.ebuild:
+  A new ebuild dev-ada/booch_components-20160321-r1 that uses gprbuild.
+
   10 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com>
   booch_components-20160321.ebuild:
   Switch back to dependency on virtual/ada, to go with providing virtual/gnat

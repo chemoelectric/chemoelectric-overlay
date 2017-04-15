@@ -17,7 +17,7 @@ IUSE=""
 DEPEND="virtual/ada:*"
 RDEPEND="${DEPEND}"
 
-S="${WORKDIR}/bc-${PVR}"
+S="${WORKDIR}/bc-${PV}"
 
 src_prepare() {
 	sed -i -e "s|../../lib/bc/lib-|../../$(get_libdir)/bc/lib-|" \
