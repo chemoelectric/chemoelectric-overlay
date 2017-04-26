@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>sortsmill@crudfactory.com</email>
+		<name>Barry Schwartz</name>
+	</maintainer>
+    <use>
+      <flag name="boehm-gc">Enables using the Boehm-Demers-Weiser
+      conservative garbage collector.</flag>
+    </use>
+</pkgmetadata>
