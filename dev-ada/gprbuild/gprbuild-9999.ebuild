@@ -13,7 +13,7 @@ XMLADA_REPO_URI="https://github.com/AdaCore/xmlada.git"
 
 LICENSE="GPL-3+ gcc-runtime-library-exception-3.1"
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS=""
 IUSE="first-time-bootstrap doc examples libgpr"
 
 RDEPEND=""

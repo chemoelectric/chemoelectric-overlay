@@ -2,6 +2,19 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  27 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com> +xmlada-2016.ebuild,
+  xmlada-9999.ebuild:
+  Require a gprbuild that works with GNU GCC 5.4.0, and build shared libraries.
+
+*xmlada-2016 (27 Apr 2017)
+
+  27 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com> +xmlada-2016.ebuild,
+  xmlada-9999.ebuild:
+  An ebuild for xmlada-2016, although it installs only the static library.
+
+  27 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com> xmlada-9999.ebuild:
+  I made the mistake of putting keywords in a live ebuild. Corrected.
+
   15 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com> xmlada-9999.ebuild:
   Use default econf for xmlada. Indeed, I think the other way may produce
   problems.

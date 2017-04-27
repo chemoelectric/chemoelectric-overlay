@@ -2,6 +2,10 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  27 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  booch_components-20160321-r1.ebuild:
+  Require a version of gprbuild that works with GNU GCC 5.4.0
+
 *booch_components-20160321-r1 (15 Apr 2017)
 
   15 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com>

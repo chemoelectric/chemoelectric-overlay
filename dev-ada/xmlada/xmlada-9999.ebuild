@@ -12,7 +12,7 @@ EGIT_REPO_URI="https://github.com/AdaCore/${PN}.git"
 
 LICENSE="GPL-3+ gcc-runtime-library-exception-3.1"
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS=""
 IUSE="doc"
 
 RDEPEND="virtual/ada:*"

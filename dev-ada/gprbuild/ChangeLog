@@ -2,6 +2,30 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*gprbuild-2016_p20170427191900 (27 Apr 2017)
+
+  27 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  +gprbuild-2016.ebuild, +gprbuild-2016_p20170427191900.ebuild,
+  gprbuild-9999.ebuild, +gprbuild-9999-r1.ebuild:
+  Give the snapshot a more precise name.
+
+*gprbuild-9999-r1 (27 Apr 2017)
+*gprbuild-2016_p20170427 (27 Apr 2017)
+
+  27 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  +gprbuild-2016.ebuild, +gprbuild-2016_p20170427.ebuild, gprbuild-9999.ebuild,
+  +gprbuild-9999-r1.ebuild:
+  An ebuild for a snapshot from today of gprbuild. It does not install libgpr.
+
+*gprbuild-2016 (27 Apr 2017)
+
+  27 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  +gprbuild-2016.ebuild, gprbuild-9999.ebuild:
+  An ebuild for gprbuild-2016. It does not install libgpr.
+
+  27 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com> gprbuild-9999.ebuild:
+  I made the mistake of putting keywords in a live ebuild. Corrected.
+
   15 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com> gprbuild-9999.ebuild:
   Gprbuild does not really need Ada installed at runtime, because it uses
   static binding.
