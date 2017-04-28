@@ -1,7 +1,7 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
 PYTHON_COMPAT=( python2_7 )
 
@@ -24,9 +24,10 @@ DEPEND="
 RDEPEND=""
 
 src_prepare() {
-	sed -i \
-		-e 's/^CFLAGS[ 	]*=[ 	]*\$(GNU_C_OPTS)[ 	]*/CFLAGS += /' \
-		Makefile || die "sed of Makefile failed"
+	default
+
+	sed -i -e 's/^CFLAGS[ 	]*=[ 	]*\$(GNU_C_OPTS)[ 	]*/CFLAGS += /'	\
+		Makefile
 	rm -f Makefile.config
 
 	local syspath_code='{ const char *syspath = Py_GetPath(); \
@@ -39,9 +40,7 @@ strcat (new_syspath, syspath); \
 PySys_SetPath (new_syspath); \
 }'
 
-	sed -i \
-		-e 's|\(Py_Initialize();\)|\1 '"${syspath_code}"'|g' \
-		*.c || die "sed of *.c failed"
+	sed -i-e 's|\(Py_Initialize();\)|\1 '"${syspath_code}"'|g' *.c
 }
 
 src_configure() {
@@ -58,12 +57,12 @@ src_compile() {
 }
 
 src_install() {
-	exeinto /usr/bin
-	doexe ${PN}
+	dobin "${PN}"
 
+	dodir /usr/share/"${PN}"
 	insinto /usr/share/"${PN}"
 	doins *.py
 
-	dodoc README*
-	dohtml ${PN}.html
+	einstalldocs
+	dodoc "${PN}".html
 }

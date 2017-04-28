@@ -1,32 +1,33 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
 PYTHON_COMPAT=( python2_7 )
 
-inherit subversion toolchain-funcs python-any-r1
+inherit toolchain-funcs python-any-r1
 
 DESCRIPTION="Translate C headers and functions into Ada"
 HOMEPAGE="http://c2ada.sourceforge.net/c2ada.html"
-ESVN_REPO_URI="https://${PN}.svn.sourceforge.net/svnroot/${PN}/trunk"
+SRC_URI="https://bitbucket.org/chemoelectric/chemoelectric-overlay/downloads/${P}.tar.xz"
 LICENSE="public-domain"
 
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 DEPEND="
 	app-shells/tcsh
-	dev-util/gperf
+	>=dev-util/gperf-3.1
 	virtual/yacc
 "
 RDEPEND=""
 
 src_prepare() {
-	sed -i \
-		-e 's/^CFLAGS[ 	]*=[ 	]*\$(GNU_C_OPTS)[ 	]*/CFLAGS += /' \
-		Makefile || die "sed of Makefile failed"
+	default
+
+	sed -i -e 's/^CFLAGS[ 	]*=[ 	]*\$(GNU_C_OPTS)[ 	]*/CFLAGS += /'	\
+		Makefile
 	rm -f Makefile.config
 
 	local syspath_code='{ const char *syspath = Py_GetPath(); \
@@ -39,9 +40,7 @@ strcat (new_syspath, syspath); \
 PySys_SetPath (new_syspath); \
 }'
 
-	sed -i \
-		-e 's|\(Py_Initialize();\)|\1 '"${syspath_code}"'|g' \
-		*.c || die "sed of *.c failed"
+	sed -i-e 's|\(Py_Initialize();\)|\1 '"${syspath_code}"'|g' *.c
 }
 
 src_configure() {
@@ -53,16 +52,17 @@ src_compile() {
 	# archaic. Update it. For now, this works.
 	emake PYTHON_VER="${EPYTHON}" \
 		LINKER="$(tc-getCC)" \
-		RANLIB="$(tc-getRANLIB)"
+		RANLIB="$(tc-getRANLIB)" \
+		GPERF="gperf -I"
 }
 
 src_install() {
-	exeinto /usr/bin
-	doexe ${PN}
+	dobin "${PN}"
 
+	dodir /usr/share/"${PN}"
 	insinto /usr/share/"${PN}"
 	doins *.py
 
-	dodoc README*
-	dohtml ${PN}.html
+	einstalldocs
+	dodoc "${PN}".html
 }
