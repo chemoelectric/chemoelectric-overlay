@@ -5,9 +5,4 @@
 	<email>sortsmill@crudfactory.com</email>
 	<name>Barry Schwartz</name>
   </maintainer>
-  <use>
-    <flag name="first-time-bootstrap">Set this the first time you
-    build gprbuild. Then rebuild gprbuild without it.</flag>
-    <flag name="libgpr">Install libgpr.</flag>
-  </use>
 </pkgmetadata>

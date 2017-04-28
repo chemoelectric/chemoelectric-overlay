@@ -11,7 +11,7 @@ ESVN_REPO_URI="svn://svn.code.sf.net/p/objecticon/code/trunk"
 LICENSE="MIT"
 
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS=""
 IUSE="doc examples emacs X jpeg png cairo zlib mysql ssl"
 
 COMMON_DEPEND="

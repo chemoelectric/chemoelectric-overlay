@@ -8,10 +8,11 @@ inherit multiprocessing git-r3
 DESCRIPTION="XML parser for Ada95"
 HOMEPAGE="http://libre.adacore.com"
 EGIT_REPO_URI="https://github.com/AdaCore/${PN}.git"
+EGIT_COMMIT_DATE="2017-04-27 19:19:00 UT"
 
 LICENSE="GPL-3+ gcc-runtime-library-exception-3.1"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"
 IUSE="doc"
 
 RDEPEND="virtual/ada:*"
