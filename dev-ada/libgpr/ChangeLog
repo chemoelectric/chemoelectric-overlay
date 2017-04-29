@@ -1,0 +1,10 @@
+# ChangeLog for dev-ada/libgpr
+# Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
+# $Id$
+
+*libgpr-2016_p20170427191900 (29 Apr 2017)
+
+  29 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  +libgpr-2016_p20170427191900.ebuild, +metadata.xml:
+  Initial ebuild for libgpr.
+
