@@ -11,7 +11,7 @@ EGIT_REPO_URI="https://github.com/sionescu/libfixposix.git"
 LICENSE="Boost-1.0"
 
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS=""
 IUSE=""
 
 DEPEND=""
