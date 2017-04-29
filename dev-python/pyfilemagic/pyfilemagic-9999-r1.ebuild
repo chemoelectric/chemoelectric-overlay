@@ -13,10 +13,10 @@ EGIT_REPO_URI="${HOMEPAGE}.git"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
 
 RDEPEND="
-	>=dev-lang/python-2.6.4
+	>=dev-lang/python-2.6.4:=
 	>=sys-apps/file-5.03
 	"
 DEPEND="
