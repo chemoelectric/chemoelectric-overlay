@@ -15,7 +15,7 @@ EGIT_REPO_URI="https://chemoelectric@bitbucket.org/chemoelectric/glyph_name.git"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
 
 RDEPEND="
 	python? ( dev-lang/python:= )
