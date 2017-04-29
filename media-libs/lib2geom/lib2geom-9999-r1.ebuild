@@ -14,7 +14,7 @@ HOMEPAGE="http://2geom.org/"
 
 LICENSE="LGPL-2.1 MPL-1.1"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS=""
 IUSE="python"
 
 RDEPEND="
