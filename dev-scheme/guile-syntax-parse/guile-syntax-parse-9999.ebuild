@@ -11,7 +11,7 @@ EGIT_REPO_URI="https://gitlab.com/guile-syntax-parse/guile-syntax-parse.git"
 LICENSE="LGPL-2"
 
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS=""
 IUSE=""
 
 #
