@@ -50,13 +50,6 @@ bin_progs2=""
 bin_progs="${bin_progs1} ${bin_progs2}"
 lib_progs="gprlib gprbind"
 
-#src_unpack() {
-#	git-r3_fetch
-#	git-r3_checkout
-#	git-r3_fetch "${XMLADA_REPO_URI}"
-#	git-r3_checkout "${XMLADA_REPO_URI}" "${WORKDIR}/xmlada"
-#}
-
 src_configure() {
 	:
 }
