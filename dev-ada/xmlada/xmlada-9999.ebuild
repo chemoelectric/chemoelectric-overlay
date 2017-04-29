@@ -24,12 +24,12 @@ DEPEND="
 HTML_DOCS=""
 
 src_compile() {
-	emake -j1 PROCESSING="$(makeopts_jobs)"
+	emake -j1 PROCESSORS="$(makeopts_jobs)"
 	use doc && emake docs
 }
 
 src_install() {
-	emake -j1 install prefix="${D}/usr" PROCESSING="$(makeopts_jobs)"
+	emake -j1 install prefix="${D}/usr" PROCESSORS="$(makeopts_jobs)"
 	einstalldocs
 	use doc && {
 		rm "${D}/usr/share/doc/${PN}/.buildinfo" || :

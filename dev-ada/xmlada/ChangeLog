@@ -2,6 +2,12 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  29 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com> xmlada-2016.ebuild,
+  xmlada-2016_p20170427191900.ebuild, xmlada-2016_p20170427191900-r1.ebuild,
+  xmlada-9999.ebuild:
+  Oops. I had PROCESSING where I should have had PROCESSORS, in all these
+  ebuilds.
+
 *xmlada-2016_p20170427191900-r1 (29 Apr 2017)
 
   29 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com>
