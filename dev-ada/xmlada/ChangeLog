@@ -2,6 +2,12 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*xmlada-2016_p20170427191900-r1 (29 Apr 2017)
+
+  29 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  +xmlada-2016_p20170427191900-r1.ebuild:
+  A new ebuild to use a tar instead of a git snapshot.
+
 *xmlada-2016_p20170427191900 (28 Apr 2017)
 
   28 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com>
