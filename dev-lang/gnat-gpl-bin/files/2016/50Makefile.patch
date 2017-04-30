@@ -1,0 +1,20 @@
+--- gnat-gpl-2016-x86_64-linux-bin/Makefile.ORIG	2017-04-30 18:02:21.901939400 +0000
++++ gnat-gpl-2016-x86_64-linux-bin/Makefile	2017-04-30 18:52:21.084052560 +0000
+@@ -75,7 +75,7 @@
+ 	    "$(mkheaders)" > mkheaders.tmp \
+ 	  && chmod +x mkheaders.tmp && mv mkheaders.tmp "$(mkheaders)"; \
+ 	fi
+-	"$(mkheaders)" -v -v "$(prefix)"
++	# "$(mkheaders)" -v -v "$(prefix)"
+ 	case `uname` in \
+ 	   *_NT*) (cd "$(libsubdir)"/adalib;chmod a-w *.ali) ;; \
+ 	esac
+@@ -91,7 +91,7 @@
+ 	cat "$(exdir)"/header.xml >  "$(exdir)"/gnat-examples.xml 
+ 	for d in $(xmlfrags); do cat "$(exdir)/$$d" >> "$(exdir)"/gnat-examples.xml; done
+ 	cat "$(exdir)"/footer.xml >> "$(exdir)"/gnat-examples.xml
+-	sed "s:PREFIX:$(prefix):" "$(exdir)"/gnat-examples.xml > \
++	sed "s:PREFIX:$(realprefix):" "$(exdir)"/gnat-examples.xml > \
+ 		"$(exdir)"/gnat-examples.xml.tmp && \
+ 	mv "$(exdir)"/gnat-examples.xml.tmp "$(exdir)"/gnat-examples.xml
+ 	if [ ! -d "$(gpsplugdir)" ]; then \
