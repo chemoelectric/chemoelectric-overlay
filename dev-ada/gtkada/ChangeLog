@@ -1,0 +1,11 @@
+# ChangeLog for dev-ada/gtkada
+# Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
+# $Id$
+
+*gtkada-2016_p20170429220214 (30 Apr 2017)
+
+  30 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  +gtkada-2016_p20170429220214.ebuild,
+  +files/2016_p20170429220214/50-do_not_install_testgtk.patch, +metadata.xml:
+  Initial ebuild for gtkada.
+
