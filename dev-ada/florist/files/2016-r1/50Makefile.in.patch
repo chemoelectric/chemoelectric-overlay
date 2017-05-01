@@ -1,0 +1,28 @@
+--- florist-gpl-2016-src.WORK/Makefile.in.ORIG	2017-05-01 21:09:43.889143418 +0000
++++ florist-gpl-2016-src.WORK/Makefile.in	2017-05-01 22:10:37.668877016 +0000
+@@ -4,6 +4,7 @@
+ # autoconf version 2.12, or maybe a later version will also work.
+ #
+ .POSIX:
++.NOTPARALLEL:
+ 
+ VERSION=Florist-2016 (20160515)
+ FLORIST_VERSION=$(VERSION)
+@@ -36,7 +37,7 @@
+ 
+ GNATPREP = $(TARGET_PREFIX)gnatprep
+ GPRBUILD = gprbuild
+-GPRBUILD_FLAGS = $(GCCFLAGS) $(LIBRARY_TYPE_OPTION) $(PROJECT_FLAGS)
++GPRBUILD_FLAGS = -j$(PROCESSORS) $(GCCFLAGS) $(LIBRARY_TYPE_OPTION) $(PROJECT_FLAGS)
+ 
+ GENDIR = gensrc
+ GENDIR_ON_TARGET=$(GENDIR)
+@@ -171,7 +172,7 @@
+ # install floristlib
+ # make all files read-only to prevent recompilation
+ install:
+-	gprinstall -Pflorist $(PROJECT_FLAGS) -a -p -f --prefix=$(PREFIX) --sources-subdir=floristlib --lib-subdir=floristlib --link-lib-subdir=floristlib
++	gprinstall -Pflorist $(PROJECT_FLAGS) -a -p -f --prefix=$(PREFIX) --sources-subdir=floristlib --lib-subdir=floristlib --link-lib-subdir=floristlib --no-lib-link
+ 	chmod a-w $(PREFIX)/floristlib/*
+ 
+ .PHONY: all install clean distclean regen floristlib force

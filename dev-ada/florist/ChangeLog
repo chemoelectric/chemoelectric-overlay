@@ -2,6 +2,14 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*florist-2016-r1 (01 May 2017)
+
+  01 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  +florist-2016-r1.ebuild, +files/2016-r1/50Makefile.in.patch,
+  +files/2016-r1/50c-posix.c.patch:
+  A new ebuild that installs a shared libforest instead of static, and which
+  fixes a minor bug.
+
 *florist-2016 (19 Apr 2017)
 
   19 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com>
