@@ -2,6 +2,10 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  02 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  florist-2016-r2.ebuild:
+  Extended a comment.
+
 *florist-2016-r2 (02 May 2017)
 
   02 May 2017; Barry Schwartz <sortsmill@crudfactory.com> florist-2016.ebuild,

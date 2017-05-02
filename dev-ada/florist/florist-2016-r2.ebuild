@@ -5,7 +5,9 @@ EAPI=6
 
 # FIXME: Support multilib. The main difficulty probably would be that
 # you need different GPR_PROJECT_PATH for the different ABIs, or else
-# an `ABI' variable that is used by the gpr file.
+# an `ABI' variable that is used by the gpr file...
+# On further examination, I think it might be necessary to treat this
+# as "cross-compilation" in gprbuild, with a new set of configurations.
 
 inherit multiprocessing
 
