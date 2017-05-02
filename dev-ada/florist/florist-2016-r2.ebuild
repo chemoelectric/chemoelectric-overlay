@@ -3,6 +3,12 @@
 
 EAPI=6
 
+# FIXME: Support multilib. The main difficulty probably would be that
+# you need different GPR_PROJECT_PATH for the different ABIs, or else
+# an `ABI' variable that is used by the gpr file.
+
+inherit multiprocessing
+
 DESCRIPTION="Posix bindings for Ada"
 HOMEPAGE="http://libre.adacore.com/"
 SRC_URI="http://mirrors.cdn.adacore.com/art/57399229c7a447658e0aff79 -> florist-gpl-2016-src.tar.gz"
@@ -17,10 +23,7 @@ DEPEND="${RDEPEND} dev-ada/gprbuild:*"
 
 S="${WORKDIR}/${PN}-gpl-${PV}-src"
 
-# FIXME: Get shared library builds to work.
-
-# FIXME: Make a copy of the sources and build both shared and static
-# libraries.
+PATCHES=( "${FILESDIR}/${PVR}" )
 
 src_configure() {
 	if use threads ; then
@@ -30,7 +33,13 @@ src_configure() {
 	fi
 }
 
+src_compile() {
+	emake PROCESSORS="$(makeopts_jobs)" LIBDIR="$(get_libdir)"
+}
+
 src_install() {
-	emake install PREFIX="${D}/usr"
+	emake install PREFIX="${D}/usr" \
+		  PROCESSORS="$(makeopts_jobs)" \
+		  LIBDIR="$(get_libdir)"
 	einstalldocs
 }

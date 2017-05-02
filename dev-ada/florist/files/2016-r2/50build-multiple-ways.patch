@@ -1,0 +1,131 @@
+--- florist-gpl-2016-src/Makefile.in	2016-05-16 09:26:01.000000000 +0000
++++ florist-gpl-2016-src.WORK/Makefile.in	2017-05-02 17:41:51.525182388 +0000
+@@ -4,12 +4,15 @@
+ # autoconf version 2.12, or maybe a later version will also work.
+ #
+ .POSIX:
++.NOTPARALLEL:
+ 
+ VERSION=Florist-2016 (20160515)
+ FLORIST_VERSION=$(VERSION)
+ GNATPREPFLAGS = -c -r
+ GCCFLAGS = -O2
++PROCESSORS = 0
+ TARGET=@host_alias@
++LIBDIR = lib
+ 
+ ifneq ($(TARGET),)
+ TARGET_OPTION=--target=$(TARGET)
+@@ -30,13 +33,14 @@
+ SIGNALS_GENERATED = @SIGNALS_GENERATED@
+ PREFIX = @prefix@
+ 
+-PROJECT_FLAGS = @LIBRARY_TYPE_OPTION@ @BUILD_TYPE_OPTION@ @THREADS_OPTION@ @RTS_OPTION@ $(TARGET_OPTION)
++PROJECT_FLAGS = @BUILD_TYPE_OPTION@ @THREADS_OPTION@ @RTS_OPTION@ $(TARGET_OPTION)
+ # Scenario variables and RTS selection must be passed consistently to
+ # project-aware tools gprbuild, gprinstall, and gprclean.
+ 
+ GNATPREP = $(TARGET_PREFIX)gnatprep
+ GPRBUILD = gprbuild
+-GPRBUILD_FLAGS = $(GCCFLAGS) $(LIBRARY_TYPE_OPTION) $(PROJECT_FLAGS)
++#GPRBUILD_FLAGS = -j$(PROCESSORS) $(GCCFLAGS) $(LIBRARY_TYPE_OPTION) $(PROJECT_FLAGS)
++GPRBUILD_FLAGS = -j$(PROCESSORS) $(GCCFLAGS) $(PROJECT_FLAGS)
+ 
+ GENDIR = gensrc
+ GENDIR_ON_TARGET=$(GENDIR)
+@@ -147,8 +151,20 @@
+ #
+ force:
+ 
+-floristlib: $(GENERATED) force
+-	$(GPRBUILD) -p $(GPRBUILD_FLAGS) -Pflorist
++#floristlib: $(GENERATED) force
++#	$(GPRBUILD) -p $(GPRBUILD_FLAGS) -Pflorist
++
++floristlib: floristlib.static floristlib.static-pic floristlib.relocatable
++
++floristlib.static: $(GENERATED) force
++	$(GPRBUILD) -p $(GPRBUILD_FLAGS) -Pflorist -XLIBRARY_TYPE=static
++
++floristlib.static-pic: $(GENERATED) force
++	$(GPRBUILD) -p $(GPRBUILD_FLAGS) -Pflorist -XLIBRARY_TYPE=static-pic
++
++floristlib.relocatable: $(GENERATED) force
++	$(GPRBUILD) -p $(GPRBUILD_FLAGS) -Pflorist -XLIBRARY_TYPE=relocatable
++
+ #
+ # -----------------------------------
+ # Maintenance targets
+@@ -160,7 +176,9 @@
+ 
+ # remove editor and compiler generated files
+ clean: regen
+-	gprclean -Pflorist $(PROJECT_FLAGS)
++	gprclean -Pflorist $(PROJECT_FLAGS) -XLIBRARY_TYPE=static
++	gprclean -Pflorist $(PROJECT_FLAGS) -XLIBRARY_TYPE=static-pic
++	gprclean -Pflorist $(PROJECT_FLAGS) -XLIBRARY_TYPE=relocatable
+ 	rm -rf obj lib
+ 	rm -f *# *~ $(EXECUTABLES) b__* b~*
+ 
+@@ -170,8 +188,32 @@
+ 
+ # install floristlib
+ # make all files read-only to prevent recompilation
+-install:
+-	gprinstall -Pflorist $(PROJECT_FLAGS) -a -p -f --prefix=$(PREFIX) --sources-subdir=floristlib --lib-subdir=floristlib --link-lib-subdir=floristlib
+-	chmod a-w $(PREFIX)/floristlib/*
++#install:
++#	gprinstall -Pflorist $(PROJECT_FLAGS) -a -p -f --prefix=$(PREFIX) --sources-subdir=floristlib --lib-subdir=floristlib --link-lib-subdir=floristlib --no-lib-link
++#	chmod a-w $(PREFIX)/floristlib/*
++
++install: install.floristlib.static install.floristlib.static-pic install.floristlib.relocatable
++
++install.floristlib.static: floristlib.static
++	gprinstall -Pflorist $(PROJECT_FLAGS) -a -p -f --prefix=$(PREFIX) \
++		--install-name=florist \
++		-XLIBRARY_TYPE=static \
++		--lib-subdir=$(LIBDIR)/florist/static \
++		--build-name=static
++
++install.floristlib.static-pic: floristlib.static-pic
++	gprinstall -Pflorist $(PROJECT_FLAGS) -a -p -f --prefix=$(PREFIX) \
++		--install-name=florist \
++		-XLIBRARY_TYPE=static-pic \
++		--lib-subdir=$(LIBDIR)/florist/static-pic \
++		--build-name=static-pic
++
++install.floristlib.relocatable: floristlib.relocatable
++	gprinstall -Pflorist $(PROJECT_FLAGS) -a -p -f --prefix=$(PREFIX) \
++		--install-name=florist \
++		-XLIBRARY_TYPE=relocatable \
++		--lib-subdir=$(LIBDIR)/florist/relocatable \
++		--link-lib-subdir=$(LIBDIR) \
++		--build-name=relocatable
+ 
+ .PHONY: all install clean distclean regen floristlib force
+--- florist-gpl-2016-src/florist.gpr	2016-05-16 09:26:01.000000000 +0000
++++ florist-gpl-2016-src.WORK/florist.gpr	2017-05-02 17:36:00.896379992 +0000
+@@ -15,19 +15,19 @@
+           for Source_Dirs use Common_Source_Dirs & Threads_Source_Dirs;
+    end case;
+ 
+-   for Object_Dir   use "obj";
+-   for Library_Dir  use "lib";
+-
+    Version := "1";
+    for Library_version use "libflorist.so." & Version;
+ 
+-   type Library_Type_Type is ("relocatable", "static");
++   type Library_Type_Type is ("relocatable", "static", "static-pic");
+    Library_Type : Library_Type_Type := external ("LIBRARY_TYPE", "static");
+    for Library_Kind use Library_Type;
+ 
+    type Build_Type is ("Debug", "Production");
+    Build : Build_Type := External ("Build", "Production");
+ 
++   for Object_Dir use "obj/" & Build & "/" &  Library_Type;
++   for Library_Dir use "lib/" & Build & "/" & Library_Type;
++
+    package Compiler is
+       GNAT_Flags := ("-O2", "-gnatpg");
+ 

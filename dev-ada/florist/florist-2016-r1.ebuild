@@ -27,7 +27,11 @@ S="${WORKDIR}/${PN}-gpl-${PV}-src"
 PATCHES=( "${FILESDIR}/${PVR}" )
 
 src_configure() {
-	econf --enable-shared $(use_enable threads)
+	if use threads ; then
+		econf --enable-shared
+	else
+		econf --enable-shared --disable-threads
+	fi
 }
 
 src_compile() {
