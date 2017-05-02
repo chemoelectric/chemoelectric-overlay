@@ -2,6 +2,13 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*xmlada-2016_p20170427191900-r2 (02 May 2017)
+
+  02 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  +xmlada-2016_p20170427191900-r2.ebuild,
+  +files/gentoo-2016_p20170427191900.patch:
+  Fixes the filesystem layout and some QA issues.
+
   29 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com> xmlada-2016.ebuild,
   xmlada-2016_p20170427191900.ebuild, xmlada-2016_p20170427191900-r1.ebuild,
   xmlada-9999.ebuild:
