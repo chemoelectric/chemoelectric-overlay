@@ -3,29 +3,26 @@
 
 EAPI=6
 
-inherit multiprocessing
+inherit multiprocessing pax-utils
 
 DESCRIPTION="The gprbuild library"
 HOMEPAGE="http://libre.adacore.com"
 
-MY_PV="gprbuild-gpl-${PV/_*/}-src"
-
-MY_PATCH_FROM="${PV/_*/}"
-MY_PATCH_TO="${PV/*_p/}"
-MY_PATCH="gprbuild-${MY_PATCH_TO}-relative-to-${MY_PATCH_FROM}.patch"
-
 MY_DOWNLOADS="https://bitbucket.org/chemoelectric/chemoelectric-overlay/downloads"
+MY_ADACORE_SRC="gprbuild-gpl-${PV/_*/}-src"
 
-SRC_URI_PREFIX=""
 SRC_URI="
-	http://mirrors.cdn.adacore.com/art/57399662c7a447658e0affa8 -> ${MY_PV}.tar.gz
-	${MY_DOWNLOADS}/${MY_PATCH}.xz
+	${MY_DOWNLOADS}/gprbuild-${PV}.tar.xz
+	doc? (
+		http://mirrors.cdn.adacore.com/art/57399662c7a447658e0affa8 ->
+			${MY_ADACORE_SRC}.tar.gz
+	)
 "
 
 LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+IUSE="doc"
 
 RDEPEND="virtual/ada:*"
 DEPEND="
@@ -34,12 +31,9 @@ DEPEND="
 	>=dev-ada/gprbuild-2016_p20170427191900:*
 "
 
-S="${WORKDIR}/${MY_PV}"
+S="${WORKDIR}/gprbuild-${PV}"
 
-PATCHES=(
-	"${WORKDIR}/${MY_PATCH}"
-	"${FILESDIR}/${P}-r1.patch"
-)
+PATCHES=( "${FILESDIR}/${P}-r1.patch" )
 
 QA_EXECSTACK="
 	usr/*/gpr/relocatable/gpr/libgpr.so*
@@ -88,6 +82,15 @@ src_install() {
 	# from doing so?
 	rm -f "${D}"/usr/share/gpr/xmlada.gpr
 
+	pax-mark m "${D}"/usr/"$(get_libdir)"/gpr/relocatable/gpr/libgpr.so*
+
 	einstalldocs
-	dodoc features-* known-problems-*
+
+	use doc && {
+		pushd "${WORKDIR}"/"${MY_ADACORE_SRC}"
+		dodir /usr/share/doc/"${PF}"/"${MY_ADACORE_SRC}"
+		cp README* CHANGES* features-* known-problems-* \
+		   "${D}"/usr/share/doc/"${PF}"/"${MY_ADACORE_SRC}" || die
+		popd
+	}
 }
