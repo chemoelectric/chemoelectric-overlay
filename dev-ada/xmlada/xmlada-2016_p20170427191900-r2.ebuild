@@ -32,9 +32,6 @@ PATCHES=( "${FILESDIR}/gentoo-${PV}.patch" )
 src_compile() {
 	# The -R option turns off RUNPATH support. We put a link to the
 	# library in the ld.so search path, instead.
-	#
-	# FIXME: Find a way to get gprbuild to insert correct RUNPATHs.
-	#
 	emake PROCESSORS="$(makeopts_jobs)" \
 		  GPRBUILD="${GPRBUILD:-gprbuild} -v -R"
 	use doc && emake -e -C docs html latexpdf
