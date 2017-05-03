@@ -66,21 +66,21 @@ src_compile() {
 			-I${xmlada_src}/input_sources"
 	$(tc-getCC) -c ${CFLAGS} gpr/src/gpr_imports.c -o gpr_imports.o || die
 	for bin in ${bin_progs1}; do
-		${GNATMAKE:-gnatmake} -j"$(makeopts_jobs)" \
+		${GNATMAKE:-gnatmake} -v -R -j"$(makeopts_jobs)" \
 							  ${incflags} ${GNATMAKEFLAGS} \
 							  ${bin}-main -o ${bin} \
 							  -largs gpr_imports.o || die
 	done
 	[[ -n "${bin_progs2}" ]] && {
 		for bin in ${bin_progs2}; do
-			${GNATMAKE:-gnatmake} -j"$(makeopts_jobs)" \
+			${GNATMAKE:-gnatmake} -v -R -j"$(makeopts_jobs)" \
 								  ${incflags} ${GNATMAKEFLAGS} \
 								  ${bin} -o ${bin} \
 								  -largs gpr_imports.o || die
 		done
 	}
 	for lib in ${lib_progs}; do
-		${GNATMAKE:-gnatmake} -j"$(makeopts_jobs)" \
+		${GNATMAKE:-gnatmake} -v -R -j"$(makeopts_jobs)" \
 							  ${incflags} ${lib} ${GNATMAKEFLAGS} \
 							  -largs gpr_imports.o || die
 	done
