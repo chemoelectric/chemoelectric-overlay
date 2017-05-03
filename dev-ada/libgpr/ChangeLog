@@ -2,6 +2,11 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  03 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  -libgpr-2016_p20170427191900.ebuild:
+  I have a suspicion the old libgpr ebuild installed a bogus xmlada.gpr, so am
+  deleting it.
+
 *libgpr-2016_p20170427191900-r1 (03 May 2017)
 
   03 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
