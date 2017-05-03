@@ -1,0 +1,76 @@
+diff --git a/Makefile b/Makefile
+index 2105892e..376e7649 100644
+--- a/Makefile
++++ b/Makefile
+@@ -24,9 +24,13 @@
+ #   $ make -f <GPRBUILD_TREE>/Makefile setup
+ #   $ make -f <GPRBUILD_TREE>/Makefile
+ 
++.NOTPARALLEL:
++
+ HOST    = $(shell gcc -dumpmachine)
+ TARGET := $(shell gcc -dumpmachine)
+ 
++LIBDIR = lib
++
+ prefix	      := $(dir $(shell which gnatls))..
+ BUILD         = production
+ PROCESSORS    = 0
+@@ -68,8 +72,8 @@ endif
+ # Used to pass extra options to GPRBUILD, like -d for instance
+ GPRBUILD_OPTIONS=
+ 
+-BUILDER=gprbuild -p -m $(GTARGET) $(RBD) -j${PROCESSORS} -XBUILD=${BUILD} ${GPRBUILD_OPTIONS}
+-LIB_INSTALLER=gprinstall -p -f --target=$(TARGET) $(RBD) --prefix=${prefix}
++BUILDER=gprbuild -p -m -v -R $(GTARGET) $(RBD) -j${PROCESSORS} -XBUILD=${BUILD} ${GPRBUILD_OPTIONS}
++LIB_INSTALLER=gprinstall -p -f -v --target=$(TARGET) $(RBD) --prefix=${prefix}
+ INSTALLER=exe/$(LIB_INSTALLER)
+ CLEANER=gprclean -q $(RBD)
+ 
+@@ -151,21 +155,22 @@ libgpr.install.static:
+ 	$(LIBGPR_INSTALLER) \
+ 	   -XLIBRARY_TYPE=static \
+ 	   -XXMLADA_BUILD=static \
+-	   --lib-subdir=lib/gpr/static \
++	   --lib-subdir=${LIBDIR}/gpr/static \
+ 	   --build-name=static
+ 
+ libgpr.install.static-pic:
+ 	$(LIBGPR_INSTALLER) \
+ 	   -XLIBRARY_TYPE=static-pic \
+ 	   -XXMLADA_BUILD=static-pic \
+-	   --lib-subdir=lib/gpr/static-pic \
++	   --lib-subdir=${LIBDIR}/gpr/static-pic \
+ 	   --build-name=static-pic
+ 
+ libgpr.install.shared:
+ 	$(LIBGPR_INSTALLER) \
+ 	   -XLIBRARY_TYPE=relocatable \
+ 	   -XXMLADA_BUILD=relocatable \
+-	   --lib-subdir=lib/gpr/relocatable \
++	   --lib-subdir=${LIBDIR}/gpr/relocatable \
++	   --link-lib-subdir=${LIBDIR} \
+ 	   --build-name=relocatable
+ 
+ libgpr.uninstall:
+@@ -207,16 +212,16 @@ ifeq ($(ENABLE_SHARED), yes)
+ 	-$(CLEANER) $(GPR_GPR) -XBUILD=$(BUILD) \
+ 		-XLIBRARY_TYPE=relocatable
+ endif
+-	make -C $(MAKEPREFIX)doc clean
+-	make -C $(MAKEPREFIX)examples clean
++	$(MAKE) -C $(MAKEPREFIX)doc clean
++	$(MAKE) -C $(MAKEPREFIX)examples clean
+ 	rm -fr obj exe makefile.setup
+ 
+ .PHONY: doc examples
+ 
+ doc:
+-	make -C $(MAKEPREFIX)doc
++	$(MAKE) -C $(MAKEPREFIX)doc
+ 
+ examples: force
+-	make -C $(MAKEPREFIX)examples
++	$(MAKE) -C $(MAKEPREFIX)examples
+ 
+ force:
