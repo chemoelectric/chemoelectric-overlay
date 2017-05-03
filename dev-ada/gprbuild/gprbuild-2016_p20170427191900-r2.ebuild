@@ -3,18 +3,21 @@
 
 EAPI=6
 
-inherit toolchain-funcs multiprocessing
-
-# FIXME: Make a patch to gprbuild-2016, rather than take a snapshot of
-# the SCM repository.
+inherit toolchain-funcs multiprocessing pax-utils
 
 DESCRIPTION="An advanced build system for the construction of multi-language systems"
 HOMEPAGE="http://libre.adacore.com"
 
-SRC_URI_PREFIX="https://bitbucket.org/chemoelectric/chemoelectric-overlay/downloads"
+MY_DOWNLOADS="https://bitbucket.org/chemoelectric/chemoelectric-overlay/downloads"
+MY_ADACORE_SRC="${PN}-gpl-${PV/_*/}-src"
+
 SRC_URI="
-	${SRC_URI_PREFIX}/${P}.tar.xz
-	${SRC_URI_PREFIX}/xmlada-${PV}.tar.xz
+	${MY_DOWNLOADS}/${P}.tar.xz
+	${MY_DOWNLOADS}/xmlada-${PV}.tar.xz
+	doc? (
+		http://mirrors.cdn.adacore.com/art/57399662c7a447658e0affa8 ->
+			${MY_ADACORE_SRC}.tar.gz
+	)
 "
 
 LICENSE="GPL-3+"
@@ -29,19 +32,24 @@ DEPEND="
 	doc? ( dev-python/sphinx:* )
 "
 
-# FIXME: Deal with the QA notices. I think these might just be
-# annoyingly loud warnings about there being trampolines in the
-# compiled code. It’s not my fault GNAT implements nested functions as
-# stack-frame trampolines, nor do I care very much, although they
-# probably should do it differently.
+QA_EXECSTACK="
+	usr/bin/gprbuild
+	usr/bin/gprconfig
+	usr/bin/gprclean
+	usr/bin/gprinstall
+	usr/bin/gprname
+	usr/bin/gprls
+	usr/libexec/gprbuild/gprlib
+	usr/libexec/gprbuild/gprbind
+"
 
 #####################################################################
 # The code used below is adapted from dev-ada/gprbuild-2016::gentoo
-# and avoids needing gprbuild, and an installed xmlada, to build
-# gprbuild.
+# and avoids the need to have gprbuild and xmlada already installed.
 #####################################################################
 
 bin_progs1="gprbuild gprconfig gprclean gprinstall gprname gprls"
+# FIXME: We do not build gprslave. Sorry.
 #bin_progs2="gprslave"
 bin_progs2=""
 bin_progs="${bin_progs1} ${bin_progs2}"
@@ -93,6 +101,15 @@ src_install() {
 	insinto /usr/share/gpr
 	doins share/_default.gpr
 
+	pax-mark m "${D}"/usr/bin/gprbuild
+	pax-mark m "${D}"/usr/bin/gprconfig
+	pax-mark m "${D}"/usr/bin/gprclean
+	pax-mark m "${D}"/usr/bin/gprinstall
+	pax-mark m "${D}"/usr/bin/gprname
+	pax-mark m "${D}"/usr/bin/gprls
+	pax-mark m "${D}"/usr/libexec/gprbuild/gprlib
+	pax-mark m "${D}"/usr/libexec/gprbuild/gprbind
+
 	dodoc README*
 
 	use doc && {
@@ -100,6 +117,11 @@ src_install() {
 		doinfo info/*.info
 		dodoc -r html
 		dodoc txt/*.txt
+		popd
+		pushd "${WORKDIR}"/"${MY_ADACORE_SRC}"
+		dodir /usr/share/doc/"${PF}"/"${MY_ADACORE_SRC}"
+		cp README* CHANGES* features-* known-problems-* \
+		   "${D}"/usr/share/doc/"${PF}"/"${MY_ADACORE_SRC}" || die
 		popd
 	}
 

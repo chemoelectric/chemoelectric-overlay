@@ -9,9 +9,6 @@ inherit toolchain-funcs multiprocessing
 # FIXME: Make a patch to gprbuild-2016, rather than take a snapshot of
 # the SCM repository.
 
-MY_PV="${PN}-gpl-${PV}-src"
-MY_XMLADA_PV="xmlada-gpl-${PV}-src"
-
 DESCRIPTION="An advanced build system for the construction of multi-language systems"
 HOMEPAGE="http://libre.adacore.com"
 EGIT_REPO_URI="https://github.com/AdaCore/${PN}.git"
