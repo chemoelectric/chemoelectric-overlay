@@ -5,14 +5,22 @@ EAPI=6
 
 inherit multiprocessing
 
-# FIXME: Make a patch to gprbuild-2016, rather than take a snapshot of
-# the SCM repository.
-
 DESCRIPTION="The gprbuild library"
 HOMEPAGE="http://libre.adacore.com"
 
-SRC_URI_PREFIX="https://bitbucket.org/chemoelectric/chemoelectric-overlay/downloads"
-SRC_URI="${SRC_URI_PREFIX}/gprbuild-${PV}.tar.xz"
+MY_PV="gprbuild-gpl-${PV/_*/}-src"
+
+MY_PATCH_FROM="${PV/_*/}"
+MY_PATCH_TO="${PV/*_p/}"
+MY_PATCH="gprbuild-${MY_PATCH_TO}-relative-to-${MY_PATCH_FROM}.patch"
+
+MY_DOWNLOADS="https://bitbucket.org/chemoelectric/chemoelectric-overlay/downloads"
+
+SRC_URI_PREFIX=""
+SRC_URI="
+	http://mirrors.cdn.adacore.com/art/57399662c7a447658e0affa8 -> ${MY_PV}.tar.gz
+	${MY_DOWNLOADS}/${MY_PATCH}.xz
+"
 
 LICENSE="GPL-3+"
 SLOT="0"
@@ -26,9 +34,12 @@ DEPEND="
 	>=dev-ada/gprbuild-2016_p20170427191900:*
 "
 
-S="${WORKDIR}/gprbuild-${PV}"
+S="${WORKDIR}/${MY_PV}"
 
-PATCHES=( "${FILESDIR}/${PF}.patch" )
+PATCHES=(
+	"${WORKDIR}/${MY_PATCH}"
+	"${FILESDIR}/${P}-r1.patch"
+)
 
 QA_EXECSTACK="
 	usr/*/gpr/relocatable/gpr/libgpr.so*
@@ -78,4 +89,5 @@ src_install() {
 	rm -f "${D}"/usr/share/gpr/xmlada.gpr
 
 	einstalldocs
+	dodoc features-* known-problems-*
 }
