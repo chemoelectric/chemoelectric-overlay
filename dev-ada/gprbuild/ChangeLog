@@ -2,6 +2,13 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*gprbuild-2016_p20170427191900-r3 (04 May 2017)
+
+  04 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  +gprbuild-2016_p20170427191900-r3.ebuild:
+  A new ebuild that respects ADAFLAGS (possibly overriding optimization level
+  in GNATMAKEFLAGS).
+
   03 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
   gprbuild-2016_p20170427191900-r2.ebuild:
   Added some flags to gnatmake calls.
