@@ -2,6 +2,15 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*booch_components-20160321-r2 (04 May 2017)
+
+  04 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  -booch_components-20160321.ebuild, +booch_components-20160321-r2.ebuild,
+  +files/bc-20160321.patch:
+  A new ebuild that builds static-pic as well and uses gprinstall. Also it
+  respects ADAFLAGS.
+  Removal of an old ebuild.
+
   27 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com>
   booch_components-20160321-r1.ebuild:
   Require a version of gprbuild that works with GNU GCC 5.4.0
