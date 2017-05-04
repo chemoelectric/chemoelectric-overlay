@@ -2,6 +2,14 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+*gtkada-2016_p20170429220214-r1 (04 May 2017)
+
+  04 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  -gtkada-2016_p20170429220214.ebuild, +gtkada-2016_p20170429220214-r1.ebuild,
+  +files/gtkada-2016_p20170429220214-r1.patch:
+  A new ebuild for gtkada that puts files in correct places, installs a saner
+  .gpr, deals with execstacks a bit, etc.
+
   30 Apr 2017; Barry Schwartz <sortsmill@crudfactory.com>
   gtkada-2016_p20170429220214.ebuild:
   Now there is support for the doc use-flag, if you have a gnatdoc installed.
