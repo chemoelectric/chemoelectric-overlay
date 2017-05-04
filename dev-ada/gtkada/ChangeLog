@@ -4,6 +4,10 @@
 
   04 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
   gtkada-2016_p20170429220214-r1.ebuild:
+  A safer bug fix.
+
+  04 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  gtkada-2016_p20170429220214-r1.ebuild:
   Bug fix.
 
 *gtkada-2016_p20170429220214-r1 (04 May 2017)
