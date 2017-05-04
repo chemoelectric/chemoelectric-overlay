@@ -78,8 +78,8 @@ src_install() {
 	# written correctly in the first place? This way of building a
 	# package is ridiculous.
 	sed -i \
-		-e 's|"-L[^"]*/image//usr/lib",|"-L/usr/'"$(get_libdir)"'",|g' \
-		-e 's|"-L[^"]*/image//usr/bin",||g' \
+		-e 's|"-L'"${D}"'/usr/lib",|"-L/usr/'"$(get_libdir)"'",|g' \
+		-e 's|"-L'"${D}"'/usr/bin",||g' \
 		"${D}"/usr/share/gpr/"${PN}".gpr || die
 
 	einstalldocs
