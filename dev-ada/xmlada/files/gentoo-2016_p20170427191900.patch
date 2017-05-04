@@ -1,12 +1,14 @@
---- xmlada.ORIG/Makefile.in	2017-05-02 21:00:26.167761860 +0000
-+++ xmlada/Makefile.in	2017-05-02 22:54:16.743738140 +0000
+diff --git a/Makefile.in b/Makefile.in
+index c6327d2..ecd883c 100644
+--- a/Makefile.in
++++ b/Makefile.in
 @@ -1,3 +1,5 @@
 +.NOTPARALLEL:
 +
  ## The type of library we want to build. Possible values:
  ##   relocatable
  ##   static
-@@ -14,10 +16,12 @@
+@@ -14,10 +16,12 @@ GPRBUILD_OPTIONS=
  
  # Set a default value (ignored if set in the environment)
  PROCESSORS?=0
@@ -20,7 +22,7 @@
  
  # Compiler mode: one of "distrib", "Debug", "Production", "profile", "coverage"
  MODE=@BUILD_TYPE@
-@@ -34,7 +38,7 @@
+@@ -34,7 +38,7 @@ MODULES=unicode input_sources sax dom schema
  MODULE_INSTALL=${MODULES:%=%_inst}
  
  GPROPTS=-XBUILD=${MODE} -XPROCESSORS=${PROCESSORS}
@@ -29,7 +31,7 @@
  
  ifeq (${HOST},${TARGET})
  IPREFIX=${prefix}
-@@ -52,28 +56,28 @@
+@@ -52,28 +56,28 @@ install: install-clean install-static
  endif
  
  static:
@@ -64,7 +66,7 @@
  
  install-clean-obsolete:
  ifneq (,$(wildcard $(IPREFIX)/$(PSUB)/manifests/xmlada_schema))
-@@ -100,18 +104,22 @@
+@@ -100,18 +104,22 @@ install-static:
  	${GPRINSTALL} -f -p -XLIBRARY_TYPE=static ${GPROPTS} \
  		--prefix=${IPREFIX} --project-subdir=$(PSUB) \
  		--build-var=XMLADA_BUILD --build-name=static \
@@ -87,7 +89,7 @@
  		--install-name=xmlada xmlada.gpr
  
  
-@@ -120,7 +128,7 @@
+@@ -120,7 +128,7 @@ clean_%: force
  	-gprclean -XLIBRARY_TYPE=$* -q -XTESTS_ACTIVATED=Yes xmlada.gpr
  
  clean: clean_relocatable clean_static clean_static-pic
@@ -96,20 +98,11 @@
  
  distclean: clean
  	${RM} tests/dom/default.gpr
---- xmlada.ORIG/input_sources/xmlada_input.gpr	2017-05-02 21:00:26.261758322 +0000
-+++ xmlada/input_sources/xmlada_input.gpr	2017-05-02 21:01:10.138106824 +0000
-@@ -41,7 +41,7 @@
-    package Install is
-       for Artifacts ("share/doc/xmlada")
-         use ("../docs/_build/html/*", "../docs/_build/latex/XMLAda.pdf");
--      for Artifacts ("lib/gnat") use ("../distrib/xmlada.gpr");
-+      for Artifacts ("share/gpr") use ("../distrib/xmlada.gpr");
-    end Install;
- 
- end XmlAda_Input;
---- xmlada.ORIG/docs/Makefile	2017-05-02 21:00:26.145762687 +0000
-+++ xmlada/docs/Makefile	2017-05-02 22:55:21.259309785 +0000
-@@ -100,7 +100,7 @@
+diff --git a/docs/Makefile b/docs/Makefile
+index 7ed4a0e..07c2102 100644
+--- a/docs/Makefile
++++ b/docs/Makefile
+@@ -100,7 +100,7 @@ latex:
  latexpdf:
  	$(SPHINXBUILD) -b latex $(ALLSPHINXOPTS) $(BUILDDIR)/latex
  	@echo "Running LaTeX files through pdflatex..."
@@ -118,3 +111,59 @@
  	@echo "pdflatex finished; the PDF files are in $(BUILDDIR)/latex."
  
  text:
+diff --git a/input_sources/xmlada_input.gpr b/input_sources/xmlada_input.gpr
+index 100e064..cdd403f 100644
+--- a/input_sources/xmlada_input.gpr
++++ b/input_sources/xmlada_input.gpr
+@@ -41,7 +41,7 @@ project XmlAda_Input is
+    package Install is
+       for Artifacts ("share/doc/xmlada")
+         use ("../docs/_build/html/*", "../docs/_build/latex/XMLAda.pdf");
+-      for Artifacts ("lib/gnat") use ("../distrib/xmlada.gpr");
++      for Artifacts ("share/gpr") use ("../distrib/xmlada.gpr");
+    end Install;
+ 
+ end XmlAda_Input;
+diff --git a/shared.gpr.in b/shared.gpr.in
+index 1593ed6..0a93742 100644
+--- a/shared.gpr.in
++++ b/shared.gpr.in
+@@ -53,29 +53,31 @@ abstract project Shared is
+ 
+    package compiler is
+       warnings := ("-gnatwua", "-gnaty", "-gnatQ");
+-
++      ada_flags := Split (external ("ADAFLAGS", ""), " ");
++      
+       case Mode is
+          when "distrib" =>
+-            for Switches ("Ada") use ("-O2", "-gnatn");
++            for Switches ("Ada") use ("-O2", "-gnatn") & ada_flags;
+ 
+          when "coverage" =>
+             for Switches ("Ada") use warnings
+               & ("-g", "-gnata", "-gnatwe",
+-                 "-fprofile-arcs", "-ftest-coverage");
++                 "-fprofile-arcs", "-ftest-coverage") & ada_flags;
+ 
+          when "Debug" =>
+-            for Switches ("Ada") use warnings & ("-g", "-gnata", "-gnatwe");
++         for Switches ("Ada") use warnings & ("-g", "-gnata", "-gnatwe") & ada_flags;
+             --  & ("-g", "-gnata", "-gnatVaMI");
+ 
+          when "Production" =>
+-            for Switches ("Ada") use warnings & ("-O2", "-gnatn");
++            for Switches ("Ada") use warnings & ("-O2", "-gnatn") & ada_flags;
+ 
+          when "nochecks" =>
+-            for Switches ("Ada") use warnings & ("-O2", "-gnatn", "-gnatp");
++            for Switches ("Ada") use warnings & ("-O2", "-gnatn", "-gnatp") & ada_flags;
+ 
+          when "profile" =>
+-            for Switches ("Ada") use warnings & ("-g", "-pg");
++            for Switches ("Ada") use warnings & ("-g", "-pg") & ada_flags;
+       end case;
++      
+    end compiler;
+ 
+    package binder is

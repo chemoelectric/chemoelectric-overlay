@@ -2,6 +2,11 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  04 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  files/gentoo-2016_p20170427191900.patch:
+  I updated gentoo-2016_p20170427191900.patch to respect ADAFLAGS. You might
+  want to rebuild.
+
 *xmlada-2016_p20170427191900-r2 (02 May 2017)
 
   02 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
