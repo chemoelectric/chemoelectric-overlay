@@ -2,6 +2,12 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*booch_components-20160321-r3 (05 May 2017)
+
+  05 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  -booch_components-20160321-r2.ebuild, +booch_components-20160321-r3.ebuild:
+  Bump to -r3, because this is a significant change.
+
   05 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
   -booch_components-20160321-r1.ebuild:
   Removal of the ebuild that does not use the patch.
