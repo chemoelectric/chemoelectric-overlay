@@ -3,7 +3,6 @@
 
 EAPI=6
 
-#PERL_EXPORT_PHASE_FUNCTIONS=no
 inherit eutils multilib perl-functions multilib-minimal
 
 # cvs -d anoncvs@anoncvs.openbsd.org:/cvs get src/usr.bin/pkg-config
@@ -44,16 +43,18 @@ src_prepare() {
 
 multilib_src_configure() {
 	default
-	multilib_is_native_abi && {
+	use pkg-config && multilib_is_native_abi && {
+		# This is a tedious way to get pkg.m4, but seems safest.
 		pushd "${WORKDIR}"/pkg-config-* || die
-		econf
+		econf --with-internal-glib
 		popd || die
 	}
 }
 
 multilib_src_compile() {
 	default
-	multilib_is_native_abi && emake -C "${WORKDIR}"/pkg-config-* pkg.m4
+	use pkg-config && multilib_is_native_abi &&
+		emake -C "${WORKDIR}"/pkg-config-* pkg.m4
 }
 
 multilib_src_install() {
