@@ -1,14 +1,14 @@
 # Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
-PERL_EXPORT_PHASE_FUNCTIONS=no
-inherit eutils multilib perl-module multilib-minimal
+#PERL_EXPORT_PHASE_FUNCTIONS=no
+inherit eutils multilib perl-functions multilib-minimal
 
 # cvs -d anoncvs@anoncvs.openbsd.org:/cvs get src/usr.bin/pkg-config
 
-PKG_M4_VERSION=0.28
+PKG_M4_VERSION=0.29.2
 
 DESCRIPTION="A perl based version of pkg-config from OpenBSD"
 HOMEPAGE="http://www.openbsd.org/cgi-bin/cvsweb/src/usr.bin/pkg-config/"
@@ -29,7 +29,7 @@ RDEPEND="virtual/perl-Getopt-Long
 S=${WORKDIR}/src
 
 src_prepare() {
-	epatch_user
+	eapply_user
 	ecvs_clean
 
 	# Config.pm from dev-lang/perl doesn't set ARCH, only archname
@@ -40,6 +40,20 @@ src_prepare() {
 	else
 		MULTILIB_CHOST_TOOLS=( /usr/bin/pkg-config-openbsd )
 	fi
+}
+
+multilib_src_configure() {
+	default
+	multilib_is_native_abi && {
+		pushd "${WORKDIR}"/pkg-config-* || die
+		econf
+		popd || die
+	}
+}
+
+multilib_src_compile() {
+	default
+	multilib_is_native_abi && emake -C "${WORKDIR}"/pkg-config-* pkg.m4
 }
 
 multilib_src_install() {

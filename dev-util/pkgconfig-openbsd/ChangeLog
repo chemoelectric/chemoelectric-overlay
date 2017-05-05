@@ -1,6 +1,13 @@
 # ChangeLog for dev-util/pkgconfig-openbsd
-# Copyright 1999-2015 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: /var/cvsroot/gentoo-x86/dev-util/pkgconfig-openbsd/ChangeLog,v 1.17 2014/07/22 12:42:09 ssuominen Exp $
+
+*pkgconfig-openbsd-20170505 (05 May 2017)
+
+  05 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  -pkgconfig-openbsd-20140804.ebuild, -pkgconfig-openbsd-20150724.ebuild,
+  +pkgconfig-openbsd-20170505.ebuild:
+  Bump pkgconfig-openbsd to the current version.
 
 *pkgconfig-openbsd-20150724 (24 Jul 2015)
 
