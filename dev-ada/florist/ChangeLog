@@ -2,6 +2,13 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+*florist-2016-r3 (05 May 2017)
+
+  05 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  +florist-2016-r3.ebuild, +files/50c-posix.c.patch,
+  +files/50florist-2016-gentoo-build.patch:
+  A new florist ebuild that respects ADAFLAGS and CFLAGS and is more verbose.
+
   02 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
   florist-2016-r2.ebuild:
   Extended a comment.

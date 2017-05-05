@@ -1,0 +1,10 @@
+--- florist-gpl-2016-src.WORK/c-posix.c.ORIG	2017-05-01 21:41:30.298436777 +0000
++++ florist-gpl-2016-src.WORK/c-posix.c	2017-05-01 21:41:49.656706125 +0000
+@@ -54,6 +54,7 @@
+  */
+ 
+ #include "confsrc/pconfig.h"
++#include <ctype.h>
+ #include <errno.h>
+ #include <stdarg.h>
+ #include <string.h>
