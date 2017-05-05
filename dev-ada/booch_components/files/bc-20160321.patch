@@ -1,5 +1,5 @@
---- bc-20160321.ORIG/./bc.gpr	2017-05-04 16:15:15.672625194 +0000
-+++ bc-20160321/./bc.gpr	2017-05-04 19:29:30.647768717 +0000
+--- bc-20160321.ORIG/./bc.gpr	2017-05-05 14:42:08.166348171 +0000
++++ bc-20160321/./bc.gpr	2017-05-05 14:47:17.989021584 +0000
 @@ -12,12 +12,12 @@
  --  write to the Free Software Foundation, 59 Temple Place - Suite
  --  330, Boston, MA 02111-1307, USA.
@@ -15,7 +15,7 @@
     Library_Type : Library_T := external ("LIBRARY_TYPE", "static");
  
     Sources :=
-@@ -429,37 +429,45 @@
+@@ -429,37 +429,42 @@
  
     for Library_Name use "bc";
     for Library_Kind use Library_Type;
@@ -59,29 +59,24 @@
 +   Ada_Flags := Split (external ("ADAFLAGS", ""), " ");
 +   
     package Compiler is
--      for Default_Switches ("Ada") use
--        (
-+     for Default_Switches ("Ada") use
-+       (
+       for Default_Switches ("Ada") use
+         (
           "-" & Chosen_Language,
 -         "-g",       --  for debug symbols
--         "-O2",      --  standard optimisation
-+--         "-g",       --  for debug symbols
-+         "-O2"       --  standard optimisation
-+       )
-+       & Ada_Flags &
-+       (
++         -- "-g",       --  for debug symbols
+          "-O2",      --  standard optimisation
           "-gnatqQ",  --  to keep ALI files even if there are compilation errors
-          "-gnatafo", --  assertions, full reports, integer overflow
+-         "-gnatafo", --  assertions, full reports, integer overflow
++         -- "-gnatafo", --  assertions, full reports, integer overflow
           "-gnaty",   --  standard style checks
           "-gnatwaL"  --  all standard warnings except for elaboration
 -        );
-+       );
++        ) & Ada_Flags;
     end Compiler;
  
  end BC;
---- bc-20160321.ORIG/./Makefile.in	2017-05-04 16:15:15.678624974 +0000
-+++ bc-20160321/./Makefile.in	2017-05-04 19:44:16.586371380 +0000
+--- bc-20160321.ORIG/./Makefile.in	2017-05-05 14:42:08.173347915 +0000
++++ bc-20160321/./Makefile.in	2017-05-05 14:42:28.607600874 +0000
 @@ -15,28 +15,41 @@
  # Template for the top-level (GNU) Makefile for Booch Components. Used
  # for installation and distribution construction.

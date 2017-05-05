@@ -2,6 +2,10 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
 
+  05 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  files/bc-20160321.patch:
+  Modified the patch to turn off expensive checks and put ADAFLAGS at the end.
+
 *booch_components-20160321-r2 (04 May 2017)
 
   04 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
