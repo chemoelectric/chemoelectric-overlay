@@ -33,7 +33,7 @@ DEPEND="
 
 S="${WORKDIR}/gprbuild-${PV}"
 
-PATCHES=( "${FILESDIR}/${P}-r1.patch" )
+PATCHES=( "${FILESDIR}/${P}-gentoo.patch" )
 
 QA_EXECSTACK="
 	usr/*/gpr/relocatable/gpr/libgpr.so*

@@ -1,7 +1,5 @@
-diff --git a/Makefile b/Makefile
-index 2105892e..376e7649 100644
---- a/Makefile
-+++ b/Makefile
+--- gprbuild-2016_p20170427191900.ORIG/./Makefile	2017-05-05 00:19:55.501138010 +0000
++++ gprbuild-2016_p20170427191900/./Makefile	2017-05-05 00:26:25.043893063 +0000
 @@ -24,9 +24,13 @@
  #   $ make -f <GPRBUILD_TREE>/Makefile setup
  #   $ make -f <GPRBUILD_TREE>/Makefile
@@ -16,7 +14,7 @@ index 2105892e..376e7649 100644
  prefix	      := $(dir $(shell which gnatls))..
  BUILD         = production
  PROCESSORS    = 0
-@@ -68,8 +72,8 @@ endif
+@@ -68,8 +72,8 @@
  # Used to pass extra options to GPRBUILD, like -d for instance
  GPRBUILD_OPTIONS=
  
@@ -27,7 +25,7 @@ index 2105892e..376e7649 100644
  INSTALLER=exe/$(LIB_INSTALLER)
  CLEANER=gprclean -q $(RBD)
  
-@@ -151,21 +155,22 @@ libgpr.install.static:
+@@ -151,21 +155,22 @@
  	$(LIBGPR_INSTALLER) \
  	   -XLIBRARY_TYPE=static \
  	   -XXMLADA_BUILD=static \
@@ -53,7 +51,7 @@ index 2105892e..376e7649 100644
  	   --build-name=relocatable
  
  libgpr.uninstall:
-@@ -207,16 +212,16 @@ ifeq ($(ENABLE_SHARED), yes)
+@@ -207,16 +212,16 @@
  	-$(CLEANER) $(GPR_GPR) -XBUILD=$(BUILD) \
  		-XLIBRARY_TYPE=relocatable
  endif
@@ -74,3 +72,42 @@ index 2105892e..376e7649 100644
 +	$(MAKE) -C $(MAKEPREFIX)examples
  
  force:
+--- gprbuild-2016_p20170427191900.ORIG/./gpr/gpr.gpr	2017-05-05 00:19:55.529136986 +0000
++++ gprbuild-2016_p20170427191900/./gpr/gpr.gpr	2017-05-05 00:23:52.835459079 +0000
+@@ -43,29 +43,30 @@
+ 
+    package Compiler is
+       Common_Switches := ("-gnat12", "-gnaty", "-gnatQ", "-gnata");
++      Ada_Flags := Split (external ("ADAFLAGS", ""), " ");
+ 
+       case Bld is
+          when "debug" =>
+             for Default_Switches ("Ada") use Common_Switches &
+-              ("-g", "-gnata", "-gnatVa", "-gnatwaCJI", "-gnatwe", "-gnatyg");
++              ("-g", "-gnata", "-gnatVa", "-gnatwaCJI", "-gnatwe", "-gnatyg") & Ada_Flags;
+ 
+             for Local_Configuration_Pragmas use "debug.adc";
+ 
+          when "coverage" =>
+             for Default_Switches ("Ada") use Common_Switches &
+-              ("-ftest-coverage", "-fprofile-arcs");
++              ("-ftest-coverage", "-fprofile-arcs") & Ada_Flags;
+ 
+          when "profiling" =>
+-            for Default_Switches ("Ada") use Common_Switches & ("-pg", "-g");
++            for Default_Switches ("Ada") use Common_Switches & ("-pg", "-g") & Ada_Flags;
+ 
+          when "production" =>
+             for Default_Switches ("Ada") use Common_Switches &
+-              ("-O2", "-gnatn", "-gnatws");
++              ("-O2", "-gnatn", "-gnatws") & Ada_Flags;
+ 
+             --  Compile all Ada sources to support symbolic-traceback
+ 
+-            for Switches ("gpr*.ad?") use
+-              Compiler'Default_Switches ("Ada") & ("-g1");
++            --for Switches ("gpr*.ad?") use
++            --  Compiler'Default_Switches ("Ada") & ("-g1");
+       end case;
+    end Compiler;
+ 
