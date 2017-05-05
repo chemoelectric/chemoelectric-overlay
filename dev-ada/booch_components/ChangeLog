@@ -3,6 +3,10 @@
 # $Header: $
 
   05 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  -booch_components-20160321-r1.ebuild:
+  Removal of the ebuild that does not use the patch.
+
+  05 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
   files/bc-20160321.patch:
   Modified the patch to turn off expensive checks and put ADAFLAGS at the end.
 
