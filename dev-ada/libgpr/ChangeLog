@@ -3,6 +3,10 @@
 # $Id$
 
   05 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  files/libgpr-2016_p20170427191900-gentoo.patch:
+  I updated the patch to respect CFLAGS.
+
+  05 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
   -libgpr-2016_p20170427191900-r1.ebuild,
   libgpr-2016_p20170427191900-r2.ebuild,
   +files/libgpr-2016_p20170427191900-gentoo.patch,

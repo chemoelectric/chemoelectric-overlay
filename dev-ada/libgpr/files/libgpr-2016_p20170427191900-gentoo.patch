@@ -1,5 +1,5 @@
---- gprbuild-2016_p20170427191900.ORIG/./Makefile	2017-05-05 00:19:55.501138010 +0000
-+++ gprbuild-2016_p20170427191900/./Makefile	2017-05-05 00:26:25.043893063 +0000
+--- gprbuild-2016_p20170427191900.ORIG/./Makefile	2017-05-05 17:46:22.701213263 +0000
++++ gprbuild-2016_p20170427191900/./Makefile	2017-05-05 17:46:42.487489911 +0000
 @@ -24,9 +24,13 @@
  #   $ make -f <GPRBUILD_TREE>/Makefile setup
  #   $ make -f <GPRBUILD_TREE>/Makefile
@@ -72,13 +72,18 @@
 +	$(MAKE) -C $(MAKEPREFIX)examples
  
  force:
---- gprbuild-2016_p20170427191900.ORIG/./gpr/gpr.gpr	2017-05-05 00:19:55.529136986 +0000
-+++ gprbuild-2016_p20170427191900/./gpr/gpr.gpr	2017-05-05 00:23:52.835459079 +0000
-@@ -43,29 +43,30 @@
+--- gprbuild-2016_p20170427191900.ORIG/./gpr/gpr.gpr	2017-05-05 17:46:22.713212825 +0000
++++ gprbuild-2016_p20170427191900/./gpr/gpr.gpr	2017-05-05 17:48:24.909745528 +0000
+@@ -42,30 +42,35 @@
+    --------------
  
     package Compiler is
-       Common_Switches := ("-gnat12", "-gnaty", "-gnatQ", "-gnata");
++      C_Flags := Split (external ("CFLAGS", ""), " ");
 +      Ada_Flags := Split (external ("ADAFLAGS", ""), " ");
++      
++      for Default_Switches ("C") use C_Flags;
++      
+       Common_Switches := ("-gnat12", "-gnaty", "-gnatQ", "-gnata");
  
        case Bld is
           when "debug" =>
