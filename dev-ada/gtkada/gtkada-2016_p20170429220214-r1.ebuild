@@ -56,7 +56,7 @@ QA_EXECSTACK="
 	usr/*/gtkada/gtkada.relocatable/gtkada/libgtkada.so*
 "
 
-PATCHES=( "${FILESDIR}"/"${PF}".patch )
+PATCHES=( "${FILESDIR}/${P}-gentoo.patch" )
 
 src_configure() {
 	local with_gl="--with-GL=no"

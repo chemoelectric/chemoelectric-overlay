@@ -2,6 +2,12 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  05 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  gtkada-2016_p20170429220214-r1.ebuild,
+  +files/gtkada-2016_p20170429220214-gentoo.patch,
+  -files/gtkada-2016_p20170429220214-r1.patch:
+  Changed the name of the patch.
+
   04 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
   gtkada-2016_p20170429220214-r1.ebuild:
   A safer bug fix.
