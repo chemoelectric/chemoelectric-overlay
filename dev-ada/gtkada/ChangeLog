@@ -3,6 +3,10 @@
 # $Id$
 
   05 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  files/gtkada-2016_p20170429220214-gentoo.patch:
+  Modified the patch to respect CFLAGS and ADAFLAGS.
+
+  05 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
   gtkada-2016_p20170429220214-r1.ebuild,
   +files/gtkada-2016_p20170429220214-gentoo.patch,
   -files/gtkada-2016_p20170429220214-r1.patch:

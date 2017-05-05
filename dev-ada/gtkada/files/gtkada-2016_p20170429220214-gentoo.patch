@@ -87,3 +87,32 @@ index d03c7432..707f0fa2 100644
  	@echo '-----------------------------------------------------------------------'
  
  docs:
+diff --git a/shared.gpr.in b/shared.gpr.in
+index ba14efeb..84486dbc 100644
+--- a/shared.gpr.in
++++ b/shared.gpr.in
+@@ -45,7 +45,11 @@ project Shared is
+    Gtk_Libs    := Gtk.Gtk_Default_Libs    & (@GTK_LIBS_GPR@);
+    GL_Include  := Gtk.GL_Default_Include  & (@GL_CFLAGS_GPR@);
+    GL_Libs     := Gtk.GL_Default_Libs     & (@GL_LIBS_GPR@);
+-
++   
++   C_Flags := Split (external ("CFLAGS", ""), " ");
++   Objc_Flags := Split (external ("OBJCFLAGS", ""), " ");
++   Ada_Flags := Split (external ("ADAFLAGS", ""), " ");
++   
+    package Naming is
+       for Body_Suffix ("Objective-C") use ".m";
+    end Naming;
+@@ -68,8 +72,9 @@ project Shared is
+              for Switches ("C") use ("-O2");
+       end case;
+ 
+-      for Switches ("C") use Compiler'Switches ("C") & Gtk_Include;
+-      for Switches ("Objective-C") use Compiler'Switches ("Objective-C") & Gtk_Include;
++      for Switches ("C") use Compiler'Switches ("C") & C_Flags & Gtk_Include;
++      for Switches ("Objective-C") use Compiler'Switches ("Objective-C") & Objc_Flags & Gtk_Include;
++      for Switches ("Ada") use Compiler'Switches ("Ada") & Ada_Flags & Gtk_Include;
+    end Compiler;
+ 
+    package Builder is
