@@ -1,0 +1,41 @@
+--- tables.ORIG/./tables.gpr	2017-05-07 23:27:33.324230210 +0000
++++ tables/./tables.gpr	2017-05-07 23:44:40.582717140 +0000
+@@ -4,11 +4,18 @@
+    Legacy : Legacy_Type := external ("Legacy", "Ada2005");
+ 
+    type Development_Type is ("Debug", "Release");
+-   Development : Development_Type := external ("Development", "Debug");
++   Development : Development_Type := external ("Development", "Release");
+ 
+-   for Source_Dirs use (".");
+-   for Object_Dir use ".";
++   type Library_T is ("static", "static-pic", "relocatable");
++   Library_Type : Library_T := external ("LIBRARY_TYPE", "static");
++   
++   for Library_Name use "@LIB_NAME@";
++   for Library_Version use "@SO_NAME@";
++   for Library_Kind use Library_Type;
++   for Object_Dir use "obj/" & Library_Type;
++   for Library_Dir use "lib/" & Library_Type;
+    
++   for Source_Dirs use (".");
+    for Source_Files use
+        (  "tables-names.adb",
+           "tables-names.ads",
+@@ -61,15 +68,7 @@
+                      ("-gnatwcikmoprvz.c.p.t.w.x", "-gnatp", "-gnatVa", "-gnatf", "-O2", "-gnatn", "-gnat95");
+             end case;
+       end case;
++      for Switches ("ada") use Compiler'Switches ("ada") & Split (external ("ADAFLAGS", ""), " ");
+    end Compiler;
+ 
+-   package Linker is
+-      case Development is
+-         when "Debug" =>
+-            for Default_Switches ("ada") use ("-g");
+-         when "Release" =>
+-            for Default_Switches ("ada") use ("-O2", "-s");
+-      end case;
+-   end Linker;
+-
+ end Tables;
