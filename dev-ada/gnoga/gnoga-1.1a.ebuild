@@ -86,7 +86,7 @@ src_install() {
 	einstalldocs
 	use doc && dodoc -r docs
 
-	use tutorial && {		
+	use tutorial && {
 		dodoc -r tutorial
 		sed -i \
 			-e '/Once the executable has been built it will be in the gnoga\/bin directory./d' \
