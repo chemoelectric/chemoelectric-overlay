@@ -18,7 +18,7 @@ SRC_URI="
 
 LICENSE="GPL-2 GPL-3"
 SLOT="${THE_YEAR}"
-KEYWORDS="~amd64"
+KEYWORDS="-* amd64"
 IUSE="examples"
 
 RESTRICT="strip test"
