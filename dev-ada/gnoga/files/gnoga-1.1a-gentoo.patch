@@ -23,7 +23,7 @@
  
     package Linker is
 --- gnoga-1.1.ORIG/./Makefile	2017-05-06 21:34:17.590165056 +0000
-+++ gnoga-1.1/./Makefile	2017-05-07 01:06:48.326663439 +0000
++++ gnoga-1.1/./Makefile	2017-05-07 19:36:19.100495248 +0000
 @@ -23,6 +23,15 @@
  #BUILDER=x86_64-w64-mingw32-gnatmake.exe
  #CLEANER=x86_64-w64-mingw32-gnatclean.exe
@@ -31,16 +31,27 @@
 +LIBDIR=lib
 +INSTALLER=gprinstall
 +BUILD_TYPE=static
-+MY_INSTALLER=${INSTALLER} \
-+	--sources-subdir=include/gnoga/$(BUILD_TYPE) \
-+	--lib-subdir=$(LIBDIR)/gnoga/$(BUILD_TYPE) \
++my_installer=${INSTALLER} \
++	--sources-subdir=include/$(1)/$(1).$(BUILD_TYPE) \
++	--lib-subdir=$(LIBDIR)/$(1)/$(1).$(BUILD_TYPE) \
 +	--link-lib-subdir=$(LIBDIR) \
-+	--build-name=$(BUILD_TYPE)
++	--build-name=$(BUILD_TYPE) $(2)
 +
  TARGET=$(shell gcc -dumpmachine)
  
  ifeq ($(strip $(findstring darwin, $(TARGET))),darwin)
-@@ -77,13 +86,18 @@
+@@ -49,6 +58,10 @@
+ 
+ all: gnoga gnoga_tools demo tutorials
+ 
++.PHONY: prj_target
++prj_target:
++	@echo ${PRJ_TARGET}
++
+ setup:
+ ifeq (${PRJ_TARGET}, Windows)
+ 	@echo "Setting up for Windows build"
+@@ -77,13 +90,18 @@
  
  install: release gnoga_tools
  	touch deps/simple_components/strings_edit-text_edit.o
@@ -51,21 +62,30 @@
 -	cd deps/simple_components && gprinstall -f --prefix=$(PREFIX) -p components-connections_server-http_server.gpr
 -	cd deps/simple_components && gprinstall -f --prefix=$(PREFIX) -p strings_edit.gpr
 -	cd deps/simple_components && gprinstall -f --prefix=$(PREFIX) -p tables.gpr
-+	cd src && $(MY_INSTALLER) -f --prefix=$(PREFIX) -p gnoga.gpr -XPRJ_BUILD=Release
-+	cd deps/simple_components && $(MY_INSTALLER) -f --prefix=$(PREFIX) -p components.gpr
-+	cd deps/simple_components && $(MY_INSTALLER) -f --prefix=$(PREFIX) -p components-connections_server.gpr
-+	cd deps/simple_components && $(MY_INSTALLER) -f --prefix=$(PREFIX) -p components-connections_server-http_server.gpr
-+	cd deps/simple_components && $(MY_INSTALLER) -f --prefix=$(PREFIX) -p strings_edit.gpr
-+	cd deps/simple_components && $(MY_INSTALLER) -f --prefix=$(PREFIX) -p tables.gpr
++	cd src && $(call my_installer,gnoga,-f --prefix=$(PREFIX) -p gnoga.gpr -XPRJ_BUILD=Release)
++	cd deps/simple_components && $(call my_installer,components,-f --prefix=$(PREFIX) -p components.gpr)
++	cd deps/simple_components && $(call my_installer,components-connections_server,-f --prefix=$(PREFIX) -p components-connections_server.gpr)
++	cd deps/simple_components && $(call my_installer,components-connections_server-http_server,-f --prefix=$(PREFIX) -p components-connections_server-http_server.gpr)
++	cd deps/simple_components && $(call my_installer,strings_edit,-f --prefix=$(PREFIX) -p strings_edit.gpr)
++	cd deps/simple_components && $(call my_installer,tables,-f --prefix=$(PREFIX) -p tables.gpr)
 +
 +install_gnoga_secure: gnoga_secure
-+	cd ssl && $(MY_INSTALLER) -f --prefix=$(PREFIX) -p gnoga_secure.gpr
++	cd ssl && $(call my_installer,gnoga_secure,-f --prefix=$(PREFIX) -p gnoga_secure.gpr)
 +
 +install_gnoga_tools: gnoga_tools
-+	cd tools && $(MY_INSTALLER) -f --prefix=$(PREFIX) -p --mode=usage --install-name=tools tools.gpr
++	cd tools && $(call my_installer,gnoga_tools,-f --prefix=$(PREFIX) -p --mode=usage --install-name=tools tools.gpr)
  
  install_debug: gnoga gnoga_tools
  	touch deps/simple_components/strings_edit-text_edit.o
+@@ -105,7 +123,7 @@
+ 	- gprinstall -f --prefix=$(PREFIX) --uninstall tools.gpr
+ 
+ native_gtk: src/gnoga_gtk_window.c
+-	cd obj && gcc -c ../src/gnoga_gtk_window.c `pkg-config --cflags gtk+-3.0,webkit2gtk-3.0`
++	cd obj && $(CC) $(CFLAGS) -c ../src/gnoga_gtk_window.c `pkg-config --cflags gtk+-3.0,webkit2gtk-3.0`
+ 
+ native_osx:
+ 	- cd deps && git clone https://github.com/MacGapProject/MacGap2.git
 --- gnoga-1.1.ORIG/./settings.gpr	2017-05-06 21:34:17.590165056 +0000
 +++ gnoga-1.1/./settings.gpr	2017-05-06 22:11:54.281715200 +0000
 @@ -33,6 +33,9 @@
