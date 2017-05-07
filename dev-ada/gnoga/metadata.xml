@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+	<email>sortsmill@crudfactory.com</email>
+	<name>Barry Schwartz</name>
+  </maintainer>
+  <use>
+    <flag name="tools">Build the Gnoga tools</flag>
+    <flag name="secure">Build the Gnoga_Secure library (as well as regular Gnoga)</flag>
+    <flag name="tutorial">Install the tutorial directory as a subdirectory of the doc directory</flag>
+  </use>
+</pkgmetadata>

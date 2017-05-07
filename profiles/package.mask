@@ -1,3 +1,8 @@
+# Barry Schwartz (6 May 2017)
+# This ebuild is still a work in progress, although it is likely to
+# be functional.
+=dev-ada/gnoga-1.1a
+
 # Barry Schwartz (26 Apr 2017)
 # This ebuild is a work in progress works, at best, only partially.
 =dev-scheme/chibi-scheme-0.7.3
