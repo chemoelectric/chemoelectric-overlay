@@ -1,0 +1,35 @@
+--- strings_edit.ORIG/./strings_edit.gpr	2017-05-07 21:00:11.787953029 +0000
++++ strings_edit/./strings_edit.gpr	2017-05-07 22:48:25.256708850 +0000
+@@ -1,14 +1,21 @@
+ project Strings_Edit is
+ 
+    type Development_Type is ("Debug", "Release");
+-   Development : Development_Type := external ("Development", "Debug");
++   Development : Development_Type := external ("Development", "Release");
+    
+    type Legacy_Type is ("Ada95", "Ada2005", "Ada2012");
+    Legacy : Legacy_Type := external ("Legacy", "Ada2005");
+ 
++   type Library_T is ("static", "static-pic", "relocatable");
++   Library_Type : Library_T := external ("LIBRARY_TYPE", "static");
++   
++   for Library_Name use "@LIB_NAME@";
++   for Library_Version use "@SO_NAME@";
++   for Library_Kind use Library_Type;
++   for Object_Dir use "obj/" & Library_Type;
++   for Library_Dir use "lib/" & Library_Type;
++      
+    for Source_Dirs use (".");
+-   for Object_Dir use ".";
+-
+    for Source_Files use
+        (  "strings_edit-base64.adb",
+ 	      "strings_edit-base64.ads",
+@@ -118,6 +125,7 @@
+                      ("-gnatwcikmoprvz.c.p.t.w.x", "-gnatp", "-gnatVa", "-gnatf", "-O2", "-gnatn", "-gnat95");
+             end case;
+       end case;
++      for Switches ("Ada") use Compiler'Switches ("Ada") & Split (external ("ADAFLAGS", ""), " ");
+    end Compiler;
+ 
+    package Linker is

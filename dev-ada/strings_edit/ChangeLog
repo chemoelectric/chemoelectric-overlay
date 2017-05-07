@@ -1,0 +1,11 @@
+# ChangeLog for dev-ada/strings_edit
+# Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
+# $Id$
+
+*strings_edit-3.2 (07 May 2017)
+
+  07 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  +strings_edit-3.2.ebuild, +files/strings_edit-3.2-gentoo.patch,
+  +metadata.xml:
+  Initial ebuild.
+
