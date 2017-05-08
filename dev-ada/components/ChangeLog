@@ -1,0 +1,10 @@
+# ChangeLog for dev-ada/components
+# Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
+# $Id$
+
+*components-4.21 (08 May 2017)
+
+  08 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  +components-4.21.ebuild, +files/components-4.21-gentoo.patch, +metadata.xml:
+  Initial ebuild.
+

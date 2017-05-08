@@ -1,0 +1,35 @@
+--- components.ORIG/./components.gpr	2017-05-08 00:10:00.636208352 +0000
++++ components/./components.gpr	2017-05-08 01:14:59.521327231 +0000
+@@ -2,7 +2,16 @@
+ with "tables.gpr";
+ 
+ project Components is
+-
++   
++   type Library_T is ("static", "static-pic", "relocatable");
++   Library_Type : Library_T := external ("LIBRARY_TYPE", "static");
++   
++   for Library_Name use "@LIB_NAME@";
++   for Library_Version use "@SO_NAME@";
++   for Library_Kind use Library_Type;
++   for Object_Dir use "obj/" & Library_Type;
++   for Library_Dir use "lib/" & Library_Type;
++   
+    type Object_Tracing_Mode is ("Off", "On");
+    Object_Tracing : Object_Tracing_Mode := external ("Traced_objects", "Off");
+ 
+@@ -275,9 +284,10 @@
+       "tables-utf8_names.ads"
+    );
+ 
+-   package Compiler renames Strings_Edit.Compiler;
+-   package Binder   renames Strings_Edit.Binder;
+-   package Builder  renames Strings_Edit.Builder;
+-   package Linker   renames Strings_Edit.Linker;
++   package Compiler is
++      for Default_Switches ("ada") use
++         ("-gnatwcikmoprvz.c.p.t.w.x", "-gnatp", "-gnatVa", "-gnatf", "-O2", "-gnatn", "-gnat12");
++      for Switches ("ada") use Compiler'Switches ("ada") & Split (external ("ADAFLAGS", ""), " ");
++   end Compiler;
+ 
+ end Components;
