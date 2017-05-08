@@ -3,6 +3,10 @@
 # $Id$
 
   08 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  strings_edit-3.2.ebuild:
+  Use the default build-var.
+
+  08 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
   files/strings_edit-3.2-gentoo.patch:
   Improved the patch.
 
