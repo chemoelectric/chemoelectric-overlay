@@ -1,5 +1,5 @@
 --- tables.ORIG/./tables.gpr	2017-05-07 23:27:33.324230210 +0000
-+++ tables/./tables.gpr	2017-05-07 23:44:40.582717140 +0000
++++ tables/./tables.gpr	2017-05-08 00:05:11.636761934 +0000
 @@ -4,11 +4,18 @@
     Legacy : Legacy_Type := external ("Legacy", "Ada2005");
  
@@ -22,7 +22,23 @@
     for Source_Files use
         (  "tables-names.adb",
            "tables-names.ads",
-@@ -61,15 +68,7 @@
+@@ -25,15 +32,6 @@
+       end case;
+    end Binder;
+ 
+-   package Builder is
+-      case Development is
+-         when "Debug" =>
+-            for Default_Switches ("ada") use ("-g");
+-         when "Release" =>
+-            for Default_Switches ("ada") use ("-s");
+-      end case;
+-   end Builder;
+-
+    package Compiler is
+       case Development is
+          when "Debug" =>
+@@ -61,15 +59,7 @@
                       ("-gnatwcikmoprvz.c.p.t.w.x", "-gnatp", "-gnatVa", "-gnatf", "-O2", "-gnatn", "-gnat95");
              end case;
        end case;
