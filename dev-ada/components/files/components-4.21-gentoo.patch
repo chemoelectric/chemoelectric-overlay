@@ -131,6 +131,43 @@
  
  end Components.Connections_Server;
  
+--- components.ORIG/components-connections_server-http_server.gpr	2017-05-08 00:10:00.636208352 +0000
++++ components/components-connections_server-http_server.gpr	2017-05-08 23:20:29.540729977 +0000
+@@ -1,8 +1,16 @@
+-with "components.gpr";
+-with "components-connections_server.gpr";
++with "components";
++with "components-connections_server";
++with "settings";
+ 
+ project Components.Connections_Server.HTTP_Server is
+ 
++   for Source_Dirs use Settings'Source_Dirs;
++   for Library_Name use Settings'Library_Name;
++   for Library_Version use Settings'Library_Version;
++   for Library_Kind use Settings'Library_Kind;
++   for Object_Dir use "obj/" & Settings.Library_Type & "." & Settings.Tasking & "." & Settings.Object_Tracing;
++   for Library_Dir use "lib/" & Settings.Library_Type & "." & Settings.Tasking & "." & Settings.Object_Tracing;
++   
+    for Source_Files use
+        (  "gnat-sockets-connection_state_machine-http_client.adb",
+           "gnat-sockets-connection_state_machine-http_client.ads",
+@@ -14,9 +22,9 @@
+           "gnat-sockets-connection_state_machine-http_server-websocket_server.ads"
+        );
+ 
+-   package Compiler renames Components.Compiler;
+-   package Binder   renames Components.Binder;
+-   package Builder  renames Components.Builder;
+-   package Linker   renames Components.Linker;
++   package Compiler renames Settings.Compiler;
++   package Binder   renames Settings.Binder;
++   package Builder  renames Settings.Builder;
++   package Linker   renames Settings.Linker;
+ 
+-end Components.Connections_Server.HTTP_Server;
+\ No newline at end of file
++end Components.Connections_Server.HTTP_Server;
 --- components.ORIG/components.gpr	2017-05-08 00:10:00.636208352 +0000
 +++ components/components.gpr	2017-05-08 22:43:50.222028667 +0000
 @@ -1,53 +1,16 @@
