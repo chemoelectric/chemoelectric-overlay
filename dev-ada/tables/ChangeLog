@@ -2,6 +2,9 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  08 May 2017; Barry Schwartz <sortsmill@crudfactory.com> tables-1.13.ebuild:
+  Use the default build-var.
+
   08 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
   files/tables-1.13-gentoo.patch:
   Improved the patch.

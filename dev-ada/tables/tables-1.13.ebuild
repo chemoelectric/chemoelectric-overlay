@@ -65,7 +65,7 @@ src_compile() {
 src_install() {
 	local gprinstall="${GPRINSTALL:-gprinstall} -v -p -f -P${PN} \
 		  --prefix=${D}/usr --link-lib-subdir=$(get_libdir) \
-		  --build-var=LIBRARY_TYPE --install-name=${PN}"
+		  --install-name=${PN}"
 	for lt in ${LIBRARY_TYPES} ; do
 		${gprinstall} -XLIBRARY_TYPE="${lt}" \
 					  --build-name="${lt}" \
