@@ -3,9 +3,6 @@
 
 EAPI=6
 
-# FIXME: Consider adding build types for Object_Tracing_Mode and
-# Tasking_Mode options.
-
 inherit multiprocessing
 
 DESCRIPTION="Simple Components library for Ada"
