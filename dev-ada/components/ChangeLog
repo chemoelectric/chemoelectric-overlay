@@ -2,6 +2,10 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  08 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  components-4.21.ebuild:
+  I was installing docs for strings_edit and tables, as well. Fixed.
+
 *components-4.21 (08 May 2017)
 
   08 May 2017; Barry Schwartz <sortsmill@crudfactory.com>

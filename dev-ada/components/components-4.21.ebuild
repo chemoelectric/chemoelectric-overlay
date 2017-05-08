@@ -17,6 +17,8 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
+# FIXME: Should we require the specific versions of strings_edit and
+# tables, as here, or should we switch to >= notation?
 COMMON_DEPEND="
 	virtual/ada:*
 	=dev-ada/strings_edit-3.2*:*
@@ -38,8 +40,8 @@ QA_EXECSTACK="
 
 PATCHES=( "${FILESDIR}/${P}-gentoo.patch" )
 
-DOCS="*.txt"
-HTML_DOCS="*.htm *.jpg *.gif"
+DOCS="readme_components.txt"
+HTML_DOCS="components.htm *.jpg *.gif"
 
 LIBRARY_TYPES="static static-pic relocatable"
 
@@ -60,6 +62,14 @@ atomic_access() {
 	else
 		echo GCC-long-offsets
 	fi
+}
+
+x_flags() {
+	printf "%s" \
+		   "-XLIBRARY_TYPE=${1}
+			-XSTRINGS_EDIT_BUILD=${1}
+			-XTABLES_BUILD=${1}
+			-XAtomic_Access=$(atomic_access)"
 }
 
 src_unpack() {
@@ -89,10 +99,7 @@ src_prepare() {
 src_compile() {
 	local gprbuild="${GPRBUILD:-gprbuild} -j$(makeopts_jobs) -v -p -R -P${PN}"
 	for lt in ${LIBRARY_TYPES} ; do
-		${gprbuild} -XLIBRARY_TYPE="${lt}" \
-					-XSTRINGS_EDIT_BUILD="${lt}" \
-					-XTABLES_BUILD="${lt}" \
-					-XAtomic_Access="$(atomic_access)" || die
+		${gprbuild} $(x_flags "${lt}") || die
 	done
 }
 
@@ -101,10 +108,7 @@ src_install() {
 		  --prefix=${D}/usr --link-lib-subdir=$(get_libdir) \
 		  --install-name=${PN}"
 	for lt in ${LIBRARY_TYPES} ; do
-		${gprinstall} -XLIBRARY_TYPE="${lt}" \
-					  -XSTRINGS_EDIT_BUILD="${lt}" \
-					  -XTABLES_BUILD="${lt}" \
-					  -XAtomic_Access="$(atomic_access)" \
+		${gprinstall} $(x_flags "${lt}") \
 					  --build-name="${lt}" \
 					  --lib-subdir="$(get_libdir)/${PN}/${PN}.${lt}" \
 					  --sources-subdir="include/${PN}/${PN}.${lt}"
