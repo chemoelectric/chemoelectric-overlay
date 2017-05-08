@@ -14,8 +14,3 @@ inherit simple-components-for-ada
 SLOT="0"
 KEYWORDS="~amd64"
 
-#QA_EXECSTACK="
-#	usr/*/${PN}/${PN}.static*/${PN}/lib${PN}*.a:persistent-memory_pools-streams.o
-#	usr/*/${PN}/${PN}.relocatable*/${PN}/lib${PN}*.so*
-#"
-
