@@ -3,6 +3,10 @@
 # $Id$
 
   08 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  components-4.21.ebuild, files/components-4.21-gentoo.patch:
+  Moved reusable ebuild code into an eclass.
+
+  08 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
   components-4.21.ebuild:
   Remove an obsolete comment.
 
