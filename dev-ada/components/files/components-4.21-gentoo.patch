@@ -1,6 +1,6 @@
 --- components.ORIG/./components.gpr	2017-05-08 00:10:00.636208352 +0000
-+++ components/./components.gpr	2017-05-08 01:14:59.521327231 +0000
-@@ -2,7 +2,16 @@
++++ components/./components.gpr	2017-05-08 19:07:53.838154843 +0000
+@@ -2,7 +2,10 @@
  with "tables.gpr";
  
  project Components is
@@ -9,16 +9,40 @@
 +   type Library_T is ("static", "static-pic", "relocatable");
 +   Library_Type : Library_T := external ("LIBRARY_TYPE", "static");
 +   
-+   for Library_Name use "@LIB_NAME@";
-+   for Library_Version use "@SO_NAME@";
-+   for Library_Kind use Library_Type;
-+   for Object_Dir use "obj/" & Library_Type;
-+   for Library_Dir use "lib/" & Library_Type;
-+   
     type Object_Tracing_Mode is ("Off", "On");
     Object_Tracing : Object_Tracing_Mode := external ("Traced_objects", "Off");
  
-@@ -275,9 +284,10 @@
+@@ -16,6 +19,29 @@
+         );
+    Atomic_Access : Atomic_Access_Mode := external ("Atomic_Access", "GCC-long-offsets");
+ 
++   Lib_Name := "*LIBRARY*NAME*GOES*HERE*";
++   case Object_Tracing is
++      when "Off" =>
++         case Tasking is
++            when "Multiple" =>
++               Lib_Name := "@LIB_NAME@";
++            when "Single" =>
++               Lib_Name := "@LIB_NAME@-Single_Tasking";
++         end case;
++      when "On" =>
++         case Tasking is
++            when "Multiple" =>
++               Lib_Name := "@LIB_NAME@-Tracing";
++            when "Single" =>
++               Lib_Name := "@LIB_NAME@-Single_Tasking-Tracing";
++         end case;
++   end case;
++   for Library_Name use Lib_Name;
++   for Library_Version use "lib" & Lib_Name & "@SO_EXTENSION@";
++   for Library_Kind use Library_Type;
++   for Object_Dir use "obj/" & Library_Type & "." & Tasking & "." & Object_Tracing;
++   for Library_Dir use "lib/" & Library_Type & "." & Tasking & "." & Object_Tracing;
++   
+    case Object_Tracing is
+       when "Off" =>
+          case Tasking is
+@@ -275,9 +301,11 @@
        "tables-utf8_names.ads"
     );
  
@@ -30,6 +54,7 @@
 +      for Default_Switches ("ada") use
 +         ("-gnatwcikmoprvz.c.p.t.w.x", "-gnatp", "-gnatVa", "-gnatf", "-O2", "-gnatn", "-gnat12");
 +      for Switches ("ada") use Compiler'Switches ("ada") & Split (external ("ADAFLAGS", ""), " ");
++      for Switches ("ada") use Compiler'Switches ("ada") & ("-fno-strict-aliasing");      
 +   end Compiler;
  
  end Components;

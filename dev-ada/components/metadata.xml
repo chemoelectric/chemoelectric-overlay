@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-	<maintainer type="person">
-		<email>sortsmill@crudfactory.com</email>
-		<name>Barry Schwartz</name>
-	</maintainer>
+  <maintainer type="person">
+	<email>sortsmill@crudfactory.com</email>
+	<name>Barry Schwartz</name>
+  </maintainer>
+  <use>
+    <flag name="single-tasking">Also install the single-tasking version.</flag>
+    <flag name="tracing">Also install object-tracing versions.</flag>
+  </use>
 </pkgmetadata>
