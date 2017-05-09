@@ -3,6 +3,10 @@
 # $Id$
 
   09 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  components-gnutls-4.21.ebuild:
+  Get rid of a messy way of setting dependencies.
+
+  09 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
   components-gnutls-4.21.ebuild, files/components-4.21-gentoo.patch:
   Move some code from src_prepare to src_configure, in anticipation of possible
   multilib support.

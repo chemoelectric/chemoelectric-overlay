@@ -3,13 +3,15 @@
 
 EAPI=6
 
-DEPENDS_ON_LIBRARIES=(
-	"=dev-ada/components-${PV}*:=[single-tasking?,tracing?]"
-)
-
 SUB_DESCRIPTION="connections server"
 
 inherit simple-components-for-ada
+
+COMMON_DEPEND="
+	=dev-ada/components-${PV}*:=[single-tasking?,tracing?]
+"
+DEPEND+="${COMMON_DEPEND}"
+RDEPEND+="${COMMON_DEPEND}"
 
 SLOT="0"
 KEYWORDS="~amd64"

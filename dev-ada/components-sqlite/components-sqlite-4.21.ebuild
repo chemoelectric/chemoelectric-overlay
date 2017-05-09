@@ -3,13 +3,13 @@
 
 EAPI=6
 
-SUB_DESCRIPTION="GnuTLS interface"
+SUB_DESCRIPTION="SQLite3 interface"
 
 inherit toolchain-funcs simple-components-for-ada
 
 COMMON_DEPEND="
 	=dev-ada/components-${PV}*:=[single-tasking?,tracing?]
-	net-libs/gnutls:*
+	dev-db/sqlite:3
 "
 DEPEND+="${COMMON_DEPEND} virtual/pkgconfig:*"
 RDEPEND+="${COMMON_DEPEND}"
@@ -18,22 +18,22 @@ SLOT="0"
 KEYWORDS="~amd64"
 
 src_configure() {
-	# The following is used to link the relocatable components-gnutls
-	# with libgnutls.so.
-	cat > gnutls.gpr <<-EOF
-		library project GNUTLS is
+	# The following is used to link the relocatable components-sqlite3
+	# with libsqlite3.so.
+	cat > sqlite3.gpr <<-EOF
+		library project SQLite3 is
 		   for Languages use ("C");
-		   for Library_Dir use "$($(tc-getPKG_CONFIG) --variable libdir gnutls)";
-		   for Library_Name use "gnutls";
+		   for Library_Dir use "$($(tc-getPKG_CONFIG) --variable libdir sqlite3)";
+		   for Library_Name use "sqlite3";
 		   for Library_Kind use "relocatable";
 		   for Externally_Built use "True";
-		end GNUTLS;
+		end SQLite3;
 	EOF
 }
 
 src_install() {
 	simple-components-for-ada_src_install
 
-	# Remove `with "gnutls";' lines from the generated project file.
-	sed -i -e '/with "gnutls";/d' "${D}/usr/share/gpr/${PN}.gpr" || die
+	# Remove `with "sqlite3";' lines from the generated project file.
+	sed -i -e '/with "sqlite3";/d' "${D}/usr/share/gpr/${PN}.gpr" || die
 }

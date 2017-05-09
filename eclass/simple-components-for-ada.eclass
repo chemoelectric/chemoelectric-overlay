@@ -14,11 +14,9 @@ IUSE="doc single-tasking tracing"
 DEPEND="
 	virtual/ada:*
 	>=dev-ada/gprbuild-2016_p20170427191900
-	${DEPENDS_ON_LIBRARIES[@]}
 "
 RDEPEND="
 	virtual/ada:*
-	${DEPENDS_ON_LIBRARIES[@]}
 "
 
 PATCHES=( "${FILESDIR}/components-${PV}-gentoo.patch" )
