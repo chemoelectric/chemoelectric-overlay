@@ -13,4 +13,3 @@ inherit simple-components-for-ada
 
 SLOT="0"
 KEYWORDS="~amd64"
-

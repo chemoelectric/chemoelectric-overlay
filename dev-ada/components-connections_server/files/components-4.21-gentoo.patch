@@ -168,6 +168,49 @@
 -end Components.Connections_Server.HTTP_Server;
 \ No newline at end of file
 +end Components.Connections_Server.HTTP_Server;
+--- components.ORIG/components-gnutls.gpr	2017-05-08 00:10:00.636208352 +0000
++++ components/components-gnutls.gpr	2017-05-09 04:01:17.145778759 +0000
+@@ -1,14 +1,38 @@
+-with "components.gpr";
++with "components";
++with "settings";
+ 
+ project Components.GNUTLS is
+ 
++   for Source_Dirs use Settings'Source_Dirs;
++   for Library_Name use Settings'Library_Name;
++   for Library_Version use Settings'Library_Version;
++   for Library_Kind use Settings'Library_Kind;
++   for Object_Dir use "obj/" & Settings.Library_Type & "." & Settings.Tasking & "." & Settings.Object_Tracing;
++   for Library_Dir use "lib/" & Settings.Library_Type & "." & Settings.Tasking & "." & Settings.Object_Tracing;
++   
+    for Source_Files use
+        (  "gnutls.adb",
+           "gnutls.ads"
+        );
+ 
++   package Compiler renames Settings.Compiler;
++   package Binder   renames Settings.Binder;
++   package Builder  renames Settings.Builder;
++   
+    package Linker is
+-      for Linker_Options use ("-lgnutls");
++      static_ldflags := Split ("@STATIC_LDFLAGS@", " ");
++      shared_ldflags := Split ("@SHARED_LDFLAGS@", " ");
++      case Settings.Library_Type is
++         when "static" | "static-pic" =>
++            for Linker_Options use static_ldflags;
++         when "relocatable" =>
++            --
++            -- FIXME: Is there a way to link the dynamic library
++            --        itself with GnuTLS? Perhaps by writing an
++            --        Externally_Built project file of some kind?
++            --
++            for Linker_Options use shared_ldflags;
++      end case;
+    end Linker;
+ 
+ end Components.GNUTLS;
 --- components.ORIG/components.gpr	2017-05-08 00:10:00.636208352 +0000
 +++ components/components.gpr	2017-05-08 22:43:50.222028667 +0000
 @@ -1,53 +1,16 @@

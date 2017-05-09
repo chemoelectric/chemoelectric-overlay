@@ -1,0 +1,11 @@
+# ChangeLog for dev-ada/components-gnutls
+# Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
+# $Id$
+
+*components-gnutls-4.21 (09 May 2017)
+
+  09 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  +components-gnutls-4.21.ebuild, +files/components-4.21-gentoo.patch,
+  +metadata.xml:
+  Initial dev-ada/components-gnutls ebuild.
+
