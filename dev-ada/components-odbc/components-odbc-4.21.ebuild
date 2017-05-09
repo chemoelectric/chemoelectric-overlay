@@ -3,7 +3,7 @@
 
 EAPI=6
 
-SUB_DESCRIPTION="secure server support"
+SUB_DESCRIPTION="ODBC support"
 
 inherit toolchain-funcs simple-components-for-ada
 
