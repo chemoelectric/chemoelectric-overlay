@@ -4,6 +4,10 @@
 
   09 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
   components-gnutls-4.21.ebuild, files/components-4.21-gentoo.patch:
+  Link the relocatable libraries with gnutls.so.*
+
+  09 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  components-gnutls-4.21.ebuild, files/components-4.21-gentoo.patch:
   Do not assume that because one is using static components-gnutls one also
   wants static gnutls.
 
