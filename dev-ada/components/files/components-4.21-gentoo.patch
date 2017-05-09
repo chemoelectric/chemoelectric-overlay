@@ -96,6 +96,43 @@
 +   end Linker;
 +
 +end Settings;
+--- components.ORIG/components-connections_server-elv_max_cube.gpr	2017-05-08 00:10:00.635208388 +0000
++++ components/components-connections_server-elv_max_cube.gpr	2017-05-09 21:29:43.521611677 +0000
+@@ -1,8 +1,16 @@
+-with "components.gpr";
+-with "components-connections_server.gpr";
++with "components";
++with "components-connections_server";
++with "settings";
+ 
+ project Components.Connections_Server.ELV_MAX_Cube is
+ 
++   for Source_Dirs use Settings'Source_Dirs;
++   for Library_Name use Settings'Library_Name;
++   for Library_Version use Settings'Library_Version;
++   for Library_Kind use Settings'Library_Kind;
++   for Object_Dir use "obj/" & Settings.Library_Type & "." & Settings.Tasking & "." & Settings.Object_Tracing;
++   for Library_Dir use "lib/" & Settings.Library_Type & "." & Settings.Tasking & "." & Settings.Object_Tracing;
++
+    for Source_Files use
+        (  "gnat-sockets-connection_state_machine-elv_max_cube_client.adb",
+           "gnat-sockets-connection_state_machine-elv_max_cube_client.ads",
+@@ -10,9 +18,9 @@
+ 		  "gnat-sockets-connection_state_machine-elv_max_cube_client-stream_io.ads"
+        );
+ 
+-   package Compiler renames Components.Compiler;
+-   package Binder   renames Components.Binder;
+-   package Builder  renames Components.Builder;
+-   package Linker   renames Components.Linker;
++   package Compiler renames Settings.Compiler;
++   package Binder   renames Settings.Binder;
++   package Builder  renames Settings.Builder;
++   package Linker   renames Settings.Linker;
+ 
+-end Components.Connections_Server.ELV_MAX_Cube;
+\ No newline at end of file
++end Components.Connections_Server.ELV_MAX_Cube;
 --- components.ORIG/components-connections_server.gpr	2017-05-08 00:10:00.636208352 +0000
 +++ components/components-connections_server.gpr	2017-05-08 22:43:38.490456995 +0000
 @@ -1,8 +1,15 @@
@@ -168,6 +205,116 @@
 -end Components.Connections_Server.HTTP_Server;
 \ No newline at end of file
 +end Components.Connections_Server.HTTP_Server;
+--- components.ORIG/components-connections_server-http_server-sqlite_browser.gpr	2017-05-08 00:10:00.636208352 +0000
++++ components/components-connections_server-http_server-sqlite_browser.gpr	2017-05-09 21:04:57.371871812 +0000
+@@ -1,18 +1,26 @@
+-with "components.gpr";
+-with "components-connections_server-http_server.gpr";
+-with "components-sqlite.gpr";
++with "components";
++with "components-connections_server-http_server";
++with "components-sqlite";
++with "settings";
+ 
+ project Components.Connections_Server.HTTP_Server.SQLite_Browser is
+ 
++   for Source_Dirs use Settings'Source_Dirs;
++   for Library_Name use Settings'Library_Name;
++   for Library_Version use Settings'Library_Version;
++   for Library_Kind use Settings'Library_Kind;
++   for Object_Dir use "obj/" & Settings.Library_Type & "." & Settings.Tasking & "." & Settings.Object_Tracing;
++   for Library_Dir use "lib/" & Settings.Library_Type & "." & Settings.Tasking & "." & Settings.Object_Tracing;
++   
+    for Source_Files use
+        (  "gnat-sockets-connection_state_machine-http_server-sqlite_browser.adb",
+           "gnat-sockets-connection_state_machine-http_server-sqlite_browser.ads"
+        );
+ 
+-   package Compiler renames Components.Compiler;
+-   package Binder   renames Components.Binder;
+-   package Builder  renames Components.Builder;
+-   package Linker   renames Components.Linker;
++   package Compiler renames Settings.Compiler;
++   package Binder   renames Settings.Binder;
++   package Builder  renames Settings.Builder;
++   package Linker   renames Settings.Linker;
+ 
+ end Components.Connections_Server.HTTP_Server.SQLite_Browser;
+ 
+--- components.ORIG/components-connections_server-modbus.gpr	2017-05-08 00:10:00.636208352 +0000
++++ components/components-connections_server-modbus.gpr	2017-05-09 21:19:28.317073129 +0000
+@@ -1,8 +1,16 @@
+-with "components.gpr";
+-with "components-connections_server.gpr";
++with "components";
++with "components-connections_server";
++with "settings";
+ 
+ project Components.Connections_Server.MODBUS is
+ 
++   for Source_Dirs use Settings'Source_Dirs;
++   for Library_Name use Settings'Library_Name;
++   for Library_Version use Settings'Library_Version;
++   for Library_Kind use Settings'Library_Kind;
++   for Object_Dir use "obj/" & Settings.Library_Type & "." & Settings.Tasking & "." & Settings.Object_Tracing;
++   for Library_Dir use "lib/" & Settings.Library_Type & "." & Settings.Tasking & "." & Settings.Object_Tracing;
++   
+    for Source_Files use
+        (  "gnat-sockets-connection_state_machine-modbus_client.adb",
+           "gnat-sockets-connection_state_machine-modbus_client.ads",
+@@ -10,9 +18,9 @@
+ 		  "gnat-sockets-connection_state_machine-modbus_client-synchronous.ads"
+        );
+ 
+-   package Compiler renames Components.Compiler;
+-   package Binder   renames Components.Binder;
+-   package Builder  renames Components.Builder;
+-   package Linker   renames Components.Linker;
++   package Compiler renames Settings.Compiler;
++   package Binder   renames Settings.Binder;
++   package Builder  renames Settings.Builder;
++   package Linker   renames Settings.Linker;
+ 
+-end Components.Connections_Server.MODBUS;
+\ No newline at end of file
++end Components.Connections_Server.MODBUS;
+--- components.ORIG/components-connections_server-mqtt.gpr	2017-05-08 00:10:00.636208352 +0000
++++ components/components-connections_server-mqtt.gpr	2017-05-09 21:29:35.891890243 +0000
+@@ -1,8 +1,16 @@
+-with "components.gpr";
+-with "components-connections_server.gpr";
++with "components";
++with "components-connections_server";
++with "settings";
+ 
+ project Components.Connections_Server.MQTT is
+ 
++   for Source_Dirs use Settings'Source_Dirs;
++   for Library_Name use Settings'Library_Name;
++   for Library_Version use Settings'Library_Version;
++   for Library_Kind use Settings'Library_Kind;
++   for Object_Dir use "obj/" & Settings.Library_Type & "." & Settings.Tasking & "." & Settings.Object_Tracing;
++   for Library_Dir use "lib/" & Settings.Library_Type & "." & Settings.Tasking & "." & Settings.Object_Tracing;
++
+    for Source_Files use
+        (  "gnat-sockets-mqtt.adb",
+           "gnat-sockets-mqtt.ads",
+@@ -12,9 +20,9 @@
+           "gnat-sockets-mqtt-streams.ads"
+        );
+ 
+-   package Compiler renames Components.Compiler;
+-   package Binder   renames Components.Binder;
+-   package Builder  renames Components.Builder;
+-   package Linker   renames Components.Linker;
++   package Compiler renames Settings.Compiler;
++   package Binder   renames Settings.Binder;
++   package Builder  renames Settings.Builder;
++   package Linker   renames Settings.Linker;
+ 
+-end Components.Connections_Server.MQTT;
+\ No newline at end of file
++end Components.Connections_Server.MQTT;
 --- components.ORIG/components-connections_server-secure.gpr	2017-05-08 00:10:00.636208352 +0000
 +++ components/components-connections_server-secure.gpr	2017-05-09 16:14:10.095119773 +0000
 @@ -1,9 +1,17 @@

@@ -1,0 +1,11 @@
+# ChangeLog for dev-ada/components-connections_server-http_server-sqlite_browser
+# Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
+# $Id$
+
+*components-connections_server-http_server-sqlite_browser-4.21 (09 May 2017)
+
+  09 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  +components-connections_server-http_server-sqlite_browser-4.21.ebuild,
+  +files/components-4.21-gentoo.patch, +metadata.xml:
+  Initial ebuild.
+

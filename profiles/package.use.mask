@@ -5,6 +5,10 @@
 =dev-ada/components-sqlite-4.21 single-tasking
 =dev-ada/components-odbc-4.21 single-tasking
 =dev-ada/components-connections_server-4.21 single-tasking
+=dev-ada/components-connections_server-elv_max_cube-4.21 single-tasking
+=dev-ada/components-connections_server-modbus-4.21 single-tasking
+=dev-ada/components-connections_server-mqtt-4.21 single-tasking
 =dev-ada/components-connections_server-secure-4.21 single-tasking
-=dev-ada/components-connections_server-http_server-4.21 single-tasking
 =dev-ada/components-connections_server-smtp-4.21 single-tasking
+=dev-ada/components-connections_server-http_server-4.21 single-tasking
+=dev-ada/components-connections_server-http_server-sqlite_browser-4.21 single-tasking
