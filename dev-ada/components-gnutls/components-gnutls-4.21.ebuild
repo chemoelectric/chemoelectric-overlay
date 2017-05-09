@@ -19,8 +19,5 @@ KEYWORDS="~amd64"
 
 src_prepare() {
 	simple-components-for-ada_src_prepare
-	sed -i \
-		-e "s|@STATIC_LDFLAGS@|$(pkg-config --static --libs gnutls)|g" \
-		-e "s|@SHARED_LDFLAGS@|$(pkg-config --libs gnutls)|g" \
-		"${PN}".gpr
+	sed -i -e "s|@PKGCONFIG_LIBS@|$(pkg-config --libs gnutls)|g" "${PN}".gpr
 }
