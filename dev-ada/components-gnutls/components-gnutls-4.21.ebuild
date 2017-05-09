@@ -11,7 +11,8 @@ SUB_DESCRIPTION="GnuTLS interface"
 
 inherit simple-components-for-ada
 
-DEPEND+=" virtual/pkgconfig:*"
+DEPEND+=" virtual/pkgconfig:* net-libs/gnutls:*"
+RDEPEND+=" net-libs/gnutls:*"
 
 SLOT="0"
 KEYWORDS="~amd64"
