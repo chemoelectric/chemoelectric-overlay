@@ -169,10 +169,11 @@
 \ No newline at end of file
 +end Components.Connections_Server.HTTP_Server;
 --- components.ORIG/components-gnutls.gpr	2017-05-08 00:10:00.636208352 +0000
-+++ components/components-gnutls.gpr	2017-05-09 12:00:20.180087103 +0000
-@@ -1,14 +1,31 @@
++++ components/components-gnutls.gpr	2017-05-09 12:55:02.730053231 +0000
+@@ -1,14 +1,34 @@
 -with "components.gpr";
 +with "components";
++with "gnutls";
 +with "settings";
  
  project Components.GNUTLS is
@@ -192,15 +193,17 @@
 +   package Compiler renames Settings.Compiler;
 +   package Binder   renames Settings.Binder;
 +   package Builder  renames Settings.Builder;
-+   
++
     package Linker is
 -      for Linker_Options use ("-lgnutls");
-+      --
-+      -- FIXME: Is there a way to link the dynamic library
-+      --        itself with GnuTLS? Perhaps by writing an
-+      --        Externally_Built project file of some kind?
-+      --
-+      for Linker_Options use Split ("@PKGCONFIG_LIBS@", " ");
++      case Settings.Library_Type is
++         when "static" | "static-pic" =>
++            for Linker_Options use ("-lgnutls");
++         when "relocatable" =>
++            -- We link the shared library with GnuTLS, so there is
++            -- is no need to specify GnuTLS again.
++            null;
++      end case;
     end Linker;
  
  end Components.GNUTLS;
