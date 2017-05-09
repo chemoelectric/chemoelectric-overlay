@@ -22,18 +22,11 @@ src_configure() {
 	# with libsqlite3.so.
 	cat > sqlite3.gpr <<-EOF
 		library project SQLite3 is
-		   for Languages use ("C");
+		   for Source_Files use ();
 		   for Library_Dir use "$($(tc-getPKG_CONFIG) --variable libdir sqlite3)";
 		   for Library_Name use "sqlite3";
 		   for Library_Kind use "relocatable";
 		   for Externally_Built use "True";
 		end SQLite3;
 	EOF
-}
-
-src_install() {
-	simple-components-for-ada_src_install
-
-	# Remove `with "sqlite3";' lines from the generated project file.
-	sed -i -e '/with "sqlite3";/d' "${D}/usr/share/gpr/${PN}.gpr" || die
 }
