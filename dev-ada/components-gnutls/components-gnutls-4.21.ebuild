@@ -18,9 +18,7 @@ RDEPEND+=" ${COMMON_DEPEND}"
 SLOT="0"
 KEYWORDS="~amd64"
 
-src_prepare() {
-	simple-components-for-ada_src_prepare
-
+src_configure() {
 	# The following is used to link the relocatable components-gnutls
 	# with libgnutls.so.
 	cat > gnutls.gpr <<-EOF

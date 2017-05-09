@@ -287,3 +287,48 @@
 +   package Linker   renames Settings.Linker;
  
  end Components;
+--- components.ORIG/components-sqlite.gpr	2017-05-08 00:10:00.636208352 +0000
++++ components/components-sqlite.gpr	2017-05-09 14:26:01.839377535 +0000
+@@ -1,7 +1,15 @@
+-with "components.gpr";
++with "components";
++with "sqlite3";
++with "settings";
+ 
+ project Components.SQLite is
+ 
++   for Library_Name use Settings'Library_Name;
++   for Library_Version use Settings'Library_Version;
++   for Library_Kind use Settings'Library_Kind;
++   for Object_Dir use "obj/" & Settings.Library_Type & "." & Settings.Tasking & "." & Settings.Object_Tracing;
++   for Library_Dir use "lib/" & Settings.Library_Type & "." & Settings.Tasking & "." & Settings.Object_Tracing;
++   
+    for Source_Dirs use (".", "sqlite-sources");
+    for Languages use ("Ada", "C");
+ 
+@@ -22,9 +30,19 @@
+       "sqlite3.c"
+    );
+ 
+-   package Compiler renames Components.Compiler;
+-   package Binder   renames Components.Binder;
+-   package Builder  renames Components.Builder;
+-   package Linker   renames Components.Linker;
++   package Compiler renames Settings.Compiler;
++   package Binder   renames Settings.Binder;
++   package Builder  renames Settings.Builder;
++   
++   package Linker is
++      case Settings.Library_Type is
++         when "static" | "static-pic" =>
++            for Linker_Options use ("-lsqlite3");
++         when "relocatable" =>
++            -- We link the shared library with SQLite3, so there is
++            -- is no need to specify SQLite3 again.
++            null;
++      end case;
++   end Linker;
+ 
+-end Components.SQLite;
+\ No newline at end of file
++end Components.SQLite;
