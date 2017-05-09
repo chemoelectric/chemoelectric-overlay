@@ -45,6 +45,20 @@ awk < /usr/portage/eclass/toolchain.eclass "
   }
 }
 
+/ldpaths=\"\\$\\{ldpath\\}\\$\\{ldpaths:\\+:\\$\\{ldpaths\\}\\}\"/ {
+  # We need to add adalib to the LDPATH.
+  print \"\t\t\t# Add Ada support.\"
+  print \"\t\t\tis_ada && ldpath=\\\"\${ldpath}:\${ldpath}/adalib\\\"\"
+}
+
+/^HOMEPAGE=/ {
+  print
+  print \"\n# Add Ada support. Clear any funky flags before building the compiler.\"
+  print \"unset ADAFLAGS\"
+  print \"\"
+  next
+}
+
 /# is_ada/ { next }
 
 { print }
