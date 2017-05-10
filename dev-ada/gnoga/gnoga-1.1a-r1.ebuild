@@ -3,12 +3,7 @@
 
 EAPI=6
 
-# FIXME: This ebuild builds only static libraries.
-
-# FIXME: Use an external simple-components instead. For one thing, the
-# copy here is an older version.
-
-inherit unpacker multiprocessing pax-utils
+inherit unpacker multiprocessing toolchain-funcs pax-utils
 
 DESCRIPTION="The GNU Omnificent GUI for Ada"
 HOMEPAGE="http://www.gnoga.com/"
@@ -17,25 +12,37 @@ SRC_URI="
 	doc? ( https://bitbucket.org/chemoelectric/chemoelectric-overlay/downloads/MultiMarkdown-4.20170506.tar.xz )
 "
 
-LICENSE="GPL-3 gcc-runtime-library-exception-3.1 FDL-1.3"
+LICENSE="
+	GPL-3 gcc-runtime-library-exception-3.1 FDL-1.3
+	doc? ( MIT GPL-2+ )
+"
 SLOT="0"
 KEYWORDS="~amd64"
 
+# FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME
 IUSE="doc examples secure tools"
+# FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME
 
-RDEPEND="virtual/ada:*"
+RDEPEND="
+	virtual/ada:*
+	dev-ada/components:*
+	dev-ada/components-connections_server:*
+	dev-ada/components-connections_server-http_server:*
+	x11-libs/gtk+:3
+	net-libs/webkit-gtk:3
+"
 DEPEND="
 	${RDEPEND}
 	>=dev-ada/gprbuild-2016_p20170427191900
-	x11-libs/gtk+:3
-	net-libs/webkit-gtk:3
 "
 
 S="${WORKDIR}/${PN}-${PV/[a-z]/}"
 
+# FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME
 PATCHES=( "${FILESDIR}/${P}-gentoo.patch" )
+# FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME
 
-QA_EXECSTACK="
+XXXXXXQA_EXECSTACK="
 	usr/bin/gnoga_make
 	usr/bin/gnoga_doc
 	usr/*/gnoga/gnoga.static/libgnoga.a:gnoga-server-template_parser.o
@@ -44,39 +51,74 @@ QA_EXECSTACK="
 	usr/*/gnoga/gnoga.static/libgnoga.a:gnoga-server-connection.o
 	usr/*/gnoga/gnoga.static/libgnoga.a:gnoga-gui-view.o
 	usr/*/gnoga/gnoga.static/libgnoga.a:gnoga-gui-plugin-message_boxes.o
-	usr/*/components/components.static/persistent-memory_pools-streams.o
 "
 
 MY_GPRBUILD="${GPRBUILD:-gprbuild}"
 MY_GPRINSTALL="${GPRINSTALL:-gprinstall}"
 
+prj_target() {
+	local target="$(tc-getCC) -dumpmachine"
+	if echo "${target}" | grep -q -F linux ; then
+		echo Linux
+	elif echo "${target}" | grep -q -F freebsd ; then
+		echo Freebsd
+	elif echo "${target}" | grep -q -F darwin ; then
+		echo OSX
+	elif echo "${target}" | grep -q -F mingw32 ; then
+		echo Windows
+	elif echo "${target}" | grep -q -F cygwin ; then
+		echo Windows
+	else
+		echo Unix
+	fi
+}
+
+src_prepare() {
+	default
+
+	case "$(prj_target)" in
+		Windows)
+			cp src/gnoga-application.windows src/gnoga-application.adb || die
+			;;
+		OSX)
+			cp src/gnoga-application.osx src/gnoga-application.adb || die
+			;;
+		*)
+			cp src/gnoga-application.linux src/gnoga-application.adb || die
+	esac
+
+	
+}
+
+# FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME
 my_emake() {
 	emake BUILDER="${MY_GPRBUILD} -R -v -j$(makeopts_jobs)" \
 		  INSTALLER="${MY_GPRINSTALL} -v" \
 		  PREFIX="${D}/usr" LIBDIR="$(get_libdir)" \
 		  ${1+"$@"}
 }
+# FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME FIXME
 
 src_configure() {
 	:
 }
 
-src_compile() {
-	export BUILD_TYPE=static
-	my_emake release
-	use secure && my_emake gnoga_secure
-	use tools && my_emake gnoga_tools
-
-	use doc && {
-		# Prevent the C compiler from issuing warnings, so we do not
-		# get QA notices about bugs in MultiMarkdown-4. Also we need
-		# neither optimization nor debugging symbols, because we are
-		# throwing away the compiled program.
-		emake -C "${WORKDIR}"/MultiMarkdown-4 CFLAGS="2>/dev/null"
-		mv "${WORKDIR}"/MultiMarkdown-4/multimarkdown bin/. || die
-		my_emake html-docs
-	}
-}
+#src_compile() {
+#	export BUILD_TYPE=static
+#	my_emake release
+#	use secure && my_emake gnoga_secure
+#	use tools && my_emake gnoga_tools
+#
+#	use doc && {
+#		# Prevent the C compiler from issuing warnings, so we do not
+#		# get QA notices about bugs in MultiMarkdown-4. Also we need
+#		# neither optimization nor debugging symbols, because we are
+#		# throwing away the compiled program.
+#		emake -C "${WORKDIR}"/MultiMarkdown-4 CFLAGS="2>/dev/null"
+#		mv "${WORKDIR}"/MultiMarkdown-4/multimarkdown bin/. || die
+#		my_emake html-docs
+#	}
+#}
 
 prepare_examples() {
 	# Modify the examples so they are not dependent on the original
@@ -97,7 +139,7 @@ prepare_examples() {
 	done
 }
 
-src_install() {
+FIXME_src_install() {
 	export BUILD_TYPE=static
 	my_emake install
 	use secure && my_emake install_gnoga_secure

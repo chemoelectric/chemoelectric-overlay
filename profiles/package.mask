@@ -1,6 +1,8 @@
-# Barry Schwartz (6 May 2017)
-# This ebuild is still a work in progress, although it is likely to
-# be functional.
+# Barry Schwartz (10 May 2017)
+# The dev-ada/gnoga-1.1a-r1 ebuild is a work in progress, and the
+# dev-ada/gnoga-1.1a ebuild is abandoned and exists solely for
+# reference.
+=dev-ada/gnoga-1.1a-r1
 =dev-ada/gnoga-1.1a
 
 # Barry Schwartz (26 Apr 2017)

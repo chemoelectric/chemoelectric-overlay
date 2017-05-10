@@ -1,4 +1,4 @@
-# Barry Schwartz (9 May 2017)
+# Barry Schwartz (10 May 2017)
 # Compiling fails.
 =dev-ada/components-4.21 single-tasking
 =dev-ada/components-gnutls-4.21 single-tasking
@@ -12,3 +12,4 @@
 =dev-ada/components-connections_server-smtp-4.21 single-tasking
 =dev-ada/components-connections_server-http_server-4.21 single-tasking
 =dev-ada/components-connections_server-http_server-sqlite_browser-4.21 single-tasking
+=dev-ada/xpm_parser-4.21 single-tasking

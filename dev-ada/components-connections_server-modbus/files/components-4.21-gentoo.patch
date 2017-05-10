@@ -582,3 +582,33 @@
           for Library_Name use "odbc";
           for Library_Kind use "dynamic";
        when "ODBC32" =>
+--- components.ORIG/xpm/xpm_parser.gpr	2017-05-08 00:10:00.699206051 +0000
++++ components/xpm/xpm_parser.gpr	2017-05-10 19:41:23.091066554 +0000
+@@ -1,13 +1,25 @@
+-with "../components.gpr";
++with "components";
++with "../settings";
+ 
+ project xpm_parser is
+-
++   
+    for Source_Dirs use (".");
++   for Library_Name use Settings'Library_Name;
++   for Library_Version use Settings'Library_Version;
++   for Library_Kind use Settings'Library_Kind;
++   for Object_Dir use "obj/" & Settings.Library_Type & "." & Settings.Tasking & "." & Settings.Object_Tracing;
++   for Library_Dir use "lib/" & Settings.Library_Type & "." & Settings.Tasking & "." & Settings.Object_Tracing;
++
+    for Source_Files use
+       (  "parsers-generic_source-xpm.adb",
+          "parsers-generic_source-xpm.ads",
+          "parsers-multiline_source-xpm.ads"
+       );
++   
++   package Compiler renames Settings.Compiler;
++   package Binder   renames Settings.Binder;
++   package Builder  renames Settings.Builder;
++   package Linker   renames Settings.Linker;
+ 
+ end xpm_parser;
+ 

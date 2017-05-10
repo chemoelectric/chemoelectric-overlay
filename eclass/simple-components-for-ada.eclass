@@ -9,7 +9,8 @@ DESCRIPTION="Simple Components library for Ada: ${SUB_DESCRIPTION}"
 HOMEPAGE="https://sourceforge.net/projects/simplecomponentsforada/"
 SRC_URI="mirror://sourceforge/simplecomponentsforada/components_${PV/./_}.tgz -> components-${PV}.tar.gz"
 
-IUSE="doc single-tasking tracing"
+SIMPLE_COMPONENTS_FOR_ADA_BASE_IUSE="single-tasking tracing"
+IUSE="doc ${SIMPLE_COMPONENTS_FOR_ADA_BASE_IUSE}"
 
 DEPEND="
 	virtual/ada:*
@@ -107,10 +108,11 @@ simple-components-for-ada_src_prepare() {
 
 	# Keep only the gpr file for what we are building. Otherwise
 	# we get the wrong gpr files for projects included with
-	# `with'.
+	# `with'. But do not die if there is no such gpr file in the
+	# top directory.
 	mkdir BITBUCKET || die
 	mv *.gpr BITBUCKET || die
-	mv BITBUCKET/"${PN}".gpr . || die
+	mv BITBUCKET/"${PN}".gpr . 2>/dev/null || :
 
 	sed -e 's|@LIB_NAME@|'"${LIB_NAME}"'|g' \
 		-e 's|@SO_EXTENSION@|'"${SO_EXTENSION}"'|g' \
@@ -128,7 +130,7 @@ simple-components-for-ada_src_compile() {
 	done
 }
 
-simple-components-for-ada_src_install() {
+simple-components-for-ada-install() {
 	local gprinstall="${GPRINSTALL:-gprinstall} -v -p -f -P${PN} \
 		  --prefix=${D}/usr --link-lib-subdir=$(get_libdir) \
 		  --install-name=${PN}"
@@ -144,12 +146,17 @@ simple-components-for-ada_src_install() {
 			done
 		done
 	done
+}
 
+simple-components-for-ada-install-extra-docs() {
+	docinto html
+	dodoc components.htm *.jpg *.gif
+	docinto ..
+}
+
+simple-components-for-ada_src_install() {
+	simple-components-for-ada-install
 	einstalldocs
-
 	dodoc readme_components.txt
-	use doc && {
-		docinto html
-		dodoc components.htm *.jpg *.gif
-	}
+	use doc && simple-components-for-ada-install-extra-docs
 }
