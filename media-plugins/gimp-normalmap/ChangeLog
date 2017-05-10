@@ -4,6 +4,10 @@
 
   10 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
   gimp-normalmap-1.2.2-r1.ebuild:
+  Host the source at the chemoelectric overlay.
+
+  10 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  gimp-normalmap-1.2.2-r1.ebuild:
   Upgrade to EAPI 6
 
   08 Jul 2010; Michał Górny (sedzimir) <mgorny.3ehbo@mailnull.com>
