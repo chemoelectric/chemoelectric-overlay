@@ -4,6 +4,10 @@
 
   10 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
   tcputils-0.6.2.ebuild:
+  Keep our own copy of the source for such an obscure package.
+
+  10 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  tcputils-0.6.2.ebuild:
   Upgrade to EAPI 6
 
   13 Nov 2009; Andreas K. Huettel (dilfridge) <mail@akhuettel.de>
