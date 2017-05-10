@@ -10,7 +10,10 @@ MY_P=${MY_PN}-${PV}
 
 DESCRIPTION="refocus images using FIR Wiener filtering"
 HOMEPAGE="http://refocus.sourceforge.net"
-SRC_URI="mirror://sourceforge/${MY_PN}/${MY_P}.tar.gz"
+SRC_URI="
+	mirror://sourceforge/${MY_PN}/${MY_P}.tar.gz
+	https://bitbucket.org/chemoelectric/chemoelectric-overlay/downloads/${MY_P}.tar.gz
+"
 
 LICENSE="GPL-2"
 SLOT="0"

@@ -3,6 +3,10 @@
 # $Header: $
 
   10 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  gimp-refocus-0.9.0.ebuild:
+  Keep a back-up copy of the source in the chemoelectric overlay's downloads.
+
+  10 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
   gimp-refocus-0.9.0.ebuild, -files/gimp-refocus-atlas.patch:
   Actually remove the unused patch from the repo.
 
