@@ -27,7 +27,6 @@ src_prepare() {
 	eapply -p0 "${FILESDIR}"/${MY_PN}-gimp-2.0.patch
 	eapply "${FILESDIR}"/${MY_PN}-0.9.0-gimp-2.2_rlx.diff
 	eapply "${FILESDIR}"/${PN}-gimp2.6.patch
-	#eapply "${FILESDIR}"/${PN}-atlas.patch
 	eapply_user
 
 	eautoreconf
