@@ -11,6 +11,7 @@ dev-util
 dev-vcs
 media-libs
 media-plugins
+net-misc
 net-print
 sci-mathematics
 sys-apps
