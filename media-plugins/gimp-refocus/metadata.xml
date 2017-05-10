@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
-<maintainer><email>maintainer-wanted@gentoo.org</email></maintainer>
-<use>
-	<flag name='lapack-atlas'>Use the ATLAS version of lapack</flag>
-</use>
+	<maintainer type="person">
+		<email>sortsmill@crudfactory.com</email>
+		<name>Barry Schwartz</name>
+	</maintainer>
 </pkgmetadata>

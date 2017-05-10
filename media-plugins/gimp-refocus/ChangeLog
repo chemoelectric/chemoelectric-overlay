@@ -1,6 +1,11 @@
 # ChangeLog for media-plugins/gimp-refocus
-# Copyright 1999-2010 Gentoo Foundation; Distributed under the GPL v2
+# Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Header: $
+
+  10 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  gimp-refocus-0.9.0.ebuild, metadata.xml:
+  Upgrade gimp-refocus to EAPI 6, and remove the use-flag.
+  (I use openblas and the reference lapack, anyway.)
 
   08 Jul 2010; Stefan Talpalaru (stefantalpalaru)
   <stefantalpalaru@yahoo.com> +files/refocus-0.9.0-gimp-2.2_rlx.diff,
