@@ -1,8 +1,7 @@
-# Copyright 1999-2010 Gentoo Foundation
+# Copyright 1999-2017 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: $
 
-EAPI="2"
+EAPI=6
 
 inherit eutils
 
@@ -17,7 +16,8 @@ IUSE=""
 
 src_prepare() {
 	# trivially patch Makefile for using Gentoo CFLAGS etc
-	epatch "${FILESDIR}/${P}-Makefile.patch"
+	eapply "${FILESDIR}/${P}-Makefile.patch"
+	eapply_user
 }
 
 src_install() {
