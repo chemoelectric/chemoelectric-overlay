@@ -7,7 +7,10 @@ EXPORT_FUNCTIONS src_unpack src_prepare src_compile src_install
 
 DESCRIPTION="Simple Components library for Ada: ${SUB_DESCRIPTION}"
 HOMEPAGE="https://sourceforge.net/projects/simplecomponentsforada/"
-SRC_URI="mirror://sourceforge/simplecomponentsforada/components_${PV/./_}.tgz -> components-${PV}.tar.gz"
+SRC_URI="
+	mirror://sourceforge/simplecomponentsforada/components_${PV/./_}.tgz -> components-${PV}.tar.gz
+	https://bitbucket.org/chemoelectric/chemoelectric-overlay/downloads/components-${PV}-gentoo.patch.xz
+"
 
 SIMPLE_COMPONENTS_FOR_ADA_BASE_IUSE="single-tasking tracing"
 IUSE="doc ${SIMPLE_COMPONENTS_FOR_ADA_BASE_IUSE}"
@@ -20,7 +23,7 @@ RDEPEND="
 	virtual/ada:*
 "
 
-PATCHES=( "${FILESDIR}/components-${PV}-gentoo.patch" )
+PATCHES=( "${WORKDIR}/components-${PV}-gentoo.patch" )
 
 # Let us make the soname a simple mathematical function of the package
 # version. Can someone come up with a better soname, given that we
@@ -98,6 +101,7 @@ tracing_options() {
 
 simple-components-for-ada_src_unpack() {
 	cd "${WORKDIR}"
+	unpack "components-${PV}-gentoo.patch.xz"
 	mkdir "${P}" || die
 	cd "${P}" || die
 	unpack "components-${PV}.tar.gz"
