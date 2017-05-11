@@ -1,0 +1,14 @@
+--- gentoolkit-dev-0.3.1/src/echangelog/Makefile.ORIG	2017-05-11 00:42:28.548210675 +0000
++++ gentoolkit-dev-0.3.1/src/echangelog/Makefile	2017-05-11 00:43:23.267194357 +0000
+@@ -26,7 +26,9 @@
+ 	cp test/templates/test.patch test/templates/vcstest-0.0.1.ebuild ../../$(DISTDIR)/src/echangelog/test/templates
+ 
+ install: all echangelog.1
++	install -d $(DOCDIR)
++	install -d $(BINDIR)
++	install -d $(MAN1DIR)
+ 	install -m 0755 echangelog $(BINDIR)/
+-	install -d $(DOCDIR)/echangelog
+-	install -m 0644 AUTHORS README $(DOCDIR)/echangelog/
++	install -m 0644 ChangeLog AUTHORS README $(DOCDIR)/
+ 	install -m 0644 echangelog.1 $(MAN1DIR)/

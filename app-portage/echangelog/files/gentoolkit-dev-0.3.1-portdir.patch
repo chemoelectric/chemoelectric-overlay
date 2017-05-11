@@ -1,0 +1,11 @@
+--- gentoolkit-dev-0.3.1/src/echangelog/echangelog.ORIG	2017-04-15 22:06:59.030421014 +0000
++++ gentoolkit-dev-0.3.1/src/echangelog/echangelog	2017-04-15 22:07:27.928343372 +0000
+@@ -257,7 +257,7 @@
+ } else {
+ 	# No ChangeLog here, maybe we should make one...
+ 	if (glob("*.ebuild")) {
+-		open(my $ph, '-|', "portageq portdir") or die "portageq returned with an error: $!\n";
++		open(my $ph, '-|', "portageq get_repo_path / gentoo") or die "portageq returned with an error: $!\n";
+ 		my $portdir = <$ph>;
+ 		$portdir =~ s/\s+$//;
+ 		close($ph);

@@ -1,0 +1,10 @@
+--- gentoolkit-dev-0.3.1/src/echangelog/echangelog.WITH_Id	2017-05-11 00:24:10.666666079 +0000
++++ gentoolkit-dev-0.3.1/src/echangelog/echangelog	2017-05-11 00:24:22.293237656 +0000
+@@ -272,7 +272,6 @@
+ 			$text = <<EOT
+ # ChangeLog for <CATEGORY>/<PACKAGE>
+ # Copyright 1999-2016 Gentoo Foundation; Distributed under the GPL v2
+-# \$Id\$
+ EOT
+ 		}
+ 
