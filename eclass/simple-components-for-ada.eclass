@@ -141,12 +141,13 @@ simple-components-for-ada-install() {
 	for lt in $(library_types) ; do
 		for tasking in $(tasking_options) ; do
 			for tracing in $(tracing_options) ; do
+				local pn="components"
 				local bn="$(build_name "${lt}" "${tasking}" "${tracing}")"
 				${gprinstall} $(x_flags "${lt}" "${tasking}" "${tracing}") \
 							  --build-var="COMPONENTS_BUILD" \
 							  --build-name="${bn}" \
-							  --lib-subdir="$(get_libdir)/${PN}/${PN}.${bn}" \
-							  --sources-subdir="include/${PN}/${PN}.${bn}"
+							  --lib-subdir="$(get_libdir)/${pn}/${pn}.${bn}" \
+							  --sources-subdir="include/${pn}/${pn}.${bn}"
 			done
 		done
 	done
