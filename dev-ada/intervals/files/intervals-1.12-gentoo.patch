@@ -1,0 +1,64 @@
+--- intervals_1_12.ORIG/intervals.gpr	2009-05-27 10:03:08.000000000 +0000
++++ intervals_1_12/intervals.gpr	2017-05-12 21:22:20.007895516 +0000
+@@ -2,6 +2,21 @@
+ 
+ project Intervals is
+ 
++   type Development_Type is ("Debug", "Release");
++   Development : Development_Type := external ("Development", "Release");
++   
++   type Legacy_Type is ("Ada95", "Ada2005", "Ada2012");
++   Legacy : Legacy_Type := external ("Legacy", "Ada2005");
++
++   type Library_T is ("static", "static-pic", "relocatable");
++   Library_Type : Library_T := external ("LIBRARY_TYPE", "static");
++   
++   for Library_Name use "@LIB_NAME@";
++   for Library_Version use "lib@LIB_NAME@@SO_EXTENSION@";
++   for Library_Kind use Library_Type;
++   for Object_Dir use "obj/" & Library_Type;
++   for Library_Dir use "lib/" & Library_Type;
++   
+    for Source_Dirs use (".");
+    for Source_Files use
+       (  "float_intervals.ads", 
+@@ -17,10 +32,35 @@
+          "intervals.ads"
+       );
+       
+-   package Builder  renames Units.Builder;
+-   package Binder   renames Units.Binder;
+-   package Compiler renames Units.Compiler;
+-   package Linker   renames Units.Linker;
++   package Compiler is
++      case Development is
++         when "Debug" =>
++            case Legacy is
++               when "Ada2012" =>
++                  for Default_Switches ("ada") use
++                     ("-gnatwcikmoprvz.c.p.t.w.x", "-gnato", "-gnatVa", "-gnatf", "-g", "-fstack-check", "-gnat12");
++               when "Ada2005" =>
++                  for Default_Switches ("ada") use
++                     ("-gnatwcikmoprvZ.c.p.t.w.x", "-gnato", "-gnatVa", "-gnatf", "-g", "-fstack-check", "-gnat05");
++               when "Ada95" =>
++                  for Default_Switches ("ada") use
++                     ("-gnatwcikmoprvz.c.p.t.w.x", "-gnato", "-gnatVa", "-gnatf", "-g", "-fstack-check", "-gnat95");
++            end case;
++         when "Release" =>
++            case Legacy is
++               when "Ada2012" =>
++                  for Default_Switches ("ada") use
++                     ("-gnatwcikmoprvz.c.p.t.w.x", "-gnatp", "-gnatVa", "-gnatf", "-O2", "-gnatn", "-gnat12");
++               when "Ada2005" =>
++                  for Default_Switches ("ada") use
++                     ("-gnatwcikmoprvz.c.p.t.w.x", "-gnatp", "-gnatVa", "-gnatf", "-O2", "-gnatn", "-gnat05");
++               when "Ada95" =>
++                  for Default_Switches ("ada") use
++                     ("-gnatwcikmoprvz.c.p.t.w.x", "-gnatp", "-gnatVa", "-gnatf", "-O2", "-gnatn", "-gnat95");
++            end case;
++      end case;
++      for Default_Switches ("ada") use Compiler'Default_Switches ("ada") & Split (external ("ADAFLAGS", ""), " ");
++   end Compiler;
+ 
+ end Intervals;
+ 
