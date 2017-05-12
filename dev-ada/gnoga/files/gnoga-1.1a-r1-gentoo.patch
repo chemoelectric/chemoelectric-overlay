@@ -1,0 +1,84 @@
+--- gnoga-1.1.ORIG/settings.gpr	2017-05-06 21:34:17.590165056 +0000
++++ gnoga-1.1/settings.gpr	2017-05-11 19:23:05.312791325 +0000
+@@ -33,6 +33,12 @@
+          when others =>
+             null;
+       end case;
++      
++      Ada_Flags := Split (external ("ADAFLAGS", ""), " ");
++      for Default_Switches ("Ada") use Compiler'Default_Switches ("Ada") & Ada_Flags;
++      
++      C_Flags := Split (external ("CFLAGS", ""), " ");
++      for Default_Switches ("C") use C_Flags;
+    end Compiler;
+ 
+    ------------
+--- gnoga-1.1.ORIG/src/gnoga.gpr	2017-05-06 21:34:17.602164617 +0000
++++ gnoga-1.1/src/gnoga.gpr	2017-05-11 22:45:48.479640219 +0000
+@@ -1,14 +1,27 @@
+ with "../settings";
+-with "../deps/simple_components/components-connections_server-http_server.gpr";
++with "../sqlite3";
++with "../python";
++with "../gtk";
++with "../webkitgtk";
++with "../mysqlclient";
++with "components-connections_server-http_server";
+ 
+ project Gnoga is
++   
++   Gnoga_Version := external ("Gnoga_Version", "VERSION_UNKNOWN");
+ 
+-   for Object_Dir use "../obj";
+-   for Source_Dirs use (".");
++   type Library_Type_T is ("static", "static-pic", "relocatable");
++   Library_Type : Library_Type_T := external ("Library_Type", "static");
++   
++   for Languages use ("Ada", "C");
+ 
++   for Object_Dir use "../obj/" & Library_Type;
++   for Source_Dirs use (".");
++   
+    for Library_Name use "gnoga";
+-   for Library_Dir use "../lib";
+-   for Library_Kind use "static";
++   for Library_Version use "libgnoga.so." & Gnoga_Version;
++   for Library_Dir use "../lib/" & Library_Type;
++   for Library_Kind use Library_Type;
+ 
+    package Compiler renames Settings.Compiler;
+ 
+--- gnoga-1.1.ORIG/ssl/gnoga_secure.gpr	2017-05-06 21:34:17.602164617 +0000
++++ gnoga-1.1/ssl/gnoga_secure.gpr	2017-05-11 22:54:25.465146268 +0000
+@@ -1,18 +1,25 @@
+ with "../settings";
+ with "../src/gnoga.gpr";
+-with "../deps/simple_components/components-connections_server-http_server.gpr";
+-with "../deps/simple_components/components-connections_server-http_server.gpr";
+-with "../deps/simple_components/components-connections_server-secure.gpr";
++with "components-connections_server-http_server";
++with "components-connections_server-http_server";
++with "components-connections_server-secure";
+ 
+ 
+ project Gnoga_Secure is
++   
++   Gnoga_Version := external ("Gnoga_Version", "VERSION_UNKNOWN");
+ 
+-   for Object_Dir use "../obj";
++   type Library_Type_T is ("static", "static-pic", "relocatable");
++   Library_Type : Library_Type_T := external ("Library_Type", "static");
++   
++   for Languages use ("Ada");
++
++   for Object_Dir use "../obj/" & Library_Type;
+    for Source_Dirs use (".");
+ 
+    for Library_Name use "gnoga_secure";
+-   for Library_Dir use "../lib";
+-   for Library_Kind use "static";
++   for Library_Dir use "../lib/" & Library_Type;
++   for Library_Kind use Library_Type;
+ 
+    package Compiler renames Settings.Compiler;
+ 
