@@ -1,5 +1,5 @@
 --- units_3_7.ORIG/units.gpr	2009-05-27 13:26:56.000000000 +0000
-+++ units_3_7/units.gpr	2017-05-12 21:13:34.523632665 +0000
++++ units_3_7/units.gpr	2017-05-12 21:22:12.402181186 +0000
 @@ -3,6 +3,21 @@
  
  Project Units is
@@ -22,31 +22,20 @@
     for Source_Dirs use (".");
     for Source_Files use 
         (  "float_measures.ads",
-@@ -39,23 +54,60 @@
+@@ -38,24 +53,34 @@
+           "units.ads"
         );
  
-    package Binder is
+-   package Binder is
 -      for Default_Switches ("ada") use
 -         Strings_Edit.Binder'Default_Switches ("ada");
-+      case Development is
-+         when "Debug" =>
-+            for Default_Switches ("ada") use ("-E");
-+         when "Release" =>
-+            for Default_Switches ("ada") use ();
-+      end case;
-    end Binder;
- 
-    package Builder is
+-   end Binder;
+-
+-   package Builder is
 -      for Default_Switches ("ada") use
 -         Strings_Edit.Builder'Default_Switches ("ada");
-+      case Development is
-+         when "Debug" =>
-+            for Default_Switches ("ada") use ("-g");
-+         when "Release" =>
-+            for Default_Switches ("ada") use ("-s");
-+      end case;
-    end Builder;
- 
+-   end Builder;
+-
     package Compiler is
 -      for Default_Switches ("ada") use
 -         Strings_Edit.Compiler'Default_Switches ("ada");
@@ -79,17 +68,11 @@
 +      for Default_Switches ("ada") use Compiler'Default_Switches ("ada") & Split (external ("ADAFLAGS", ""), " ");
     end Compiler;
  
-    package Linker is
+-   package Linker is
 -      for Default_Switches ("ada") use
 -         Strings_Edit.Linker'Default_Switches ("ada");
-+      case Development is
-+         when "Debug" =>
-+            for Default_Switches ("ada") use ("-g");
-+         when "Release" =>
-+            for Default_Switches ("ada") use ("-O2", "-s");
-+      end case;
-    end Linker;
- 
+-   end Linker;
+-
 -end Units;
 \ No newline at end of file
 +end Units;

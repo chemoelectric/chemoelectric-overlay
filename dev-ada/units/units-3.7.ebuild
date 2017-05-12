@@ -58,7 +58,7 @@ src_compile() {
 		export LIBRARY_TYPE="${lt}"
 		export STRINGS_EDIT_BUILD="${lt}"
 		export TABLES_BUILD="${lt}"
-		${GPRBUILD:-gprbuild} -j"$(makeopts_jobs)" -v -p -R -P"${PN}"
+		${GPRBUILD:-gprbuild} -j"$(makeopts_jobs)" -v -p -R -P"${PN}" || die
 	done
 }
 
@@ -72,9 +72,9 @@ src_install() {
 			--prefix="${D}/usr" \
 			--link-lib-subdir="$(get_libdir)" \
 			--install-name="${PN}" \
-			--build-name="${PN}" \
+			--build-name="${lt}" \
 			--lib-subdir="$(get_libdir)/${PN}/${PN}.${lt}" \
-			--sources-subdir="include/${PN}/${PN}.${lt}"
+			--sources-subdir="include/${PN}/${PN}.${lt}" || die
 	done
 	einstalldocs
 	dodoc "readme_${PN}.txt"
