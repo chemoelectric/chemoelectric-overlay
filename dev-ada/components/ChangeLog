@@ -2,6 +2,11 @@
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 # $Id$
 
+  12 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
+  components-4.21.ebuild:
+  Live dangerously and allow later versions of strings_edit and tables. Kio
+  okazos, tio okazos.
+
   10 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
   components-4.21.ebuild:
   Support USE=examples

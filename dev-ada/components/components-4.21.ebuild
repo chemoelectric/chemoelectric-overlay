@@ -7,11 +7,9 @@ SUB_DESCRIPTION="core library"
 
 inherit simple-components-for-ada
 
-# FIXME: Should we require the specific versions of strings_edit and
-# tables, as here, or should we switch to >= notation?
 COMMON_DEPEND="
-	=dev-ada/strings_edit-3.2*:=
-	=dev-ada/tables-1.13*:=
+	>=dev-ada/strings_edit-3.2:=
+	>=dev-ada/tables-1.13:=
 "
 DEPEND+="${COMMON_DEPEND}"
 RDEPEND+="${COMMON_DEPEND}"
