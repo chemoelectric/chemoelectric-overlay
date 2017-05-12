@@ -50,7 +50,7 @@ src_prepare() {
 src_configure() {
 	sed -e 's|@LIB_NAME@|'"${LIB_NAME}"'|g' \
 		-e 's|@SO_EXTENSION@|'"${SO_EXTENSION}"'|g' \
-		-i units.gpr || die
+		-i "${PN}.gpr" || die
 }
 
 src_compile() {

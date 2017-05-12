@@ -1,6 +1,9 @@
 # ChangeLog for dev-ada/units
 # Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
 
+  12 May 2017; Barry Schwartz <sortsmill@crudfactory.com> units-3.7.ebuild:
+  Minor parameterization.
+
 *units-3.7 (12 May 2017)
 
   12 May 2017; Barry Schwartz <sortsmill@crudfactory.com> +units-3.7.ebuild,
