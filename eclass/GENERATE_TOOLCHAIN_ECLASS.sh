@@ -54,6 +54,8 @@ awk < /usr/portage/eclass/toolchain.eclass "
 /^HOMEPAGE=/ {
   print
   print \"\n# Add Ada support. Clear any funky flags before building the compiler.\"
+  print \"# (I believe the GCC Makefiles use CFLAGS or CXXFLAGS when compiling Ada,\"
+  print \"# anyway, and that they use ADAFLAGS for notations like -gnatXXXX.)\"
   print \"unset ADAFLAGS\"
   print \"\"
   next
@@ -62,4 +64,10 @@ awk < /usr/portage/eclass/toolchain.eclass "
 /# is_ada/ { next }
 
 { print }
-"
+" \
+    | sed -e 's|\([ 	]emake[ 	]\)|\1P= |g'
+
+# The sed above clears the ‘$(P)’ that appears in the Ada sections of
+# some GCC Makefile hierarchies, without being set anywhere in the
+# Makefiles. Portage, of course, sets the environment variable P to
+# ${PN}-${PV}.

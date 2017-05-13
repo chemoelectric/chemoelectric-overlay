@@ -1,3 +1,13 @@
+# Barry Schwartz (13 May 2017)
+# Gcc is crucial to system integrity. Therefore mask my gcc ebuilds so
+# people who want them have to make a positive effort to get them.
+#
+# (The bug that previously caused USE=ada to fail in GCC 6.3.0 and
+# 7.1.0 has been fixed, by the way.)
+#
+sys-devel/gcc
+virtual/gnat
+
 # Barry Schwartz (26 Apr 2017)
 # This ebuild is a work in progress works, at best, only partially.
 =dev-scheme/chibi-scheme-0.7.3

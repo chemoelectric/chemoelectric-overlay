@@ -7,6 +7,8 @@ DESCRIPTION="The GNU Compiler Collection"
 HOMEPAGE="https://gcc.gnu.org/"
 
 # Add Ada support. Clear any funky flags before building the compiler.
+# (I believe the GCC Makefiles use CFLAGS or CXXFLAGS when compiling Ada,
+# anyway, and that they use ADAFLAGS for notations like -gnatXXXX.)
 unset ADAFLAGS
 
 RESTRICT="strip" # cross-compilers need controlled stripping
@@ -1608,7 +1610,7 @@ gcc_do_make() {
 
 	pushd "${WORKDIR}"/build >/dev/null
 
-	emake \
+	emake P= \
 		LDFLAGS="${LDFLAGS}" \
 		STAGE1_CFLAGS="${STAGE1_CFLAGS}" \
 		LIBPATH="${LIBPATH}" \
@@ -1620,10 +1622,10 @@ gcc_do_make() {
 		if type -p doxygen > /dev/null ; then
 			if tc_version_is_at_least 4.3 ; then
 				cd "${CTARGET}"/libstdc++-v3/doc
-				emake doc-man-doxygen || ewarn "failed to make docs"
+				emake P= doc-man-doxygen || ewarn "failed to make docs"
 			elif tc_version_is_at_least 3.0 ; then
 				cd "${CTARGET}"/libstdc++-v3
-				emake doxygen-man || ewarn "failed to make docs"
+				emake P= doxygen-man || ewarn "failed to make docs"
 			fi
 			# Clean bogus manpages.  #113902
 			find -name '*_build_*' -delete
@@ -1645,7 +1647,7 @@ gcc_do_make() {
 toolchain_src_test() {
 	if use regression-test ; then
 		cd "${WORKDIR}"/build
-		emake -k check
+		emake P= -k check
 	fi
 }
 
@@ -1679,7 +1681,7 @@ toolchain_src_install() {
 	done < <(find gcc/include*/ -name '*.h')
 
 	# Do the 'make install' from the build directory
-	S="${WORKDIR}"/build emake -j1 DESTDIR="${D}" install || die
+	S="${WORKDIR}"/build emake P= -j1 DESTDIR="${D}" install || die
 
 	# Punt some tools which are really only useful while building gcc
 	find "${D}" -name install-tools -prune -type d -exec rm -rf "{}" \;
@@ -2317,7 +2319,7 @@ is_objcxx() {
 get_make_var() {
 	local var=$1 makefile=${2:-${WORKDIR}/build/Makefile}
 	echo -e "e:\\n\\t@echo \$(${var})\\ninclude ${makefile}" | \
-		r=${makefile%/*} emake --no-print-directory -s -f - 2>/dev/null
+		r=${makefile%/*} emake P= --no-print-directory -s -f - 2>/dev/null
 }
 
 XGCC() { get_make_var GCC_FOR_TARGET ; }
