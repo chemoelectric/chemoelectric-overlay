@@ -11,14 +11,3 @@ virtual/gnat
 # Barry Schwartz (26 Apr 2017)
 # This ebuild is a work in progress works, at best, only partially.
 =dev-scheme/chibi-scheme-0.7.3
-
-# Barry Schwartz (10 Apr 2017)
-# Gcc is crucial to system integrity. Therefore mask my gcc ebuilds so
-# people who want them have to make a positive effort to get them.
-#
-# Note that USE=ada does not work in sys-devel/gcc-6.3.0, unless you
-# have a patch. There appears to be a bug in the makefiles. I would
-# mask the use-flag but cannot seem to get that to work.
-#
-sys-devel/gcc
-virtual/gnat
