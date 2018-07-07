@@ -1,3 +1,9 @@
-To use this overlay, install layman, then as root run
+Either copy the ebuilds your want to your local Portage overlay, or
+edit your /etc/layman/layman.cfg like this:
 
-   layman -a chemoelectric
+------------------------------------------------------------------------
+
+overlays  : http://www.gentoo.org/proj/en/overlays/repositories.xml
+            https://bitbucket.org/chemoelectric/chemoelectric-overlay/raw/master/chemoelectric-overlay.xml
+
+------------------------------------------------------------------------
