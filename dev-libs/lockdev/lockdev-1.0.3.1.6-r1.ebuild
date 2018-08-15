@@ -1,7 +1,7 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=6
 
 GENTOO_DEPEND_ON_PERL="no"
 inherit toolchain-funcs perl-module eutils versionator autotools
@@ -14,7 +14,7 @@ DEB_PV=$(replace_version_separator 3 '-')
 DEB_P=${PN}_${DEB_PV}
 
 DESCRIPTION="Library for locking devices"
-HOMEPAGE="http://packages.debian.org/source/sid/lockdev"
+HOMEPAGE="https://packages.debian.org/source/sid/lockdev"
 SRC_URI="
 	mirror://debian/pool/main/${PN:0:1}/${PN}/${PN}_${MY_PV}.orig.tar.gz
 	mirror://debian/pool/main/${PN:0:1}/${PN}/${DEB_P}.diff.gz
@@ -54,7 +54,7 @@ src_prepare() {
 
 	cd "${S}" || die
 	epatch "${PATCHES[@]}"
-	epatch_user
+	eapply_user
 
 	eautoreconf
 
