@@ -22,8 +22,16 @@ KEYWORDS=""
 
 IUSE="threads X"
 
-DEPEND=""
-RDEPEND="${DEPEND}"
+# libX11.so is dlopened if needed, and I do not believe the header
+# files are used. Therefore I have included it only in runtime
+# dependencies.
+DEPEND="
+	sys-libs/ncurses:*
+"
+RDEPEND="
+	${DEPEND}
+	X? ( x11-libs/libX11:* )
+"
 
 src_configure() {
 	local flags=""
@@ -35,6 +43,9 @@ src_configure() {
 	flags+=" --nogzip-man-pages"
 	use threads && flags+=" --threads"
 	use X || flags+=" --disable-x11"
+
+	einfo "Flags to be passed to configure:"
+	einfo "  ${flags}"
 
 	# The configure script is not one created by Autoconf,
 	# so run it directly.
