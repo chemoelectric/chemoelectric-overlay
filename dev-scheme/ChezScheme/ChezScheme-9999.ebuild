@@ -1,12 +1,6 @@
 # Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-####
-#### FIXME: Add multilib support for building both the 32-bit and
-####        64-bit machines. Currently only the native machine (64-bit
-####        on amd64) is built.
-####
-
 EAPI=7
 
 inherit git-r3 multilib
