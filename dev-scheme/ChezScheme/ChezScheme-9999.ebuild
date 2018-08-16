@@ -35,11 +35,11 @@ RDEPEND="
 
 src_configure() {
 	local flags=""
-	flags+=" --installprefix=/usr"
-	flags+=" --installbin=/usr/bin"
-	flags+=" --installlib=/usr/$(get_libdir)"
-	flags+=" --installman=/usr/share/man"
-	flags+=" --temproot=${D}"
+	flags+=" --installprefix=${EPREFIX}/usr"
+	flags+=" --installbin=${EPREFIX}/usr/bin"
+	flags+=" --installlib=${EPREFIX}/usr/$(get_libdir)"
+	flags+=" --installman=${EPREFIX}/usr/share/man"
+	flags+=" --temproot=${ED}"
 	flags+=" --nogzip-man-pages"
 	use threads && flags+=" --threads"
 	use X || flags+=" --disable-x11"
@@ -50,4 +50,13 @@ src_configure() {
 	# The configure script is not one created by Autoconf,
 	# so run it directly.
 	./configure ${flags}
+}
+
+src_install() {
+	# Install the examples in /usr/share/doc instead of in
+	# /usr/$(get_libdir)
+	emake install \
+		  InstallLibExamples="${EPREFIX}/usr/share/doc/${PF}/examples"
+
+	dodoc CHARTER* README* LOG* NOTICE*
 }
