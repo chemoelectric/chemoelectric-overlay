@@ -27,6 +27,15 @@ RDEPEND="
 	X? ( x11-libs/libX11:* )
 "
 
+echo_CHEZSCHEMELIBDIRS() {
+	echo -n "CHEZSCHEMELIBDIRS='"
+	echo -n "${EPREFIX}/usr/local/share/${PN}::"
+	echo -n "${EPREFIX}/usr/local/$(get_libdir)/${PN}:"
+	echo -n "${EPREFIX}/usr/share/${PN}::"
+	echo -n "${EPREFIX}/usr/$(get_libdir)/${PN}:"
+	echo "'"
+}
+
 src_configure() {
 	local flags=""
 	flags+=" --installprefix=${EPREFIX}/usr"
@@ -58,15 +67,7 @@ src_install() {
 	# (optionally) in /usr/local.
 	dodir /etc/env.d
 	insinto /etc/env.d
-	(
-		echo -n "CHEZSCHEMELIBDIRS='"
-		echo -n "${EPREFIX}/usr/local/share/${PN}::"
-		echo -n "${EPREFIX}/usr/local/$(get_libdir)/${PN}:"
-		echo -n "${EPREFIX}/usr/share/${PN}::"
-		echo -n "${EPREFIX}/usr/$(get_libdir)/${PN}:"
-		echo "'"
-	) |
-		newins - "50${PN}"
+	$(echo_CHEZSCHEMELIBDIRS) | newins - "50${PN}"
 	keepdir "/usr/share/${PN}"
 	keepdir "/usr/$(get_libdir)/${PN}"
 }
@@ -76,6 +77,10 @@ pkg_postinst() {
 	ewarn "You should update the CHEZSCHEMELIBDIRS environment variable --"
 	ewarn " for example, by running the following command:"
 	ewarn ""
-	ewarn "        source /etc/profile"
+	ewarn "    source /etc/profile"
+	ewarn ""
+	ewarn "This would set CHEZSCHEMELIBDIRS as follows:"
+	ewarn ""
+	ewarn "    $(echo_CHEZSCHEMELIBDIRS)"
 	ewarn ""
 }
