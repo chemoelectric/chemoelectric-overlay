@@ -47,10 +47,35 @@ src_configure() {
 }
 
 src_install() {
+	dodoc CHARTER* README* LOG* NOTICE*
+
 	# Install the examples in /usr/share/doc instead of in
 	# /usr/$(get_libdir)
 	emake install \
 		  InstallLibExamples="${EPREFIX}/usr/share/doc/${PF}/examples"
 
-	dodoc CHARTER* README* LOG* NOTICE*
+	# Set up site-wide locations for libraries, in /usr and
+	# (optionally) in /usr/local.
+	dodir /etc/env.d
+	insinto /etc/env.d
+	(
+		echo -n "CHEZSCHEMELIBDIRS='"
+		echo -n "${EPREFIX}/usr/local/share/${PN}::"
+		echo -n "${EPREFIX}/usr/local/$(get_libdir)/${PN}:"
+		echo -n "${EPREFIX}/usr/share/${PN}::"
+		echo -n "${EPREFIX}/usr/$(get_libdir)/${PN}:"
+		echo "'"
+	) |
+		newins - "50${PN}"
+	keepdir "/usr/share/${PN}"
+	keepdir "/usr/$(get_libdir)/${PN}"
+}
+
+pkg_postinst() {
+	ewarn ""
+	ewarn "You should update the CHEZSCHEMELIBDIRS environment variable --"
+	ewarn " for example, by running the following command:"
+	ewarn ""
+	ewarn "        source /etc/profile"
+	ewarn ""
 }
