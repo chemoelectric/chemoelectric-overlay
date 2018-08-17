@@ -77,12 +77,3 @@ src_install() {
 	doins -r srfi
 	popd 2>/dev/null || die
 }
-
-pkg_postinst() {
-	ewarn ""
-	ewarn "You should update the CHEZSCHEMELIBDIRS environment variable --"
-	ewarn " for example, by running the following command:"
-	ewarn ""
-	ewarn "        source /etc/profile"
-	ewarn ""
-}
