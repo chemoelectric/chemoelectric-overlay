@@ -67,7 +67,7 @@ src_install() {
 	# (optionally) in /usr/local.
 	dodir /etc/env.d
 	insinto /etc/env.d
-	$(echo_CHEZSCHEMELIBDIRS) | newins - "50${PN}"
+	echo "$(echo_CHEZSCHEMELIBDIRS)" | newins - "50${PN}"
 	keepdir "/usr/share/${PN}"
 	keepdir "/usr/$(get_libdir)/${PN}"
 }
