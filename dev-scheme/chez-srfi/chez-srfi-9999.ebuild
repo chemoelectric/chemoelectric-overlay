@@ -39,7 +39,8 @@ my_objdir() {
 src_prepare() {
 	default
 	scheme --program link-dirs.chezscheme.sps || die
-	find . -name '*.s[lp]s' -type f -exec sed -i -e 's/%3a/:/g' '{}' ';' || die
+	find . -name '*.s[lp]s' -type f \
+		 -exec sed -i -e 's/%3a/:/g' '{}' ';' || die
 }
 
 src_compile() {
