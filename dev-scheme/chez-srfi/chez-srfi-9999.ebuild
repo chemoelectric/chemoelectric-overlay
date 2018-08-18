@@ -10,6 +10,8 @@ CHEZSCHEME_="ChezScheme"
 DESCRIPTION="SRFIs for Chez Scheme"
 HOMEPAGE="https://github.com/arcfide/chez-srfi"
 EGIT_REPO_URI="https://github.com/arcfide/chez-srfi.git"
+
+# FIXME: The following license notice is not adequate.
 LICENSE="chez-srfi"
 
 SLOT="0"
