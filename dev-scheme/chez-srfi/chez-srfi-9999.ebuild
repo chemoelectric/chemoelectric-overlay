@@ -39,6 +39,7 @@ my_objdir() {
 src_prepare() {
 	default
 	scheme --program link-dirs.chezscheme.sps || die
+	find . -type f -exec sed -i -e 's/%3a/:/g' '{}' ';' || die
 }
 
 src_compile() {
@@ -50,15 +51,15 @@ src_compile() {
 }
 
 src_install() {
-	dodoc README
+	dodoc README*
 
 	# Prepare the source libraries.
 	mkdir -p "${MY_WORK_SRCDIR}/srfi" || die
 	cp -R --dereference * "${MY_WORK_SRCDIR}/srfi" || die
 	pushd 2>/dev/null "${MY_WORK_SRCDIR}/srfi" || die
 	rm -f -R \
-	   LICENSE \
-	   README \
+	   LICENSE* \
+	   README* \
 	   compile-all.ikarus.sps \
 	   link-dirs.chezscheme.sps \
 	   tests
