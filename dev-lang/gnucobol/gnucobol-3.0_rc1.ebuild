@@ -37,6 +37,10 @@ DEPEND="
 	sys-devel/libtool
 "
 
+# I am restricting test phase, because I do not want to test that
+# phase. :)
+RESTRICT="test"
+
 src_prepare() {
 	eapply_user
 	sed -i 's|rm -f $(includedir)/libcob/|rm -f $(DESTDIR)$(includedir)/libcob/|' \
