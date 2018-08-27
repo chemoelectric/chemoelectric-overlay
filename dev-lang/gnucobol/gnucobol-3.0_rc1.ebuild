@@ -16,7 +16,7 @@ DESCRIPTION="GNU COBOL compiler"
 HOMEPAGE="https://sourceforge.net/projects/open-cobol/"
 SRC_URI="mirror://sourceforge/open-cobol/${MY_P}.tar.xz"
 
-LICENSE="GPL-2 LGPL-2.1"
+LICENSE="GPL-3+ LGPL-3+"
 SLOT="0"
 KEYWORDS="~amd64"
 
