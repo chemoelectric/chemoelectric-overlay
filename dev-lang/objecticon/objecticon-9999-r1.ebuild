@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2018 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -77,7 +77,7 @@ src_compile() {
 
 	# Compile oipatch.
 	pushd "${WORKDIR}"
-	env PATH="${S}/bin" oit -s oipatch || die
+	env OI_HOME="${S}" PATH="${S}/bin" oit -s oipatch || die
 	popd
 
 	use emacs && elisp-compile "misc/${PN}-mode.el"
@@ -113,12 +113,13 @@ src_install() {
 	pushd "${D}"
 	for f in $(find -P . -type f -executable); do
 		[[ ! -h "${f}" ]] &&
-			env PATH="${S}/bin" \
+			env OI_HOME="${S}" PATH="${S}/bin" \
 				"${WORKDIR}/oipatch" -i "${f}" "/usr/bin/oix" || :
 	done
 	popd
 
 	(
+		echo "OI_HOME=/usr"
 		echo "OI_PATH='${libdir}/main:${libdir}/gui:${libdir}/xml:${libdir}/parser:${libdir}/ipl'"
 		echo "OI_INCL='${libdir}/incl'"
 		echo "OI_NATIVE='${libdir}/native'"
