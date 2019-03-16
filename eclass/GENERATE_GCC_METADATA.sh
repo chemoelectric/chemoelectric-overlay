@@ -9,7 +9,7 @@ cd "${gcc_dir}" || {
     exit 1
 }
 fgrep -q '<flag name="ada">' metadata.xml || {
-    sed -i-e 's|<use>|<use><flag name="ada">Build support for the Ada language</flag>|' metadata.xml || {
+    sed -i -e 's|<use>|<use><flag name="ada">Build support for the Ada language</flag>|' metadata.xml || {
         echo "Could not edit metadata.xml"
         exit 1
     }

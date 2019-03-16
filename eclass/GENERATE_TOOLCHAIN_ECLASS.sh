@@ -1,7 +1,7 @@
 #!/bin/sh
 
 awk < /usr/portage/eclass/toolchain.eclass "
-/^IUSE_DEF=/ {
+/^IUSE=.*vanilla/ {
   print
   print \"\n# Add Ada support.\"
   print \"# I used to provide an option to use a special bootstrapping compiler,\"
@@ -11,7 +11,7 @@ awk < /usr/portage/eclass/toolchain.eclass "
   print \"# package.env, some settings for CC, CXX, GNATMAKE, and GNATBIND, to tell\"
   print \"# emerge to use the bootstrap compiler. You might also try using\"
   print \"# dev-lang/gnat-gcc.\"
-  print \"[[ \${PN} == \\\"gcc\\\" ]] && IUSE_DEF+=( ada )\"
+  print \"[[ \${PN} == \\\"gcc\\\" ]] && IUSE+=\\\" ada \\\"\"
   next
 }
 
