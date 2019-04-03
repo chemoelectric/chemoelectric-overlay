@@ -3,9 +3,9 @@
 
 EAPI=7
 
-POLYML_LIVE_EBUILD=yes
+POLYML_LIVE_EBUILD=no
 
 inherit polyml
 
 SLOT="0/${PV}"
-KEYWORDS=""
+KEYWORDS="~amd64 ~x86"

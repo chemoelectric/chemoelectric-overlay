@@ -2,16 +2,21 @@
 <!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
 <pkgmetadata>
   <maintainer type="person">
-    <email>sortsmill@crudfactory.com</email>
-    <name>Barry Schwartz</name>
+	<email>github@crudfactory.com</email>
+	<name>Barry Schwartz</name>
   </maintainer>
   <longdescription lang="en">
-    Poly/ML is a full implementation of Standard ML available as open-source.
+	Poly/ML is a full implementation of Standard ML available as open-source.
   </longdescription>
   <use>
-    <flag name="portable">Build the portable interpreter version of Poly/ML instead of native</flag>
+    <flag name="compact32bit">
+      Use 32-bit values rather than native 64-bits
+    </flag>
+	<flag name="native-codegeneration">
+      Build the native code version of Poly/ML instead of the portable interpreter
+    </flag>
   </use>
   <upstream>
-    <remote-id type="sourceforge">polyml</remote-id>
+	<remote-id type="sourceforge">polyml</remote-id>
   </upstream>
 </pkgmetadata>
