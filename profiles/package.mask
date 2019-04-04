@@ -1,3 +1,7 @@
+# Barry Schwartz (4 Apr 2019)
+# Does not work with dev-libs/libffi-3.3_rc0
+=dev-lang/gnat-gpl-bin-2016
+
 # Barry Schwartz (17 Feb 2019)
 # Masked for testing. I do not believe this ebuild
 # is functional for all the USE flags.
