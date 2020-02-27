@@ -1,11 +1,11 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
 #SUPPORT_PYTHON_ABIS="1"
 PYTHON_COMPAT=( python{2_{6,7},3_{1,2,3}} )
 
-inherit distutils-r1 git-2
+inherit distutils-r1 git-r3
 
 DESCRIPTION="An interface to libmagic"
 HOMEPAGE="https://bitbucket.org/chemoelectric/pyfilemagic"
@@ -23,7 +23,7 @@ DEPEND="
 	${RDEPEND}
 	"
 
-S="${WORKDIR}/${PN}"
+S="${WORKDIR}/${PN}-${PV}"
 
 src_prepare() {
 	cp setup-no_cython.py setup.py || die
