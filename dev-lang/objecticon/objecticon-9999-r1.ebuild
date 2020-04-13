@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=6
@@ -15,7 +15,7 @@ KEYWORDS=""
 IUSE="doc examples emacs X jpeg png cairo zlib mysql ssl"
 
 COMMON_DEPEND="
-	emacs? ( virtual/emacs )
+	emacs? ( app-editors/emacs:* )
 	X? (
 		x11-libs/libX11:=
 		x11-libs/libXrender:=
