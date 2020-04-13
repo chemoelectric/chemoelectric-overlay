@@ -1,7 +1,7 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 
 DESCRIPTION="Algol 68 Genie"
 HOMEPAGE="http://jmvdveer.home.xs4all.nl/algol.html"
@@ -19,18 +19,22 @@ CHEMOELECTRIC_DOWNLOADS="https://bitbucket.org/chemoelectric/chemoelectric-overl
 SRC_URI="
 	http://jmvdveer.home.xs4all.nl/${P}.tar.gz
 	doc? ( ${CHEMOELECTRIC_DOWNLOADS}/${PN}.pdf-${PV}.tar.xz
-	       ${CHEMOELECTRIC_DOWNLOADS}/a68gtech.pdf-${PV}.tar.xz )
+		${CHEMOELECTRIC_DOWNLOADS}/a68gtech.pdf-${PV}.tar.xz )
 "
 
 LICENSE="GPL-3"
 
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
 
-IUSE="doc +compiler ncurses readline gsl +parallel plotutils postgres"
+#
+# ncurses support currently is broken (2020-04-13).
+#
+#IUSE="doc +compiler ncurses readline gsl +parallel plotutils postgres"
+IUSE="doc +compiler readline gsl +parallel plotutils postgres"
 
+#	ncurses? ( sys-libs/ncurses:= )
 RDEPEND="
-	ncurses? ( sys-libs/ncurses:= )
 	readline? ( sys-libs/readline:= )
 	gsl? ( sci-libs/gsl )
 	plotutils? ( media-libs/plotutils )
@@ -38,15 +42,16 @@ RDEPEND="
 "
 DEPEND="${RDEPEND}"
 
+#		$(use_enable ncurses curses) \
 src_configure() {
 	econf \
 		$(use_enable compiler) \
-		$(use_enable ncurses curses) \
 		$(use_enable readline) \
 		$(use_enable gsl) \
 		$(use_enable parallel) \
 		$(use_enable plotutils) \
-		$(use_enable postgres postgresql)
+		$(use_enable postgres postgresql) \
+		--disable-curses
 }
 
 src_install() {
