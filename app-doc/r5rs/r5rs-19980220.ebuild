@@ -1,7 +1,7 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=4
+EAPI=7
 
 DESCRIPTION="Revised5 Report on the Algorithmic Language Scheme"
 HOMEPAGE="http://www.schemers.org/Documents/Standards/R5RS/"
@@ -16,7 +16,7 @@ LICENSE="FIXME"
 
 SLOT="0"
 
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 DEPEND=""
 RDEPEND=""
@@ -24,6 +24,7 @@ RDEPEND=""
 S="${WORKDIR}"
 
 src_prepare() {
+	default
 	mv HTML html || die "mv failed"
 }
 
