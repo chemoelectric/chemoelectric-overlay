@@ -1,19 +1,22 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=7
 
 PYTHON_COMPAT=( python2_7 )
 
-inherit toolchain-funcs python-any-r1
+inherit git-r3 toolchain-funcs python-any-r1
+
+#WHOSE_GITHUB=mikequentel
+WHOSE_GITHUB=chemoelectric
 
 DESCRIPTION="Translate C headers and functions into Ada"
-HOMEPAGE="http://c2ada.sourceforge.net/c2ada.html"
-SRC_URI="https://bitbucket.org/chemoelectric/chemoelectric-overlay/downloads/${P}.tar.xz"
-LICENSE="public-domain"
+HOMEPAGE="https://github.com/${WHOSE_GITHUB}/c2ada"
+EGIT_REPO_URI="https://github.com/${WHOSE_GITHUB}/c2ada.git"
+LICENSE="MIT"
 
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS=""
 IUSE=""
 
 DEPEND="
@@ -27,7 +30,8 @@ src_prepare() {
 	default
 
 	sed -i -e 's/^CFLAGS[ 	]*=[ 	]*\$(GNU_C_OPTS)[ 	]*/CFLAGS += /'	\
-		Makefile
+		Makefile || die
+	sed -i -e 's|/lib/|/'"$(get_libdir)"'/|g' Makefile || die
 	rm -f Makefile.config
 
 	local syspath_code='{ const char *syspath = Py_GetPath(); \
@@ -39,8 +43,7 @@ strcat (new_syspath, ":"); \
 strcat (new_syspath, syspath); \
 PySys_SetPath (new_syspath); \
 }'
-
-	sed -i-e 's|\(Py_Initialize();\)|\1 '"${syspath_code}"'|g' *.c
+	sed -i -e 's|\(Py_Initialize();\)|\1 '"${syspath_code}"'|g' *.c
 }
 
 src_configure() {
@@ -51,9 +54,9 @@ src_compile() {
 	# FIXME: The way Python paths are resolved in the Makefile is
 	# archaic. Update it. For now, this works.
 	emake PYTHON_VER="${EPYTHON}" \
-		LINKER="$(tc-getCC)" \
-		RANLIB="$(tc-getRANLIB)" \
-		GPERF="gperf -I"
+		  LINKER="$(tc-getCC)" \
+		  RANLIB="$(tc-getRANLIB)" \
+		  GPERF="gperf -I"
 }
 
 src_install() {
