@@ -1,4 +1,4 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=5
@@ -16,7 +16,7 @@ SRC_URI="Linux_UFRII_PrinterDriver_V310_us_EN.tar.gz"
 LICENSE="LICENSE-common-3.40 LICENSE-ufr2drv-3.10"
 
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
 IUSE=""
 
 RESTRICT="fetch"
@@ -26,7 +26,7 @@ COMMON_DEPEND="
 	dev-libs/glib:2
 	dev-libs/libxml2
 	media-libs/fontconfig
-	media-libs/libpng:1.2
+	media-libs/libpng-compat:1.2
 	gnome-base/libglade
 	x11-libs/cairo
 	x11-libs/gtk+:2
