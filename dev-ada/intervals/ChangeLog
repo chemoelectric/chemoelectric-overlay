@@ -1,9 +1,0 @@
-# ChangeLog for dev-ada/intervals
-# Copyright 1999-2017 Gentoo Foundation; Distributed under the GPL v2
-
-*intervals-1.12 (12 May 2017)
-
-  12 May 2017; Barry Schwartz <sortsmill@crudfactory.com>
-  +intervals-1.12.ebuild, +files/intervals-1.12-gentoo.patch, +metadata.xml:
-  Initial ebuild.
-
