@@ -1,7 +1,7 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=4
+EAPI=7
 
 inherit eutils autotools
 
@@ -14,6 +14,7 @@ SLOT="0"
 KEYWORDS="~amd64"
 IUSE=""
 
+# FIXME: Needs C++ runtime for Antlr.
 DEPEND=">=x11-libs/fltk-1.3.0:1
 	    >=dev-java/antlr-2.7.7-r5:0
 	    >=media-libs/libpng-1.5.6
@@ -21,6 +22,7 @@ DEPEND=">=x11-libs/fltk-1.3.0:1
 RDEPEND="${DEPEND}"
 
 src_prepare() {
+	default
 	epatch "${FILESDIR}/${P}.configure.patch"
 	eautoreconf
 }

@@ -1,34 +1,4 @@
-# Barry Schwartz (4 Apr 2019)
-# Does not work with dev-libs/libffi-3.3_rc0
-=dev-lang/gnat-gpl-bin-2016
-
-# Barry Schwartz (17 Feb 2019)
-# Masked for testing. I do not believe this ebuild
-# is functional for all the USE flags.
-=sci-mathematics/coq-8.9.0
-
-# Barry Schwartz (3 Jan 2019)
-# ckermit fiddles with FILE internals, but fails in the attempt
-# with glibc 2.28. I see no obvious fix, and later ckermit versions
-# do not fix the problem. (That is unsurprising, because the latest
-# version is from 2017.)
-#
-# Gentoo also has masked ckermit. I am masking only the version
-# I have supported. However, I see an adequate fix as being
-# unlikely to turn up.
-#
-=app-misc/ckermit-9.0.304_pre13
-
-# Barry Schwartz (13 May 2017)
-# Gcc is crucial to system integrity. Therefore mask my gcc ebuilds so
-# people who want them have to make a positive effort to get them.
-#
-# (The bug that previously caused USE=ada to fail in GCC 6.3.0 and
-# 7.1.0 has been fixed, by the way.)
-#
-sys-devel/gcc
-virtual/gnat
-
-# Barry Schwartz (26 Apr 2017)
-# This ebuild is a work in progress works, at best, only partially.
-=dev-scheme/chibi-scheme-0.7.3
+# Barry Schwartz (14 Apr 2020)
+# Compiling fails, probably due to it needing work
+# in the building of its Antlr parts.
+=sci-mathematics/GAViewer-0.86-r1
