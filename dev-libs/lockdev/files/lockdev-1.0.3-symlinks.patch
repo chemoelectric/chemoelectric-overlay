@@ -1,9 +1,0 @@
---- lockdev-1.0.3/Makefile.am.ORIG	2017-04-10 22:10:36.821508996 +0000
-+++ lockdev-1.0.3/Makefile.am	2017-04-10 22:12:16.932817303 +0000
-@@ -16,5 +16,5 @@
- 
- install-data-hook:
- 	for page in $(manpage_links); do \
--		$(LN_S) lockdev.3 $(DESTDIR)$(man3dir)/$${page} ; \
-+		$(LN_S) -f lockdev.3 $(DESTDIR)$(man3dir)/$${page} ; \
- 	done
