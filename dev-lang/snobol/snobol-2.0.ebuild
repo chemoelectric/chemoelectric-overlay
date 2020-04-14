@@ -1,27 +1,32 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 
 MY_P="${PN}4-${PV}"
 
 DESCRIPTION="Phil Budne's port of Macro SNOBOL4 in C, for modern machines"
-HOMEPAGE="http://www.snobol4.org/csnobol4/"
-SRC_URI="mirror://snobol4/${MY_P}.tar.gz"
+HOMEPAGE="http://www.snobol4.org/"
+SRC_URI="ftp://ftp.snobol4.org/snobol/${MY_P}.tar.gz"
+#mirror://snobol4/${MY_P}.tar.gz"
 
 LICENSE="BSD-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
+
+# FIXME: Add tcl support.
 IUSE="doc"
 
 DEPEND="
 	sys-devel/gcc
 	sys-devel/m4
-	sys-libs/gdbm[berkdb]
+	sys-libs/gdbm:=[berkdb]
 "
 S=${WORKDIR}/${MY_P}
 
 src_prepare() {
+	default
+
 	sed -e '/autoconf/s:autoconf:./autoconf:g' \
 		-i configure || die 'autoconf sed failed'
 	sed -e 's/$(INSTALL) -s/$(INSTALL)/' \
@@ -32,6 +37,10 @@ src_prepare() {
 
 	# this cannot work and will cause funny sandbox violations
 	sed -i -e 's~/usr/bin/emerge info~~' timing || die "Failed to exorcise the sandbox violations"
+
+	# FIXME: Why is this needed?
+	sed -e 's/$(MAKE) -f Makefile2 $@/$(MAKE) -f Makefile2 $@ || :/' \
+		-i Makefile || die
 }
 
 src_configure() {
@@ -43,10 +52,9 @@ src_configure() {
 
 src_install() {
 	emake DESTDIR="${D}" install
-
-	rm "${ED%/}"/usr/lib/snobol4/{load.txt,README}
-
-	dodoc doc/*txt
-
-	use doc && dohtml doc/*html
+	dodoc README doc/*txt
+	if use doc ; then
+		docinto html
+		dodoc doc/*html
+	fi
 }
