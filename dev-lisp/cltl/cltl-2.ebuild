@@ -1,7 +1,7 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 
 DESCRIPTION="Common Lisp the Language, 2nd Edition"
 HOMEPAGE="http://www.cs.cmu.edu/Groups/AI/html/cltl/cltl2.html"
@@ -15,7 +15,7 @@ SRC_URI="
 LICENSE="cltl"
 
 SLOT="0"
-KEYWORDS="~x86 ~amd64"
+KEYWORDS="~amd64 ~x86"
 IUSE="+html pdf"
 REQUIRED_USE="|| ( html pdf )"
 
@@ -27,7 +27,9 @@ S=${WORKDIR}/${PN}
 src_install() {
 	use html && {
 		newdoc README{,-html}
-		dohtml *.html
+		docinto html
+		dodoc *.html
+		docinto
 		cp -R clm/ digital_press/ \
 			"${ED}"/usr/share/doc/"${PF}"/html/ || die "cp -R failed"
 	}
