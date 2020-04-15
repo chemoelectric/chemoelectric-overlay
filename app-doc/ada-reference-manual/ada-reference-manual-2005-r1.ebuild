@@ -1,7 +1,7 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=4
+EAPI=7
 
 DEBIAN_PKG="${P}_2012.1-2_all.deb"
 
@@ -15,7 +15,10 @@ SLOT="2005"
 KEYWORDS="~amd64"
 IUSE=""
 
-DEPEND="app-arch/dpkg"
+DEPEND="
+	app-arch/dpkg:*
+	app-arch/gzip:*
+"
 RDEPEND=""
 
 S=${WORKDIR}
@@ -26,20 +29,23 @@ src_unpack() {
 }
 
 src_install() {
-	local docdir="${D}usr/share/doc/${PF}"
+	local docdir="${D}/usr/share/doc/${PF}"
+
+	mkdir -p "${docdir}" || die
 
 	pushd usr/share/doc-base
 	dodoc *
 	popd
 
 	pushd "usr/share/doc/${P}"
-	gzip -d *.gz
+	gzip -d *.gz || die
 	dodoc *.pdf
-	cp -r *-html *.text "${docdir}" || die "recursive copy failed"
+	cp -r *-html *.text "${docdir}" || die
 	dodoc copyright
 	popd
 
 	pushd usr/share/info
-	doinfo *.info.gz
+	gzip -d *.info.gz || die
+	doinfo *.info
 	popd
 }
