@@ -1,9 +1,10 @@
 # Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 #SUPPORT_PYTHON_ABIS="1"
-PYTHON_COMPAT=( python{2_{6,7},3_{1,2,3}} )
+PYTHON_COMPAT=( python{2_7,3_{6,7,8}} )
+DISTUTILS_USE_SETUPTOOLS=no
 
 inherit distutils-r1 git-r3
 
@@ -26,6 +27,7 @@ DEPEND="
 S="${WORKDIR}/${PN}-${PV}"
 
 src_prepare() {
+	default
 	cp setup-no_cython.py setup.py || die
 	distutils-r1_src_prepare
 }
