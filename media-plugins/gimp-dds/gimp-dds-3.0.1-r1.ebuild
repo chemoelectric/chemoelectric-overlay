@@ -1,27 +1,28 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=5
+EAPI=7
 
 inherit toolchain-funcs
 
 DESCRIPTION="DirectDraw Surface (DDS) format plugin for Gimp 2"
-HOMEPAGE="http://code.google.com/p/gimp-dds/"
-SRC_URI="http://gimp-dds.googlecode.com/files/${P}.tar.bz2"
+HOMEPAGE="https://code.google.com/archive/p/gimp-dds/"
+SRC_URI="https://bitbucket.org/chemoelectric/chemoelectric-overlay/downloads/${P}.tar.bz2"
 
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE=""
 
-RDEPEND=">=media-gfx/gimp-2.8"
+RDEPEND=">=media-gfx/gimp-2.8:="
 DEPEND="${RDEPEND}
 	virtual/pkgconfig"
 
 src_prepare() {
+	default
 	sed -e 's:CFLAGS=.*\$(:CFLAGS+=\$(:' \
 		-e 's:LDFLAGS=:LDFLAGS+=:' \
-		-i Makefile || die "sed failed"
+		-i Makefile || die
 }
 
 src_compile() {
