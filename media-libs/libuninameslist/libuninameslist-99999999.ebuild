@@ -1,7 +1,7 @@
-# Copyright 1999-2017 Gentoo Foundation
+# Copyright 1999-2020 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=4
+EAPI=7
 ECVS_SERVER="${PN}.cvs.sourceforge.net:/cvsroot/${PN}"
 ECVS_MODULE="src"
 ECVS_TOPDIR="${DISTDIR}/cvs-src/${PN}"
@@ -19,6 +19,7 @@ IUSE=""
 S="${WORKDIR}/${ECVS_MODULE}"
 
 src_prepare() {
-	epatch "${FILESDIR}/${PN}.2011.09.01.18.49.10.patch"
+	default
+	eapply "${FILESDIR}/${PN}.2011.09.01.18.49.10.patch"
 	eautoconf
 }
