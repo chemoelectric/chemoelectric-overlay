@@ -1,0 +1,12 @@
+diff --git a/contrib/ATS-extsolve-z3/Makefile b/contrib/ATS-extsolve-z3/Makefile
+index b5af2519..6bb81019 100644
+--- a/contrib/ATS-extsolve-z3/Makefile
++++ b/contrib/ATS-extsolve-z3/Makefile
+@@ -47,6 +47,7 @@ CFLAGS2 +=\
+ -I${PATSHOMEQ}/contrib/atscntrb
+ CFLAGS2 += \
+ $(shell pkg-config --cflags json-c)
++CFLAGS2 += -I/usr/include/z3
+ #
+ ######
+ 
