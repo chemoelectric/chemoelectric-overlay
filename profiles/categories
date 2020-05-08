@@ -3,6 +3,7 @@ app-emacs
 app-eselect
 app-misc
 app-portage
+app-text
 dev-ada
 dev-ats2
 dev-lang
