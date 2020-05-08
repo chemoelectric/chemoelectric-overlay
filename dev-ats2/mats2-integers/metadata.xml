@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>sortsmill@crudfactory.com</email>
+    <name>Barry Schwartz</name>
+  </maintainer>
+  <use>
+    <flag name="cvc4">
+      When building the package, enable parts that require
+      sci-mathematics/cvc4
+    </flag>
+    <flag name="int128">
+      Enable the int128 and uint128 types
+    </flag>
+    <flag name="proof-implementations">
+      Enable compilation of proof implementations (which is an
+      important consistency check, but slows down compilation)
+    </flag>
+  </use>
+</pkgmetadata>
