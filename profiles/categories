@@ -4,6 +4,7 @@ app-eselect
 app-misc
 app-portage
 dev-ada
+dev-ats2
 dev-lang
 dev-libs
 dev-lisp
@@ -19,5 +20,4 @@ sci-mathematics
 sys-apps
 sys-devel
 virtual
-www-client
 x11-libs
