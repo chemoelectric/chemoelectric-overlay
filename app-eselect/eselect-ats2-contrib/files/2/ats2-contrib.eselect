@@ -1,0 +1,233 @@
+# Copyright 1999-2017 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+
+DESCRIPTION="Manage the version of ATS2/Postiats contributed code"
+MAINTAINER="sortsmill@crudfactory.com"
+VERSION="2"
+
+#---------------------------------------------------------------------
+
+alternatives_dir() {
+	printf "%s" "usr/share/ats2-contrib"
+}
+
+test_target_contents() {
+	# In case directories got left behind, look also for a regular
+	# file that ought to be there.
+	[[ -d "${1}" && -f "${1}/reloc/contrib/glib/CATS/glib.cats" ]]
+}
+
+find_targets() {
+	# Return the list of alternatives.
+	(
+		if cd "${EROOT}/$(alternatives_dir)/" 2> /dev/null; then
+			local j
+			for j in `LC_ALL=C ls`; do
+				test_target_contents "${j}" && printf "%s\n" "${j}"
+			done
+		fi
+	)
+}
+
+envfile_src() {
+	printf "%s" "${EROOT}/$(alternatives_dir)/${1}/etc/env.d/50ats2-contrib"
+}
+
+envfile_dst() {
+	printf "%s" "${EROOT}/etc/env.d/50ats2-contrib"
+}
+
+remove_envfile() {
+	rm -f "$(envfile_dst)"
+}
+
+remove_version() {
+	remove_envfile
+}
+
+set_envfile() {
+	local env_src="$(envfile_src "${1}")"
+	[[ -e "${env_src}" && ! -d "${env_src}" ]] ||
+		die -q "Could not find ${env_src}"
+	remove_envfile
+	cp -f "${env_src}" "$(envfile_dst)"
+}
+
+set_version() {
+	echo "Switching version of ATS2/Postiats contributed code to ${1} ..."
+	set_envfile "${1}"
+	do_action env update noldconfig
+	echo
+    echo "If you intend to use the selected version in"
+    echo "an already running shell, please remember to do:"
+    echo
+    echo ". /etc/profile"
+}
+
+get_patshomereloc() {
+	(
+		unset PATSHOMERELOC
+		[[ -e "$(envfile_dst)" ]] && {
+			source "$(envfile_dst)" ||
+				write_warning_msg "Could not source $(envfile_dst)"
+			[[ -n "${PATSHOMERELOC}" && -d "${PATSHOMERELOC}" ]] ||
+				write_warning_msg "$(envfile_dst) does not set PATSHOMERELOC to a directory"
+		}
+		printf "%s" "${PATSHOMERELOC}"
+	)
+}
+
+alternative_from_patshomereloc() {
+	local patshomereloc="${1:-$(get_patshomereloc)}"
+	if [[ -n "${patshomereloc}" ]]; then
+		printf "%s" "$(basename $(canonicalise "${patshomereloc}/.."))"
+	else
+		printf ""
+	fi
+}
+
+test_for_root() {
+	# Check if the user has rights to modify /usr/bin/.
+	[[ -w ${EROOT}/usr/bin ]] || die -q "You need root privileges!"
+}
+
+#---------------------------------------------------------------------
+#
+# `show' action
+#
+
+describe_show() {
+	echo "Show the current version of ATS2/Postiats contributed code"
+}
+
+do_show() {
+	[[ $# -gt 0 ]] && die -q "Too many parameters"
+
+	write_list_start "Current version of ATS2/Postiats contributed code:"
+	local current="$(alternative_from_patshomereloc)"
+	if [[ -n "${current}" ]]; then
+		write_kv_list_entry "${current}" ""
+	else
+		write_kv_list_entry "(unset)" ""
+	fi
+}
+
+#---------------------------------------------------------------------
+#
+# `list' action
+#
+
+describe_list() {
+	echo "List available versions of ATS2/Postiats contributed code"
+}
+
+do_list() {
+	[[ $# -gt 0 ]] && die -q "Too many parameters"
+
+	local targets=( $(find_targets) )
+	local current="$(alternative_from_patshomereloc)"
+	local i
+	for (( i = 0; i < ${#targets[@]}; i++ )); do
+		# Highlight the current version.
+		[[ x"${targets[i]}" = x"${current}" ]] &&
+			targets[i]="$(highlight_marker "${targets[i]}")"
+	done
+	write_list_start "Available versions of ATS2/Postiats contributed code:"
+	write_numbered_list -m "(none found)" "${targets[@]}"
+}
+
+#---------------------------------------------------------------------
+#
+# `set' action
+#
+
+describe_set() {
+	echo "Set a version of the ATS2/Postiats contributed code as the new current one"
+}
+
+describe_set_options() {
+	echo "version : Version name or number (from 'list' action)"
+}
+
+describe_set_parameters() {
+	echo "<version>"
+}
+
+do_set() {
+	[[ -z $1 ]] && die -q "You didn't tell me what version to set"
+	[[ $# -gt 1 ]] && die -q "Too many parameters"
+	test_for_root
+
+	local target="${1}"
+	local targets=( $(find_targets) )
+
+	if is_number "${target}"; then
+		[[ ${target} -ge 1 && ${target} -le ${#targets[@]} ]] ||
+			die -q "Number out of range: ${target}"
+		target=${targets[target - 1]}
+	fi
+
+	local i
+	local found=no
+	for (( i = 0; i < ${#targets[@]}; i++ )); do
+		[[ x"${targets[i]}" = x"${target}" ]] && found=yes
+	done
+	[[ "${found}" = yes ]] ||
+		die -q "${target} is not an available version"
+
+	set_version "${target}"
+}
+
+#---------------------------------------------------------------------
+#
+# `unset' action
+#
+
+describe_unset() {
+	echo "Unset the current version of ATS2/Postiats contributed code, if one is set"
+}
+
+do_unset() {
+	[[ $# -gt 0 ]] && die -q "Too many parameters"
+
+	echo "Unsetting the current version of ATS2/Postiats contributed code ..."
+
+	remove_version
+	do_action env update noldconfig
+}
+
+#---------------------------------------------------------------------
+#
+# `update' action
+#
+
+describe_update() {
+	echo "Automatically set the version of the ATS2/Postiats contributed code"
+}
+
+describe_update_options() {
+	echo "--if-unset : Do not override a currently set version"
+}
+
+do_update() {
+	[[ -z "${1}" || "${1}" = "--if-unset" ]] || die -q "Usage error"
+	[[ $# -gt 1 ]] && die -q "Too many parameters"
+
+	local if_unset=no
+	[[ "${1}" = "--if-unset" ]] && if_unset=yes
+
+	local targets=( $(find_targets) )
+
+	if [[ ${#targets[@]} -eq 0 ]]; then
+		# There are no versions available, so clean up.
+		do_unset
+	else
+		local envfile="$(envfile_dst)"
+		if [[ "${if_unset}" = no || ! -e "${envfile}" ]]; then
+			test_for_root
+			set_version "${targets[${#targets[@]} - 1]}"
+		fi
+	fi
+}
+
+#---------------------------------------------------------------------
