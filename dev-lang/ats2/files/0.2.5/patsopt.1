@@ -1,0 +1,89 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH atsopt 1 "October 8, 2013"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+patsopt \- ATS2 to C compiler 
+.SH SYNOPSIS
+.B patsopt
+.RI [<options>] 
+.RI [-o " <file>"]
+.RI <specifications> ...
+.SH DESCRIPTION
+.\" TeX users may be more comfortable with the \fB<whatever>\fP and
+.\" \fI<whatever>\fP escape sequences to invode bold face and italics,
+.\" respectively.
+.B patsopt
+is the compiler from ATS2 to C.  It is most commonly invoked by
+.B patscc
+which is the preferred frontend for compiling ATS2 code. If no output filename
+is specified then the default is standard output. The output option
+.B -o <file>
+must be specified before any other specifications are given.
+.SH OPTIONS
+.B patsopt
+takes a number of commands with parameters to determine its behavior:
+.TP
+.B \-\-depgen
+Generate dependency lists.
+.TP
+.B \-\-gline
+Generate line pragma information in target code.
+.TP
+.B \-h, \-\-help
+Print the usage information.
+.TP
+.B \-\-taggen
+Generate tagging information on syntactic entities.
+.TP
+.B \-tc, \-\-typecheck
+Typecheck the given ATS source files, but go no further.
+.TP
+.B \-v, \-\-version
+Show ATS2/Postiats version and gcc version.
+.SH SPECIFICATIONS
+.B patsopt
+takes a number of command-line specifications of the files it is to process.
+.TP
+.B \-d, \-\-dynamic <filenames>
+Dynamically load the filenames.
+.TP
+.B \-o, \-\-output <filename>
+Specify the output filename.
+.TP
+.B \-s, \-\-static <filenames>
+Statically load the filenames.
+.TP
+.SH EXAMPLES
+.PP
+.B patsopt -o test.c -d test.dats
+.PP
+Compile test.dats to a C file.
+.PP
+.B patsopt -tc -d test.dats
+.PP
+Typecheck test.dats only.
+.SH SEE ALSO
+.BR patscc (1),
+.br
+These programs are documented fully by
+.B The ATS2/Postiats user's manual
+available via the web at http://www.ats-lang.org/
+.SH AUTHOR
+patsopt was written by Hongwei Xi.
+.PP
+This manual page was written by Matthew Danish <mrd@debian.org>,
+for the Debian project (and may be used by others).

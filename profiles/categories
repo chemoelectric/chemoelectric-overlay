@@ -1,5 +1,6 @@
 app-doc
 app-emacs
+app-eselect
 app-misc
 app-portage
 dev-ada
@@ -20,4 +21,3 @@ sys-devel
 virtual
 www-client
 x11-libs
-cross-avr
