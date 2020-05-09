@@ -42,6 +42,11 @@ fi
 
 LICENSE="LGPL-3"
 IUSE="doc networking +regex +deprecated nls debug-malloc debug slib +threads"
+case "${PV}" in
+	3.0*)
+		IUSE="${IUSE} +jit"
+		;;
+esac
 
 RDEPEND="
 	!dev-scheme/guile:0
@@ -179,6 +184,16 @@ guile-2.x_multilib_src_configure() {
 	$(_build_is_multilib) && \
 		includedir_flag="--includedir=$(_libincludedir)"
 
+	local jit_enabling
+	case "${PV}" in
+		3.0*)
+			jit_enabling="$(use_enable jit)"
+			;;
+		*)
+			jit_enabling=""
+			;;
+	esac
+
 	#will fail for me if posix is disabled or without modules -- hkBst
 	econf \
 		--program-prefix="${CHOST}-" \
@@ -196,7 +211,8 @@ guile-2.x_multilib_src_configure() {
 		$(use_enable debug-malloc) \
 		$(use_enable debug guile-debug) \
 		$(use_with threads) \
-		--with-modules
+		--with-modules \
+		${jit_enabling}
 
 	popd
 }
