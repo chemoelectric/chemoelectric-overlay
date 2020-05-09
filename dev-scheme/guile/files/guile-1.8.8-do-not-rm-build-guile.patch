@@ -1,0 +1,10 @@
+--- guile-1.8.8/guile-config/Makefile.am~	2010-12-13 17:24:39.000000000 +0000
++++ guile-1.8.8/guile-config/Makefile.am	2017-04-16 22:06:19.382290968 +0000
+@@ -42,5 +42,5 @@
+ 
+ ## Get rid of any copies of the configuration script under the old
+ ## name, so people don't end up running ancient copies of it.
+-install-exec-local:
+-	rm -f ${bindir}/build-guile
++#install-exec-local:
++#	rm -f ${bindir}/build-guile

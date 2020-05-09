@@ -1,4 +1,21 @@
 # Barry Schwartz (8 May 2020)
+# Masked for testing.
+# Note that this will take a LONG time to build. I believe
+# the *source code* interpreter is doing most of the work. If
+# I go to the bother, I hope to add some dependency analysis
+# to speed up the build by compiling Guile sources in a more
+# correct order.
+# Guile 2.2.2 comes with bootstrapping binaries for common
+# platforms, and so might not take nearly as long.
+=dev-scheme/guile-2.2.9999*
+
+# Barry Schwartz (8 May 2020)
+# Masked for removal. Removal may occur at any time.
+# (No 30-day warnings. You can always get the ebuild from
+# the repository, anyway.)
+=dev-scheme/guile-9999-r3
+
+# Barry Schwartz (8 May 2020)
 # The build fails, and I do not feel like fixing it, yet.
 dev-lang/ats2-github
 

@@ -1,0 +1,347 @@
+# Copyright 1999-2015 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Id$
+
+MAINTAINER="sortsmill@crudfactory.com"
+VERSION="2.0"
+
+mandatory_binaries() {
+	printf " %s " "guile-snarf guile-config guile"
+}
+
+optional_binaries() {
+	printf " %s " "guile-tools guild"
+}
+
+manpages() {
+	printf " %s " "man1/guile.1"
+}
+
+compression_extensions() {
+	printf " %s " ".Z .gz .bz2 .xz"
+}
+
+aclocals() {
+	printf " %s " "guile.m4"
+}
+
+selection_to_version() {
+	printf "%s" "${1}" | sed -e 's|^[ 	]*guile-||' -e 's|[ 	]*$||'
+}
+
+available_selections() {
+	local selections_file="${EROOT}/etc/eselect-guile/selections"
+	if [[ -r "${selections_file}" ]]; then
+		local guiles="$(sed -e '/^[ 	]*#.*$/d' -e '/^[ 	]*$/d' "${selections_file}")"
+		local g
+		for g in ${guiles}; do
+			local version="$(selection_to_version "${g}")"
+			local all_found=yes
+			local b
+			for b in $(mandatory_binaries); do
+				local prog="${EROOT}/usr/bin/${b}-${version}"
+				[[ ! -d "${prog}" && -x "${prog}" ]] || all_found=no
+			done
+			[[ "${all_found}" = yes ]] && printf "%s\n" "${g}"
+		done
+	else
+		write_warning_msg "${selections_file} was not found."
+		echo
+	fi
+}
+
+current_selection() {
+	local current="$(basename "$(readlink --quiet "${EROOT}/usr/bin/guile")")"
+	local selections="$(available_selections)"
+	local found=no
+	local s
+	for s in ${selections}; do
+		[[ x"${current}" = x"${s}" ]] && found=yes
+	done
+	[[ "${found}" = yes ]] ||
+		write_warning_msg "The currently selected Guile version is not installed
+             or is not compatible with this eselect module."
+	printf "%s" "${current}"
+}
+
+test_for_access() {
+	# Check if the user has rights to modify /usr/bin/.
+	[[ -w "${EROOT}/usr/bin" ]] || die -q "You need root privileges!"
+
+	# Check if the user has rights to modify /usr/share/man and its
+	# subdirectories.
+	local f
+	for f in $(find "${EROOT}/usr/share/man" -type d -print); do
+		[[ -w "${f}" ]] || die -q "You need root privileges!"
+	done
+
+	# Check if the user has rights to modify /usr/share/aclocal/.
+	[[ -w "${EROOT}/usr/share/aclocal" ]] || die -q "You need root privileges!"
+
+	# Check if the user has rights to modify /etc/env.d.
+	[[ -w "${EROOT}/etc/env.d" ]] || die -q "You need root privileges!"
+}
+
+test_for_symlinks() {
+	local b
+	for b in $(mandatory_binaries) $(optional_binaries); do
+		local f="${EROOT}/usr/bin/${b}"
+		[[ -e "${f}" && ! -L "${f}" ]] &&
+			die -q "${f} is present but is not a symbolic link."
+	done
+	for b in $(manpages); do
+		local f="${EROOT}/usr/share/man/${b}"
+		local ext
+		for ext in "" $(compression_extensions); do
+			[[ -e "${f}${ext}" && ! -L "${f}${ext}" ]] &&
+				die -q "${f}${ext} is present but is not a symbolic link."
+		done
+	done
+	for b in $(aclocals); do
+		local f="${EROOT}/usr/share/aclocal/${b}"
+		[[ -e "${f}" && ! -L "${f}" ]] &&
+			die -q "${f} is present but is not a symbolic link."
+	done
+}
+
+remove_symlinks() {
+	test_for_access
+	local b
+	for b in $(mandatory_binaries) $(optional_binaries); do
+		local f="${EROOT}/usr/bin/${b}"
+		rm -f "${f}"
+	done
+	for b in $(manpages); do
+		local f="${EROOT}/usr/share/man/${b}"
+		local ext
+		for ext in "" $(compression_extensions); do
+			rm -f "${f}${ext}"
+		done
+	done
+	for b in $(aclocals); do
+		local f="${EROOT}/usr/share/aclocal/${b}"
+		rm -f "${f}"
+	done
+}
+
+remove_envfile() {
+	test_for_access
+	rm -f "${EROOT}/etc/env.d/50guile"
+}
+
+remove_version() {
+	remove_symlinks
+	remove_envfile
+}
+
+make_symlinks() {
+	local version="$(selection_to_version "${1}")"
+	local b
+	for b in $(mandatory_binaries) $(optional_binaries); do
+		local dir="${EROOT}/usr/bin"
+		local base="$(basename "${b}")"
+		[[ -e "${dir}/${base}-${version}" ]] && {
+			local from="${base}-${version}"
+			local to="${dir}/${base}"
+			ln -s "${from}" "${to}" ||
+				die -q "Command failed: ln -s ${from} ${to}"
+		}
+	done
+	for b in $(manpages); do
+		local dir="${EROOT}/usr/share/man"
+		local manbase="$(printf "%s" "${b}" | sed -e 's|\.[^.][^.]*$||')"
+		local manext="$(printf "%s" "${b}" | sed -e 's|^.*\.||')"
+		local subdir="$(dirname "${manbase}")"
+		local filebase="$(basename "${manbase}")"
+		local ext
+		for ext in "" $(compression_extensions); do
+			[[ -e "${dir}/${subdir}/${filebase}-${version}.${manext}${ext}" ]] && {
+				local from="${filebase}-${version}.${manext}${ext}"
+				local to="${dir}/${subdir}/${filebase}.${manext}${ext}"
+				ln -s "${from}" "${to}" ||
+					die -q "Command failed: ln -s ${from} ${to}"
+			}
+		done
+	done
+	for b in $(aclocals); do
+		local dir="${EROOT}/usr/share/aclocal"
+		local base="$(basename "${b}" .m4)"
+		[[ -e "${dir}/${base}-${version}.m4" ]] && {
+			local from="${base}-${version}.m4"
+			local to="${dir}/guile.m4"
+			ln -s "${from}" "${to}" ||
+				die -q "Command failed: ln -s ${from} ${to}"
+		}
+	done
+}
+
+make_envfile() {
+	# Define INFOPATH environment variable in env file
+	local version="$(selection_to_version "${1}")"
+	[[ -d "${EROOT}/usr/share/info/guile-${version}" ]] && {
+		printf "INFOPATH=\"%s\"\n" \
+			   "${EPREFIX}/usr/share/info/guile-${version}" \
+			   > "${EROOT}/etc/env.d/50guile"
+	}
+}
+
+set_version() {
+	test_for_access
+	test_for_symlinks
+	echo "Switching version of Guile to ${1} ..."
+	remove_version
+	make_symlinks "${1}"
+	make_envfile "${1}"
+	do_action env update noldconfig
+}
+
+#---------------------------------------------------------------------
+#
+# `show' action
+#
+
+describe_show() {
+	echo "Show the current version of Guile"
+}
+
+do_show() {
+	[[ $# -gt 0 ]] && die -q "Too many parameters"
+
+	write_list_start "Current version of Guile:"
+	local current="$(current_selection)"
+	if [[ -n "${current}" ]]; then
+		write_kv_list_entry "${current}" ""
+	else
+		write_kv_list_entry "(unset)" ""
+	fi
+}
+
+#---------------------------------------------------------------------
+#
+# `list' action
+#
+
+describe_list() {
+	echo "List available versions of Guile"
+}
+
+do_list() {
+	[[ $# -gt 0 ]] && die -q "Too many parameters"
+
+	local selections=( $(available_selections) )
+	local current="$(current_selection)"
+	local i
+	for (( i = 0; i < ${#selections[@]}; i++ )); do
+		# Highlight the current implementation.
+		[[ x"${selections[i]}" = x"${current}" ]] &&
+			selections[i]="$(highlight_marker "${selections[i]}")"
+	done
+	write_list_start "Available versions of Guile:"
+	write_numbered_list -m "(none found)" "${selections[@]}"
+}
+
+#---------------------------------------------------------------------
+#
+# `set' action
+#
+
+describe_set() {
+	echo "Set a version of Guile as the new current one"
+}
+
+describe_set_options() {
+	echo "version : Version name or number (from 'list' action)"
+}
+
+describe_set_parameters() {
+	echo "<version>"
+}
+
+do_set() {
+	[[ -z $1 ]] && die -q "You didn't tell me what version to set"
+	[[ $# -gt 1 ]] && die -q "Too many parameters"
+
+	local new_selection="${1}"
+	local selections=( $(available_selections) )
+
+	if is_number "${new_selection}"; then
+		[[ ${new_selection} -ge 1 &&
+				 ${new_selection} -le ${#selections[@]} ]] ||
+			die -q "Number out of range: ${new_selection}"
+		new_selection=${selections[new_selection - 1]}
+	fi
+
+	local i
+	local found=no
+	for (( i = 0; i < ${#selections[@]}; i++ )); do
+		[[ x"${selections[i]}" = x"${new_selection}" ]] && found=yes
+	done
+	[[ "${found}" = yes ]] ||
+		die -q "${new_selection} is not an available version"
+
+	set_version "${new_selection}"
+}
+
+#---------------------------------------------------------------------
+#
+# `unset' action
+#
+# The `clean' synonym is for compatibility with the `lisp' overlay.
+#
+
+describe_unset() {
+	echo "Unset the current version of Guile, if one is set"
+}
+
+do_unset() {
+	[[ $# -gt 0 ]] && die -q "Too many parameters"
+
+	echo "Unsetting the current version of Guile ..."
+	remove_version
+	do_action env update noldconfig
+}
+
+describe_clean() {
+	echo "A deprecated synonym for 'unset'"
+}
+
+do_clean() {
+	do_unset "${@}"
+}
+
+#---------------------------------------------------------------------
+#
+# `update' action
+#
+
+describe_update() {
+	echo "Automatically set the version of Guile"
+}
+
+describe_update_options() {
+	echo "--if-unset : Do not override a currently set version"
+}
+
+do_update() {
+	# Allow "ifunset" as a deprecated synonym for "--if-unset", for
+	# compatibility with `lisp' overlay ebuilds.
+
+	[[ -z "${1}" || "${1}" = "--if-unset" || "${1}" = "ifunset" ]] ||
+		die -q "Usage error"
+	[[ $# -gt 1 ]] && die -q "Too many parameters"
+
+	local if_unset=no
+	[[ x"${1}" = x"--if-unset" || x"${1}" = x"ifunset" ]] && if_unset=yes
+
+	local selections=( $(available_selections) )
+
+	if [[ ${#selections[@]} -eq 0 ]]; then
+		do_unset
+	else
+		local testfile="${EROOT}/usr/bin/guile"
+		[[ "${if_unset}" = no || ! -L "${testfile}" ]] &&
+			set_version "${selections[${#selections[@]} - 1]}"
+	fi
+}
+
+#---------------------------------------------------------------------
