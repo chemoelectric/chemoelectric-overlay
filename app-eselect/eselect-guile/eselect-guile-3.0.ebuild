@@ -13,12 +13,13 @@ IUSE=""
 
 DEPEND=""
 RDEPEND="
-	>=app-admin/eselect-1.2.6
-	sys-apps/coreutils
-	sys-apps/findutils
-	sys-apps/sed
+	>=app-admin/eselect-1.2.6:*
+	sys-apps/coreutils:*
+	sys-apps/findutils:*
+	sys-apps/sed:*
 	!<dev-scheme/guile-1.8.8-r3
-	!<app-admin/eselect-guile-100
+	!=dev-scheme/guile-2.0.9999-r3
+	!app-admin/eselect-guile
 "
 
 # We don't have any source directory to work on.
@@ -29,8 +30,9 @@ src_install() {
 # Possible guile selections, in order.
 
 guile-1.8
-guile-2
+guile-2.0
 guile-2.2
+guile-3.0
 EOF
 
 	dodir "/etc/eselect-guile"
@@ -40,6 +42,15 @@ EOF
 	insinto /usr/share/eselect/modules
 	doins "${FILESDIR}"/guile.eselect
 	doman "${FILESDIR}"/guile.eselect.5
+}
+
+pkg_postinst() {
+	ewarn "If you are upgrading from an older version of"
+	ewarn " ${CATEGORY}/${PN}, you should do"
+	ewarn "  eselect guile list"
+	ewarn "to see if you need to re-select your system Guile."
+	ewarn "You might have to rebuild dev-scheme/guile before"
+	ewarn "re-selecting."
 }
 
 # app-admin/eselect-guile from the `lisp' overlay does the following,

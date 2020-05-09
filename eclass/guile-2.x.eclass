@@ -10,7 +10,7 @@ DESCRIPTION="The GNU Guile extension language (Scheme) and library"
 HOMEPAGE="https://www.gnu.org/software/guile/"
 
 _scm_sources() {
-	[[ "${PV}" == "2.0.9999" || "${PV}" == "2.2.9999" ]]
+	[[ "${PV}" == "2.0.9999" || "${PV}" == "2.2.9999" || "${PV}" == "3.0.9999" ]]
 }
 
 _series() {
@@ -20,6 +20,9 @@ _series() {
 			;;
 		2.2*)
 			echo 2.2
+			;;
+		3.0*)
+			echo 3.0
 			;;
 		*)
 			die "There is a bug in this eclass."
@@ -32,6 +35,7 @@ if $(_scm_sources); then
 	EGIT_REPO_URI="https://git.savannah.gnu.org/git/guile.git"
 	[[ "$(_series)" == "2.0" ]] && EGIT_BRANCH="stable-2.0"
 	[[ "$(_series)" == "2.2" ]] && EGIT_BRANCH="stable-2.2"
+	[[ "$(_series)" == "3.0" ]] && EGIT_BRANCH="stable-3.0"
 else
 	SRC_URI="mirror://gnu/guile/${P}.tar.xz"
 fi
@@ -43,7 +47,7 @@ RDEPEND="
 	!dev-scheme/guile:0
 	!dev-scheme/guile:12
 	!dev-scheme/guile:2
-	app-eselect/eselect-guile:*
+	app-eselect/eselect-guile:=
 	>=dev-libs/boehm-gc-7.0[threads?,${MULTILIB_USEDEP}]
 	dev-libs/gmp:0[${MULTILIB_USEDEP}]
 	dev-libs/libffi:*[${MULTILIB_USEDEP}]
