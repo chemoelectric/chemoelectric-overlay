@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>sortsmill@crudfactory.com</email>
+    <name>Barry Schwartz</name>
+  </maintainer>
+  <longdescription>
+    Sorts Mill TIG writes C code that, when compiled and run,
+    examines C types and generates so-called `API instructions'.
+  </longdescription>
+</pkgmetadata>

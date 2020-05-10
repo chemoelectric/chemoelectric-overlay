@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>sortsmill@crudfactory.com</email>
+    <name>Barry Schwartz</name>
+  </maintainer>
+  <longdescription>
+    Sorts Mill Changelogger creates a GNU-style ChangeLog file from a
+    version control log.
+  </longdescription>
+  <use>
+    <flag name="mercurial">Support Mercurial repositories</flag>
+    <!-- <flag name="bzr">Support Bazaar repositories</flag> -->
+    <flag name="git">Support Git repositories</flag>
+  </use>
+</pkgmetadata>

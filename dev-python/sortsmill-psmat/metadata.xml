@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>sortsmill@crudfactory.com</email>
+    <name>Barry Schwartz</name>
+  </maintainer>
+  <use>
+    <flag name="install-as-psMat">
+      Install the module for use as `import psMat' and not only as
+      `import sortsmill.psMat'
+    </flag>
+  </use>
+</pkgmetadata>
