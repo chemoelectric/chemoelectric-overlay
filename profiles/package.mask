@@ -1,3 +1,11 @@
+# Barry Schwartz (10 May 2020)
+# These are unmaintained and buggy.
+# Some of the code is now part of ats2libraries
+# and much improved.
+dev-libs/sortsmill-core
+dev-scheme/sortsmill-core-guile
+media-gfx/sortsmill-tools
+
 # Barry Schwartz (8 May 2020)
 # Masked for testing.
 # Note that this will take a LONG time to build. I believe
