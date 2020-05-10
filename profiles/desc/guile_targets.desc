@@ -1,0 +1,9 @@
+# Copyright 1999-2020 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+# This file contains descriptions of GUILE_TARGETS USE_EXPAND flags.
+
+guile1_8 - Build with GNU Guile 1.8.x
+guile2_0 - Build with GNU Guile 2.0.x
+guile2_2 - Build with GNU Guile 2.2.x
+guile3_0 - Build with GNU Guile 3.0.x

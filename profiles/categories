@@ -13,12 +13,11 @@ dev-python
 dev-scheme
 dev-util
 dev-vcs
+media-gfx
 media-libs
 media-plugins
 net-misc
 net-print
 sci-mathematics
-sys-apps
 sys-devel
-virtual
 x11-libs
