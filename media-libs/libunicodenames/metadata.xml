@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "http://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>sortsmill@crudfactory.com</email>
+    <name>Sorts Mill</name>
+  </maintainer>
+  <longdescription>
+    LibUnicodeNames makes it easy for your program to retrieve the
+    information contained in the `NamesList' file that is
+    published by the Unicode Consortium.
+  </longdescription>
+  <use>
+    <flag name="make-libunicodenames-db">
+      Install the make-libunicodenames-db script.
+    </flag>
+  </use>
+</pkgmetadata>
