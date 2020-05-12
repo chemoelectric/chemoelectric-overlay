@@ -16,7 +16,7 @@ KEYWORDS=""
 IUSE=""
 
 RDEPEND="
-	>=dev-vcs/mercurial-5.3.2[${PYTHON_USEDEP}]
+	>=dev-vcs/mercurial-5.4[${PYTHON_USEDEP}]
 	>=dev-python/dulwich-0.19.15[${PYTHON_USEDEP}]
 "
 DEPEND="${RDEPEND}
