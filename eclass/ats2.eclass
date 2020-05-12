@@ -69,7 +69,11 @@ if [[ "${ATS2_IMPLEMENTATION}" == "live-github" ]]; then
 fi
 
 if ver_test -ge 0.3.13; then
-	S="${WORKDIR}/ATS2-Postiats-gmp-${PV}"
+	if ver_test -ge 0.4.0; then
+		S="${WORKDIR}/ATS2-Postiats-${PV}"
+	else
+		S="${WORKDIR}/ATS2-Postiats-gmp-${PV}"
+	fi
 else
 	S="${WORKDIR}/ATS2-Postiats-${PV}"
 fi
