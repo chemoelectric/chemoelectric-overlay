@@ -29,6 +29,9 @@ case "${ATS2_IMPLEMENTATION}" in
 		;;
 	*)
 		SRC_URI_PREFIX="mirror://sourceforge/ats2-lang/ats2-lang/${PN}-postiats-${PV}/ATS2-Postiats-"
+		if ver_test -ge 0.4.0; then
+			SRC_URI_PREFIX="${SRC_URI_PREFIX}gmp-"
+		fi
 		SRC_URI="${SRC_URI_PREFIX}${PV}.tgz"
 		DO_AUTOTOOLS=no
 		;;
@@ -69,11 +72,7 @@ if [[ "${ATS2_IMPLEMENTATION}" == "live-github" ]]; then
 fi
 
 if ver_test -ge 0.3.13; then
-	if ver_test -ge 0.4.0; then
-		S="${WORKDIR}/ATS2-Postiats-${PV}"
-	else
-		S="${WORKDIR}/ATS2-Postiats-gmp-${PV}"
-	fi
+	S="${WORKDIR}/ATS2-Postiats-gmp-${PV}"
 else
 	S="${WORKDIR}/ATS2-Postiats-${PV}"
 fi
