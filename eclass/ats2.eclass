@@ -49,6 +49,11 @@ IUSE="smt2 clojure javascript php perl python R scheme"
 # versions of ATS2. At the time of this writing, there is an
 # experimental `ATS-intmin' package that does not use GMP but
 # which is not fully featured.
+#
+# FIXME: As of ATS2 0.4.0, the ATS2-Postiats-gmp-x.x.x is the
+# gmp-dependent version, and ATS2-Postiats-x.x.x is the version
+# using native ints. This eclass still is for the gmp-dependent
+# version, only.
 RDEPEND="
 	dev-libs/gmp:0
 	app-eselect/eselect-ats2
