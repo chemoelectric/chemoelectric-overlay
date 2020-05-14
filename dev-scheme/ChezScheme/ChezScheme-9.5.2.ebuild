@@ -3,16 +3,16 @@
 
 EAPI=7
 
-inherit git-r3 multilib
+inherit multilib
 
 DESCRIPTION="Chez Scheme: a superset of R6RS Scheme"
 HOMEPAGE="https://cisco.github.io/${PN}/"
-EGIT_REPO_URI="https://github.com/cisco/${PN}.git"
+SRC_URI="https://github.com/cisco/ChezScheme/releases/download/v${PV}/csv${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="Apache-2.0"
 
 SLOT="0"
 
-KEYWORDS=""
+KEYWORDS="~amd64"
 
 IUSE="threads X"
 
@@ -26,6 +26,8 @@ RDEPEND="
 	${DEPEND}
 	X? ( x11-libs/libX11:= )
 "
+
+S="${WORKDIR}/csv${PV}"
 
 echo_CHEZSCHEMELIBDIRS() {
 	echo -n "CHEZSCHEMELIBDIRS='"
