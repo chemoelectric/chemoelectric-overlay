@@ -1,0 +1,28 @@
+--- ssax-sxml.ORIG/sxml-tools/modif.scm	2020-05-17 15:06:24.402146057 +0000
++++ ssax-sxml/sxml-tools/modif.scm	2020-05-17 20:37:34.819752099 +0000
+@@ -443,9 +443,9 @@
+                              ((cdr
+                                (assq
+                                 action
+-                                `((insert-into . ,modif:insert-into)
+-                                  (insert-following . ,modif:insert-following)
+-                                  (insert-preceding . ,modif:insert-preceding))))
++                                (list (cons 'insert-into modif:insert-into)
++                                      (cons 'insert-following modif:insert-following)
++                                      (cons 'insert-preceding modif:insert-preceding))))
+                               (lambda (context base-node) params)))
+                             res))))
+                   ((replace)
+@@ -486,9 +486,9 @@
+                              ((cdr
+                                (assq
+                                 action
+-                                `((move-into . ,modif:insert-into)
+-                                  (move-following . ,modif:insert-following)
+-                                  (move-preceding . ,modif:insert-preceding))))
++                                (list (cons 'move-into modif:insert-into)
++                                      (cons 'move-following modif:insert-following)
++                                      (cons 'move-preceding modif:insert-preceding))))
+                               (lambda (context base-node) base-node)))
+                             (cons                                
+                              (list txpath-lambda relative? modif:delete)
