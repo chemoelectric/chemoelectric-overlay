@@ -35,9 +35,6 @@ src_install() {
 	common-lisp-install-asdf
 	if use doc; then
 		cp -R doc "${T}/html"
-#		find "${T}"/html -name GNUmakefile -exec rm '{}' ';' || die
-#		find "${T}"/html -name '*.xml' -exec rm '{}' ';' || die
-#		find "${T}"/html -name '*.xsl' -exec rm '{}' ';' || die
 		dodoc -r "${T}"/html
 	fi
 }
