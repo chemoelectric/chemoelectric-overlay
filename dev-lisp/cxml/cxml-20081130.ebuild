@@ -40,9 +40,9 @@ src_install() {
 
 	if use doc; then
 		cp -R doc "${T}/html"
-		find "${T}"/html -name GNUmakefile -exec rm '{}' ';' || die
-		find "${T}"/html -name '*.xml' -exec rm '{}' ';' || die
-		find "${T}"/html -name '*.xsl' -exec rm '{}' ';' || die
+		find "${T}"/html -name GNUmakefile -delete || die
+		find "${T}"/html -name '*.xml' -delete || die
+		find "${T}"/html -name '*.xsl' -delete || die
 		dodoc -r "${T}"/html
 	fi
 }
