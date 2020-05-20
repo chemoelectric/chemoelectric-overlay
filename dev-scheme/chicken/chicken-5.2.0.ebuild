@@ -11,7 +11,7 @@ HOMEPAGE="http://www.call-cc.org/"
 SRC_URI="http://code.call-cc.org/releases/${MY_PV}/${P}.tar.gz"
 
 LICENSE="BSD"
-SLOT="0"
+SLOT="0/5.2.0"
 KEYWORDS="~amd64"
 IUSE="doc mono"
 
