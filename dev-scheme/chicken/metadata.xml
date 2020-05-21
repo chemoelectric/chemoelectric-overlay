@@ -14,9 +14,13 @@
     flavours.
   </longdescription>
   <use>
+    <flag name="chicken-script">
+      Install `chicken-script', a trampoline you can use in shebangs
+      of Scheme scripts
+    </flag>
     <flag name="mono">
       Rename csi and csc to chicken-csi and chicken-csc, so Chicken
-      can co-exist with dev-lang/mono.
+      can co-exist with dev-lang/mono
     </flag>
   </use>
 </pkgmetadata>

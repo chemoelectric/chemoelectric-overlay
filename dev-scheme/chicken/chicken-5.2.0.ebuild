@@ -13,7 +13,7 @@ SRC_URI="http://code.call-cc.org/releases/${MY_PV}/${P}.tar.gz"
 LICENSE="BSD"
 SLOT="0/5.2.0"
 KEYWORDS="~amd64"
-IUSE="doc mono"
+IUSE="+chicken-script doc mono"
 
 DEPEND="
 	!mono? ( !dev-lang/mono )
@@ -33,6 +33,14 @@ command_renamings() {
 		echo -n CSI_PROGRAM=$(csi_command_name) CSC_PROGRAM=$(csc_command_name)
 	else
 		echo -n ""
+	fi
+}
+
+csi_command_name_for_chicken_script() {
+	if use mono; then
+		echo -n "$(csi_command_name)"
+	else
+		echo -n csi
 	fi
 }
 
@@ -85,8 +93,16 @@ src_install() {
 
 	rm "${D}"/usr/share/doc/${PF}/LICENSE || die
 
-	# README is installed by Makefile
-	dodoc NEWS
+	einstalldocs
+
+	if use chicken-script; then
+		# See https://wiki.call-cc.org/writing%20portable%20scripts
+		cat > "${T}/chicken-script" <<EOF
+#!/bin/sh
+exec $(csi_command_name_for_chicken_script) -s \${1+"\$@"}
+EOF
+		dobin "${T}/chicken-script"
+	fi
 
 	# Let portage track this file (created later)
 	touch "${D}"/usr/$(get_libdir)/chicken/${CHICKEN_LIB_VERSION}/modules.db || die
@@ -115,4 +131,15 @@ pkg_postinst() {
 
 	elog "Ebuilds should use $(csi_command_name) and $(csc_command_name),"
 	elog "rather than csi and csc."
+
+	if use chicken-script;then
+		elog
+		elog "You may write scripts in CHICKEN by using the shebang"
+		elog
+		elog "    #!/usr/bin/env chicken-script"
+		elog
+		elog "This is a Gentoo extension, but is easily arranged on other"
+		elog "platforms. See https://wiki.call-cc.org/writing%20portable%20scripts"
+		elog "for more information."
+	fi
 }
