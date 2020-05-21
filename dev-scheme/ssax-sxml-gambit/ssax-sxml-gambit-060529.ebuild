@@ -137,7 +137,7 @@ src_install() {
 	#doins "$(my_libname)".c	# The incremental link file.
 	#doins "$(my_libname)".so	# The shared library.
 
-	cat >> "${T}/${PN}.pc" << EOF || die
+	cat > "${T}/${PN}.pc" << EOF || die
 prefix=/usr
 exec_prefix=\${prefix}
 libdir=$(my_libdir)
