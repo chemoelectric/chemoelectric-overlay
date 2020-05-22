@@ -18,14 +18,15 @@ SRC_URI="
 
 S="${WORKDIR}/${CHICKEN_EGG_P}"
 
-EXPORT_FUNCTIONS src_configure src_compile src_test src_install
+EXPORT_FUNCTIONS src_configure src_compile src_test src_install \
+				 pkg_postinst pkg_postrm
 
 chicken-egg_src_configure() {
 	:
 }
 
 chicken-egg_src_compile() {
-	chicken-install -n || die
+	chicken-install -v -n || die
 }
 
 chicken-egg_src_test() {
@@ -34,6 +35,14 @@ chicken-egg_src_test() {
 }
 
 chicken-egg_src_install() {
-	DESTDIR="${D}" chicken-install || die
+	DESTDIR="${D}" chicken-install -v || die
 	einstalldocs
+}
+
+chicken-egg_pkg_postinst() {
+	chicken-install -v -u || die
+}
+
+chicken-egg_pkg_postrm() {
+	chicken-install -v -u || die
 }

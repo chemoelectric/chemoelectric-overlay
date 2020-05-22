@@ -5,7 +5,7 @@ EAPI=7
 
 inherit chicken-egg
 
-DESCRIPTION="Various helper macros for CHICKEN Scheme"
+DESCRIPTION="Compatibility library for old regular expression API"
 
 LICENSE="BSD"
 SLOT="0/5"
@@ -15,7 +15,3 @@ RDEPEND="
 	>=dev-scheme/chicken-5.2.0:=
 "
 DEPEND="${RDEPEND}"
-
-PATCHES=(
-	"${FILESDIR}/${PV}/version.patch"
-)

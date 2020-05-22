@@ -1,0 +1,9 @@
+--- miscmacros-1.0/miscmacros.egg~	2020-05-22 19:12:14.072633052 +0000
++++ miscmacros-1.0/miscmacros.egg	2020-05-22 19:29:07.470767275 +0000
+@@ -3,5 +3,6 @@
+ ((synopsis "Various helper macros")
+  (category lang-exts)
+  (license "BSD")
++ (version "1.0")
+  (author "[[felix winkelmann]]")
+  (components (extension miscmacros)))

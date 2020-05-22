@@ -5,7 +5,7 @@ EAPI=7
 
 inherit chicken-egg
 
-DESCRIPTION="Various helper macros for CHICKEN Scheme"
+DESCRIPTION="More miscellaneous macros"
 
 LICENSE="BSD"
 SLOT="0/5"
@@ -13,9 +13,7 @@ KEYWORDS="~amd64"
 
 RDEPEND="
 	>=dev-scheme/chicken-5.2.0:=
+	>=dev-chicken/srfi69-0.4.1:=
+	>=dev-chicken/miscmacros-1.0:=
 "
 DEPEND="${RDEPEND}"
-
-PATCHES=(
-	"${FILESDIR}/${PV}/version.patch"
-)
