@@ -10,3 +10,8 @@ DESCRIPTION="Composable macros based on the CK abstract machine"
 LICENSE="public-domain"
 SLOT="0/5"
 KEYWORDS="~amd64"
+
+RDEPEND="
+	>=dev-scheme/chicken-5.2.0:=
+"
+DEPEND="${RDEPEND}"

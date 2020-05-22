@@ -10,3 +10,8 @@ DESCRIPTION="Some user-friendly exception routines"
 LICENSE="BSD"
 SLOT="0/5"
 KEYWORDS="~amd64"
+
+RDEPEND="
+	>=dev-scheme/chicken-5.2.0:=
+"
+DEPEND="${RDEPEND}"

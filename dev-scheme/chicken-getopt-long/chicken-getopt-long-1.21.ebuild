@@ -12,9 +12,10 @@ SLOT="0/5"
 KEYWORDS="~amd64"
 
 RDEPEND="
-	dev-scheme/chicken-srfi1
-	dev-scheme/chicken-srfi13
-	dev-scheme/chicken-srfi14
-	dev-scheme/chicken-matchable
+	>=dev-scheme/chicken-5.2.0:=
+	dev-scheme/chicken-srfi1:=
+	dev-scheme/chicken-srfi13:=
+	dev-scheme/chicken-srfi14:=
+	dev-scheme/chicken-matchable:=
 "
 DEPEND="${RDEPEND}"

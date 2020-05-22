@@ -5,8 +5,13 @@ EAPI=7
 
 inherit chicken-egg
 
-DESCRIPTION="Wrapper module for all of CHICKEN Scheme's core modules"
+DESCRIPTION="Wrapper module for all core modules"
 
 LICENSE="BSD"
 SLOT="0/5"
 KEYWORDS="~amd64"
+
+RDEPEND="
+	>=dev-scheme/chicken-5.2.0:=
+"
+DEPEND="${RDEPEND}"

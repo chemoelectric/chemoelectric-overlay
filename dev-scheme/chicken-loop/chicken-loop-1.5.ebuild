@@ -12,6 +12,7 @@ SLOT="0/5"
 KEYWORDS="~amd64"
 
 RDEPEND="
-	dev-scheme/chicken-srfi1
+	>=dev-scheme/chicken-5.2.0:=
+	dev-scheme/chicken-srfi1:=
 "
 DEPEND="${RDEPEND}"
