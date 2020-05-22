@@ -5,7 +5,7 @@ EAPI=7
 
 inherit chicken-egg
 
-DESCRIPTION="Various helper macros for CHICKEN Scheme"
+DESCRIPTION="Integer sets"
 
 LICENSE="BSD"
 SLOT="0/5"

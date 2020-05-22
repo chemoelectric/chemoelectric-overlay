@@ -5,7 +5,7 @@ EAPI=7
 
 inherit chicken-egg
 
-DESCRIPTION="Various helper macros for CHICKEN Scheme"
+DESCRIPTION="Unicode support"
 
 LICENSE="BSD"
 SLOT="0/5"
@@ -13,5 +13,8 @@ KEYWORDS="~amd64"
 
 RDEPEND="
 	>=dev-scheme/chicken-5.2.0:=
+	dev-chicken/srfi69:=
+	dev-chicken/iset:=
+	dev-chicken/regex:=
 "
 DEPEND="${RDEPEND}"
