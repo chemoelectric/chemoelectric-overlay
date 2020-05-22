@@ -2,8 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 CHICKEN_MAJOR_VERSION=5
-CHICKEN_EGG_PN=${PN/chicken-/}
-CHICKEN_EGG_PN=${CHICKEN_EGG_PN/srfi/srfi-}
+CHICKEN_EGG_PN=${PN/srfi/srfi-}
 CHICKEN_EGG_P=${CHICKEN_EGG_PN}-${PV}
 
 HOMEPAGE="
@@ -14,7 +13,7 @@ IUSE=""
 
 SRC_URI="
 	https://code.call-cc.org/egg-tarballs/${CHICKEN_MAJOR_VERSION}/${CHICKEN_EGG_PN}/${CHICKEN_EGG_P}.tar.gz
-		-> ${P}.tar.gz
+		-> chicken-${P}.tar.gz
 "
 
 S="${WORKDIR}/${CHICKEN_EGG_P}"

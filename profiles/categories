@@ -6,6 +6,7 @@ app-portage
 app-text
 dev-ada
 dev-ats2
+dev-chicken
 dev-lang
 dev-libs
 dev-lisp
