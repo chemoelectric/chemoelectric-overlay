@@ -25,7 +25,7 @@ chicken-egg_src_configure() {
 }
 
 chicken-egg_src_compile() {
-	chicken-install -n
+	chicken-install -n || die
 }
 
 chicken-egg_src_test() {
@@ -34,6 +34,6 @@ chicken-egg_src_test() {
 }
 
 chicken-egg_src_install() {
-	DESTDIR="${D}" chicken-install
+	DESTDIR="${D}" chicken-install || die
 	einstalldocs
 }
