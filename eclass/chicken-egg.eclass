@@ -34,7 +34,7 @@ chicken-egg_src_configure() {
 }
 
 chicken-egg_src_compile() {
-	chicken-install -v -n || die
+	chicken-install -v -n -no-install-dependencies || die
 }
 
 chicken-egg_src_test() {
@@ -43,7 +43,7 @@ chicken-egg_src_test() {
 }
 
 chicken-egg_src_install() {
-	DESTDIR="${D}" chicken-install -v || die
+	DESTDIR="${D}" chicken-install -v -no-install-dependencies || die
 	einstalldocs
 }
 
