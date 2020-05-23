@@ -49,11 +49,11 @@ src_prepare() {
 
 	# Because chicken's Upstream is in the habit of using variables
 	# that portage also uses :( eg. $ARCH and $A
-	sed "s,A\(\s?=\|)\),chicken&," \
+	sed -e "s,A\(\s?=\|)\),chicken&," \
 		-i Makefile.cross-linux-mingw defaults.make rules.make || die
-	sed "s,ARCH,zARCH," \
+	sed -e "s,ARCH,zARCH," \
 		-i Makefile.* defaults.make rules.make || die
-	sed -e "s,\$(PREFIX)/lib,\$(PREFIX)/$(get_libdir)," \
+	sed -e "s,PREFIX)/lib,PREFIX)/$(get_libdir)," \
 		-e "s,\$(DATADIR)/doc,\$(SHAREDIR)/doc/${PF}," \
 		-i defaults.make || die
 
@@ -66,10 +66,12 @@ src_prepare() {
 
 src_compile() {
 	# See pkg_postinst for an explanation of the program name changes.
-	emake -j1 PLATFORM=linux PREFIX=/usr C_COMPILER_OPTIMIZATION_OPTIONS="${CFLAGS}" \
-		LINKER_OPTIONS="${LDFLAGS}" \
-		HOSTSYSTEM="${CBUILD}" \
-		$(command_renamings)
+	emake -j1 PLATFORM=linux \
+		  PREFIX=/usr \
+		  LINKER_OPTIONS="${LDFLAGS}" \
+		  C_COMPILER_OPTIMIZATION_OPTIONS="${CFLAGS}" \
+		  HOSTSYSTEM="${CBUILD}" \
+		  $(command_renamings)
 }
 
 src_test() {
@@ -78,10 +80,13 @@ src_test() {
 }
 
 src_install() {
-	emake -j1 PLATFORM=linux PREFIX=/usr DESTDIR="${D}" HOSTSYSTEM="${CBUILD}" \
-		LINKER_OPTIONS="${LDFLAGS}" \
-		$(command_renamings) \
-		install
+	emake -j1 PLATFORM=linux \
+		  PREFIX=/usr \
+		  DESTDIR="${D}" \
+		  HOSTSYSTEM="${CBUILD}" \
+		  LINKER_OPTIONS="${LDFLAGS}" \
+		  $(command_renamings) \
+		  install
 
 	if use mono; then
 		:
