@@ -23,7 +23,11 @@ DEPEND="${RDEPEND}"
 src_prepare() {
 	default
 
-	# chicken-install does not like n.n.n.n versions.
-	# Pretend we are version 0.8.11.
-	chicken-egg_add_missing_version_to_egg_file fmt.egg 0.8.11
+	# FIXME:
+	#
+	# *** Skip the following, to avoid confusing chicken-update.
+	#
+	# chicken-install (from chicken-5.2.0) does not like n.n.n.n
+	# versions.  Pretend we are version 0.8.11.
+	#chicken-egg_add_missing_version_to_egg_file fmt.egg 0.8.11
 }
