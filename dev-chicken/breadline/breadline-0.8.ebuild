@@ -17,3 +17,17 @@ RDEPEND="
 	sys-libs/readline:=
 "
 DEPEND="${RDEPEND}"
+
+src_install() {
+	chicken-egg_src_install
+
+	cp -R examples "${T}/examples" || die
+	if [[ -e "${T}/examples/.csirc" ]]; then
+		mv "${T}/examples/.csirc" \
+		   "${T}/examples/sample.csirc" || die
+	else
+		cp "${FILESDIR}/sample.csirc" \
+		   "${T}/examples/sample.csirc" || die
+	fi
+	dodoc -r "${T}/examples"
+}
