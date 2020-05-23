@@ -7,7 +7,7 @@ inherit chicken-egg
 
 DESCRIPTION="Chicken port of Racket's math library"
 
-LICENSE="GPL-3.0"
+LICENSE="GPL-3"
 SLOT="0/5"
 KEYWORDS="~amd64"
 
