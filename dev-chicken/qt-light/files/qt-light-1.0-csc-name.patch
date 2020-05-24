@@ -1,0 +1,28 @@
+--- qt-light-1.0/chicken-compile-qt-extension.scm.ORIG	2020-05-24 17:22:48.164453392 +0000
++++ qt-light-1.0/chicken-compile-qt-extension.scm	2020-05-24 17:18:51.514060052 +0000
+@@ -45,14 +45,14 @@
+ (define (chicken-prefix)
+   (let ((csc-path (get-environment-variable "CHICKEN_CSC")))
+     (let-values (((_ _ dir-elems) (decompose-directory csc-path)))
+-      (pathname-directory (make-absolute-pathname (drop-right dir-elems 2) "csc")))))
++      (pathname-directory (make-absolute-pathname (drop-right dir-elems 2) "chicken-csc")))))
+ 
+ (define prefix (chicken-prefix))
+ (define libpath (make-pathname prefix "lib"))
+ (define incpath (make-pathname prefix "include"))
+ (define cincpath (make-pathname incpath "chicken"))
+ (define binpath (make-pathname prefix "bin"))
+-(define csc (make-pathname binpath "csc"))
++(define csc (make-pathname binpath "chicken-csc"))
+ (define keepfiles #f)
+ (define qmake (make-pathname QTDIR "bin/qmake"))
+ (define mingw32 (eq? (build-platform) 'mingw32))
+@@ -170,7 +170,7 @@
+ 	    (lambda (fname)
+ 	      (let ((ext (pathname-extension fname)))
+ 		(cond ((member ext '("scm" "ss"))
+-		       (run ("csc" ,fname "-t" "-c++" ,@opts))
++		       (run ("chicken-csc" ,fname "-t" "-c++" ,@opts))
+ 		       (pathname-replace-extension fname "cpp"))
+ 		      ((member ext '("cxx" "c++" "cpp"))
+ 		       fname)
