@@ -16,3 +16,8 @@ RDEPEND="
 	dev-chicken/srfi1:=
 "
 DEPEND="${RDEPEND}"
+
+src_install() {
+	chicken-egg_src_install
+	dodoc readme.org
+}
