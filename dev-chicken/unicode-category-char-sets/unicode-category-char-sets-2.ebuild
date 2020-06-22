@@ -3,17 +3,20 @@
 
 EAPI=7
 
-inherit mercurial
 inherit chicken-egg
 
 DESCRIPTION="Character sets for Unicode categories"
 HOMEPAGE="https://sourceforge.net/p/chemoelectric/${PN}"
-SRC_URI=""
-EHG_REPO_URI="http://hg.code.sf.net/p/chemoelectric/${PN}"
+SRC_URI="
+	mirror://sourceforge/project/chemoelectric/${PN}/${P}.tar.gz
+		-> chicken-${P}.tar.gz
+"
 
 LICENSE="GPL-3+ unicode-data-files-and-software"
 SLOT="0/5"
-KEYWORDS=""
+KEYWORDS="~amd64"
+
+S="${WORKDIR}/${P}"
 
 RDEPEND="
 	>=dev-scheme/chicken-5.2.0:=
