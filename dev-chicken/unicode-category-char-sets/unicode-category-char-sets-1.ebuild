@@ -8,8 +8,8 @@ inherit chicken-egg
 DESCRIPTION="Character sets for Unicode categories"
 HOMEPAGE="https://sourceforge.net/p/chemoelectric/${PN}"
 SRC_URI="
-	mirror://sourceforge/project/chemoelectric/${PN}/${P}.tar.xz
-		-> chicken-${P}.tar.xz
+	mirror://sourceforge/project/chemoelectric/${PN}/${P}.tar.gz
+		-> chicken-${P}.tar.gz
 "
 
 LICENSE="GPL-3+ unicode-data-files-and-software"
@@ -21,8 +21,11 @@ S="${WORKDIR}/${P}"
 RDEPEND="
 	>=dev-scheme/chicken-5.2.0:=
 	dev-chicken/utf8
-	dev-chicken/srfi42
-	dev-chicken/matchable
 	dev-chicken/iset
 "
 DEPEND="${RDEPEND}"
+BDEPEND="
+	dev-chicken/srfi1
+	dev-chicken/srfi42
+	dev-chicken/matchable
+"
