@@ -1,0 +1,15 @@
+--- salmonella.ORIG/salmonella.scm	2020-07-14 14:49:13.528890589 +0000
++++ salmonella/salmonella.scm	2020-07-14 14:49:58.480258212 +0000
+@@ -180,10 +180,10 @@
+             (or chicken-installation-prefix default-installation-prefix))))
+          (tmp-repo-dir (make-pathname tmp-dir "repo"))
+          (csi (make-pathname (list chicken-installation-prefix "bin")
+-                             "csi"
++                             "chicken-csi"
+                              (and mingw? "exe")))
+          (csc (make-pathname (list chicken-installation-prefix "bin")
+-                             "csc"
++                             "chicken-csc"
+                              (and mingw? "exe")))
+          (chicken-install (make-pathname (list chicken-installation-prefix "bin")
+                                          "chicken-install"

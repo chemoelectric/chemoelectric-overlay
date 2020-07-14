@@ -11,6 +11,10 @@ LICENSE="BSD"
 SLOT="0/5"
 KEYWORDS="~amd64"
 
+PATCHES=(
+	"${FILESDIR}/salmonella-3.0.0-r1-csi-csc-paths.patch"
+)
+
 RDEPEND="
 	>=dev-scheme/chicken-5.2.0:=
 "
