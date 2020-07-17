@@ -24,8 +24,10 @@ EXPORT_FUNCTIONS src_prepare src_configure src_compile src_test \
 chicken-egg_src_prepare() {
 	default
 
-	# FIXME: Is it really a good idea always to do this? At least we
-	#        could suggest it is an upstream problem.
+	# FIXME: Is it really a good idea always to do this? Probably. :)
+	# But, because the version is not required, when the egg is in the
+	# main repository, calling the entry ‘missing’ probably is not
+	# good.
 	chicken-egg_add_missing_version_to_egg_file
 }
 

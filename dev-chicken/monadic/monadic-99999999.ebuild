@@ -15,10 +15,52 @@ LICENSE="BSD"
 SLOT="0/5"
 KEYWORDS=""
 
+IUSE="doc"
+
 RDEPEND="
 	dev-chicken/utf8
 	dev-chicken/srfi1
 	dev-chicken/srfi69
 	dev-chicken/matchable
+	doc? (
+			app-text/docbook-xsl-stylesheets
+			app-text/dblatex
+			dev-libs/libxml2
+			dev-libs/libxslt
+		 )
 "
 DEPEND="${RDEPEND}"
+
+src_prepare() {
+	chicken-egg_src_prepare
+
+	# Let’s regenerate the manual’s XML.
+	rm -f docs/${PN}-manual.xml
+
+	# Also let’s regenerate the XHTML docs.
+	rm -f docs/*.{xhtml,css}
+}
+
+src_compile() {
+	local emakeflags="CSI=/usr/bin/chicken-csi CSC=/usr/bin/chicken-csc"
+
+	# Speed things up by compiling with the GNUmakefile (which can do
+	# parallel builds) instead of chicken-install.
+	emake ${emakeflags}
+
+	use doc && emake ${emakeflags} xhtml-docs
+	use doc && emake ${emakeflags} pdf-docs
+}
+
+src_install() {
+	chicken-egg_src_install
+	if use doc; then
+		dodoc -r monad-5.0
+
+		dodoc docs/${PN}-manual.{sxml,xml,pdf}
+
+		docinto html
+		dodoc docs/*.{xhtml,css}
+		docinto
+	fi
+}
