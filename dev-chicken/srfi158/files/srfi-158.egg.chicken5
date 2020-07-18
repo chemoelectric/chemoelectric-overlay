@@ -1,0 +1,11 @@
+;; -*- scheme -*-
+
+((synopsis "SRFI 158: Generators and Accumulators")
+ (version "0")
+ (license "MIT")
+ (dependencies big-chicken)
+ (test-dependencies test srfi-1)
+ (component-options
+  (csc-options -O3))
+ (components
+  (extension srfi-158)))

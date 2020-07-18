@@ -1,0 +1,17 @@
+--- srfi-158.ORIG/chicken-test.scm	2020-07-18 15:28:07.789799161 +0000
++++ srfi-158/chicken-test.scm	2020-07-18 14:57:56.447266076 +0000
+@@ -1,10 +1,10 @@
+ (cond-expand
+  (gauche) ;; use gauche-test instead of directly load this file
+  (else
+-  (use test)
+-  (use srfi-158)
+-  (use (only srfi-1 unfold))
+-  (use srfi-4)
++  (import test)
++  (import srfi-158)
++  (import (only srfi-1 unfold))
++  (import srfi-4)
+   (include "r7rs-shim.scm")))
+ 
+ (test-group "generators"
