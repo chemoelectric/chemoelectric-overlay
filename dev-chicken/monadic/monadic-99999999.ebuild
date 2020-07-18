@@ -18,6 +18,7 @@ KEYWORDS=""
 IUSE="doc"
 
 RDEPEND="
+	>=dev-scheme/chicken-5.2.0:=
 	dev-chicken/utf8
 	dev-chicken/srfi1
 	dev-chicken/srfi69
