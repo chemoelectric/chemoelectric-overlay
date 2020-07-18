@@ -16,6 +16,7 @@ SLOT="0/5"
 KEYWORDS=""
 
 RDEPEND="
+	>=dev-scheme/chicken-5.2.0:=
 	dev-chicken/utf8
 "
 DEPEND="${RDEPEND}"
