@@ -1,0 +1,11 @@
+--- TOP/bit-counting.egg.ORIG	2020-08-08 16:36:17.049097724 +0000
++++ TOP/bit-counting.egg	2020-08-08 16:50:07.368182554 +0000
+@@ -24,7 +24,7 @@
+      (csc-options -O3 -C -march=native)))
+    (else
+     (component-options
+-     (csc-options -O3))))
++     (csc-options -O3 -vvv -cc "%MY_CC%"))))
+ 
+  (components
+   (c-object bit-counting-c)
