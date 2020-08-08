@@ -4,6 +4,7 @@
 EAPI=7
 
 inherit mercurial
+inherit toolchain-funcs
 inherit chicken-egg
 
 DESCRIPTION="Monads for Chicken Scheme"
@@ -21,4 +22,21 @@ RDEPEND="
 	>=dev-scheme/chicken-5.2.0:=
 	dev-chicken/r7rs
 "
-DEPEND="${RDEPEND}"
+DEPEND="
+	${RDEPEND}
+"
+
+PATCHES=(
+	"${FILESDIR}"/csc-options.patch
+)
+
+src_prepare() {
+	chicken-egg_src_prepare
+	sed -i -e "s|%MY_CC%|$(my_cc)|g" "${PN}".egg || die
+}
+
+my_cc() {
+	# Use the user’s CFLAGS, in case they have such flags as
+	# -march=native or -mpopcnt.
+	echo "$(tc-getCC) ${CFLAGS}" || die
+}
