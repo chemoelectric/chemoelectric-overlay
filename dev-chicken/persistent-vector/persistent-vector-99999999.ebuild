@@ -11,7 +11,7 @@ HOMEPAGE="https://sourceforge.net/p/chemoelectric/${PN}"
 SRC_URI=""
 EHG_REPO_URI="http://hg.code.sf.net/p/chemoelectric/${PN}"
 
-LICENSE="BSD"
+LICENSE="GPL-3+"
 SLOT="0/5"
 KEYWORDS=""
 
