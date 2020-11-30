@@ -5,7 +5,7 @@ EAPI=7
 
 inherit chicken-egg
 
-DESCRIPTION="Pattern matching with destructuring bindings and setters"
+DESCRIPTION="A common interface to sequences"
 
 LICENSE="BSD"
 SLOT="0/5"
@@ -13,6 +13,5 @@ KEYWORDS="~amd64"
 
 RDEPEND="
 	>=dev-scheme/chicken-5.2.0:=
-	dev-chicken/simple-sequences:=
 "
 DEPEND="${RDEPEND}"
