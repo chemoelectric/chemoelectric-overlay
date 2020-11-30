@@ -5,7 +5,7 @@ EAPI=7
 
 inherit chicken-egg
 
-DESCRIPTION="Miscellaneous list oriented routines for CHICKEN Scheme"
+DESCRIPTION="Argument checks & errors"
 
 LICENSE="BSD"
 SLOT="0/5"
@@ -13,7 +13,5 @@ KEYWORDS="~amd64"
 
 RDEPEND="
 	>=dev-scheme/chicken-5.2.0:=
-	>=dev-chicken/check-errors-3.1.0:=
-	>=dev-chicken/srfi1-0.1:=
 "
 DEPEND="${RDEPEND}"
