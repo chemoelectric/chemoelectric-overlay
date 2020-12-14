@@ -1,0 +1,11 @@
+--- srfi-160/srfi-160.egg.ORIG	2020-12-14 18:47:02.578591902 +0000
++++ srfi-160/srfi-160.egg	2020-12-14 18:47:23.736798573 +0000
+@@ -3,7 +3,7 @@
+ ((author "")
+  (maintainer "Sergey Goldgaber")
+  (synopsis "SRFI 160: Homogeneous numeric vector libraries")
+- (version "0.1")
++ (version "0.4")
+  (category lang-exts)
+  (dependencies srfi-128)
+  (test-dependencies test)

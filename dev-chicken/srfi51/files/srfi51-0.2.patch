@@ -1,0 +1,11 @@
+--- srfi-51/srfi-51.egg.ORIG	2020-12-14 19:33:43.808559398 +0000
++++ srfi-51/srfi-51.egg	2020-12-14 19:33:58.224018888 +0000
+@@ -3,7 +3,7 @@
+ ((author "Joo ChurlSoo")
+  (maintainer "Sergey Goldgaber")
+  (synopsis "SRFI-51: Handling rest list")
+- (version "0.1")
++ (version "0.2")
+  (category lang-exts)
+  (dependencies srfi-1)
+  (test-dependencies test)

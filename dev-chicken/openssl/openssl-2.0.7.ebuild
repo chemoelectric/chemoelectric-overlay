@@ -5,14 +5,17 @@ EAPI=7
 
 inherit chicken-egg
 
-DESCRIPTION="SRFI 160: Homogeneous numeric vector libraries"
+DESCRIPTION="Bindings to the OpenSSL SSL/TLS library"
 
-LICENSE="MIT"
+LICENSE="BSD"
 SLOT="0/5"
 KEYWORDS="~amd64"
 
 RDEPEND="
 	>=dev-scheme/chicken-5.2.0:=
-	dev-chicken/srfi128:=
+	dev-chicken/srfi13:=
+	dev-chicken/srfi18:=
+	dev-chicken/address-info:=
+	>=dev-libs/openssl-1.0.2:=
 "
 DEPEND="${RDEPEND}"

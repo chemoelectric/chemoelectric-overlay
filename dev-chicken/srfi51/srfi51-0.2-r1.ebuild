@@ -16,3 +16,6 @@ RDEPEND="
 	dev-chicken/srfi1:=
 "
 DEPEND="${RDEPEND}"
+
+# There is a bug in the egg file.
+PATCHES=( "${FILESDIR}/${P}.patch" )
