@@ -5,20 +5,15 @@ EAPI=7
 PYTHON_COMPAT=( python3_{6,7,8,9} )
 PYTHON_REQ_USE="xml(+)"
 
-#if LIVE
-EGIT_REPO_URI="https://github.com/christgau/${PN}.git"
-
-inherit git-r3
-#endif
-
 inherit python-r1 systemd
 
 DESCRIPTION="A Web Service Discovery host daemon"
 HOMEPAGE="https://github.com/christgau/wsdd"
+SRC_URI="https://github.com/christgau/wsdd/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64 ~arm ~x86"
 IUSE="+samba"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
