@@ -83,7 +83,22 @@ chicken-egg_version__() {
 chicken-egg_egg_file_contains_member() {
 	local key="${1}"
 	local egg_file="$(chicken-egg_egg_file__ "${2}")"
-	chicken-csi -e '(with-input-from-file "'"${egg_file}"'" (lambda () (let ((egg (read))) (if (assq '"'${key}"' egg) (exit 0) (exit 1)))))'
+	chicken-csi -e '(with-input-from-file "'"${egg_file}"'" (lambda () (let* ((egg (read)) (pair (assq '"'${key}"' egg))) (exit (if pair 0 1)))))'
+}
+
+chicken-egg_egg_file_key_value_matches() {
+	local key="${1}"
+	local value="${2}"
+	local egg_file="$(chicken-egg_egg_file__ "${3}")"
+	chicken-csi -e '(with-input-from-file "'"${egg_file}"'" (lambda () (let* ((egg (read)) (pair (assq '"'${key}"' egg))) (exit (if (and (list? pair) (= 2 (length pair)) (string? (cadr pair)) (string=? (cadr pair) '"'${value}"')) 0 1)))))'
+}
+
+chicken-egg_egg_file_remove_member() {
+	local key="${1}"
+	local egg_file="$(chicken-egg_egg_file__ "${2}")"
+	local tempfile="${T}/tmp.$$"
+	chicken-csi -e '(with-input-from-file "'"${egg_file}"'" (lambda () (let ((egg (read))) (let loop ((lst (list)) (egg egg)) (if (null? egg) (write (reverse lst)) (let ((pair (car egg))) (if (and (list? pair) (= 2 (length pair)) (eq? (car pair) (quote '"${key}"'))) (loop lst (cdr egg)) (loop (cons pair lst) (cdr egg)))))))))' > "${tempfile}" || die
+	mv "${tempfile}" "${egg_file}" || die
 }
 
 chicken-egg_cons_member_to_egg_file() {
@@ -99,10 +114,15 @@ chicken-egg_add_missing_version_to_egg_file() {
 	local egg_file="$(chicken-egg_egg_file__ "${1}")"
 	local version="$(chicken-egg_version__ "${2}")"
 	if chicken-egg_egg_file_contains_member version "${egg_file}"; then
-		:
+		if chicken-egg_egg_file_key_value_matches version "\"${version}\"" "${egg_file}"; then
+			:
+		else
+			elog "Replacing incorrect version entry in ${egg_file} with '(version \"${version}\")"
+			chicken-egg_egg_file_remove_member version "${egg_file}"
+			chicken-egg_cons_member_to_egg_file version "\"${version}\"" "${egg_file}"
+		fi
 	else
 		elog "Adding missing entry '(version \"${version}\") to ${egg_file}"
 		chicken-egg_cons_member_to_egg_file version "\"${version}\"" "${egg_file}"
 	fi
 }
-
