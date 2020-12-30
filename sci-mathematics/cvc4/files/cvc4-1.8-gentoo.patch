@@ -1,0 +1,32 @@
+--- CVC4-1.8.ORIG/CMakeLists.txt	2020-12-30 00:12:55.755318550 +0000
++++ CVC4-1.8/CMakeLists.txt	2020-12-30 00:12:27.229366927 +0000
+@@ -193,7 +193,7 @@
+ 
+ # Note: Module CodeCoverage requires the name of the debug build to conform
+ #       to cmake standards (first letter uppercase).
+-set(BUILD_TYPES Production Debug Testing Competition)
++set(BUILD_TYPES Production Debug Testing Competition Gentoo)
+ 
+ if(ENABLE_ASAN OR ENABLE_UBSAN OR ENABLE_TSAN)
+ #_cmake_modify_IGNORE   set(CMAKE_BUILD_TYPE Debug)
+@@ -216,12 +216,10 @@
+ endif()
+ 
+ message(STATUS "Building ${CMAKE_BUILD_TYPE} build")
+-include(Config${CMAKE_BUILD_TYPE})
+ 
+ #-----------------------------------------------------------------------------#
+ # Compiler flags
+ 
+-add_check_c_cxx_flag("-O${OPTIMIZATION_LEVEL}")
+ add_check_c_cxx_flag("-Wall")
+ add_check_c_flag("-fexceptions")
+ add_check_c_cxx_flag("-Wno-deprecated")
+--- CVC4-1.8.ORIG/src/CMakeLists.txt	2020-12-30 00:12:55.518327260 +0000
++++ CVC4-1.8/src/CMakeLists.txt	2020-12-30 00:43:25.539070911 +0000
+@@ -1021,4 +1021,4 @@
+ # Note: This is a temporary fix until the new C++ API is in place.
+ install(CODE "execute_process(COMMAND
+                 ${CMAKE_CURRENT_LIST_DIR}/fix-install-headers.sh
+-                ${CMAKE_INSTALL_PREFIX})")
++                \$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX})")

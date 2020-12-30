@@ -14,12 +14,17 @@ SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="+cln portfolio proofs readline replay +statistics"
 
-RDEPEND="dev-libs/antlr-c
+# FIXME: Implement the tests.
+RESTRICT=test
+
+RDEPEND="
+	dev-libs/antlr-c:=
 	dev-java/antlr:3
-	dev-libs/boost
+	dev-libs/boost:=
 	readline? ( sys-libs/readline:0= )
-	cln? ( sci-libs/cln )
-	!cln? ( dev-libs/gmp:= )"
+	cln? ( sci-libs/cln:= )
+	!cln? ( dev-libs/gmp:= )
+"
 DEPEND="${RDEPEND}"
 
 S="${WORKDIR}"/CVC4-${PV}
