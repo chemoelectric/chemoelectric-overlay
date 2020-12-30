@@ -12,7 +12,7 @@ SRC_URI="https://github.com/CVC4/CVC4/archive/${PV}.tar.gz -> ${P}.tar.gz"
 LICENSE="GPL-2"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
-IUSE="+cln portfolio proofs readline replay +statistics"
+IUSE="+cln proofs readline replay +statistics"
 
 # FIXME: Implement the tests.
 RESTRICT=test
@@ -40,7 +40,6 @@ src_configure() {
 		-DUSE_CLN="$(usex cln ON OFF)"
 		-DUSE_READLINE="$(usex readline ON OFF)"
 		-DENABLE_STATISTICS="$(usex statistics ON OFF)"
-		-DENABLE_PORTFOLIO="$(usex portfolio ON OFF)"
 		-DENABLE_PROOFS="$(usex proofs ON OFF)"
 		-DENABLE_REPLAY="$(usex replay ON OFF)"
 	)
