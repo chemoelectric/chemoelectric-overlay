@@ -113,7 +113,11 @@ chicken-egg_cons_member_to_egg_file() {
 chicken-egg_add_missing_version_to_egg_file() {
 	local egg_file="$(chicken-egg_egg_file__ "${1}")"
 	local version="$(chicken-egg_version__ "${2}")"
-	if chicken-egg_egg_file_contains_member version "${egg_file}"; then
+	if [[ 99999999 -le ${version} ]]; then
+		# Live ebuilds, with version >=99999999, are assumed to have a
+		# correct ‘version’ in the egg file.
+		:
+	elif chicken-egg_egg_file_contains_member version "${egg_file}"; then
 		if chicken-egg_egg_file_key_value_matches version "\"${version}\"" "${egg_file}"; then
 			:
 		else
