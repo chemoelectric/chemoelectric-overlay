@@ -5,6 +5,14 @@ CHICKEN_MAJOR_VERSION=5
 CHICKEN_EGG_PN=${PN/srfi/srfi-}
 CHICKEN_EGG_P=${CHICKEN_EGG_PN}-${PV}
 
+case ${EAPI:-0} in
+        0|1|2|3|4|5|6)
+			inherit eapi7-ver
+			;;
+        *)
+			;;
+esac
+
 HOMEPAGE="
 	https://code.call-cc.org/
 	http://wiki.call-cc.org/eggref/${CHICKEN_MAJOR_VERSION}/${CHICKEN_EGG_PN}
@@ -113,7 +121,8 @@ chicken-egg_cons_member_to_egg_file() {
 chicken-egg_add_missing_version_to_egg_file() {
 	local egg_file="$(chicken-egg_egg_file__ "${1}")"
 	local version="$(chicken-egg_version__ "${2}")"
-	if [[ 99999999 -le ${version} ]]; then
+	local version_major=`ver_cut 1 ${version}`
+	if [[ 99999999 -le ${version_major} ]]; then
 		# Live ebuilds, with version >=99999999, are assumed to have a
 		# correct ‘version’ in the egg file.
 		:
