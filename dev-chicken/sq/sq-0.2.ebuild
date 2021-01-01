@@ -11,7 +11,7 @@ LICENSE="BSD"
 SLOT="0/5"
 KEYWORDS="~amd64"
 
-RDEPEND="
+COMMON_DEPEND="
 	>=dev-scheme/chicken-5.2.0:=
 	dev-chicken/optimism:=
 	dev-chicken/r7rs:=
@@ -20,7 +20,13 @@ RDEPEND="
 	dev-chicken/srfi60:=
 	dev-chicken/srfi145:=
 "
-DEPEND="${RDEPEND}"
+RDEPEND="
+	${COMMON_DEPEND}
+	app-misc/jq:*
+"
+DEPEND="
+	${COMMON_DEPEND}
+"
 BDEPEND="
 	dev-chicken/begin-syntax:=
 	dev-chicken/matchable:=
