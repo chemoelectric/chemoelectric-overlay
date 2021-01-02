@@ -12,7 +12,7 @@ EGIT_REPO_URI="https://github.com/espeak-ng/sonic.git"
 
 LICENSE="Apache-2.0"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64"
 IUSE="static-libs"
 
 RDEPEND="sci-libs/fftw:3.0="

@@ -12,7 +12,7 @@ EGIT_REPO_URI="https://github.com/espeak-ng/espeak-ng.git"
 
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64"
 IUSE="+async +extdict-ru +extdict-zh +extdict-zhy +klatt +mbrola +speechplayer"
 IUSE="${IUSE} +pcaudiolib"
 IUSE="${IUSE} +sonic"
