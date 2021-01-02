@@ -1,5 +1,6 @@
 acct-user
 acct-group
+app-accessibility
 app-doc
 app-emacs
 app-eselect
@@ -19,6 +20,7 @@ dev-vcs
 media-gfx
 media-libs
 media-plugins
+media-sound
 net-misc
 net-print
 sci-mathematics
