@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -13,7 +13,7 @@ KEYWORDS="~amd64"
 
 RDEPEND="
 	>=dev-scheme/chicken-5.2.0:=
-	>=dev-chicken/srfi18-1.4:=
-	>=dev-chicken/llrb-tree-0.3.8:=
+	dev-chicken/srfi18:=
+	dev-chicken/llrb-tree:=
 "
 DEPEND="${RDEPEND}"
