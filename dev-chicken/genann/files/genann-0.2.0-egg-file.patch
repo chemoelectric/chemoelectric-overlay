@@ -1,0 +1,14 @@
+--- genann/genann.egg.ORIG	2021-01-04 21:44:37.578383234 +0000
++++ genann/genann.egg	2021-01-04 21:52:47.789580088 +0000
+@@ -2,7 +2,9 @@
+  (synopsis "Chicken bindings to genann - a simple neural network library in ANSI C")
+  (category misc)
+  (license "Zlib")
++ (component-options
++  (csc-options -O3 -C -O3))
+  (components
++  (c-object genann_src)
+   (extension genann
+-             (csc-options "./genann_src.c"
+-                          -O3 -C -O3))))
++             (component-dependencies genann_src))))
