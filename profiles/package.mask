@@ -31,12 +31,6 @@ media-gfx/sortsmill-tools
 =dev-scheme/guile-2.2.9999*
 
 # Barry Schwartz (8 May 2020)
-# Masked for removal. Removal may occur at any time.
-# (No 30-day warnings. You can always get the ebuild from
-# the repository, anyway.)
-=dev-scheme/guile-9999-r3
-
-# Barry Schwartz (8 May 2020)
 # The build fails, and I do not feel like fixing it, yet.
 dev-lang/ats2-github
 
