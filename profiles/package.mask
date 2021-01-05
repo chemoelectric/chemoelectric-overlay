@@ -1,7 +1,3 @@
-# Barry Schwartz (4 January 2021)
-# The example in the Egg’s webpage segfaults.
-=dev-chicken/freetype-0.3
-
 # Barry Schwartz (22 June 2020)
 # These depend on dev-chicken/xlib
 dev-chicken/ezd
