@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Scheme jq wrapper for processing S-expressions"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 COMMON_DEPEND="

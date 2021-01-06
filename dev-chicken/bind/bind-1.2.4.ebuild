@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Automatically generate bindings from C/C++ declarations"
 
 LICENSE="public-domain"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

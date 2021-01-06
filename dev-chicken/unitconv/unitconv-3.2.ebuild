@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Conversion of units of measurement"
 
 LICENSE="LGPL-3"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

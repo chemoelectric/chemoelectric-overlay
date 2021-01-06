@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Lightweight, simple library for loading image files into OpenGL-friendly format"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

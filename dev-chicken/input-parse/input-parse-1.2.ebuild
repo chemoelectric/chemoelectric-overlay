@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="input-stream tokenizing and parsing routines"
 
 LICENSE="public-domain"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

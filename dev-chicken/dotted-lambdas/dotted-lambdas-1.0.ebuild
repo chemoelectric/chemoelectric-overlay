@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="lambda equivalents with dots as trailing symbols"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

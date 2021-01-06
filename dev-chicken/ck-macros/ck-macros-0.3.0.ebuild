@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Composable macros based on the CK abstract machine"
 
 LICENSE="public-domain"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Hashtable-like interface to the LMDB key-value database"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

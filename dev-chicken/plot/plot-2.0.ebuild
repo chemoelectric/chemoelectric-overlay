@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="An interface to libplot from GNU plotutils"
 
 LICENSE="GPL-3"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

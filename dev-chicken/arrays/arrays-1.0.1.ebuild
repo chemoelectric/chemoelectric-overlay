@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Functional arrays and sets"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="A queue data structure"
 
 LICENSE="public-domain"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Serialize SXML to XML and HTML"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

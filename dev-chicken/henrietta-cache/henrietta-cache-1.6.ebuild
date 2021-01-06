@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Fetch and cache extensions from various sources for Henrietta to consume"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

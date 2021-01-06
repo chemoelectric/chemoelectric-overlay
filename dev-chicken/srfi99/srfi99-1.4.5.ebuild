@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="SRFI-99 record types"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

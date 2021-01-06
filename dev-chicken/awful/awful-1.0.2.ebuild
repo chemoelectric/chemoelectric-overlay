@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Application and extension to ease the development of web-based applications"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -13,7 +13,7 @@ SRC_URI="
 "
 
 LICENSE="GPL-3+ unicode-data-files-and-software"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 S="${WORKDIR}/${P}"

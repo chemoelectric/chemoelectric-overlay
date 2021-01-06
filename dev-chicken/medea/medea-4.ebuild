@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="A JSON parser (and emitter) built with comparse"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

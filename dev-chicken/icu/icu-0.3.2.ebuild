@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Chicken bindings to the ICU unicode library"
 
 LICENSE="unicode"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

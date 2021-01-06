@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="A template engine inspired by Jinja2 and Jingoo"
 
 LICENSE="LGPL-3"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Compatibility library for old regular expression API"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

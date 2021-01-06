@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="OAuth 1.0, 1.0a, RFC 5849"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

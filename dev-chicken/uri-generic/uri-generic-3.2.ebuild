@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="URI generic syntax (RFC 3986) parsing and manipulation"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

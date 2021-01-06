@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Computes 256-, 385- and 512-bit SHA2 checksums"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

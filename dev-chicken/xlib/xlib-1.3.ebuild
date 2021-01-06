@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Xlib bindings"
 
 LICENSE="FIXME"	# The license is given as ‘unknown’. THIS IS NOT GOOD.
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

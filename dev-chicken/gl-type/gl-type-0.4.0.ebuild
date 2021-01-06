@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Freetype font rendering in OpenGL"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

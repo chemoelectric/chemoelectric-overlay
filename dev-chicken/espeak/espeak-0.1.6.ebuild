@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Chicken bindings for espeak-ng's speak_lib.h"
 
 LICENSE="GPL-3"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="partial expressions as procedures with named parameters"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

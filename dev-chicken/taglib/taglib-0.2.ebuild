@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Bindings to taglib"
 
 LICENSE="LGPL-2.1"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

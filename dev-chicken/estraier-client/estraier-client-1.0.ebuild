@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="A pure Scheme Hyper Estraier client library"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

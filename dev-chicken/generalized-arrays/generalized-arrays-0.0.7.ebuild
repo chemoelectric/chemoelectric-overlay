@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Generalized arrays and storage classes for CHICKEN Scheme"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

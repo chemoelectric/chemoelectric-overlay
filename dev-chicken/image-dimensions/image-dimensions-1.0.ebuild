@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Detect image dimensions for common formats"
 
 LICENSE="MIT"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

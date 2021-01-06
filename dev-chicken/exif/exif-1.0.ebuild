@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Binding to libexif, reading EXIF meta data from digital camera images"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

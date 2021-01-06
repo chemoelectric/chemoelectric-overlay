@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Memory-mapped file access for UNIX and Windows"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

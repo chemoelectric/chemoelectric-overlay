@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Compute the longest common subsequence of two sequences"
 
 LICENSE="GPL-3"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="CGI and FastCGI handlers for a small but powerful web server"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

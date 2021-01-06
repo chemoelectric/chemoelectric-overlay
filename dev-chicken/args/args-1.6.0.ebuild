@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Command-line argument handling, on top of SRFI 37"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

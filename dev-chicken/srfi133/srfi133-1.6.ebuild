@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="SRFI-133: Vector Library (R7RS-compatible)"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="an implementation of generic functions and a lot of helpers"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="A compiler and runtime system for R5RS Scheme on top of JavaScript"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

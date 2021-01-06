@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="A gzip (RFC1952) compression and decompression library"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

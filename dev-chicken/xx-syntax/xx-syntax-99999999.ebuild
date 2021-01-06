@@ -12,7 +12,7 @@ SRC_URI=""
 EHG_REPO_URI="http://hg.code.sf.net/p/chemoelectric/${PN}"
 
 LICENSE="MIT"
-SLOT="0/5"
+SLOT="0/0"
 KEYWORDS=""
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="A tool to convert and keep henrietta's cache in a git repository"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 COMMON_DEPEND="

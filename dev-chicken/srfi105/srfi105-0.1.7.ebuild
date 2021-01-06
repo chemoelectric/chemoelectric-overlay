@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="SRFI-105 - curly infix expressions"
 
 LICENSE="MIT"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

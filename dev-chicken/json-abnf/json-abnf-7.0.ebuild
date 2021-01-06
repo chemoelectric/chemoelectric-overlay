@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Parser combinators for JavaScript Object Notation (JSON)"
 
 LICENSE="GPL-3"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Maintain and talk to a pthread pool"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

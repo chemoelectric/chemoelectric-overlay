@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="SRFI-95: Sorting and merging"
 
 LICENSE="public-domain"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

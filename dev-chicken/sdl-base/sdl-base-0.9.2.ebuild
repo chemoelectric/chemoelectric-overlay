@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Basic SDL support"
 
 LICENSE="LGPL-2.1"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="An implementation of vlists, a functional list-like data structure"
 
 LICENSE="LGPL-3"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Breadcrumbs for web pages"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

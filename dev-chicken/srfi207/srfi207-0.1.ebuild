@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="SRFI-207: String-notated bytevectors"
 
 LICENSE="MIT"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

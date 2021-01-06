@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Exit status codes for system programs"
 
 LICENSE="public-domain"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

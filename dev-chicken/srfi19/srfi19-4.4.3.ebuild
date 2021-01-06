@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Time Data Types and Procedures"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="PS/Tk: Portable Scheme interface to Tk"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 COMMON_DEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Serve salmonella report files out of tar archives"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="A reader extension providing Gauche style literals for SRFI-14 char-sets"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

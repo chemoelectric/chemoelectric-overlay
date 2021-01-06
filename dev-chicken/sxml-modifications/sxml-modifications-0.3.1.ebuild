@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="The sxml-modification bits of sxml-tools from the SSAX project at Sourceforge"
 
 LICENSE="public-domain"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

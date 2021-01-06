@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Tool to generate static pages out of awful applications"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

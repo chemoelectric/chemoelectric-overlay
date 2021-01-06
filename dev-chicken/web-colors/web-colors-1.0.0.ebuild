@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Parse and write HTML/CSS color strings"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

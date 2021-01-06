@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="SRFI-45: Primitives for Expressing Iterative Lazy Algorithms"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

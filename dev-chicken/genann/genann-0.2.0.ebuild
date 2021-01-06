@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Chicken bindings to genann - a simple neural network library in ANSI C"
 
 LICENSE="ZLIB"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 PATCHES=(

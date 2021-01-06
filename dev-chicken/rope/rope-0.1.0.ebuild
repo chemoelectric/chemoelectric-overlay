@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Heavyweight alternative to strings"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

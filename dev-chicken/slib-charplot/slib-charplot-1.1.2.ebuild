@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="The SLIB character plotting library"
 
 LICENSE="Artistic"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

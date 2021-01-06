@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="A sorted dictionary data structure based on red-black trees"
 
 LICENSE="GPL-3"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Bindings for the Radial Basis Function interpolation routines by John Burkardt"
 
 LICENSE="GPL-3"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="A tool to test new eggs before they are added to the official CHICKEN repository"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

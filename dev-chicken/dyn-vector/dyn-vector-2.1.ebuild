@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Dynamic (dense) vectors based on SRFI-43"
 
 LICENSE="LGPL-3"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

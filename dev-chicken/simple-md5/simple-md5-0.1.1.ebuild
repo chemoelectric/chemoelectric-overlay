@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Computes MD5 (RFC1321) checksums"
 
 LICENSE="public-domain"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

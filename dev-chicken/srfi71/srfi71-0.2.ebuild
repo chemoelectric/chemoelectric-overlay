@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="SRFI-71: Extended LET-syntax for multiple values"
 
 LICENSE="SRFI"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="RFC3339 datetime parser"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

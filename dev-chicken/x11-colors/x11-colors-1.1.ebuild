@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="named standard colors as available in X11"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

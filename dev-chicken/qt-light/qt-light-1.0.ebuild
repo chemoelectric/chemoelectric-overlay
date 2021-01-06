@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="A lightweight Qt 5 interface"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 IUSE="examples"
 

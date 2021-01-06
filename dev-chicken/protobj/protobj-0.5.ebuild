@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="A prototype-delegation object model"
 
 LICENSE="LGPL-2.1"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

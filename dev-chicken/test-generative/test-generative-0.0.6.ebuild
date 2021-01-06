@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Allows quickcheck like testing for pure code with the test egg"
 
 LICENSE="GPL-3"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

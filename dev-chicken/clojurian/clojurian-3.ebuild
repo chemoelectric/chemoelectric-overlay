@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Syntax and utility functions inspired by Clojure"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

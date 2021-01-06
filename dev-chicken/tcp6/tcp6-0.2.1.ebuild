@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Interface to TCP over IPv4 and IPv6"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

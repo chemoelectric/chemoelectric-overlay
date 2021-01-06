@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Parsing and formatting of tabular text"
 
 LICENSE="GPL-3"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

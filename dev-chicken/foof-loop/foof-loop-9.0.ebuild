@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Extensible looping macros (originally based on Alex Shinn's)"
 
 LICENSE="public-domain"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

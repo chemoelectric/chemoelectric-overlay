@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Encoding and decoding of base64 strings"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

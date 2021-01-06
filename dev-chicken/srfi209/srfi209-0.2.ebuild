@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="SRFI 209: Enums and enum sets"
 
 LICENSE="MIT"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

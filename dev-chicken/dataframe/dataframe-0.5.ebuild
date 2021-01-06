@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Tabular data structure for data analysis"
 
 LICENSE="GPL-3"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

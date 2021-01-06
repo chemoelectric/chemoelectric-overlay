@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Packages the canonical miniKanren implementation for CHICKEN Scheme"
 
 LICENSE="MIT"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

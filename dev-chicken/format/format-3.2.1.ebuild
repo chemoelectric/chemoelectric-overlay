@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Common-Lisp style formatted output"
 
 LICENSE="public-domain"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

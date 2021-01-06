@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Colorize programming code as HTML"
 
 LICENSE="MIT"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

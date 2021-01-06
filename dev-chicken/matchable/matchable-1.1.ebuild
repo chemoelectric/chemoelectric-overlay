@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Hygienic MATCH replacement"
 
 LICENSE="public-domain"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

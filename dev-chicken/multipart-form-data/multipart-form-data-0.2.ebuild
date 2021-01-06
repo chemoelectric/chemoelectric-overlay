@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Reads & decodes HTTP multipart/form-data requests"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

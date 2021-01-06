@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="A facility for creating and deconstructing variant records (from EOPL)"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

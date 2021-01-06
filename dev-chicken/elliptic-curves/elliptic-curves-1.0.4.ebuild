@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Arithmetic and Cryptography on Elliptic Curve Groups over Finite Fields"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

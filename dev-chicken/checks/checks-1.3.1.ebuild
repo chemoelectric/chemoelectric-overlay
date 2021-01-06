@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="easy to use procondition and postcondition checks of procedures"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="A compiler for a Scheme-like language targeting the GLSL"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

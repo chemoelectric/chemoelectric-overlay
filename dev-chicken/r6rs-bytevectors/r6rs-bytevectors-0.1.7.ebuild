@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="An implementation of r6rs bytevectors"
 
 LICENSE="MIT"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

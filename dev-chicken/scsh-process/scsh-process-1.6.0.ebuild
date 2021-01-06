@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="A reimplementation for CHICKEN of SCSH's process notation"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

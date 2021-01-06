@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Chibi Scheme's simple generic function interface"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

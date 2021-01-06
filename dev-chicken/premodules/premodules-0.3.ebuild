@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Converting a premodule into module, test and doc files"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

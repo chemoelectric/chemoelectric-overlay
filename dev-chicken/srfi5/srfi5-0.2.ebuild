@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="SRFI-5: A compatible let form with signatures and rest arguments"
 
 LICENSE="MIT"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

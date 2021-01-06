@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="resize raw u8/u16/u32/f32-vector images"
 
 LICENSE="public-domain"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

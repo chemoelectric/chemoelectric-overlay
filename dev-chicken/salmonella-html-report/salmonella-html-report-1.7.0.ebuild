@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="A tool to generate HTML ouput out of salmonella log files"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="A Chicken version of the SRFI-152 reference implementation"
 
 LICENSE="MIT"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

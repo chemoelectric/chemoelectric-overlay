@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Scan lines until a regex or predicate matches"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="A wrapper around Subversion's libsvn_client C library"
 
 LICENSE="public-domain"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

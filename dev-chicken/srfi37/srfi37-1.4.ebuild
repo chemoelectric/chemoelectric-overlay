@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="A simple and flexible command-line option parsing facility"
 
 LICENSE="SRFI"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

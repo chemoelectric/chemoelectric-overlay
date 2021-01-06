@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Implementation of typed cells to replace general set! operators"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

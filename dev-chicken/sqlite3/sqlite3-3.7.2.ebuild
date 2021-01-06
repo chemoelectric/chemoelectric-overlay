@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Bindings to version 3.x of the SQLite API"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Game library"
 
 LICENSE="BSD-2"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

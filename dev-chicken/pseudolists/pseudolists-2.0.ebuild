@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="pseudolists as a generalisation of ordinary lists"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

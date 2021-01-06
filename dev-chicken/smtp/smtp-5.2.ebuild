@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Parser combinators and state machine for Simple Mail Transfer Protocol"
 
 LICENSE="GPL-3"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

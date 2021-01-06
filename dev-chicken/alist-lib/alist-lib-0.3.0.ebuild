@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="SRFI-69-like library for alists"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

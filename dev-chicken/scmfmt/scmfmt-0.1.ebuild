@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Chicken Scheme code formattor to use from stdin/stdout"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

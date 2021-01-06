@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Hack that replaces 'define' with a version that mutates existing procedures"
 
 LICENSE="public-domain"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

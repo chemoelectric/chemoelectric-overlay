@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Convenient shell-command invocation"
 
 LICENSE="public-domain"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

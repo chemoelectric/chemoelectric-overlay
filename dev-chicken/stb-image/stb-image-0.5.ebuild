@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="read png/jpg/tga/bmp/psd/gif/hdr/pic/pnm images into pixels"
 
 LICENSE="public-domain"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

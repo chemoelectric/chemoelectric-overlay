@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="a uniform interface to lists and lazy-lists"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="

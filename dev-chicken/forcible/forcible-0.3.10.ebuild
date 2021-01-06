@@ -8,7 +8,7 @@ inherit chicken-egg
 DESCRIPTION="Thread- and exception aware, lazy-looking synchronization with timeouts"
 
 LICENSE="BSD"
-SLOT="0/5"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="
