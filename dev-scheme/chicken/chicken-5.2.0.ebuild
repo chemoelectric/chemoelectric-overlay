@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -11,7 +11,7 @@ HOMEPAGE="http://www.call-cc.org/"
 SRC_URI="http://code.call-cc.org/releases/${MY_PV}/${P}.tar.gz"
 
 LICENSE="BSD"
-SLOT="0/5.2.0"
+SLOT="0/${PV}"
 KEYWORDS="~amd64"
 IUSE="doc mono"
 
