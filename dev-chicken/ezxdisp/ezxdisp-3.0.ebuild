@@ -10,6 +10,7 @@ DESCRIPTION="A simple 2D and 3D graphics library for X11"
 LICENSE="LGPL-2"
 SLOT="0/${PV}"
 KEYWORDS="~amd64"
+IUSE="examples"
 
 RDEPEND="
 	x11-libs/libX11:=
@@ -17,3 +18,8 @@ RDEPEND="
 	dev-chicken/bind:=
 "
 DEPEND="${RDEPEND}"
+
+src_install() {
+	chicken-egg_src_install
+	use examples && dodoc -r examples
+}
