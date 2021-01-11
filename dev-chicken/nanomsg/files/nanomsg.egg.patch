@@ -1,0 +1,10 @@
+--- nanomsg/nanomsg.egg.ORIG	2021-01-11 17:51:50.553822553 +0000
++++ nanomsg/nanomsg.egg	2021-01-11 17:52:29.034408111 +0000
+@@ -1,5 +1,6 @@
+ ;; -*- scheme -*-
+-((author "Adellica AS")
++((version "1.0.0")
++ (author "Adellica AS")
+  (license "MIT") ;; same as nanomsg
+  (dependencies foreigners srfi-18)
+  (test-dependencies test)

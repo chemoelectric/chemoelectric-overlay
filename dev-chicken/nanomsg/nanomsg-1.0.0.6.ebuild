@@ -18,3 +18,11 @@ RDEPEND="
 	dev-chicken/srfi18:=
 "
 DEPEND="${RDEPEND}"
+
+# Shorten the version to 1.0.0, because 1.0.0.x is not a legal
+# Chicken Egg version.
+PATCHES=( "${FILESDIR}"/nanomsg.egg.patch )
+
+src_prepare() {
+	default
+}
