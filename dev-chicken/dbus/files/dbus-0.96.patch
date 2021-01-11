@@ -1,0 +1,23 @@
+--- dbus/dbus.egg.ORIG	2021-01-11 21:35:52.437416341 +0000
++++ dbus/dbus.egg	2021-01-11 21:36:04.364977916 +0000
+@@ -3,7 +3,7 @@
+  (license "MIT")
+  (author "Shawn Rutledge")
+  (maintainer "John J. Foerch")
+- (dependencies miscmacros srfi-18 foreigners)
++ (dependencies miscmacros srfi-18 foreigners srfi-99)
+  (component-options (csc-options "-O3" "-d1" "-C" "`pkg-config --cflags dbus-1`")
+                     (link-options "-L" "`pkg-config --libs dbus-1`"))
+  (components
+--- dbus/dbus.scm.ORIG	2021-01-11 21:32:12.773298629 +0000
++++ dbus/dbus.scm	2021-01-11 21:35:34.289083425 +0000
+@@ -54,7 +54,8 @@
+            (chicken pretty-print)
+            (srfi 18)
+            foreigners
+-           miscmacros))
++           miscmacros
++           (only (srfi 99) define-record-type)))
+   (else
+    (import chicken foreign)
+    (use (srfi 18)
