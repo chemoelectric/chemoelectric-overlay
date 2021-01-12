@@ -10,6 +10,7 @@ DESCRIPTION="A binding for libdbus, the IPC mechanism"
 LICENSE="MIT"
 SLOT="0/${PV}"
 KEYWORDS="~amd64"
+IUSE="examples"
 
 PATCHES=( "${FILESDIR}"/dbus-"${PV}".patch )
 
@@ -21,3 +22,8 @@ RDEPEND="
 	dev-chicken/srfi99:=
 "
 DEPEND="${RDEPEND}"
+
+src_install() {
+	chicken-egg_src_install
+	use examples && dodoc -r examples
+}
