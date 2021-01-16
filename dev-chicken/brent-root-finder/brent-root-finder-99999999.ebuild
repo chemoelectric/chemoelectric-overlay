@@ -15,7 +15,7 @@ LICENSE="GPL-3+"
 SLOT="0/0"
 KEYWORDS=""
 
-IUSE="doc"
+IUSE=""
 
 RDEPEND="
 	>=dev-scheme/chicken-5.2.0:=
