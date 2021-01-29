@@ -22,3 +22,11 @@ RDEPEND="
 	dev-chicken/r7rs:=
 "
 DEPEND="${RDEPEND}"
+
+src_compile() {
+	local emakeflags="CSI=/usr/bin/chicken-csi CSC=/usr/bin/chicken-csc"
+
+	# Possibly speed things up, by compiling with the GNUmakefile
+	# (which can do parallel builds) instead of with chicken-install.
+	emake ${emakeflags}
+}
