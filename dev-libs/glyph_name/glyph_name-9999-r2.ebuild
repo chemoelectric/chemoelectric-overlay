@@ -2,8 +2,6 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-PYTHON_COMPAT=( python3_{6,7,8,9} )
-DISTUTILS_USE_SETUPTOOLS=no
 
 inherit git-r3
 
@@ -19,10 +17,11 @@ SLOT="0"
 KEYWORDS=""
 
 RDEPEND=""
-DEPEND="
-	dev-util/scons
-	sys-devel/m4
-	${RDEPEND}
+DEPEND=""
+BDEPEND="
+	dev-util/scons:*
+	>=dev-lang/python-3:*
+	sys-devel/m4:*
 "
 
 S="${WORKDIR}/${PN}-${PV}"
