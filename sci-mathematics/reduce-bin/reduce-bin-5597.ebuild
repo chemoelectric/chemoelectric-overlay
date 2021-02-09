@@ -12,14 +12,21 @@ SRC_URI="mirror://sourceforge/reduce-algebra/snapshot_2021-01-18/linux64/reduce-
 SLOT="0"
 LICENSE="BSD-2 LGPL-2.1"
 KEYWORDS="~amd64"
-IUSE="emacs"
+
+#
+#      FIXME: Emacs support currently is broken. It seems to be
+#             tailored for Debian. Fix the startup file!
+#
+
+#IUSE="emacs"
+IUSE=""
 
 RDEPEND="
 	x11-libs/libXrandr:=
 	x11-libs/libXcursor:=
 	x11-libs/libXft:=
-	emacs? ( app-editors/emacs:= )
 "
+#	emacs? ( app-editors/emacs:= )
 DEPEND="${RDEPEND}"
 
 RESTRICT=test
@@ -48,9 +55,10 @@ src_configure() {
 }
 
 src_compile() {
-	if use emacs; then
-		elisp-compile "usr/share/emacs/site-lisp/reduce/reduce-mode.el"
-	fi
+	:
+#	if use emacs; then
+#		elisp-compile "usr/share/emacs/site-lisp/reduce/reduce-mode.el"
+#	fi
 }
 
 src_install() {
@@ -85,9 +93,9 @@ src_install() {
 	done
 	popd 2>/dev/null || die
 
-	if use emacs; then
-		elisp-install "${PN}" usr/share/emacs/site-lisp/reduce/reduce-mode.el{,c}
-		cp etc/emacs/site-start.d/50reduce-emacs.el "${T}"/50"${PN}"-gentoo.el || die
-		elisp-site-file-install "${T}"/50"${PN}"-gentoo.el
-	fi
+#	if use emacs; then
+#		elisp-install "${PN}" usr/share/emacs/site-lisp/reduce/reduce-mode.el{,c}
+#		cp etc/emacs/site-start.d/50reduce-emacs.el "${T}"/50"${PN}"-gentoo.el || die
+#		elisp-site-file-install "${T}"/50"${PN}"-gentoo.el
+#	fi
 }
