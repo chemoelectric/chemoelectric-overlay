@@ -25,22 +25,22 @@ DEPEND="${RDEPEND}"
 RESTRICT=test
 
 QA_PREBUILT="
-	opt/usr/bin/rfpsl
-	opt/usr/bin/rfcsl
-	opt/usr/lib/reduce/cslbuild/csl/bootstrapreduce
-	opt/usr/lib/reduce/cslbuild/csl/csl
-	opt/usr/lib/reduce/cslbuild/csl/reduce
-	opt/usr/lib/reduce/pslbuild/psl/bpsl
+	opt/${PF}/usr/bin/rfpsl
+	opt/${PF}/usr/bin/rfcsl
+	opt/${PF}/usr/lib/reduce/cslbuild/csl/bootstrapreduce
+	opt/${PF}/usr/lib/reduce/cslbuild/csl/csl
+	opt/${PF}/usr/lib/reduce/cslbuild/csl/reduce
+	opt/${PF}/usr/lib/reduce/pslbuild/psl/bpsl
 "
 QA_WX_LOAD="
-	opt/usr/lib/reduce/pslbuild/psl/bpsl
+	opt/${PF}/usr/lib/reduce/pslbuild/psl/bpsl
 "
 
-S="${WORKDIR}/opt"
+S="${WORKDIR}"
 
-src_unpack() {
-	mkdir -p "${S}" || die
-	cd "${S}" && default
+src_prepare() {
+	default
+	find usr -type d -exec touch '{}'/.keep ';' || die
 }
 
 src_configure() {
@@ -54,18 +54,21 @@ src_compile() {
 }
 
 src_install() {
-	cp -R "${WORKDIR}"/opt "${D}" || die
+	local optdir=opt/"${PF}"
+
+	mkdir -p "${D}/${optdir}" || die
+	cp -R usr "${D}/${optdir}/." || die
+
 	for f in usr/bin/*; do
-		dosym ../../opt/"${f}" /"${f}"
+		dosym ../../"${optdir}"/"${f}" /"${f}"
 	done
 
-	for f in reduce reduce-addons; do
-		dosym ../../opt/usr/share/"${f}" /usr/share/"${f}"
-		dosym ../../opt/usr/share/"${f}" /usr/share/"${f}"
-	done
+	dosym ../../"${optdir}"/usr/share/reduce /usr/share/reduce
+	dosym ../../"${optdir}"/usr/share/reduce-addons /usr/share/reduce-addons
 
-	# FIXME: This really should have some things located elsewhere.
-	dosym ../../opt/usr/lib/reduce /usr/lib/reduce
+	# FIXME: This really should have some things located in other
+	# ‘lib’ directories.
+	dosym ../../"${optdir}"/usr/lib/reduce /usr/lib/reduce
 
 	pushd usr/share/man/man1/ 2>/dev/null || die
 	for f in *; do
@@ -77,7 +80,7 @@ src_install() {
 	mkdir -p "${D}"/usr/share/doc/"${PF}" || die
 	pushd usr/share/doc 2>/dev/null || die
 	for f in *; do
-		dosym ../../../../opt/usr/share/doc/"${f}" \
+		dosym ../../../../"${optdir}"/usr/share/doc/"${f}" \
 			  /usr/share/doc/"${PF}"/"${f}"
 	done
 	popd 2>/dev/null || die
