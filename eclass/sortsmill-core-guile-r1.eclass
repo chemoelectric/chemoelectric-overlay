@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
 # Multilib build of Sortsmill Core Guile.
@@ -14,7 +14,7 @@ GUILE_COMPAT=( guile2_0 guile2_2 )
 
 # FIXME: Builds against Python > 3.3 (or maybe it is > 3.4) have never
 # been tried by us and may work incorrectly.
-PYTHON_COMPAT=( python2_7 python3_4 python3_5 python3_6 )
+PYTHON_COMPAT=( python3_{7,8,9} )
 
 inherit eutils
 inherit toolchain-funcs
