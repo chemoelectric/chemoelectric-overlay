@@ -6,7 +6,7 @@ EAPI=7
 inherit mercurial
 inherit chicken-egg
 
-DESCRIPTION="The Oliveira-Takahashi ‘ITP’ root-finding method"
+DESCRIPTION="The Oliveira-Takahashi 'ITP' root-finding method"
 HOMEPAGE="https://sourceforge.net/p/chemoelectric/${PN}"
 SRC_URI=""
 EHG_REPO_URI="http://hg.code.sf.net/p/chemoelectric/${PN}"
