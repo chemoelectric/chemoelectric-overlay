@@ -1,0 +1,10 @@
+--- sagittarius-0.9.7/cmake/CMakeLists.txt.ORIG	2021-02-28 12:53:54.836713320 +0000
++++ sagittarius-0.9.7/cmake/CMakeLists.txt	2021-02-28 12:54:04.382363214 +0000
+@@ -1,5 +1,5 @@
+ # Post install script
+ 
+ # running ldconfig
+-INSTALL(CODE "MESSAGE(STATUS \"Running ldconfig\")")
+-INSTALL(CODE "execute_process(COMMAND ldconfig)")
++#INSTALL(CODE "MESSAGE(STATUS \"Running ldconfig\")")
++#INSTALL(CODE "execute_process(COMMAND ldconfig)")
