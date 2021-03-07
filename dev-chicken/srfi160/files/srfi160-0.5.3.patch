@@ -1,0 +1,31 @@
+--- srfi-160/srfi.160.base.scm.ORIG	2021-03-07 20:29:05.354095292 +0000
++++ srfi-160/srfi.160.base.scm	2021-03-07 20:29:22.351466308 +0000
+@@ -6,7 +6,7 @@
+   (import (only (chicken module) export))
+   (import (only (chicken bitwise) bitwise-and bitwise-ior
+                            bitwise-not arithmetic-shift))
+-  (import (only (chicken read-syntax) set-sharp-read-syntax!))
++  (import (only (chicken read-syntax) set-read-syntax!))
+   (import (chicken fixnum))
+ 
+   ;; SRFI 4 versions of @vector->list don't accept start/end args
+--- srfi-160/r7rec.scm.ORIG	2021-03-07 20:26:51.965031325 +0000
++++ srfi-160/r7rec.scm	2021-03-07 20:28:28.325465529 +0000
+@@ -8,7 +8,7 @@
+     (display "#!c64" out)
+     (display (c64vector->list v))))
+ 
+-(set-sharp-read-syntax! 'c64
++(set-read-syntax! 'c64
+   (lambda (p)
+     (list->c64vector (read p))))
+ 
+@@ -20,7 +20,7 @@
+     (display "#!c128" out)
+     (display (c128vector->list v))))
+ 
+-(set-sharp-read-syntax! 'c128
++(set-read-syntax! 'c128
+   (lambda (p)
+     (list->c128vector (read p))))
+ 
