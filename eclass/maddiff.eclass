@@ -8,7 +8,7 @@ HOMEPAGE="https://github.com/quinoacomputing/ndiff"
 
 DOC_PDF=CERN-ACC-NOTE-2013-0005.pdf
 
-SRC_URI="doc? ( https://github.com/jbakosi/ndiff/blob/master/doc/${DOC_PDF} )"
+SRC_URI="doc? ( https://bitbucket.org/chemoelectric/chemoelectric-overlay/downloads/${DOC_PDF} )"
 
 if [[ ${PV} == 99999999 ]]; then
 	inherit git-r3
