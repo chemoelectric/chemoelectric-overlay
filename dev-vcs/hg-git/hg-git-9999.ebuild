@@ -1,8 +1,8 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI="7"
-PYTHON_COMPAT=( python3_6 python3_7 python3_8 )
+PYTHON_COMPAT=( python3_{6,7,8,9} )
 
 inherit mercurial distutils-r1
 
@@ -19,6 +19,7 @@ RDEPEND="
 	>=dev-vcs/mercurial-5.4[${PYTHON_USEDEP}]
 	>=dev-python/dulwich-0.19.15[${PYTHON_USEDEP}]
 "
-DEPEND="${RDEPEND}
+DEPEND="
+	${RDEPEND}
 	dev-python/setuptools[${PYTHON_USEDEP}]
 "
