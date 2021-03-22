@@ -5,7 +5,7 @@ EAPI=7
 
 DESCRIPTION="Gaigen 2.5: Geometric Algebra Implementation Generator"
 HOMEPAGE="https://sourceforge.net/p/chemoelectric/g25/"
-SRC_URI="mirror://sourceforge/projects/chemoelectric/files/Crud%20Factory%20Gaigen%202.5/g25-2.5.1000.tar.gz"
+SRC_URI="https://sourceforge.net/projects/chemoelectric/files/Crud%20Factory%20Gaigen%202.5/g25-2.5.1000.tar.gz"
 LICENSE="GPL-2"
 
 SLOT="0"
