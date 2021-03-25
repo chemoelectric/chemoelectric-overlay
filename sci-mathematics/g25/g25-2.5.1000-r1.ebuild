@@ -6,4 +6,6 @@ EAPI=7
 inherit g25
 
 SLOT="0"
-KEYWORDS=""
+KEYWORDS="~amd64"
+
+RESTRICT=test					# There are no tests in this release.
