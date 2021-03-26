@@ -87,7 +87,11 @@ g25_src_prepare() {
 }
 
 g25_src_configure() {
+	if [[ -z "${CSCFLAGS}" ]]; then
+		CSCFLAGS='-nologo -optimize+ -debug- -define:TRACE'
+	fi
 	econf CSC=/usr/bin/csc \
+		  CSCFLAGS="${CSCFLAGS}" \
 		  MONO=/usr/bin/mono \
 		  MCS=/usr/bin/mcs
 }
