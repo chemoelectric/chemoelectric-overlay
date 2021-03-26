@@ -19,7 +19,7 @@ HOMEPAGE="https://sourceforge.net/p/chemoelectric/g25/"
 if live_ebuild; then
 	EHG_REPO_URI="http://hg.code.sf.net/p/chemoelectric/g25"
 else
-	SRC_URI="https://sourceforge.net/projects/chemoelectric/files/Crud%20Factory%20Gaigen%202.5/${P}.tar.gz"
+	SRC_URI="https://sourceforge.net/projects/chemoelectric/files/Crud-Factory-Gaigen-2.5/${P}.tar.gz"
 fi
 LICENSE="GPL-3+ LGPL-2.1+ BSD"
 
