@@ -13,23 +13,44 @@ SRC_URI="https://github.com/${MY_PN}/${MY_PN}/releases/download/${PV}/${P}.tar.g
 SLOT="0"
 LICENSE="BSD"
 KEYWORDS="~amd64 ~x86"
-IUSE=""
+IUSE="books-all books-basic books-everything books-none"
 
-BDEPEND="dev-lisp/sbcl"
+REQUIRED_USE="
+	^^ ( books-all books-basic books-everything books-none )
+"
+
 DEPEND="
 	dev-lisp/sbcl:=
 	dev-lang/perl:*
+	sci-mathematics/z3:*
 "
-RDEPEND="${DEPEND}"
+RDEPEND="
+	${DEPEND}
+"
 
 my_lisp() {
+	# FIXME: We could support other Lisps. For instance, the GNUmakefile
+	#        by default uses Clozure CL.
 	echo "/usr/bin/sbcl --noinform --noprint --no-sysinit --no-userinit --disable-debugger"
 }
 
 src_compile() {
-	# Build ACL2 and the basic set of books.
+	# Build ACL2.
 	emake -f GNUmakefile LISP="$(my_lisp)"
-	emake -f GNUmakefile LISP="$(my_lisp)" basic
+
+	if ! use books-none; then
+		local which_books
+		use books-basic && which_books=basic
+		use books-all && which_books=all
+		use books-everything && which_books=everything
+
+		# Build the books (except the very slow ones, etc.).
+		emake -f GNUmakefile LISP="$(my_lisp)" ACL2=`pwd`/saved_acl2 USE_QUICKLISP=1 clean-books
+		emake -C books -f GNUmakefile LISP="$(my_lisp)" ACL2=`pwd`/saved_acl2 USE_QUICKLISP=1 ${which_books}
+
+		# Build the manual.
+		emake -C books -f GNUmakefile LISP="$(my_lisp)" ACL2=`pwd`/saved_acl2 USE_QUICKLISP=1 manual
+	fi
 }
 
 src_install() {
@@ -42,12 +63,17 @@ src_install() {
 export ACL2_SYSTEM_BOOKS=/usr/share/acl2/books/" \
 		saved_acl2 || die
 
-	# Install the script, but make it available also under the name
-	# ‘acl2’.
-	dobin saved_acl2
-	dosym saved_acl2 /usr/bin/${PN}
+	# Install the script, but under the name ‘acl2’.
+	cp saved_acl2 ${PN} || die
+	dobin ${PN}
 
 	insinto /usr/share/acl2
 	doins TAGS saved_acl2.core
-	doins -r books
+
+	if ! use books-none; then
+		# The books must have their write times preserved, or the
+		# certificates will be bad. Therefore use ‘cp -a’ instead of
+		# ‘doins -r’.
+		cp -a books "${ED}"/usr/share/acl2 || die
+	fi
 }
