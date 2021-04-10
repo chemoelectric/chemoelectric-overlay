@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 CHICKEN_MAJOR_VERSION=5
@@ -6,10 +6,10 @@ CHICKEN_EGG_PN=${PN/srfi/srfi-}
 CHICKEN_EGG_P=${CHICKEN_EGG_PN}-${PV}
 
 case ${EAPI:-0} in
-        0|1|2|3|4|5|6)
+		0|1|2|3|4|5|6)
 			inherit eapi7-ver
 			;;
-        *)
+		*)
 			;;
 esac
 
@@ -58,11 +58,11 @@ chicken-egg_src_install() {
 }
 
 chicken-egg_pkg_postinst() {
-	chicken-install -v -u || die
+	chicken-install -u || die
 }
 
 chicken-egg_pkg_postrm() {
-	chicken-install -v -u || die
+	chicken-install -u || die
 }
 
 chicken-egg_egg_file__() {
