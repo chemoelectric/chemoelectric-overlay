@@ -24,5 +24,6 @@ media-sound
 net-misc
 net-print
 sci-mathematics
+sys-boot
 sys-devel
 x11-libs
