@@ -13,7 +13,7 @@ EHG_REPO_URI="http://hg.code.sf.net/p/chemoelectric/libxml2-d"
 
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS=""
 IUSE=""
 
 BDEPEND="

@@ -12,7 +12,7 @@ EHG_REPO_URI="http://hg.code.sf.net/p/chemoelectric/dlangc"
 
 LICENSE="GPL-3+"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS=""
 IUSE=""
 
 RDEPEND="virtual/awk"
@@ -24,5 +24,5 @@ src_prepare() {
 }
 
 src_configure() {
-	econf AWK_COMMAND="${AWK_COMMAND-/bin/awk -f}"
+	econf AWK_COMMAND="${DLANGC_AWK_COMMAND-/bin/awk -f}"
 }
