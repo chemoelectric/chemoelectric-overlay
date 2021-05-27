@@ -13,7 +13,6 @@ KEYWORDS="~amd64"
 
 RDEPEND="
 	>=dev-scheme/chicken-5.2.0:=
-	dev-chicken/fast-generic:=
 	dev-chicken/matchable:=
 	dev-chicken/miscmacros:=
 	dev-chicken/srfi1:=
