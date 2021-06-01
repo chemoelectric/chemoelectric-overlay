@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 [[ -n "${ATS2_IMPLEMENTATION}" ]] ||
@@ -45,18 +45,15 @@ fi
 
 IUSE="smt2 clojure javascript php perl python R scheme"
 
-# FIXME: The dependence on dev-libs/gmp might go away in future
-# versions of ATS2. At the time of this writing, there is an
-# experimental `ATS-intmin' package that does not use GMP but
-# which is not fully featured.
-#
 # FIXME: As of ATS2 0.4.0, the ATS2-Postiats-gmp-x.x.x is the
 # gmp-dependent version, and ATS2-Postiats-x.x.x is the version
 # using native ints. This eclass still is for the gmp-dependent
 # version, only.
 RDEPEND="
-	dev-libs/gmp:0
+	dev-libs/boehm-gc:=
+	dev-libs/gmp:=
 	app-eselect/eselect-ats2
+	smt2? ( dev-libs/json-c:= )
 "
 
 # FIXME: Are there any interesting build dependencies? And will we
@@ -81,6 +78,10 @@ if ver_test -ge 0.3.13; then
 else
 	S="${WORKDIR}/ATS2-Postiats-${PV}"
 fi
+
+export PATSHOME="${S}"
+export PATH="${PATSHOME}/bin${PATH:+:}${PATH:-}"
+unset PATSHOMERELOC
 
 EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install \
 				 pkg_postinst pkg_postrm
@@ -161,7 +162,7 @@ compile_atscc2xx() {
 }
 
 ats2_src_compile() {
-	emake -j1 all CCOMP="$(tc-getCC)"
+	emake -j1 all CCOMP="$(tc-getCC)" GCFLAG=-D_ATS_GCBDW
 	#	if use patsolve_z3; then
 	#		pushd contrib/ATS-extsolve > /dev/null || die
 	#		emake -j1 DATS_C CCOMP="$(tc-getCC)"
@@ -292,9 +293,9 @@ EOF
 }
 
 ats2_pkg_postinst() {
-    eselect ats2 update --if-unset
+	eselect ats2 update --if-unset
 }
 
 ats2_pkg_postrm() {
-    eselect ats2 update --if-unset
+	eselect ats2 update --if-unset
 }
