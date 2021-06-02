@@ -37,6 +37,10 @@ case "${ATS2_IMPLEMENTATION}" in
 		;;
 esac
 
+if [[ -n "${ATS2_MANPAGE_SRC_URI}" ]]; then
+	SRC_URI="${SRC_URI} ${ATS2_MANPAGE_SRC_URI}"
+fi
+
 if ver_test -ge 0.3.11; then
 	LICENSE="GPL-3 LGPL-3"
 else
@@ -191,15 +195,17 @@ ats2_src_compile() {
 	fi
 }
 
-install_manpages_from_filesdir() {
-	# Install manpages from ${FILESDIR} if they are available and not
-	# redundant.
+install_manpages_from_debian() {
+	# Install Debian’s manpages if they are available and not redundant.
+	local debian="${WORKDIR}/debian/"
+	local inst1="$(installation_prefix)share/man/man1/"
 	local m
-	for m in patscc.1 patsopt.1; do
-		if [[ -r "${FILESDIR}/${PVR}/${m}" &&
-					! -f "${ED}$(installation_prefix)share/man/man1/${m}" ]]; then
-			insinto "$(installation_prefix)share/man/man1/"
-			doins "${FILESDIR}/${PVR}/${m}"
+	for m in myatscc.1 patscc.1 patsopt.1; do
+		if [[ -r "${debian}${m}" ]]; then
+			if [[ ! -f "${ED}${inst1}${m}" ]]; then
+				insinto "${inst1}"
+				doins "${debian}${m}"
+			fi
 		fi
 	done
 }
@@ -239,7 +245,7 @@ ats2_src_install() {
 	dodoc AUTHORS CHANGES*
 	dodoc -r RELEASE
 
-	install_manpages_from_filesdir
+	install_manpages_from_debian
 
 	#use patsolve_z3 && install_contrib_exe ATS-extsolve-z3/bin/patsolve_z3
 	use smt2 && install_contrib_exe ATS-extsolve-smt2/bin/patsolve_smt2
