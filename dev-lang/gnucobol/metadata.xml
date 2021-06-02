@@ -7,5 +7,7 @@
   </maintainer>
   <use>
     <flag name="code-coverage">Enable code coverage support</flag>
+    <flag name="json">Enable JSON support (via dev-libs/json-c)</flag>
+    <flag name="mpir">Add support for sci-libs/mpir (fork of GNU MP)</flag>
   </use>
 </pkgmetadata>
