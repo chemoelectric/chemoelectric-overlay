@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 inherit eutils versionator elisp-common
@@ -6,7 +6,9 @@ inherit eutils versionator elisp-common
 DESCRIPTION="Emacs mode for the ATS2 Programming Language"
 HOMEPAGE="http://www.ats-lang.org"
 
-if [[ ${PV} == "9999" ]]; then
+ATS2_MODE_PV_LIVE="99999999"
+
+if [[ "${PV}" = "${ATS2_MODE_PV_LIVE}" ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://git.code.sf.net/p/ats2-lang/code"
 	DO_AUTOTOOLS=yes
@@ -27,7 +29,7 @@ S="${WORKDIR}/ATS2-Postiats-${PV}"
 EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install
 
 ats2-mode_src_unpack() {
-	if [[ ${PV} == "9999" ]]; then
+	if [[ "${PV}" == "${ATS2_MODE_PV_LIVE}" ]]; then
 		git-r3_fetch "${EGIT_REPO_URI}"
 		git-r3_checkout "${EGIT_REPO_URI}" "${S}"
 	else
@@ -59,10 +61,10 @@ ats2-mode_src_install() {
 
 	pushd "utils/emacs" > /dev/null
 	elisp-install "${PN}" "${PN}.el" "${PN}.elc" || die "elisp-install failed"
-    cat > "50${PN}-gentoo.el" <<EOF
+	cat > "50${PN}-gentoo.el" <<EOF
 ;; site-init for dev-lang/${PN}
 (add-to-list 'load-path "@SITELISP@")
 EOF
-    elisp-site-file-install "50${PN}-gentoo.el"
-    popd > /dev/null
+	elisp-site-file-install "50${PN}-gentoo.el"
+	popd > /dev/null
 }
