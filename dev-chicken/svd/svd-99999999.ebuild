@@ -22,6 +22,7 @@ RDEPEND="
 	dev-chicken/srfi42:=
 	dev-chicken/srfi132:=
 	dev-chicken/srfi143:=
+	dev-chicken/srfi144:=
 	dev-chicken/srfi179:=
 "
 DEPEND="${RDEPEND}"
