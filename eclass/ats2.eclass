@@ -9,11 +9,7 @@ if [[ ${EAPI} < 7 ]]; then
 	inherit eapi7-ver
 fi
 
-if [[ "${ATS2_IMPLEMENTATION}" == "live-github" ]]; then
-	DESCRIPTION="ATS2 Programming Language (ATS2-github version)"
-else
-	DESCRIPTION="ATS2 Programming Language"
-fi
+DESCRIPTION="ATS2 Programming Language"
 HOMEPAGE="http://www.ats-lang.org"
 
 case "${ATS2_IMPLEMENTATION}" in
@@ -21,11 +17,6 @@ case "${ATS2_IMPLEMENTATION}" in
 		inherit git-r3 autotools
 		EGIT_REPO_URI="https://git.code.sf.net/p/ats2-lang/code"
 		DO_AUTOTOOLS=yes
-		;;
-	live-github)
-		inherit git-r3
-		EGIT_REPO_URI="https://github.com/githwxi/ATS-Postiats.git"
-		DO_AUTOTOOLS=no
 		;;
 	*)
 		SRC_URI_PREFIX="mirror://sourceforge/ats2-lang/ats2-lang/${PN}-postiats-${PV}/ATS2-Postiats-"
@@ -68,15 +59,6 @@ DEPEND="
 	virtual/pkgconfig
 "
 
-if [[ "${ATS2_IMPLEMENTATION}" == "live-github" ]]; then
-	DEPEND+="
-		>=dev-lang/ats-0.2.12-r1
-		app-arch/tar
-		>=sys-devel/autoconf-2.69:*
-		sys-devel/automake:*
-	"
-fi
-
 if ver_test -ge 0.3.13; then
 	S="${WORKDIR}/ATS2-Postiats-gmp-${PV}"
 else
@@ -99,37 +81,6 @@ ats2_src_unpack() {
 		live)
 			git-r3_fetch "${EGIT_REPO_URI}"
 			git-r3_checkout "${EGIT_REPO_URI}" "${S}"
-			;;
-		live-github)
-			git-r3_fetch "${EGIT_REPO_URI}"
-			git-r3_checkout "${EGIT_REPO_URI}" "${WORKDIR}/sources"
-
-			pushd "${WORKDIR}/sources" > /dev/null || die
-
-			# Compile from ATS1 sources.
-			env PATSHOME=`pwd` make -f Makefile_devl \
-				CCOMP="$(tc-getCC)" CC="$(tc-getCC)" ||
-				die "\"make -f Makefile_devl\" failed"
-
-			# Create a tar package as if we were doing a release.
-			env PATSHOME=`pwd` make -C `pwd`/src CBOOT || die
-			env PATSHOME=`pwd` make -C `pwd`/src/CBOOT/prelude || die
-			env PATSHOME=`pwd` make -C `pwd`/src/CBOOT/libc || die
-			env PATSHOME=`pwd` make -C `pwd`/src/CBOOT/libats || die
-			env PATSHOME=`pwd` make -C `pwd`/doc/DISTRIB atspackaging || die
-			env PATSHOME=`pwd` make -C `pwd`/doc/DISTRIB atspacktarzvcf || die
-
-			# Unpack that newly created tar package.
-			tar -x -C "${WORKDIR}" \
-				-f "doc/DISTRIB/ATS2-Postiats-$(get_postiats_version).tgz" ||
-				die "unpacking the created tar package failed"
-
-			# Move the unpacked sources into place.
-			[[ -e "${S}" ]] ||
-				mv "${WORKDIR}/ATS2-Postiats-$(get_postiats_version)" "${S}" ||
-				die
-
-			popd > /dev/null || die
 			;;
 		*)
 			default
