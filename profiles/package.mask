@@ -1,3 +1,7 @@
+# Barry Schwartz (2 June 2021)
+# The executable segfaults.
+=dev-lang/snobol-2.2
+
 # Barry Schwartz (3 May 2021)
 # Does not succeed in being built.
 =dev-chicken/sundials-2.17
