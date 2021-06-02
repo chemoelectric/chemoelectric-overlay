@@ -19,6 +19,8 @@ IUSE=""
 RDEPEND="
 	>=dev-scheme/chicken-5.2.0:=
 	dev-chicken/r7rs:=
+	dev-chicken/srfi143:=
+	dev-chicken/srfi144:=
 "
 DEPEND="${RDEPEND}"
 
