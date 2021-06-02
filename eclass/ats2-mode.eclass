@@ -14,6 +14,9 @@ if [[ "${PV}" = "${ATS2_MODE_PV_LIVE}" ]]; then
 	DO_AUTOTOOLS=yes
 else
 	SRC_URI_PREFIX="mirror://sourceforge/ats2-lang/ats2-lang/${PN}-postiats-${PV}/ATS2-Postiats-"
+	if ver_test -ge 0.4.0; then
+		SRC_URI_PREFIX="${SRC_URI_PREFIX}gmp-"
+	fi
 	SRC_URI="${SRC_URI_PREFIX}${PV}.tgz"
 	DO_AUTOTOOLS=no
 fi
@@ -24,7 +27,11 @@ IUSE=""
 RDEPEND="app-editors/emacs:*"
 DEPEND="${RDEPEND}"
 
-S="${WORKDIR}/ATS2-Postiats-${PV}"
+if ver_test -ge 0.3.13; then
+	S="${WORKDIR}/ATS2-Postiats-gmp-${PV}"
+else
+	S="${WORKDIR}/ATS2-Postiats-${PV}"
+fi
 
 EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install
 
