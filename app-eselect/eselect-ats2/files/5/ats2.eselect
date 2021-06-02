@@ -1,4 +1,4 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 DESCRIPTION="Manage ATS2/Postiats implementations"
@@ -17,7 +17,7 @@ one_binfile() {
 }
 
 manfiles() {
-	printf "%s" "patscc.1 patsopt.1"
+	printf "%s" "myatscc.1 patscc.1 patsopt.1"
 }
 
 alternatives_dir() {
