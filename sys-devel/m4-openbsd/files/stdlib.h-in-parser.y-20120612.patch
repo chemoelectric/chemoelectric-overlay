@@ -1,0 +1,10 @@
+--- src.git.ORIG/usr.bin/m4/parser.y	2021-06-12 19:03:41.588007747 +0000
++++ src.git/usr.bin/m4/parser.y	2021-06-12 19:34:27.719474658 +0000
+@@ -17,6 +17,7 @@
+  */
+ #include <math.h>
+ #include <stdint.h>
++#include <stdlib.h>
+ #define YYSTYPE	int32_t
+ extern int32_t end_result;
+ extern int yylex(void);

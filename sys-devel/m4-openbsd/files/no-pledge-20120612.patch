@@ -1,0 +1,15 @@
+--- src.git.ORIG/usr.bin/m4/main.c	2021-06-12 19:03:41.587007784 +0000
++++ src.git/usr.bin/m4/main.c	2021-06-12 19:09:28.069333164 +0000
+@@ -170,8 +170,12 @@
+ 	int n;
+ 	char *p;
+ 
++#ifdef __GLIBC__
++    /* This is not an OpenBSD system. */
++#else
+ 	if (pledge("stdio rpath wpath cpath tmppath proc exec", NULL) == -1)
+ 		err(1, "pledge");
++#endif
+ 
+ 	if (signal(SIGINT, SIG_IGN) != SIG_IGN)
+ 		signal(SIGINT, onintr);
