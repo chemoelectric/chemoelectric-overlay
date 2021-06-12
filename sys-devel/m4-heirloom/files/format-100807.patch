@@ -1,0 +1,11 @@
+--- heirloom-devtools.ORIG/m4/m4.c	2021-06-04 19:10:13.676659868 +0000
++++ heirloom-devtools/m4/m4.c	2021-06-04 19:10:47.893393935 +0000
+@@ -508,7 +508,7 @@
+ 		int	i;
+ 
+ 		fprintf(stderr,
+-		    "Trace(%d): %ls", Cp-callst, a1[0]);
++		    "Trace(%ld): %ls", Cp-callst, a1[0]);
+ 
+ 		if (c > 0) {
+ 			fprintf(stderr, "(%ls", chkbltin(a1[1]));
