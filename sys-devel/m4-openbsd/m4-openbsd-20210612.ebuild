@@ -36,9 +36,9 @@ bsdization()
 
 src_prepare()
 {
-	default
 	eapply -p3 "${FILESDIR}/no-pledge-20120612.patch"
 	eapply -p3 "${FILESDIR}/stdlib.h-in-parser.y-20120612.patch"
+	eapply_user
 	bsdization "${WORKDIR}/src.git/usr.bin/m4/"*.[ch] || die
 	bsdization "${WORKDIR}/src.git/lib/libutil/"*.[ch] || die
 }
