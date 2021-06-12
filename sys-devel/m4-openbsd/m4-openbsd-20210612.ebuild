@@ -62,13 +62,6 @@ src_compile()
 		 ${LDFLAGS} -lbsd -lm > my-compile-command.sh
 	cat my-compile-command.sh
 	sh my-compile-command.sh
-	if false;then
-	${CC-$(tc-getCC)} ${CPPFLAGS} ${CFLAGS} -o m4 \
-					  -D__dead= \
-					  -I. -I"${WORKDIR}/src.git/lib/libutil/" \
-					  *.c "${WORKDIR}/src.git/lib/libutil/"*.c \
-					  ${LDFLAGS} -lbsd -lm || die
-	fi
 }
 
 src_install()
