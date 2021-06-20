@@ -5,17 +5,17 @@ EAPI=7
 
 inherit chicken-egg
 
-DESCRIPTION="Hodge podge of macros and combinators"
+DESCRIPTION="Bindings to the OpenSSL SSL/TLS library"
 
-LICENSE="BSD-1"
+LICENSE="BSD"
 SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="
 	>=dev-scheme/chicken-5.2.0:=
-	dev-chicken/matchable:=
-	dev-chicken/miscmacros:=
-	dev-chicken/srfi1:=
-	dev-chicken/srfi69:=
+	dev-chicken/srfi13:=
+	dev-chicken/srfi18:=
+	dev-chicken/address-info:=
+	>=dev-libs/openssl-1.1.1:=
 "
 DEPEND="${RDEPEND}"
