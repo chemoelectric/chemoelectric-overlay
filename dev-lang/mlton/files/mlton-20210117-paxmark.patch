@@ -1,0 +1,20 @@
+--- mlton-20210117/Makefile.config.ORIG	2021-07-02 18:53:58.969439059 +0000
++++ mlton-20210117/Makefile.config	2021-07-02 18:54:11.362010713 +0000
+@@ -61,6 +61,7 @@
+ SED := sed
+ TAR := tar
+ XARGS := xargs
++PAXMARK := true
+ 
+ SHA1SUM := sha1sum
+ SHA1 := sha1
+--- mlton-20210117/Makefile.ORIG	2021-07-02 18:52:35.973307799 +0000
++++ mlton-20210117/Makefile	2021-07-02 18:55:26.563411393 +0000
+@@ -17,6 +17,7 @@
+ 	$(MAKE) dirs
+ 	$(MAKE) runtime
+ 	$(MAKE) compiler CHECK_FIXPOINT=false                     # tools0 + mlton0 -> mlton1
++	$(PAXMARK) -m lib/mlton/mlton-compile bin/mllex bin/mlyacc
+ 	$(MAKE) script
+ 	$(MAKE) basis
+ 	$(MAKE) libraries
