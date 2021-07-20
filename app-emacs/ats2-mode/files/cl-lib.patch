@@ -1,0 +1,82 @@
+--- toplevel/utils/emacs/ats2-mode.el.ORIG	2021-07-20 15:50:11.407449227 +0000
++++ toplevel/utils/emacs/ats2-mode.el	2021-07-20 15:50:11.407449227 +0000
+@@ -31,7 +31,7 @@
+ 
+ ;;; Code:
+ 
+-(require 'cl)
++(require 'cl-lib)
+ (require 'compile)
+ 
+ (when (not (boundp 'xemacsp))
+@@ -139,14 +139,14 @@
+   (let ((nest-lvl 0) foundp)
+     (while (and (not (eobp))
+                 (or (null limit) (not (> (point) limit)))
+-                (not (minusp nest-lvl))
++                (not (cl-minusp nest-lvl))
+                 (not (setq foundp
+                            (and (zerop nest-lvl)
+                                 (looking-at regexp)))))
+       (cond ((looking-at "(\\|\\[\\|{")
+-             (incf nest-lvl))
++             (cl-incf nest-lvl))
+             ((looking-at ")\\|\\]\\|}")
+-             (decf nest-lvl)))
++             (cl-decf nest-lvl)))
+       (forward-char 1))
+     foundp))
+ 
+@@ -218,7 +218,7 @@
+            ;; handle ( ... | ... )
+            ((looking-at "(")
+             (forward-char 1)
+-            (incf begin)
++            (cl-incf begin)
+             (cond
+              ((null (ats-context-free-search "|\\|)" limit))
+               (setq pt nil))
+@@ -245,7 +245,7 @@
+               (setq foundp t)))
+            ((looking-at "[^[:space:].:-]<")
+             (forward-char 2)
+-            (incf begin)
++            (cl-incf begin)
+             (cond 
+              ((re-search-forward ">" limit t)
+               (setq end (match-end 0))
+@@ -357,7 +357,7 @@
+   (set (make-local-variable 'comment-continue)  " *")
+   (set (make-local-variable 'comment-end) "*)")
+   (setq indent-line-function 'tab-to-tab-stop)
+-  (setq tab-stop-list (loop for x from 2 upto 120 by 2 collect x))
++  (setq tab-stop-list (cl-loop for x from 2 upto 120 by 2 collect x))
+   (setq indent-tabs-mode nil)
+   (local-set-key (kbd "RET") 'newline-and-indent-relative)
+   (unless (local-variable-p 'compile-command)
+@@ -370,20 +370,20 @@
+    ;; Emacs 21
+    ((and (< emacs-major-version 22)
+          (not xemacsp)) 
+-    (pushnew '("\\(syntax error: \\)?\\([^\n:]*\\): \\[?[0-9]*(line=\\([0-9]*\\), offs=\\([0-9]*\\))\\]?" 2 3 4)
++    (cl-pushnew '("\\(syntax error: \\)?\\([^\n:]*\\): \\[?[0-9]*(line=\\([0-9]*\\), offs=\\([0-9]*\\))\\]?" 2 3 4)
+              compilation-error-regexp-alist))
+    ;; Emacs 22+ has an improved compilation mode
+    ((and (>= emacs-major-version 22)
+          (not xemacsp))
+-    (pushnew '(ats "\\(syntax error: \\)?\\([^\n:]*\\): \\[?[0-9]*(line=\\([0-9]*\\), offs=\\([0-9]*\\))\\]?\\(?: -- [0-9]*(line=\\([0-9]*\\), offs=\\([0-9]*\\))\\)?" 2 (3 . 5) (4 . 6))
++    (cl-pushnew '(ats "\\(syntax error: \\)?\\([^\n:]*\\): \\[?[0-9]*(line=\\([0-9]*\\), offs=\\([0-9]*\\))\\]?\\(?: -- [0-9]*(line=\\([0-9]*\\), offs=\\([0-9]*\\))\\)?" 2 (3 . 5) (4 . 6))
+              compilation-error-regexp-alist-alist)
+-    (pushnew 'ats compilation-error-regexp-alist))
++    (cl-pushnew 'ats compilation-error-regexp-alist))
+    ;; XEmacs has something different, to be contrary
+    (xemacsp
+-    (pushnew '(ats ("\\(syntax error: \\)?\\([^\n:]*\\): \\[?[0-9]*(line=\\([0-9]*\\), offs=\\([0-9]*\\))\\]?" 2 3 4))
++    (cl-pushnew '(ats ("\\(syntax error: \\)?\\([^\n:]*\\): \\[?[0-9]*(line=\\([0-9]*\\), offs=\\([0-9]*\\))\\]?" 2 3 4))
+              compilation-error-regexp-alist-alist)
+     (unless (eql 'all compilation-error-regexp-systems-list)
+-      (pushnew 'ats compilation-error-regexp-systems-list))
++      (cl-pushnew 'ats compilation-error-regexp-systems-list))
+     (compilation-build-compilation-error-regexp-alist)
+     (message "WARNING! XEMACS IS DEAD AND DEPRECATED."))))
+ 
