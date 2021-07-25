@@ -12,6 +12,7 @@ SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="
+	>=dev-libs/stfl-0.24:=
 	>=dev-scheme/chicken-5.2.0:=
 "
 DEPEND="${RDEPEND}"
