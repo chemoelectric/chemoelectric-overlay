@@ -1,0 +1,96 @@
+--- ratfor77/lookup.c.ORIG	2021-08-25 19:51:40.073007396 +0000
++++ ratfor77/lookup.c	2021-08-25 19:53:09.074557833 +0000
+@@ -1,4 +1,6 @@
+ #include <stdio.h>
++#include <stdlib.h>
++#include <string.h>
+ #include "lookup.h"
+ 
+ static
+@@ -48,7 +50,7 @@
+ {
+ 	int hashval;
+ 	struct hashlist *np, *lookup();
+-	S_CHAR *strsave(), *malloc();
++	S_CHAR *strsave();
+ 
+ 	if ((np = lookup(name)) == NULL) {	/* not found.. */
+ 		np = (struct hashlist *) malloc(sizeof(*np));
+@@ -74,7 +76,7 @@
+ *strsave(s)
+ S_CHAR *s;
+ {
+-	S_CHAR *p, *malloc();
++	S_CHAR *p;
+ 
+ 	if ((p = malloc(strlen(s)+1)) != NULL)
+ 		strcpy(p, s);
+--- ratfor77/Makefile.ORIG	2021-08-25 19:41:18.973259651 +0000
++++ ratfor77/Makefile	2021-08-25 19:46:23.059331235 +0000
+@@ -1,4 +1,4 @@
+- 
++
+ # pd ratfor77 (oz)
+ #
+ # if F77 is defined, the output
+@@ -14,7 +14,7 @@
+ EXTRA_DISTR_FILES = getopt.c  lookup.c  lookup.h  rat4.c ratcom.h   ratdef.h
+ 
+ 
+-SIGNED_CHAR="char"
++SIGNED_CHAR="signed char"
+ CC=cc
+ 
+ 
+@@ -28,14 +28,13 @@
+ ALL= $(SEPBINDIR)/ratfor77
+ 
+ all: ${ALL}
+-	@echo "Done making all in util/tools/ratfor77"
+- 
++	@echo "Done making all in $(SEPBINDIR)/ratfor77"
++
+ deinstall:
+ 	$(RM) $(SEPBINDIR)/ratfor77
+ #
+ ratfor77:	rat4.o lookup.o getopt.o 
+-	cc  rat4.o lookup.o getopt.o  -o ratfor77
++	${CC} ${CFLAGS}  rat4.o lookup.o getopt.o  -o ratfor77
+ 
+ %.o:	%.c
+-	${CC}	${OCDEFINES} $*.c -o$*.o
+-	
++	${CC} ${CFLAGS} ${OCDEFINES} $*.c -o$*.o
+--- ratfor77/rat4.c.ORIG	2021-08-25 19:53:38.594478979 +0000
++++ ratfor77/rat4.c	2021-08-25 20:28:51.887497372 +0000
+@@ -1365,7 +1365,7 @@
+ FILE * fd;
+ {
+         S_CHAR c;
+-        S_CHAR comout[81];
++        S_CHAR comout[82];
+         int i, comoutp=0;
+ 
+         comoutp=1;
+@@ -1708,17 +1708,17 @@
+ 	S_CHAR lc[MAXCHARS];
+ 	int i;
+ 
+-	fprintf(stderr,errmsg);
++	fputs(errmsg,stderr);
+ 	if (level >= 0)
+ 		i = level;
+ 	else
+ 		i = 0;   /* for EOF errors */
+ 	itoc(linect[i], lc, MAXCHARS);
+-	fprintf(stderr,(char*)lc);
++	fputs((char*)lc, stderr);
+ 	for (i = fnamp - 1; i > 1; i = i - 1)
+ 		if (fnames[i-1] == EOS) {   /* print file name */
+-			fprintf(stderr,in);
+-			fprintf(stderr,(char*)&fnames[i]);
++			fputs(in, stderr);
++			fputs((char*)&fnames[i], stderr);
+ 			break;
+ 		}
+ 	fprintf(stderr,": \n      %s\n",msg);
