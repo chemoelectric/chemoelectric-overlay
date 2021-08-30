@@ -16,6 +16,5 @@ RDEPEND="
 	dev-chicken/utf8:=
 	dev-chicken/srfi1:=
 	dev-chicken/srfi69:=
-	dev-chicken/srfi128:=
 "
 DEPEND="${RDEPEND}"
