@@ -5,14 +5,14 @@ EAPI=7
 
 inherit chicken-egg
 
-DESCRIPTION="matchable generics"
+DESCRIPTION="SRFI-13 string library"
 
-LICENSE="BSD-1"
+LICENSE="BSD"
 SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="
 	>=dev-scheme/chicken-5.2.0:=
-	dev-chicken/brev-separate:=
+	dev-chicken/srfi14:=
 "
 DEPEND="${RDEPEND}"

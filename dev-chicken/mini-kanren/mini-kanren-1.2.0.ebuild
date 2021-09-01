@@ -5,14 +5,14 @@ EAPI=7
 
 inherit chicken-egg
 
-DESCRIPTION="matchable generics"
+DESCRIPTION="Packages the canonical miniKanren implementation for CHICKEN Scheme"
 
-LICENSE="BSD-1"
+LICENSE="MIT"
 SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="
 	>=dev-scheme/chicken-5.2.0:=
-	dev-chicken/brev-separate:=
+	dev-chicken/srfi1:=
 "
 DEPEND="${RDEPEND}"

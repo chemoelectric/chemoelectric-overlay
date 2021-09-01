@@ -17,6 +17,7 @@ RDEPEND="
 	dev-chicken/brev-separate:=
 	dev-chicken/clojurian:=
 	dev-chicken/combinators:=
+	dev-chicken/define-options:=
 	dev-chicken/html-parser:=
 	dev-chicken/match-generics:=
 	dev-chicken/http-client:=
