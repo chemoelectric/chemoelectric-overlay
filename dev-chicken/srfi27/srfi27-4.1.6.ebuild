@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -12,12 +12,11 @@ SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="
-	>=dev-scheme/chicken-5.2.0:=
+	>=dev-scheme/chicken-5.3.0_rc3:=
+	dev-chicken/srfi1:=
 	dev-chicken/check-errors:=
-	dev-chicken/fp-utils:=
 	dev-chicken/timed-resource:=
 	dev-chicken/miscmacros:=
 	dev-chicken/vector-lib:=
-	dev-chicken/mathh:=
 "
 DEPEND="${RDEPEND}"
