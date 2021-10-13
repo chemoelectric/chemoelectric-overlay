@@ -31,3 +31,9 @@ src_configure()
 {
 	econf $(use_with ats2)
 }
+
+src_install()
+{
+	default
+	find "${ED}" -name '*.la' -delete || die
+}
