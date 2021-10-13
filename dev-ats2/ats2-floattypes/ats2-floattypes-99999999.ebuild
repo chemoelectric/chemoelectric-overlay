@@ -26,3 +26,9 @@ src_prepare()
 	default
 	eautoreconf
 }
+
+src_install()
+{
+	default
+	find "${ED}" -name '*.la' -delete || die
+}
