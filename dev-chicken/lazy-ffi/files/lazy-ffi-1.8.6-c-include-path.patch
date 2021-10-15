@@ -1,0 +1,11 @@
+--- lazy-ffi/lazy-ffi.egg.ORIG	2021-10-15 13:16:22.254836761 +0000
++++ lazy-ffi/lazy-ffi.egg	2021-10-15 13:31:18.961043513 +0000
+@@ -6,7 +6,7 @@
+   (extension lazy-ffi
+     (cond-expand 
+       (openbsd (csc-options "-C" "-I/usr/local/include"))
+-      (else))
++      (else (csc-options @LIBFFI_INCLUDE@)))
+     (cond-expand 
+       (openbsd (link-options "-L" "-L/usr/local/lib" "-L" "-lffi"))
+       (else (link-options "-L" "-lffi")))))
