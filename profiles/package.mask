@@ -1,3 +1,8 @@
+# Barry Schwartz (16 December 2021)
+# Masked while I decide what to do with this, now that
+# ‘gentoo’ has dev-scheme/chez.
+>=dev-scheme/ChezScheme-9999
+
 # Barry Schwartz (2 June 2021)
 # The executable segfaults.
 =dev-lang/snobol-2.2
