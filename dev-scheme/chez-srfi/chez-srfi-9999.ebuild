@@ -1,11 +1,12 @@
-# Copyright 1999-2018 Gentoo Foundation
+# Copyright 1999-2021 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
 inherit git-r3 multilib
 
-CHEZSCHEME_="ChezScheme"
+#CHEZSCHEME_="ChezScheme"
+CHEZSCHEME_="chez"
 
 DESCRIPTION="SRFIs for Chez Scheme"
 HOMEPAGE="https://github.com/arcfide/chez-srfi"
@@ -36,9 +37,17 @@ my_objdir() {
 	echo "/usr/$(get_libdir)/${CHEZSCHEME_}"
 }
 
+my_scheme() {
+	if [[ ${CHEZSCHEME_} = ChezScheme ]]; then
+		echo scheme
+	else
+		echo chezscheme
+	fi
+}
+
 src_prepare() {
 	default
-	scheme --program link-dirs.chezscheme.sps || die
+	$(my_scheme) --program link-dirs.chezscheme.sps || die
 	find . -name '*.s[lp]s' -type f \
 		 -exec sed -i -e 's/%3a/:/g' '{}' ';' || die
 }
@@ -47,7 +56,7 @@ src_compile() {
 	ln -s . srfi || die
 	echo '(compile-imported-libraries #t)' |
 		cat - compile-all.ikarus.sps |
-		scheme -q --libdirs ".::${MY_WORK_OBJDIR}"
+		$(my_scheme) -q --libdirs ".::${MY_WORK_OBJDIR}"
 	rm srfi || die
 }
 
