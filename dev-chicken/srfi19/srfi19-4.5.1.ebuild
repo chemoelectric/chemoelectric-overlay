@@ -12,7 +12,7 @@ SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="
-	>=dev-scheme/chicken-5.2.0:=
+	>=dev-scheme/chicken-5.3.0:=
 	dev-chicken/srfi1:=
 	dev-chicken/utf8:=
 	dev-chicken/srfi18:=
