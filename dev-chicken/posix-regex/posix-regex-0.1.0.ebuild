@@ -1,19 +1,18 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
 inherit chicken-egg
 
-DESCRIPTION="easily create micro-benchmarks"
+DESCRIPTION="A thin wrapper around POSIX regular expression matching"
 
 LICENSE="GPL-3"
 SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="
-	>=dev-scheme/chicken-5.2.0:=
-	dev-chicken/micro-stats:=
-	dev-chicken/srfi1:=
+	>=dev-scheme/chicken-5.3.0:=
+	dev-chicken/r7rs:=
 "
 DEPEND="${RDEPEND}"

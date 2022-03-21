@@ -1,3 +1,7 @@
+# Barry Schwartz (21 March 2022)
+# ‘Error: (car) bad argument type: ()’
+=dev-chicken/edn-0.5.3
+
 # Barry Schwartz (2 June 2021)
 # The executable segfaults.
 =dev-lang/snobol-2.2
