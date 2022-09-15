@@ -1,3 +1,4 @@
 syntax: regexp
 
 ChangeLog.new~$
+^metadata/md5-cache/.*$
