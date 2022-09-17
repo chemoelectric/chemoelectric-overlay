@@ -7,7 +7,7 @@
   </maintainer>
   <longdescription>
     Sorts Mill Changelogger creates a GNU-style ChangeLog file from a
-    version control log.
+    version control log. Different repository styles are supported.
   </longdescription>
   <use>
     <flag name="mercurial">Support Mercurial repositories</flag>
