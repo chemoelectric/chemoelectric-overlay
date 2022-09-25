@@ -7,6 +7,7 @@ ADA_COMPAT=( gnat_202{0,1} gcc_12_2_0 )
 
 inherit git-r3
 inherit ada
+inherit multiprocessing
 
 DESCRIPTION="Ada LIbrary REpository"
 HOMEPAGE="https://alire.ada.dev"
@@ -23,7 +24,8 @@ BDEPEND="
 "
 
 src_compile() {
-	gprbuild -j0 -P alr_env -v -cargs:Ada ${ADAFLAGS} -cargs:C ${CFLAGS} || die
+	gprbuild -j$(makeopts_jobs) -P alr_env \
+			 -v -cargs:Ada ${ADAFLAGS} -cargs:C ${CFLAGS} || die
 }
 
 src_install() {
