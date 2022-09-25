@@ -23,7 +23,7 @@ BDEPEND="
 "
 
 src_compile() {
-	gprbuild -j0 -P alr_env || die
+	gprbuild -j0 -P alr_env -v -cargs:Ada ${ADAFLAGS} -cargs:C ${CFLAGS} || die
 }
 
 src_install() {
