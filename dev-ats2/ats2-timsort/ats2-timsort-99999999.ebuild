@@ -7,7 +7,7 @@ inherit mercurial
 inherit autotools
 
 DESCRIPTION="Timsort for ATS2/Postiats and C, written in ATS2"
-HOMEPAGE="https://sourceforge.net/p/chemoelectric/ats2-quicksorts/"
+HOMEPAGE="https://sourceforge.net/p/chemoelectric/ats2-timsort/"
 EHG_REPO_URI="http://chemoelectric@hg.code.sf.net/p/chemoelectric/${PN}"
 
 LICENSE="GPL-3+"
