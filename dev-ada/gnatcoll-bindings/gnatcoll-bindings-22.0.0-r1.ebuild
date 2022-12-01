@@ -4,7 +4,7 @@
 EAPI=7
 
 PYTHON_COMPAT=( python3_{8,9,10,11} )
-ADA_COMPAT=( gnat_202{0..1} gcc_12_2_0 )
+ADA_COMPAT=( gnat_2021 gcc_12_2_0 )
 inherit ada multiprocessing python-single-r1
 
 DESCRIPTION="GNAT Component Collection"
@@ -26,7 +26,7 @@ RDEPEND="${PYTHON_DEPS}
 	dev-ada/gnatcoll-core:=[${ADA_USEDEP},shared?,static-libs?,static-pic?]
 	gmp? ( dev-libs/gmp:* )
 	lzma? ( app-arch/xz-utils )
-	openmp? ( || ( dev-lang/gnat-gpl:=[openmp] sys-devel/gcc:=[ada,openmp] ) )
+	openmp? ( || ( dev-lang/gnat-gpl[openmp] sys-devel/gcc[ada,openmp] ) )
 	"
 DEPEND="${RDEPEND}
 	dev-python/funcy:*
