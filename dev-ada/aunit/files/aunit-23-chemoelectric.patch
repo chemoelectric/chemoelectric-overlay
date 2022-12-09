@@ -1,0 +1,11 @@
+--- aunit-23.0.0/Makefile.ORIG	2022-12-09 15:58:38.910942972 +0000
++++ aunit-23.0.0/Makefile	2022-12-09 16:00:24.093149880 +0000
+@@ -42,7 +42,7 @@
+ .PHONY: all clean targets install_clean install
+ 
+ all:
+-	$(GPRBUILD) -p $(GPROPTS) lib/gnat/aunit.gpr ${GPROPTS_EXTRA}
++	$(GPRBUILD) -p $(GPROPTS) lib/gnat/aunit.gpr -cargs $(ADAFLAGS) ${GPROPTS_EXTRA}
+ 
+ clean-lib:
+ 	$(RM) -fr lib/aunit lib/aunit-obj
