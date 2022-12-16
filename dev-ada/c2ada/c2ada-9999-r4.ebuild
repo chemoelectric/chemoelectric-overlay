@@ -3,9 +3,7 @@
 
 EAPI=7
 
-PYTHON_COMPAT=( python2_7 )
-
-inherit git-r3 toolchain-funcs python-any-r1
+inherit git-r3 toolchain-funcs
 
 #WHOSE_GITHUB=mikequentel
 WHOSE_GITHUB=chemoelectric
@@ -20,10 +18,10 @@ KEYWORDS=""
 IUSE=""
 
 DEPEND="
+	dev-lang/python:2.7
 	app-shells/tcsh
 	>=dev-util/gperf-3.1
-	virtual/yacc
-	${PYTHON_DEPS}
+	app-alternatives/yacc
 "
 RDEPEND=""
 
@@ -52,9 +50,11 @@ src_configure() {
 }
 
 src_compile() {
+	yacc -d grammar.y
+
 	# FIXME: The way Python paths are resolved in the Makefile is
 	# archaic. Update it. For now, this works.
-	emake PYTHON_VER="${EPYTHON}" \
+	emake PYTHON_VER="python2.7" \
 		  LINKER="$(tc-getCC)" \
 		  RANLIB="$(tc-getRANLIB)" \
 		  GPERF="gperf -I"
