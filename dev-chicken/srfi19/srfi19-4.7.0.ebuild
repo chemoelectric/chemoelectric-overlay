@@ -1,4 +1,4 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -21,6 +21,6 @@ RDEPEND="
 	dev-chicken/miscmacros:=
 	dev-chicken/locale:=
 	dev-chicken/record-variants:=
-	dev-chicken/check-errors:=
+	>=dev-chicken/check-errors-3.6.0:=
 "
 DEPEND="${RDEPEND}"
