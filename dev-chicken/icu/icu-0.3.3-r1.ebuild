@@ -5,21 +5,22 @@ EAPI=7
 
 inherit chicken-egg
 
-DESCRIPTION="EDN data reader/writer"
+DESCRIPTION="Chicken bindings to the ICU unicode library"
 
-LICENSE="BSD"
+LICENSE="unicode"
 SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="
+	dev-libs/icu:=
 	>=dev-scheme/chicken-5.3.0:=
-	dev-chicken/r7rs:=
-	dev-chicken/srfi69:=
+	dev-chicken/utf8:=
+	dev-chicken/srfi13:=
 	dev-chicken/srfi1:=
-	dev-chicken/chalk:=
+	dev-chicken/foreigners:=
 "
 DEPEND="${RDEPEND}"
 BDEPEND="
 	${RDEPEND}
-	>=dev-chicken/chalk-0.3.5-r1:=
+	>=dev-chicken/chalk-0.3.5-r1
 "

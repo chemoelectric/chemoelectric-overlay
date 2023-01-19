@@ -1,14 +1,6 @@
-# Barry Schwartz (18 January 2023)
-# Uses chalk, which we do not have functioning.
-=dev-chicken/edn-1.0
-
 # Barry Schwartz (16 January 2023)
 # Fails during build.
 =dev-chicken/geo-utils-1.2.0
-
-# Barry Schwartz (21 March 2022)
-# ‘Error: (car) bad argument type: ()’
-=dev-chicken/edn-0.5.3
 
 # Barry Schwartz (2 June 2021)
 # The executable segfaults.
