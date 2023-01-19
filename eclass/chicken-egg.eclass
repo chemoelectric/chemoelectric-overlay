@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 CHICKEN_MAJOR_VERSION=5
@@ -53,8 +53,37 @@ chicken-egg_src_test() {
 }
 
 chicken-egg_src_install() {
+	#
+	# FIXME: WORKAROUND FOR A BUG I HAVE NOT SOLVED.
+	# FIXME: WORKAROUND FOR A BUG I HAVE NOT SOLVED.
+	# FIXME: WORKAROUND FOR A BUG I HAVE NOT SOLVED.
+	#
+	# Eggs are installing files in /usr/usr. Move any such files to
+	# /usr.
+	#
+	# This is a quick and MESSY workaround. FIX THE BUG, INSTEAD!
+	#
+	mkdir -p "${D}"/usr/usr || die
+
 	DESTDIR="${D}" chicken-install -v -no-install-dependencies || die
 	einstalldocs
+
+	#
+	# FIXME: WORKAROUND FOR A BUG I HAVE NOT SOLVED.
+	# FIXME: WORKAROUND FOR A BUG I HAVE NOT SOLVED.
+	# FIXME: WORKAROUND FOR A BUG I HAVE NOT SOLVED.
+	#
+	# Eggs are installing files in /usr/usr. Move any such files to
+	# /usr.
+	#
+	# This is a quick and MESSY workaround. FIX THE BUG, INSTEAD!
+	#
+	if [ "${D}"/usr/usr ]; then
+		mkdir -p "${D}"/usr || die
+		(cd "${D}"/usr/usr && tar -cf "${T}"/share.tar .) || die
+		(cd "${D}"/usr && tar -xpf "${T}"/share.tar .) || die
+		rm -R "${D}"/usr/usr || die
+	fi
 }
 
 chicken-egg_pkg_postinst() {

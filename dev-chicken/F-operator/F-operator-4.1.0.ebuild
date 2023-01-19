@@ -5,7 +5,7 @@ EAPI=7
 
 inherit chicken-egg
 
-DESCRIPTION="Boxing"
+DESCRIPTION="Shift/Reset Control Operators"
 
 LICENSE="BSD"
 SLOT="0/${PV}"
@@ -13,5 +13,8 @@ KEYWORDS="~amd64"
 
 RDEPEND="
 	>=dev-scheme/chicken-5.3.0:=
+	dev-chicken/miscmacros:=
+	dev-chicken/datatype:=
+	dev-chicken/box:=
 "
 DEPEND="${RDEPEND}"
