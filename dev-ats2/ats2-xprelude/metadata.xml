@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM 'http://www.gentoo.org/dtd/metadata.dtd'>
+<pkgmetadata>
+  <maintainer type="person">
+    <email>sortsmill@crudfactory.com</email>
+    <name>Barry Schwartz</name>
+  </maintainer>
+  <use>
+    <flag name="mpfr">Add support for dev-libs/mpfr (GNU MPFR
+    library)</flag>
+    <flag name="timsort">Add support for dev-ats2/ats2-timsort (natural
+    mergesort implementations)</flag>
+    <flag name="quicksorts">Add support for dev-ats2/ats2-quicksorts
+    (unstable and stable quicksort implementations)</flag>
+  </use>
+</pkgmetadata>
