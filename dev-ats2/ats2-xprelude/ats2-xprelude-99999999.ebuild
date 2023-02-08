@@ -20,7 +20,10 @@ REQUIRED_USE="
 	mpfr? ( gmp )
 "
 
-BDEPEND="dev-lang/ats2:="
+BDEPEND="
+	dev-lang/ats2:=
+	sys-devel/m4:*
+"
 RDEPEND="
 	gmp? ( dev-libs/gmp:= )
 	mpfr? ( dev-libs/mpfr:= )
