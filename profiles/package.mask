@@ -1,3 +1,10 @@
+# Barry Schwartz (9 February 2023)
+# These packages are superseded by ats2-xprelude.
+dev-ats2/clz
+dev-ats2/ctz
+dev-ats2/floattypes
+dev-ats2/popcount
+
 # Barry Schwartz (16 January 2023)
 # Fails during build.
 =dev-chicken/geo-utils-1.2.0

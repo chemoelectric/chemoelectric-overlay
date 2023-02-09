@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 [[ -n "${ATS2_IMPLEMENTATION}" ]] ||
@@ -20,10 +20,10 @@ case "${ATS2_IMPLEMENTATION}" in
 		;;
 	*)
 		SRC_URI_PREFIX="mirror://sourceforge/ats2-lang/ats2-lang/${PN}-postiats-${PV}/ATS2-Postiats-"
-		if ver_test -ge 0.4.0; then
-			SRC_URI_PREFIX="${SRC_URI_PREFIX}gmp-"
-		fi
-		SRC_URI="${SRC_URI_PREFIX}${PV}.tgz"
+		SRC_URI="
+			gmp? ( ${SRC_URI_PREFIX}gmp-${PV}.tgz )
+			!gmp? ( ${SRC_URI_PREFIX}int-${PV}.tgz )
+		"
 		DO_AUTOTOOLS=no
 		;;
 esac
@@ -38,15 +38,11 @@ else
 	LICENSE="GPL-3"
 fi
 
-IUSE="smt2 clojure javascript php perl python R scheme"
+IUSE="gmp smt2 clojure javascript php perl python R scheme"
 
-# FIXME: As of ATS2 0.4.0, the ATS2-Postiats-gmp-x.x.x is the
-# gmp-dependent version, and ATS2-Postiats-x.x.x is the version
-# using native ints. This eclass still is for the gmp-dependent
-# version, only.
 RDEPEND="
 	dev-libs/boehm-gc:=
-	dev-libs/gmp:=
+	gmp? ( dev-libs/gmp:= )
 	app-eselect/eselect-ats2
 	smt2? ( dev-libs/json-c:= )
 "
@@ -59,11 +55,7 @@ DEPEND="
 	virtual/pkgconfig
 "
 
-if ver_test -ge 0.3.13; then
-	S="${WORKDIR}/ATS2-Postiats-gmp-${PV}"
-else
-	S="${WORKDIR}/ATS2-Postiats-${PV}"
-fi
+S="${WORKDIR}/build"
 
 export PATSHOME="${S}"
 export PATH="${PATSHOME}/bin${PATH:+:}${PATH:-}"
@@ -79,11 +71,13 @@ installation_prefix() {
 ats2_src_unpack() {
 	case "${ATS2_IMPLEMENTATION}" in
 		live)
+			use gmp || die "live ebuild requires USE=gmp"
 			git-r3_fetch "${EGIT_REPO_URI}"
 			git-r3_checkout "${EGIT_REPO_URI}" "${S}"
 			;;
 		*)
 			default
+			ln -s ATS2-Postiats*-"${PV}" build || die
 			;;
 	esac
 }
