@@ -1,4 +1,8 @@
 # Barry Schwartz (9 February 2023)
+# This package lies outside of what I want to deal with right now.
+dev-lang/ats2-contrib-github
+
+# Barry Schwartz (9 February 2023)
 # These packages are superseded by ats2-xprelude.
 dev-ats2/clz
 dev-ats2/ctz

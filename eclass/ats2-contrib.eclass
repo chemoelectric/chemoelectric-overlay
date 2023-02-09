@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 [[ -n "${ATS2_CONTRIB_VERSION}" ]] ||
@@ -34,19 +34,16 @@ IUSE=""
 # and of the contributed packages to be the same. Upstream has not
 # been consistent in matching version numbers. Moreoever, upstream
 # even encourages use of a live build for the contributed packages.
-RDEPEND="
-	dev-lang/ats2
-	app-eselect/eselect-ats2-contrib
-"
+RDEPEND="dev-lang/ats2"
 DEPEND="app-eselect/eselect-ats2-contrib"
 
 S="${WORKDIR}/ATS2-Postiats-contrib-${PV}"
 
-EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install \
-				 pkg_postinst pkg_postrm
+EXPORT_FUNCTIONS src_unpack src_prepare src_configure \
+				 src_compile src_install pkg_postinst
 
 installation_prefix() {
-	printf "%s" "/usr/share/ats2-contrib/ats2-contrib-${ATS2_CONTRIB_VERSION}/"
+	printf "%s" "/usr/share/ats2-contrib/${ATS2_CONTRIB_VERSION}/"
 }
 
 ats2-contrib_src_unpack() {
@@ -81,8 +78,9 @@ ats2-contrib_src_compile() {
 ats2-contrib_src_install() {
 	cd "${S}"
 
-	local patshomedir="ats2-contrib-${PV}"
-	local patshomereloc="$(installation_prefix)reloc"
+#	local patshomedir="ats2-contrib-${PV}"
+#	local patshomereloc="$(installation_prefix)reloc"
+	local patshomereloc="$(installation_prefix)"
 
 	default
 
@@ -91,50 +89,50 @@ ats2-contrib_src_install() {
 	doins -r *
 
 	printf "%s" "PATSHOMERELOC=${patshomereloc}" > "${T}/50ats2-contrib"
-	insinto "$(installation_prefix)etc/env.d"
+	insinto "/etc/env.d"
 	doins "${T}/50ats2-contrib"
 
-	# Install a script that prints out the value of PATSHOMERELOC.
-	local patshomereloc_script="patshomereloc-ats2-contrib-${ATS2_CONTRIB_VERSION}"
-	cat > "${T}/${patshomereloc_script}" <<EOF
-#!/bin/sh
-#
-# To use ats2-contrib-${ATS2_CONTRIB_VERSION} when it is not the default:
-#
-#   export PATSHOMERELOC=\``basename "${T}/${patshomereloc_script}"`\`
-#
+# 	# Install a script that prints out the value of PATSHOMERELOC.
+# 	local patshomereloc_script="patshomereloc-ats2-contrib-${ATS2_CONTRIB_VERSION}"
+# 	cat > "${T}/${patshomereloc_script}" <<EOF
+# #!/bin/sh
+# #
+# # To use ats2-contrib-${ATS2_CONTRIB_VERSION} when it is not the default:
+# #
+# #   export PATSHOMERELOC=\``basename "${T}/${patshomereloc_script}"`\`
+# #
 
-if test \${#} -eq 0; then
-  echo '${patshomereloc}'
-elif test \${#} -eq 1 -a "\${1}" = "--help"; then
-  echo "Usage: \`basename \${0}\` [OPTION]"
-  echo "Print the value to set PATSHOMERELOC to if you want to use"
-  echo "ats2-contrib-${ATS2_CONTRIB_VERSION} instead of the system default version"
-  echo "of the ATS2/Postiats contributed code."
-  echo
-  echo "  --help     display this help and exit"
-  echo "  --version  output version information and exit"
-  echo
-  echo "Example:"
-  echo
-  echo "  export PATSHOMERELOC"
-  echo "  PATSHOMERELOC=\\\``basename "${T}/${patshomereloc_script}"`\\\`"
-  echo
-elif test \${#} -eq 1 -a "\${1}" = "--version"; then
-  echo "ATS2/Postiats contributed code ats2-contrib-${ATS2_CONTRIB_VERSION}"
-else
-  echo "\`basename \${0}\`: invalid arguments"
-  echo "Try '\`basename \${0}\` --help' for more information."
-fi
-EOF
-	exeinto /usr/bin
-	doexe "${T}/${patshomereloc_script}"
+# if test \${#} -eq 0; then
+#   echo '${patshomereloc}'
+# elif test \${#} -eq 1 -a "\${1}" = "--help"; then
+#   echo "Usage: \`basename \${0}\` [OPTION]"
+#   echo "Print the value to set PATSHOMERELOC to if you want to use"
+#   echo "ats2-contrib-${ATS2_CONTRIB_VERSION} instead of the system default version"
+#   echo "of the ATS2/Postiats contributed code."
+#   echo
+#   echo "  --help     display this help and exit"
+#   echo "  --version  output version information and exit"
+#   echo
+#   echo "Example:"
+#   echo
+#   echo "  export PATSHOMERELOC"
+#   echo "  PATSHOMERELOC=\\\``basename "${T}/${patshomereloc_script}"`\\\`"
+#   echo
+# elif test \${#} -eq 1 -a "\${1}" = "--version"; then
+#   echo "ATS2/Postiats contributed code ats2-contrib-${ATS2_CONTRIB_VERSION}"
+# else
+#   echo "\`basename \${0}\`: invalid arguments"
+#   echo "Try '\`basename \${0}\` --help' for more information."
+# fi
+# EOF
+# 	exeinto /usr/bin
+# 	doexe "${T}/${patshomereloc_script}"
 }
 
-ats2-contrib_pkg_postinst() {
-    eselect ats2-contrib update --if-unset
-}
-
-ats2-contrib_pkg_postrm() {
-    eselect ats2-contrib update --if-unset
+ats2-contrib_pkg_postinst()
+{
+	elog "If you intend to use the ATS2 contributions from the new profile"
+	elog "in an already running shell, please remember to do:"
+	elog ""
+	elog "  . /etc/profile"
 }

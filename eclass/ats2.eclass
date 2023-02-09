@@ -43,7 +43,6 @@ IUSE="gmp smt2 clojure javascript php perl python R scheme"
 RDEPEND="
 	dev-libs/boehm-gc:=
 	gmp? ( dev-libs/gmp:= )
-	app-eselect/eselect-ats2
 	smt2? ( dev-libs/json-c:= )
 "
 
@@ -61,17 +60,24 @@ export PATSHOME="${S}"
 export PATH="${PATSHOME}/bin${PATH:+:}${PATH:-}"
 unset PATSHOMERELOC
 
-EXPORT_FUNCTIONS src_unpack src_prepare src_configure src_compile src_install \
-				 pkg_postinst pkg_postrm
+EXPORT_FUNCTIONS pkg_pretend src_unpack src_prepare src_configure \
+				 src_compile src_install pkg_postinst
 
 installation_prefix() {
-	printf "%s" "/usr/ats2/ats2-${ATS2_IMPLEMENTATION}/"
+	printf "%s" "/usr/"
+}
+
+ats2_pkg_pretend() {
+	case "${ATS2_IMPLEMENTATION}" in
+		live)
+			use gmp || die "live ebuild requires USE=gmp"
+			;;
+	esac
 }
 
 ats2_src_unpack() {
 	case "${ATS2_IMPLEMENTATION}" in
 		live)
-			use gmp || die "live ebuild requires USE=gmp"
 			git-r3_fetch "${EGIT_REPO_URI}"
 			git-r3_checkout "${EGIT_REPO_URI}" "${S}"
 			;;
@@ -167,10 +173,6 @@ get_postiats_version() {
 	printf "%s" "${version}"
 }
 
-list_installed_files() {
-	(cd "${ED}$(installation_prefix)" && find ${1} -type f 2> /dev/null || true)
-}
-
 install_contrib_exe() {
 	exeinto "$(installation_prefix)"bin
 	doexe "${S}"/contrib/"${1}"
@@ -179,6 +181,9 @@ install_contrib_exe() {
 ats2_src_install() {
 	local postiats_version="$(get_postiats_version)"
 	local patshome_dir="ats2-postiats-${postiats_version}"
+
+	# FIXME: Get things installed where we might prefer, such as in
+	#        $(get_libdir) instead of in lib.
 	local patshome="$(installation_prefix)lib/${patshome_dir}"
 
 	# In some versions, ‘make install’ may fail to create the
@@ -203,50 +208,14 @@ ats2_src_install() {
 	use scheme && install_contrib_exe CATS-atscc2scm/bin/atscc2scm
 
 	printf "%s" "PATSHOME=${patshome}" > "${T}/50ats2"
-	insinto "$(installation_prefix)etc/env.d"
+	insinto "/etc/env.d"
 	doins "${T}/50ats2"
-
-	# Install a script that prints out the value of PATSHOME.
-	local patshome_script="patshome-ats2-${ATS2_IMPLEMENTATION}"
-	cat > "${T}/${patshome_script}" <<EOF
-#!/bin/sh
-#
-# To use ats2-${ATS2_IMPLEMENTATION} when it is not the default:
-#
-#   export PATSHOME=\``basename "${T}/${patshome_script}"`\`
-#
-
-if test \${#} -eq 0; then
-  echo '${patshome}'
-elif test \${#} -eq 1 -a "\${1}" = "--help"; then
-  echo "Usage: \`basename \${0}\` [OPTION]"
-  echo "Print the value to set PATSHOME to if you want to use"
-  echo "ats2-${ATS2_IMPLEMENTATION} instead of the system default implementation"
-  echo "of ATS2/Postiats."
-  echo
-  echo "  --help     display this help and exit"
-  echo "  --version  output version information and exit"
-  echo
-  echo "Example:"
-  echo
-  echo "  export PATSHOME"
-  echo "  PATSHOME=\\\``basename "${T}/${patshome_script}"`\\\`"
-  echo
-elif test \${#} -eq 1 -a "\${1}" = "--version"; then
-  echo "ATS2/Postiats implementation ats2-${ATS2_IMPLEMENTATION}"
-else
-  echo "\`basename \${0}\`: invalid arguments"
-  echo "Try '\`basename \${0}\` --help' for more information."
-fi
-EOF
-	exeinto /usr/bin
-	doexe "${T}/${patshome_script}"
 }
 
-ats2_pkg_postinst() {
-	eselect ats2 update --if-unset
-}
-
-ats2_pkg_postrm() {
-	eselect ats2 update --if-unset
+ats2_pkg_postinst()
+{
+	elog "If you intend to use the ATS2 from the new profile in an already"
+	elog "running shell, please remember to do:"
+	elog ""
+	elog "  . /etc/profile"
 }
