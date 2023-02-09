@@ -1,7 +1,7 @@
 # Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 inherit mercurial
 inherit autotools
@@ -14,7 +14,7 @@ LICENSE="GPL-3+"
 SLOT="0"
 KEYWORDS=""
 
-IUSE="gmp mpfr +timsort +quicksorts"
+IUSE="gmp mpfr +timsort +quicksorts static-libs"
 
 REQUIRED_USE="
 	mpfr? ( gmp )
@@ -44,6 +44,7 @@ src_configure()
 	# you wish to choose default sort algorithms other than to use the
 	# prelude for sorting.
 	econf \
+		$(use_enable static-libs static) \
 		$(use_with gmp) \
 		$(use_with mpfr) \
 		$(use_with timsort ats2-timsort) \
