@@ -1,4 +1,4 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -15,10 +15,10 @@ KEYWORDS=""
 IUSE="cvc4 int128 +proof-implementations static-libs"
 
 DEPEND="
-	>=dev-lang/ats2-0.3.11
+	dev-lang/ats2:=[gmp]
 	dev-ats2/ats2-patstrans
-	cvc4? ( >=dev-lang/ats2-0.3.11[smt2]
-		  	sci-mathematics/cvc4 )
+	cvc4? ( dev-lang/ats2:=[smt2]
+			sci-mathematics/cvc4 )
 "
 RDEPEND=""
 
