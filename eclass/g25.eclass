@@ -1,22 +1,22 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 case "${EAPI:-0}" in
 	0|1|2|3|4|5|6) die "EAPI=${EAPI} is not supported" ;;
 esac
 
-live_ebuild() {
+live_build() {
 	ver_test 2.5.99999999 -le ${PV}
 }
 
-if live_ebuild; then
+if live_build; then
 	inherit mercurial
 	inherit autotools
 fi
 
 DESCRIPTION="Gaigen 2.5: Geometric Algebra Implementation Generator"
 HOMEPAGE="https://sourceforge.net/p/chemoelectric/g25/"
-if live_ebuild; then
+if live_build; then
 	EHG_REPO_URI="http://hg.code.sf.net/p/chemoelectric/g25"
 else
 	SRC_URI="https://sourceforge.net/projects/chemoelectric/files/Crud-Factory-Gaigen-2.5/${P}.tar.gz"
@@ -67,7 +67,7 @@ g25_pkg_setup() {
 g25_src_unpack() {
 	default
 
-	if live_ebuild; then
+	if live_build; then
 		mercurial_src_unpack
 	fi
 
@@ -81,7 +81,7 @@ g25_src_unpack() {
 
 g25_src_prepare() {
 	default
-	if live_ebuild; then
+	if live_build; then
 		eautoreconf
 	fi
 }

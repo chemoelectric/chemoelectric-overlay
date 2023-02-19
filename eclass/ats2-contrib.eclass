@@ -35,7 +35,7 @@ IUSE=""
 # been consistent in matching version numbers. Moreoever, upstream
 # even encourages use of a live build for the contributed packages.
 RDEPEND="dev-lang/ats2"
-DEPEND="app-eselect/eselect-ats2-contrib"
+DEPEND="${RDEPEND}"
 
 S="${WORKDIR}/ATS2-Postiats-contrib-${PV}"
 
@@ -91,42 +91,6 @@ ats2-contrib_src_install() {
 	printf "%s" "PATSHOMERELOC=${patshomereloc}" > "${T}/50ats2-contrib"
 	insinto "/etc/env.d"
 	doins "${T}/50ats2-contrib"
-
-# 	# Install a script that prints out the value of PATSHOMERELOC.
-# 	local patshomereloc_script="patshomereloc-ats2-contrib-${ATS2_CONTRIB_VERSION}"
-# 	cat > "${T}/${patshomereloc_script}" <<EOF
-# #!/bin/sh
-# #
-# # To use ats2-contrib-${ATS2_CONTRIB_VERSION} when it is not the default:
-# #
-# #   export PATSHOMERELOC=\``basename "${T}/${patshomereloc_script}"`\`
-# #
-
-# if test \${#} -eq 0; then
-#   echo '${patshomereloc}'
-# elif test \${#} -eq 1 -a "\${1}" = "--help"; then
-#   echo "Usage: \`basename \${0}\` [OPTION]"
-#   echo "Print the value to set PATSHOMERELOC to if you want to use"
-#   echo "ats2-contrib-${ATS2_CONTRIB_VERSION} instead of the system default version"
-#   echo "of the ATS2/Postiats contributed code."
-#   echo
-#   echo "  --help     display this help and exit"
-#   echo "  --version  output version information and exit"
-#   echo
-#   echo "Example:"
-#   echo
-#   echo "  export PATSHOMERELOC"
-#   echo "  PATSHOMERELOC=\\\``basename "${T}/${patshomereloc_script}"`\\\`"
-#   echo
-# elif test \${#} -eq 1 -a "\${1}" = "--version"; then
-#   echo "ATS2/Postiats contributed code ats2-contrib-${ATS2_CONTRIB_VERSION}"
-# else
-#   echo "\`basename \${0}\`: invalid arguments"
-#   echo "Try '\`basename \${0}\` --help' for more information."
-# fi
-# EOF
-# 	exeinto /usr/bin
-# 	doexe "${T}/${patshomereloc_script}"
 }
 
 ats2-contrib_pkg_postinst()
