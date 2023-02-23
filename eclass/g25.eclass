@@ -35,7 +35,7 @@ DEPEND="
 		  dev-java/antlr:3
 		  virtual/jre
 		  virtual/jdk
-		  virtual/awk
+		  app-alternatives/awk
 	)
 "
 BDEPEND="
