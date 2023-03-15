@@ -1,0 +1,19 @@
+--- obc-3.3.0/Makefile.in.ORIG	2023-03-15 14:09:33.776399862 +0000
++++ obc-3.3.0/Makefile.in	2023-03-15 14:09:57.029548922 +0000
+@@ -381,14 +381,14 @@
+ 
+ # Automatic reconfiguration
+ 
+-$(srcdir)/configure: configure.in aclocal.m4
++$(srcdir)/configure: configure.ac aclocal.m4
+ 	cd $(srcdir) && $(AUTOCONF)
+ 
+ config.status: configure
+ 	./config.status --recheck
+ 
+ $(srcdir)/config.h.in: stamp-h.in
+-$(srcdir)/stamp-h.in: configure.in aclocal.m4
++$(srcdir)/stamp-h.in: configure.ac aclocal.m4
+ 	cd $(srcdir) && $(AUTOHEADER)
+ 	echo timestamp >$(srcdir)/stamp-h.in
+ 
