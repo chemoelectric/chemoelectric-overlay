@@ -1,7 +1,7 @@
 # Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
 ADA_COMPAT=( gnat_2021 gcc_12{,_2_0} )
 
@@ -24,8 +24,9 @@ BDEPEND="
 "
 
 src_compile() {
-	gprbuild -j$(makeopts_jobs) -P alr_env \
-			 -v -cargs:Ada ${ADAFLAGS} -cargs:C ${CFLAGS} || die
+	ALIRE_OS=linux \
+		gprbuild -j$(makeopts_jobs) -P alr_env \
+		-p -v -cargs:Ada ${ADAFLAGS} -cargs:C ${CFLAGS} || die
 }
 
 src_install() {
