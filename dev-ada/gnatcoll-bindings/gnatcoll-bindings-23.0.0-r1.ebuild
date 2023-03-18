@@ -1,10 +1,10 @@
 # Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-PYTHON_COMPAT=( python3_{8,9,10,11} )
-ADA_COMPAT=( gnat_2021 gcc_12{,_2_0} )
+PYTHON_COMPAT=( python3_{9..11} )
+ADA_COMPAT=( gnat_2021 gcc_12 gcc_12_2_0 )
 inherit ada multiprocessing python-single-r1
 
 DESCRIPTION="GNAT Component Collection"
@@ -14,7 +14,7 @@ SRC_URI="https://github.com/AdaCore/${PN}/archive/refs/tags/v${PV}.tar.gz
 
 LICENSE="GPL-3"
 SLOT="0/${PV}"
-KEYWORDS="~amd64 ~x86"
+KEYWORDS="amd64 x86"
 IUSE="gmp iconv lzma openmp python readline +shared static-libs static-pic syslog"
 REQUIRED_USE="|| ( shared static-libs static-pic )
 	|| ( gmp iconv lzma openmp python readline syslog )
@@ -26,13 +26,15 @@ RDEPEND="${PYTHON_DEPS}
 	dev-ada/gnatcoll-core:=[${ADA_USEDEP},shared?,static-libs?,static-pic?]
 	gmp? ( dev-libs/gmp:* )
 	lzma? ( app-arch/xz-utils )
-	openmp? ( || ( dev-lang/gnat-gpl[openmp] sys-devel/gcc[ada,openmp] ) )
+	openmp? ( || ( dev-lang/gnat-gpl:=[openmp]
+				   sys-devel/gcc:=[ada,openmp] ) )
 	"
 DEPEND="${RDEPEND}
-	dev-python/funcy:*
 	dev-ada/gprbuild[${ADA_USEDEP}]"
 
 QA_EXECSTACK=usr/lib/gnatcoll_readline.*/libgnatcoll_readline.*
+
+PATCHES=( "${FILESDIR}"/${P}-py_3_11.patch )
 
 pkg_setup() {
 	python-single-r1_pkg_setup
