@@ -23,8 +23,10 @@ case "${ATS2_IMPLEMENTATION}" in
 		SRC_URI="
 			gmp? ( ${SRC_URI_PREFIX}gmp-${PV}.tgz )
 			!gmp? ( ${SRC_URI_PREFIX}int-${PV}.tgz )
+			contrib? ( ${SRC_URI_PREFIX}contrib-${PV}.tgz )
 		"
 		DO_AUTOTOOLS=no
+		IUSE="+contrib"
 		;;
 esac
 
@@ -32,13 +34,9 @@ if [[ -n "${ATS2_MANPAGE_SRC_URI}" ]]; then
 	SRC_URI="${SRC_URI} ${ATS2_MANPAGE_SRC_URI}"
 fi
 
-if ver_test -ge 0.3.11; then
-	LICENSE="GPL-3 LGPL-3"
-else
-	LICENSE="GPL-3"
-fi
+LICENSE="GPL-3 LGPL-3 MIT"
 
-IUSE="gmp smt2 clojure javascript php perl python R scheme"
+IUSE="${IUSE} gmp smt2 clojure javascript php perl python R scheme"
 
 RDEPEND="
 	dev-libs/boehm-gc:=
@@ -63,6 +61,14 @@ unset PATSHOMERELOC
 EXPORT_FUNCTIONS pkg_pretend src_unpack src_prepare src_configure \
 				 src_compile src_install pkg_postinst
 
+int_or_gmp() {
+	if use gmp; then
+		echo gmp
+	else
+		echo int
+	fi
+}
+
 installation_prefix() {
 	printf "%s" "/usr/"
 }
@@ -83,7 +89,12 @@ ats2_src_unpack() {
 			;;
 		*)
 			default
-			ln -s ATS2-Postiats*-"${PV}" build || die
+			ln -s ATS2-Postiats-"$(int_or_gmp)"-"${PV}" build || die
+			if use contrib; then
+				mv ATS2-Postiats-contrib-"${PV}"/contrib/* build/contrib || die
+				rmdir ATS2-Postiats-contrib-"${PV}"/contrib || die
+				rmdir ATS2-Postiats-contrib-"${PV}" || die
+			fi
 			;;
 	esac
 }

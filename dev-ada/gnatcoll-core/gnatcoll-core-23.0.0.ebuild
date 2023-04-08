@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
-ADA_COMPAT=( gnat_2021 gcc_12{,_2_0} )
+ADA_COMPAT=( gnat_2021 gcc_12 )
 inherit ada multiprocessing
 
 DESCRIPTION="GNAT Component Collection Core packages"

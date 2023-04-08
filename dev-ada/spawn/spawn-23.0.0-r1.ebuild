@@ -3,7 +3,7 @@
 
 EAPI=8
 
-ADA_COMPAT=( gnat_2021 gcc_12{,_2_0} )
+ADA_COMPAT=( gnat_2021 gcc_12 )
 inherit ada multiprocessing
 
 DESCRIPTION="Simple API to spawn processes"

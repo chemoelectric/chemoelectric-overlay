@@ -3,7 +3,7 @@
 
 EAPI=7
 
-ADA_COMPAT=( gnat_2021 gcc_12{,_2_0} )
+ADA_COMPAT=( gnat_2021 gcc_12 )
 inherit ada multiprocessing toolchain-funcs
 
 DESCRIPTION="an implementation of the Microsoft Language Server Protocol for Ada/SPARK"

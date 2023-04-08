@@ -6,6 +6,7 @@
     <name>Barry Schwartz</name>
   </maintainer>
   <use>
+    <flag name="contrib">Install ATS2-Postiats-contrib into the contrib directory</flag>
     <flag name="smt2">Build patsolve_smt2 for using SMT 2.x to solve constraints</flag>
     <flag name="clojure">Build atscc2clj for compiling to Clojure</flag>
     <flag name="javascript">Build atscc2js for compiling to javascript</flag>
