@@ -12,6 +12,7 @@ SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="
+	virtual/mpi:=
 	>=dev-scheme/chicken-5.3.0:=
 	dev-chicken/srfi1:=
 	dev-chicken/srfi13:=
