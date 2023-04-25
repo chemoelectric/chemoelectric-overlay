@@ -42,7 +42,6 @@ export OI_INCL="${OI_LIB}/incl"
 src_prepare() {
 	default
 	eautoconf
-	cp "${FILESDIR}/oipatch.icn" "${WORKDIR}" || die
 }
 
 my_use_with() {
@@ -69,12 +68,6 @@ src_configure() {
 src_compile() {
 	default
 	use doc && emake libref
-
-	# Compile oipatch.
-	pushd "${WORKDIR}"
-	env OI_HOME="${S}" PATH="${S}/bin" oit -s oipatch || die
-	popd
-
 	use emacs && elisp-compile "misc/${PN}-mode.el"
 }
 
@@ -93,12 +86,11 @@ src_install() {
 	dodir "${libdir}"
 	cp -R lib/* "${D}${libdir}" || die
 	#
-	# FIXME: Consider remove the Makefiles under "${D}${libdir}". Are
+	# FIXME: Consider removing the Makefiles under "${D}${libdir}". Are
 	# any of these useful to have there?
 	#
 
 	einstalldocs
-	dodoc "${WORKDIR}/oipatch.icn"
 	use doc && dodoc -r libref
 
 	use examples && dodoc -r examples
@@ -109,7 +101,7 @@ src_install() {
 	for f in $(find -P . -type f -executable); do
 		[[ ! -h "${f}" ]] &&
 			env OI_HOME="${S}" PATH="${S}/bin" \
-				"${WORKDIR}/oipatch" -i "${f}" "/usr/bin/oix" || :
+				"oipatch" -i "${f}" "/usr/bin/oix" || :
 	done
 	popd
 
