@@ -13,10 +13,10 @@
     application fit their needs.
   </longdescription>
   <use>
-    <flag name="debug-freelist">Include garbage collector freelist debugging code</flag>
+    <!-- <flag name="debug-freelist">Include garbage collector freelist debugging code</flag> -->
     <flag name="debug-malloc">Include malloc debugging code</flag>
     <flag name="deprecated">Enable deprecated features</flag>
-    <flag name="discouraged"> (implied by deprecated) enable merely discouraged features</flag>
+    <!-- <flag name="discouraged"> (implied by deprecated) enable merely discouraged features</flag> -->
     <flag name="networking">Include networking interfaces</flag>
     <flag name="regex">Include regular expression interfaces</flag>
     <flag name="slib">Include support for dev-scheme/slib</flag>

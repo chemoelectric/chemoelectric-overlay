@@ -1,8 +1,9 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
-inherit eutils autotools flag-o-matic elisp-common
+EAPI=8
+#inherit eutils autotools flag-o-matic elisp-common
+inherit autotools flag-o-matic elisp-common
 
 DESCRIPTION="Scheme interpreter"
 HOMEPAGE="https://www.gnu.org/software/guile/"
@@ -34,13 +35,13 @@ SLOT="1.8"
 MAJOR="1.8"
 
 src_prepare() {
-	epatch "${FILESDIR}/${P}-fix_guile-config.patch"
-	epatch "${FILESDIR}/${P}-fix_stack-grow-direction-check.patch"
-	epatch "${FILESDIR}/${P}-config-with-readline.patch"
-	epatch "${FILESDIR}/${P}-makeinfo-5.patch"
-	epatch "${FILESDIR}/${P}-do-not-rm-build-guile.patch"
-	epatch "${FILESDIR}/0001-Fix-configure.in-macro-for-automake-1.13.patch"
-	epatch "${FILESDIR}/0002-Rename-guile-readline-configure-from-.in-to-.ac.patch"
+	eapply "${FILESDIR}/${P}-fix_guile-config.patch"
+	eapply "${FILESDIR}/${P}-fix_stack-grow-direction-check.patch"
+	eapply "${FILESDIR}/${P}-config-with-readline.patch"
+	eapply "${FILESDIR}/${P}-makeinfo-5.patch"
+	eapply "${FILESDIR}/${P}-do-not-rm-build-guile.patch"
+	eapply "${FILESDIR}/0001-Fix-configure.in-macro-for-automake-1.13.patch"
+	eapply "${FILESDIR}/0002-Rename-guile-readline-configure-from-.in-to-.ac.patch"
 	eapply_user
 	eautoreconf
 }
