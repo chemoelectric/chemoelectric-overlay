@@ -1,7 +1,7 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-inherit eutils versionator elisp-common
+inherit elisp-common
 
 DESCRIPTION="Emacs mode for the ATS2 Programming Language"
 HOMEPAGE="http://www.ats-lang.org"
