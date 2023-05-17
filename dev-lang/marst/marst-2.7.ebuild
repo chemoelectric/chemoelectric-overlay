@@ -15,4 +15,7 @@ src_install ()
 {
 	default
 	rm -f "${ED}"/usr/"$(get_libdir)"/*.la || die
+	dodoc doc/*.pdf
+	dodoc -r examples
+	dodoc -r tests
 }
