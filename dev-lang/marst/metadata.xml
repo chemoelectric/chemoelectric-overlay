@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM 'https://www.gentoo.org/dtd/metadata.dtd'>
+<pkgmetadata>
+  <maintainer type="person">
+    <email>sortsmill@crudfactory.com</email>
+    <name>Barry Schwartz</name>
+  </maintainer>
+  <longdescription>
+    MARST is an Algol-to-C translator. It automatically translates
+    programs written in the algorithmic language Algol 60 to the C
+    programming language.
+  </longdescription>
+</pkgmetadata>
