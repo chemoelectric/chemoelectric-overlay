@@ -5,6 +5,9 @@
     <email>sortsmill@crudfactory.com</email>
     <name>Barry Schwartz</name>
   </maintainer>
+  <upstream>
+    <remote-id type="sourceforge">gnucobol</remote-id>
+  </upstream>
   <use>
     <flag name="code-coverage">Enable code coverage support</flag>
     <flag name="json">Enable JSON support (via dev-libs/json-c)</flag>

@@ -1,15 +1,13 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
-
-inherit eutils
+EAPI=8
 
 DESCRIPTION="GNU COBOL compiler"
-HOMEPAGE="https://${PN}.sourceforge.io/"
-SRC_URI="https://sourceforge.net/projects/${PN}/files/${PN}/3.1/${P}.tar.xz"
+HOMEPAGE="https://gnucobol.sourceforge.io/"
+SRC_URI="https://sourceforge.net/projects/${PN}/files/${PN}/$(ver_cut 1-2)/${P}.tar.xz"
 
-LICENSE="GPL-3+ LGPL-3+"
+LICENSE="GPL-3+ LGPL-3+ FDL-1.3"
 SLOT="0"
 KEYWORDS="~amd64"
 
@@ -23,8 +21,6 @@ RDEPEND="
 	xml? ( dev-libs/libxml2:= )
 	json? ( dev-libs/json-c:= )
 	ncurses? ( sys-libs/ncurses:= )
-	!dev-lang/open-cobol
-	!dev-lang/gnu-cobol
 "
 DEPEND="
 	${RDEPEND}
@@ -68,4 +64,9 @@ src_configure() {
 		${json_with} \
 		${math_with} \
 		${curses_with}
+}
+
+src_install() {
+	default
+	rm -f "${ED}/usr/$(get_libdir)"/*.la || die
 }
