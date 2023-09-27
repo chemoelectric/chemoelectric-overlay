@@ -4,8 +4,6 @@
 [[ -n "${ATS2_CONTRIB_VERSION}" ]] ||
 	die "ATS2_CONTRIB_VERSION must be set before \"inherit ats2\""
 
-inherit eutils
-
 DESCRIPTION="ATS2 Programming Language contributed packages"
 HOMEPAGE="http://www.ats-lang.org"
 
