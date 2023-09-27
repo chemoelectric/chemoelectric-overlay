@@ -5,6 +5,9 @@
     <email>sortsmill@crudfactory.com</email>
     <name>Barry Schwartz</name>
   </maintainer>
+  <upstream>
+    <remote-id type="sourceforge">ats2-lang</remote-id>
+  </upstream>
   <use>
     <flag name="contrib">Install ATS2-Postiats-contrib into the contrib directory</flag>
     <flag name="smt2">Build patsolve_smt2 for using SMT 2.x to solve constraints</flag>
