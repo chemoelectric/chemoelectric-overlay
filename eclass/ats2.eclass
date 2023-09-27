@@ -4,8 +4,9 @@
 [[ -n "${ATS2_IMPLEMENTATION}" ]] ||
 	die "ATS2_IMPLEMENTATION must be set before \"inherit ats2\""
 
-inherit eutils toolchain-funcs
+inherit toolchain-funcs
 if [[ ${EAPI} < 7 ]]; then
+	inherit eutils
 	inherit eapi7-ver
 fi
 
