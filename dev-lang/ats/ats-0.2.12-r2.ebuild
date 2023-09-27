@@ -1,7 +1,7 @@
-# Copyright 1999-2020 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=6
+EAPI=8
 
 ###
 ### FIXME: This package installs stuff in /usr/lib that ought to go
@@ -9,8 +9,6 @@ EAPI=6
 ###
 ### FIXME: This package ignores CFLAGS and who knows what else.
 ###
-
-inherit eutils
 
 DESCRIPTION="ATS1 Programming Language"
 HOMEPAGE="http://www.ats-lang.org"
