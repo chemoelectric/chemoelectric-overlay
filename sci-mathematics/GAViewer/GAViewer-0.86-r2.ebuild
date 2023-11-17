@@ -29,10 +29,6 @@ src_prepare() {
 }
 
 src_configure() {
-	# econf \
-	# 	CFLAGS="${CFLAGS} `fltk-config --cflags` `antlr-config --cflags`" \
-	# 	CXXFLAGS="${CXXFLAGS} `fltk-config --cxxflags` `antlr-config --cflags`" \
-	# 	LDFLAGS="${LDFLAGS} `fltk-config --ldflags`"
 	econf \
 		CFLAGS="${CFLAGS} $(fltk-config --cflags)" \
 		CXXFLAGS="${CXXFLAGS} $(fltk-config --cxxflags)" \

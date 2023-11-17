@@ -27,7 +27,11 @@ SRC_URI="
 S="${WORKDIR}/${CHICKEN_EGG_P}"
 
 EXPORT_FUNCTIONS src_prepare src_configure src_compile src_test \
-				 src_install pkg_postinst pkg_postrm
+				 src_install
+#################################################################################
+## FIXME: Try not updating the database. Let us see whether things break much. ##
+#################################################################################
+				 # pkg_postinst pkg_postrm
 
 chicken-egg_src_prepare() {
 	default
@@ -86,13 +90,19 @@ chicken-egg_src_install() {
 	fi
 }
 
-chicken-egg_pkg_postinst() {
-	chicken-install -u || die
-}
+#################################################################################
+## FIXME: Try not updating the database. Let us see whether things break much. ##
+#################################################################################
+#chicken-egg_pkg_postinst() {
+#	chicken-install -u || die
+#}
 
-chicken-egg_pkg_postrm() {
-	chicken-install -u || die
-}
+#################################################################################
+## FIXME: Try not updating the database. Let us see whether things break much. ##
+#################################################################################
+#chicken-egg_pkg_postrm() {
+#	chicken-install -u || die
+#}
 
 chicken-egg_egg_file__() {
 	local egg_file
