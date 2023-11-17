@@ -5,15 +5,16 @@ EAPI=7
 
 inherit chicken-egg
 
-DESCRIPTION="The SLIB character plotting library"
+DESCRIPTION="The SLIB applicative routines for the arrays library"
 
-LICENSE="Artistic"
+LICENSE="BSD"
 SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="
 	>=dev-scheme/chicken-5.3.0:=
-	dev-chicken/slib-arraymap:=
+	dev-chicken/srfi1:=
 	dev-chicken/srfi63:=
+	dev-chicken/slib-compat:=
 "
 DEPEND="${RDEPEND}"
