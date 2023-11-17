@@ -17,7 +17,6 @@ RDEPEND="
 	dev-chicken/utf8:=
 	dev-chicken/srfi18:=
 	dev-chicken/srfi29:=
-	dev-chicken/srfi69:=
 	dev-chicken/miscmacros:=
 	dev-chicken/locale:=
 	dev-chicken/record-variants:=
