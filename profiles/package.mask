@@ -1,3 +1,7 @@
+# Barry Schwartz (18 November 2023)
+# Masked because this ebuild is of highly uncertain quality.
+dev-chicken/bit-counting
+
 # Barry Schwartz (9 February 2023)
 # This package lies outside of what I want to deal with right now.
 dev-lang/ats2-contrib-github
