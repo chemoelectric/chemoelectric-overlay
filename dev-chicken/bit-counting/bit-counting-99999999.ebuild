@@ -16,8 +16,6 @@ LICENSE="GPL-3+"
 SLOT="0/0"
 KEYWORDS=""
 
-IUSE=""
-
 RDEPEND="
 	>=dev-scheme/chicken-5.2.0:=
 	dev-chicken/r7rs
