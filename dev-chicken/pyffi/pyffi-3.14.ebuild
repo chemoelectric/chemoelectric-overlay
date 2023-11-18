@@ -1,9 +1,9 @@
 # Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI=7
+EAPI=8
 
-PYTHON_COMPAT=( python2_7 python3_{8,9,10,11} )
+PYTHON_COMPAT=( python3_{10,11,12} )
 
 inherit chicken-egg
 inherit python-single-r1
@@ -28,6 +28,7 @@ BDEPEND="
 	dev-chicken/pkg-config:=
 	dev-chicken/srfi13:=
 "
+REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 src_prepare() {
 	python_setup
