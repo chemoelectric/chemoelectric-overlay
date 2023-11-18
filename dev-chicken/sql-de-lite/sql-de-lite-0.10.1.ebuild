@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
@@ -13,7 +13,7 @@ KEYWORDS="~amd64"
 
 RDEPEND="
 	dev-db/sqlite:3=
-	>=dev-scheme/chicken-5.2.0:=
+	>=dev-scheme/chicken-5.3.0:=
 	dev-chicken/foreigners:=
 	dev-chicken/object-evict:=
 	dev-chicken/srfi1:=

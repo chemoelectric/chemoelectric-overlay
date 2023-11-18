@@ -5,7 +5,7 @@ EAPI=7
 
 inherit chicken-egg
 
-DESCRIPTION="hash-trie"
+DESCRIPTION="Hash Tries"
 
 LICENSE="MIT"
 SLOT="0/${PV}"

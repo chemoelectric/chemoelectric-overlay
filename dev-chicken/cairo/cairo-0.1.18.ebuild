@@ -1,18 +1,19 @@
-# Copyright 1999-2022 Gentoo Authors
+# Copyright 1999-2023 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=7
 
 inherit chicken-egg
 
-DESCRIPTION="symbol-utils"
+DESCRIPTION="Chicken bindings for Cairo, a vector graphics library"
 
-LICENSE="BSD"
+LICENSE="LGPL-2.1"
 SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="
+	x11-libs/cairo:=
 	>=dev-scheme/chicken-5.3.0:=
-	dev-chicken/utf8:=
+	dev-chicken/srfi1:=
 "
 DEPEND="${RDEPEND}"
