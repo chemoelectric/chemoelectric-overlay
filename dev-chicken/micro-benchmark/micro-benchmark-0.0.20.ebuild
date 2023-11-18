@@ -5,16 +5,15 @@ EAPI=7
 
 inherit chicken-egg
 
-DESCRIPTION="Shift/Reset Control Operators"
+DESCRIPTION="Easily create micro-benchmarks"
 
-LICENSE="BSD"
+LICENSE="GPL-3"
 SLOT="0/${PV}"
 KEYWORDS="~amd64"
 
 RDEPEND="
 	>=dev-scheme/chicken-5.3.0:=
-	dev-chicken/miscmacros:=
-	dev-chicken/datatype:=
-	dev-chicken/box:=
+	>=dev-chicken/micro-stats-0.0.5:=
+	dev-chicken/srfi1:=
 "
 DEPEND="${RDEPEND}"

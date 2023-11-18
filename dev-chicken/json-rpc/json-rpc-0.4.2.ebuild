@@ -5,7 +5,7 @@ EAPI=7
 
 inherit chicken-egg
 
-DESCRIPTION="Transducers for working with foldable data types"
+DESCRIPTION="A JSON RPC library for R7RS scheme"
 
 LICENSE="MIT"
 SLOT="0/${PV}"
@@ -13,9 +13,10 @@ KEYWORDS="~amd64"
 
 RDEPEND="
 	>=dev-scheme/chicken-5.3.0:=
+	dev-chicken/r7rs:=
 	dev-chicken/srfi1:=
-	dev-chicken/srfi133:=
-	dev-chicken/srfi160:=
-	dev-chicken/check-errors:=
+	dev-chicken/srfi18:=
+	dev-chicken/srfi69:=
+	dev-chicken/srfi180:=
 "
 DEPEND="${RDEPEND}"

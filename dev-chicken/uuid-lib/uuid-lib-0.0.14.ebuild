@@ -5,7 +5,7 @@ EAPI=7
 
 inherit chicken-egg
 
-DESCRIPTION="(More) Generic sequence operators"
+DESCRIPTION="OSF DCE 1.1 UUID"
 
 LICENSE="BSD"
 SLOT="0/${PV}"
@@ -13,7 +13,6 @@ KEYWORDS="~amd64"
 
 RDEPEND="
 	>=dev-scheme/chicken-5.3.0:=
-	dev-chicken/srfi1:=
-	dev-chicken/sequences:=
+	dev-chicken/record-variants:=
 "
 DEPEND="${RDEPEND}"
