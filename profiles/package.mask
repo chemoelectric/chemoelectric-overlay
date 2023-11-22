@@ -1,3 +1,9 @@
+# Barry Schwartz (22 November 2023)
+# Consistently misreports its version once installed.
+# I do not feel like fixing this.
+# Most likely I will delete the ebuild in the near future.
+dev-chicken/lsp-server
+
 # Barry Schwartz (18 November 2023)
 # Masked because this ebuild is of highly uncertain quality.
 dev-chicken/bit-counting
